@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "12457145060",
+    "project_id": "quizzapp-8befd",
+    "storage_bucket": "quizzapp-8befd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12457145060:android:1adfe3b0a079c10a1fb2f1",
+        "android_client_info": {
+          "package_name": "com.algorixsolutions.skilldesk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8i7gLveqqss7yCE4s0IqmiyxCzMfe-g0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12457145060:android:16a0725d35ee8b3b1fb2f1",
+        "android_client_info": {
+          "package_name": "com.quizzapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8i7gLveqqss7yCE4s0IqmiyxCzMfe-g0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
