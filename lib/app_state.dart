@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'flutter_flow/request_manager.dart';
 import '/backend/schema/structs/index.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -183,6 +184,36 @@ class FFAppState extends ChangeNotifier {
   set quizResult(dynamic _value) {
     _quizResult = _value;
   }
+
+  final _getUsersRankingManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getUsersRanking({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getUsersRankingManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetUsersRankingCache() => _getUsersRankingManager.clear();
+  void clearGetUsersRankingCacheKey(String? uniqueKey) =>
+      _getUsersRankingManager.clearRequest(uniqueKey);
+
+  final _getTicketsCategoriesManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getTicketsCategories({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getTicketsCategoriesManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetTicketsCategoriesCache() => _getTicketsCategoriesManager.clear();
+  void clearGetTicketsCategoriesCacheKey(String? uniqueKey) =>
+      _getTicketsCategoriesManager.clearRequest(uniqueKey);
 }
 
 LatLng? _latLngFromString(String? val) {

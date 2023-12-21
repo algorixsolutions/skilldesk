@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -90,9 +92,16 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
         body: SafeArea(
           top: true,
           child: FutureBuilder<ApiCallResponse>(
-            future: BaseUrlGroup.getNotificationCall.call(
-              userID: currentUserUid,
-            ),
+            future: FFAppState()
+                .getUsersRanking(
+              requestFn: () => BaseUrlGroup.getUsersRankingCall.call(
+                userID: currentUserUid,
+              ),
+            )
+                .then((result) {
+              _model.apiRequestCompleted = true;
+              return result;
+            }),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
@@ -108,201 +117,233 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                   ),
                 );
               }
-              final listViewGetNotificationResponse = snapshot.data!;
+              final listViewGetUsersRankingResponse = snapshot.data!;
               return Builder(
                 builder: (context) {
-                  final notification =
-                      listViewGetNotificationResponse.jsonBody.toList();
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.vertical,
-                    itemCount: notification.length,
-                    itemBuilder: (context, notificationIndex) {
-                      final notificationItem = notification[notificationIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 10.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 1.0,
+                  final users = BaseUrlGroup.getUsersRankingCall
+                          .users(
+                            listViewGetUsersRankingResponse.jsonBody,
+                          )
+                          ?.toList() ??
+                      [];
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      setState(() {
+                        FFAppState().clearGetUsersRankingCache();
+                        _model.apiRequestCompleted = false;
+                      });
+                      await _model.waitForApiRequestCompleted();
+                    },
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.vertical,
+                      itemCount: users.length,
+                      itemBuilder: (context, usersIndex) {
+                        final usersItem = users[usersIndex];
+                        return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 10.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.0),
+                              border: Border.all(
+                                color: functions.compareString(
+                                        getJsonField(
+                                          usersItem,
+                                          r'''$.id''',
+                                        ).toString(),
+                                        '${currentUserUid}')
+                                    ? FlutterFlowTheme.of(context).trainingColor
+                                    : FlutterFlowTheme.of(context).alternate,
+                                width: 1.0,
+                              ),
                             ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(20.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed(
-                                  'notifications_detail',
-                                  queryParameters: {
-                                    'notification': serializeParam(
-                                      notificationItem,
-                                      ParamType.JSON,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 20.0, 0.0),
-                                        child: Text(
-                                          '1',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge
-                                              .override(
-                                                fontFamily: 'Outfit',
-                                                fontWeight: FontWeight.w800,
-                                              ),
-                                        ),
+                            child: Padding(
+                              padding: EdgeInsets.all(20.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'notifications_detail',
+                                    queryParameters: {
+                                      'notification': serializeParam(
+                                        usersItem,
+                                        ParamType.JSON,
                                       ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 20.0, 0.0),
+                                          child: Text(
+                                            getJsonField(
+                                              usersItem,
+                                              r'''$.rank''',
+                                            ).toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleLarge
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  fontWeight: FontWeight.w800,
+                                                ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, -1.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    6.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 42.0,
+                                              height: 42.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFCBC9C9),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Icon(
+                                                Icons.person_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      14.0, 0.0, 0.0, 7.0),
+                                              child: Text(
+                                                getJsonField(
+                                                  usersItem,
+                                                  r'''$.full_name''',
+                                                ).toString(),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'SF Pro Display Bold',
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          14.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Points ',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'SF Pro Display Bold',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          14.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    '${getJsonField(
+                                                      usersItem,
+                                                      r'''$.points''',
+                                                    ).toString()} Xp',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'SF Pro Display Bold',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .trainingColor,
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    if ('${getJsonField(
+                                          usersItem,
+                                          r'''$.id''',
+                                        ).toString()}' ==
+                                        currentUserUid)
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, -1.0),
+                                            AlignmentDirectional(1.0, 0.0),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  6.0, 0.0, 0.0, 0.0),
-                                          child: Container(
-                                            width: 42.0,
-                                            height: 42.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFCBC9C9),
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Icon(
-                                              Icons.person_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
+                                                  0.0, 0.0, 20.0, 0.0),
+                                          child: Text(
+                                            'Me',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleLarge
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .trainingColor,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    14.0, 0.0, 0.0, 7.0),
-                                            child: Text(
-                                              getJsonField(
-                                                notificationItem,
-                                                r'''$.object''',
-                                              ).toString(),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'SF Pro Display Bold',
-                                                        fontSize: 14.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        useGoogleFonts: false,
-                                                      ),
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        14.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  'Points ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'SF Pro Display Bold',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        fontSize: 14.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        useGoogleFonts: false,
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        14.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  '180 Xp',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'SF Pro Display Bold',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .trainingColor,
-                                                        fontSize: 14.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        useGoogleFonts: false,
-                                                      ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 20.0, 0.0),
-                                      child: Text(
-                                        'Me',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .trainingColor,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   );
                 },
               );

@@ -27,6 +27,16 @@ class BaseUrlGroup {
       IncrementNotificationViewCall();
   static GetQuizByIdCall getQuizByIdCall = GetQuizByIdCall();
   static GetTrainingByIdCall getTrainingByIdCall = GetTrainingByIdCall();
+  static GetTicketsCall getTicketsCall = GetTicketsCall();
+  static StoreNewTicketCall storeNewTicketCall = StoreNewTicketCall();
+  static GetTicketDetailsCall getTicketDetailsCall = GetTicketDetailsCall();
+  static GetTicketResponsesCall getTicketResponsesCall =
+      GetTicketResponsesCall();
+  static GetTicketsCategoriesCall getTicketsCategoriesCall =
+      GetTicketsCategoriesCall();
+  static StoreTicketResponseCall storeTicketResponseCall =
+      StoreTicketResponseCall();
+  static GetUsersRankingCall getUsersRankingCall = GetUsersRankingCall();
 }
 
 class HomeInfosCall {
@@ -419,6 +429,290 @@ class GetTrainingByIdCall {
         response,
         r'''$.data''',
       );
+}
+
+class GetTicketsCall {
+  Future<ApiCallResponse> call({
+    String? userID = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Tickets',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${userID}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].id''',
+      );
+  dynamic object(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].object''',
+      );
+  dynamic number(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].number''',
+      );
+  dynamic status(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].status''',
+      );
+  dynamic message(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].message''',
+      );
+  dynamic createdby(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].created_by''',
+      );
+  dynamic createdat(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].created_at''',
+      );
+  dynamic category(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].category''',
+      );
+  List? tickets(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets''',
+        true,
+      ) as List?;
+}
+
+class StoreNewTicketCall {
+  Future<ApiCallResponse> call({
+    String? createdBy = '',
+    String? categoryId = '',
+    String? object = '',
+    String? message = '',
+    FFUploadedFile? file,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Store New Ticket',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/store',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'created_by': createdBy,
+        'category_id': categoryId,
+        'object': object,
+        'message': message,
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetTicketDetailsCall {
+  Future<ApiCallResponse> call({
+    String? ticketID = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Ticket Details',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${ticketID}/show',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.id''',
+      );
+  dynamic object(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.object''',
+      );
+  dynamic number(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.number''',
+      );
+  dynamic status(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.status''',
+      );
+  dynamic message(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.message''',
+      );
+  dynamic createdby(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.created_by''',
+      );
+  dynamic createdat(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.created_at''',
+      );
+  dynamic category(dynamic response) => getJsonField(
+        response,
+        r'''$.ticket.category''',
+      );
+}
+
+class GetTicketResponsesCall {
+  Future<ApiCallResponse> call({
+    String? ticketID = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Ticket Responses',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${ticketID}/responses',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? responses(dynamic response) => getJsonField(
+        response,
+        r'''$.responses''',
+        true,
+      ) as List?;
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$.responses[:].id''',
+      );
+  dynamic message(dynamic response) => getJsonField(
+        response,
+        r'''$.responses[:].message''',
+      );
+  dynamic createdby(dynamic response) => getJsonField(
+        response,
+        r'''$.responses[:].created_by''',
+      );
+  dynamic createdat(dynamic response) => getJsonField(
+        response,
+        r'''$.responses[:].created_at''',
+      );
+}
+
+class GetTicketsCategoriesCall {
+  Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Tickets Categories',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/categories',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? id(dynamic response) => getJsonField(
+        response,
+        r'''$[:].id''',
+        true,
+      ) as List?;
+  List? title(dynamic response) => getJsonField(
+        response,
+        r'''$[:].title''',
+        true,
+      ) as List?;
+}
+
+class StoreTicketResponseCall {
+  Future<ApiCallResponse> call({
+    String? ticketId = '',
+    String? createdBy = '',
+    String? message = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Store Ticket Response',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${ticketId}/response/store',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'ticket_id': ticketId,
+        'created_by': createdBy,
+        'message': message,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetUsersRankingCall {
+  Future<ApiCallResponse> call({
+    String? userID = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Users Ranking',
+      apiUrl: '${BaseUrlGroup.baseUrl}/users/ranking/${userID}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? users(dynamic response) => getJsonField(
+        response,
+        r'''$.users''',
+        true,
+      ) as List?;
+  List? id(dynamic response) => getJsonField(
+        response,
+        r'''$.users[:].id''',
+        true,
+      ) as List?;
+  List? fullname(dynamic response) => getJsonField(
+        response,
+        r'''$.users[:].full_name''',
+        true,
+      ) as List?;
+  List? email(dynamic response) => getJsonField(
+        response,
+        r'''$.users[:].email''',
+        true,
+      ) as List?;
+  List? points(dynamic response) => getJsonField(
+        response,
+        r'''$.users[:].points''',
+        true,
+      ) as List?;
+  List? rank(dynamic response) => getJsonField(
+        response,
+        r'''$.users[:].rank''',
+        true,
+      ) as List?;
 }
 
 /// End BASE URL Group Code

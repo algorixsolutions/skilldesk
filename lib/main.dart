@@ -120,11 +120,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'home': HomeWidget(),
-      'quiz_list': QuizListWidget(),
       'training_list': TrainingListWidget(),
+      'quiz_list': QuizListWidget(),
       'statistics': StatisticsWidget(),
       'settings_menu': SettingsMenuWidget(),
-      'homeCopy': HomeCopyWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -152,19 +151,19 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.dashboard_customize_sharp,
-              size: 24.0,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.solidFileAlt,
               size: 20.0,
             ),
             label: 'Trainings',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.dashboard_customize_sharp,
+              size: 24.0,
+            ),
+            label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -181,14 +180,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Settings',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
-              size: 24.0,
-            ),
-            label: 'Home',
             tooltip: '',
           )
         ],

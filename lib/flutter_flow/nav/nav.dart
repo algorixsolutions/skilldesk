@@ -259,10 +259,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OnboardingWidget(),
         ),
         FFRoute(
-          name: 'home',
-          path: '/home',
-          builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'home') : HomeWidget(),
+          name: 'home_old',
+          path: '/homeOld',
+          builder: (context, params) => HomeOldWidget(),
         ),
         FFRoute(
           name: 'statistics',
@@ -304,11 +303,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'homeCopy',
-          path: '/homeCopy',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'homeCopy')
-              : HomeCopyWidget(),
+          name: 'home',
+          path: '/home',
+          builder: (context, params) =>
+              params.isEmpty ? NavBarPage(initialPage: 'home') : HomeWidget(),
         ),
         FFRoute(
           name: 'users_ranking',
@@ -323,7 +321,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'support_details',
           path: '/supportDetails',
-          builder: (context, params) => SupportDetailsWidget(),
+          builder: (context, params) => SupportDetailsWidget(
+            ticket: params.getParam('ticket', ParamType.JSON),
+          ),
         ),
         FFRoute(
           name: 'new_ticket',

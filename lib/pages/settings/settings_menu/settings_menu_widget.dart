@@ -143,16 +143,21 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 15.5, 0.0, 15.5),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('support_list');
+                        },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  19.0, 0.0, 0.0, 0.0),
+                                  19.0, 15.5, 0.0, 15.5),
                               child: Text(
                                 'Support',
                                 style: FlutterFlowTheme.of(context)
@@ -168,7 +173,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 17.0, 0.0),
+                                  0.0, 15.5, 17.0, 15.5),
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 color: Color(0xFF130F26),

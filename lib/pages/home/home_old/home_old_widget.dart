@@ -5,32 +5,31 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
-import 'home_copy_model.dart';
-export 'home_copy_model.dart';
+import 'home_old_model.dart';
+export 'home_old_model.dart';
 
-class HomeCopyWidget extends StatefulWidget {
-  const HomeCopyWidget({Key? key}) : super(key: key);
+class HomeOldWidget extends StatefulWidget {
+  const HomeOldWidget({Key? key}) : super(key: key);
 
   @override
-  _HomeCopyWidgetState createState() => _HomeCopyWidgetState();
+  _HomeOldWidgetState createState() => _HomeOldWidgetState();
 }
 
-class _HomeCopyWidgetState extends State<HomeCopyWidget> {
-  late HomeCopyModel _model;
+class _HomeOldWidgetState extends State<HomeOldWidget> {
+  late HomeOldModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomeCopyModel());
+    _model = createModel(context, () => HomeOldModel());
   }
 
   @override
@@ -75,7 +74,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
             ),
           );
         }
-        final homeCopyHomeInfosResponse = snapshot.data!;
+        final homeOldHomeInfosResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -189,7 +188,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                                 child: Text(
                                                   BaseUrlGroup.homeInfosCall
                                                       .myXP(
-                                                        homeCopyHomeInfosResponse
+                                                        homeOldHomeInfosResponse
                                                             .jsonBody,
                                                       )
                                                       .toString(),
@@ -235,7 +234,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                                     Text(
                                                       BaseUrlGroup.homeInfosCall
                                                           .myRank(
-                                                            homeCopyHomeInfosResponse
+                                                            homeOldHomeInfosResponse
                                                                 .jsonBody,
                                                           )
                                                           .toString(),
@@ -251,7 +250,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                                     ),
                                                     Text(
                                                       ' / ${BaseUrlGroup.homeInfosCall.totalUsers(
-                                                            homeCopyHomeInfosResponse
+                                                            homeOldHomeInfosResponse
                                                                 .jsonBody,
                                                           ).toString()}',
                                                       textAlign:
@@ -450,11 +449,9 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                       ),
                                       Text(
                                         '${BaseUrlGroup.homeInfosCall.myLearningTime(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ).toString()} / ${BaseUrlGroup.homeInfosCall.totaltime(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ).toString()}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
@@ -472,12 +469,10 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                       LinearPercentIndicator(
                                         percent: BaseUrlGroup.homeInfosCall
                                                 .nbQuizCompleted(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ) /
                                             BaseUrlGroup.homeInfosCall.nbQuiz(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ),
                                         lineHeight: 8.0,
                                         animation: true,
@@ -517,11 +512,9 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                       ),
                                       Text(
                                         '${BaseUrlGroup.homeInfosCall.nbQuizCompleted(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ).toString()} / ${BaseUrlGroup.homeInfosCall.nbQuiz(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ).toString()}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
@@ -539,13 +532,11 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                       LinearPercentIndicator(
                                         percent: BaseUrlGroup.homeInfosCall
                                                 .nbTrainingCompleted(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ) /
                                             BaseUrlGroup.homeInfosCall
                                                 .nbTrainings(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ),
                                         lineHeight: 8.0,
                                         animation: true,
@@ -585,11 +576,9 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                       ),
                                       Text(
                                         '${BaseUrlGroup.homeInfosCall.nbTrainingCompleted(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ).toString()} / ${BaseUrlGroup.homeInfosCall.nbTrainings(
-                                              homeCopyHomeInfosResponse
-                                                  .jsonBody,
+                                              homeOldHomeInfosResponse.jsonBody,
                                             ).toString()}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
@@ -709,7 +698,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                 if (!functions
                                     .isListNull(BaseUrlGroup.homeInfosCall
                                         .inProgress(
-                                          homeCopyHomeInfosResponse.jsonBody,
+                                          homeOldHomeInfosResponse.jsonBody,
                                         )!
                                         .toList()))
                                   Container(
@@ -724,7 +713,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                         final inProgress =
                                             BaseUrlGroup.homeInfosCall
                                                     .inProgress(
-                                                      homeCopyHomeInfosResponse
+                                                      homeOldHomeInfosResponse
                                                           .jsonBody,
                                                     )
                                                     ?.toList() ??
@@ -740,7 +729,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                                 inProgress[inProgressIndex];
                                             return GridCardWidget(
                                               key: Key(
-                                                  'Keyrkp_${inProgressIndex}_of_${inProgress.length}'),
+                                                  'Keycdz_${inProgressIndex}_of_${inProgress.length}'),
                                               progression: getJsonField(
                                                 inProgressItem,
                                                 r'''$.percentage''',
@@ -755,7 +744,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                 if (functions
                                     .isListNull(BaseUrlGroup.homeInfosCall
                                         .inProgress(
-                                          homeCopyHomeInfosResponse.jsonBody,
+                                          homeOldHomeInfosResponse.jsonBody,
                                         )!
                                         .toList()))
                                   Padding(
@@ -778,7 +767,7 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Training Themes',
+                                    'Upcoming',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -791,139 +780,74 @@ class _HomeCopyWidgetState extends State<HomeCopyWidget> {
                                 ],
                               ),
                             ),
-                            FutureBuilder<ApiCallResponse>(
-                              future: BaseUrlGroup.getThemesCall.call(
-                                userID: currentUserUid,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
+                            Stack(
+                              children: [
+                                if (!functions
+                                    .isListNull(BaseUrlGroup.homeInfosCall
+                                        .upcoming(
+                                          homeOldHomeInfosResponse.jsonBody,
+                                        )!
+                                        .toList()))
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 21.0, 0.0, 0.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 230.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Builder(
+                                        builder: (context) {
+                                          final upcoming =
+                                              BaseUrlGroup.homeInfosCall
+                                                      .upcoming(
+                                                        homeOldHomeInfosResponse
+                                                            .jsonBody,
+                                                      )
+                                                      ?.toList() ??
+                                                  [];
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: upcoming.length,
+                                            itemBuilder:
+                                                (context, upcomingIndex) {
+                                              final upcomingItem =
+                                                  upcoming[upcomingIndex];
+                                              return GridCardWidget(
+                                                key: Key(
+                                                    'Keythi_${upcomingIndex}_of_${upcoming.length}'),
+                                                progression: getJsonField(
+                                                  upcomingItem,
+                                                  r'''$.percentage''',
+                                                ),
+                                                jsonItem: upcomingItem,
+                                              );
+                                            },
+                                          );
+                                        },
                                       ),
                                     ),
-                                  );
-                                }
-                                final stackGetThemesResponse = snapshot.data!;
-                                return Stack(
-                                  children: [
-                                    if (!functions.isListNull(
-                                        stackGetThemesResponse.jsonBody))
-                                      Container(
-                                        width: double.infinity,
-                                        height: 60.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                        child: Builder(
-                                          builder: (context) {
-                                            final themes =
-                                                stackGetThemesResponse.jsonBody
-                                                    .toList();
-                                            return ListView.separated(
-                                              padding: EdgeInsets.fromLTRB(
-                                                20.0,
-                                                0,
-                                                0,
-                                                0,
-                                              ),
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount: themes.length,
-                                              separatorBuilder: (_, __) =>
-                                                  SizedBox(width: 20.0),
-                                              itemBuilder:
-                                                  (context, themesIndex) {
-                                                final themesItem =
-                                                    themes[themesIndex];
-                                                return Material(
-                                                  color: Colors.transparent,
-                                                  elevation: 3.0,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                  ),
-                                                  child: Container(
-                                                    height: 100.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          valueOrDefault<Color>(
-                                                        random_data
-                                                            .randomColor(),
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .quizColor,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      border: Border.all(
-                                                        width: 1.0,
-                                                      ),
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          getJsonField(
-                                                            themesItem,
-                                                            r'''$.label''',
-                                                          ).toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'SF Pro Display Bold',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                fontSize: 16.0,
-                                                                useGoogleFonts:
-                                                                    false,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    if (functions.isListNull(
-                                        stackGetThemesResponse.jsonBody))
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 20.0, 0.0, 0.0),
-                                        child: Text(
-                                          'No themes available. ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
-                                        ),
-                                      ),
-                                  ],
-                                );
-                              },
+                                  ),
+                                if (functions
+                                    .isListNull(BaseUrlGroup.homeInfosCall
+                                        .upcoming(
+                                          homeOldHomeInfosResponse.jsonBody,
+                                        )!
+                                        .toList()))
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 20.0, 0.0, 0.0),
+                                    child: Text(
+                                      'No upcoming quiz or training.',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge,
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),

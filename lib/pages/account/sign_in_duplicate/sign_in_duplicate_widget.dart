@@ -156,7 +156,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    context.pushNamed('home');
+                    context.pushNamed('home_old');
                   },
                   text: 'Sign In',
                   options: FFButtonOptions(

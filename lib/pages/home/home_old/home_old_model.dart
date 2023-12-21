@@ -5,8 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
-import 'home_copy_widget.dart' show HomeCopyWidget;
+import 'home_old_widget.dart' show HomeOldWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,7 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
-class HomeCopyModel extends FlutterFlowModel<HomeCopyWidget> {
+class HomeOldModel extends FlutterFlowModel<HomeOldWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

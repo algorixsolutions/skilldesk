@@ -37,7 +37,7 @@ export '/pages/quiz/quiz_finderror_fail_duplicate/quiz_finderror_fail_duplicate_
 export '/pages/home/notifications_detail/notifications_detail_widget.dart'
     show NotificationsDetailWidget;
 export '/pages/account/onboarding/onboarding_widget.dart' show OnboardingWidget;
-export '/pages/home/home/home_widget.dart' show HomeWidget;
+export '/pages/home/home_old/home_old_widget.dart' show HomeOldWidget;
 export '/pages/statistics/statistics/statistics_widget.dart'
     show StatisticsWidget;
 export '/pages/account/sign_in_duplicate/sign_in_duplicate_widget.dart'
@@ -48,7 +48,7 @@ export '/pages/training/training_completed/training_completed_widget.dart'
     show TrainingCompletedWidget;
 export '/pages/training/training_quiz_copy/training_quiz_copy_widget.dart'
     show TrainingQuizCopyWidget;
-export '/pages/home/home_copy/home_copy_widget.dart' show HomeCopyWidget;
+export '/pages/home/home/home_widget.dart' show HomeWidget;
 export '/pages/statistics/users_ranking/users_ranking_widget.dart'
     show UsersRankingWidget;
 export '/pages/settings/support_list/support_list_widget.dart'
