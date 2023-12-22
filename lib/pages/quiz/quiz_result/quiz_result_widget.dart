@@ -1,15 +1,16 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'quiz_result_model.dart';
+
 export 'quiz_result_model.dart';
 
 class QuizResultWidget extends StatefulWidget {
@@ -83,7 +84,7 @@ class _QuizResultWidgetState extends State<QuizResultWidget> {
                         width: 1.0,
                       ),
                     ),
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.00, 0.00),
                     child: FutureBuilder<ApiCallResponse>(
                       future: BaseUrlGroup.getQuizByIdCall.call(
                         quizzId: widget.quizId,
@@ -368,48 +369,48 @@ class _QuizResultWidgetState extends State<QuizResultWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 254.0, 0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      if (FFAppState().trainingAfterQuiz != null
-                          ? false
-                          : true) {
-                        context.pushNamed('quiz_list');
-                      } else {
-                        context.pushNamed(
-                          'training_chapters',
-                          queryParameters: {
-                            'training': serializeParam(
-                              FFAppState().trainingAfterQuiz,
-                              ParamType.JSON,
-                            ),
-                          }.withoutNulls,
-                        );
-                      }
-                    },
-                    text: 'Back To Quiz',
-                    options: FFButtonOptions(
-                      width: 342.0,
-                      height: 50.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF39B6FF),
-                      textStyle: TextStyle(
-                        fontFamily: 'SF Pro Display Bold',
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14.0,
-                      ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(12.0),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height * 0.1,
+                ),
+                FFButtonWidget(
+                  onPressed: () async {
+                    if (FFAppState().trainingAfterQuiz == null) {
+                      context.pushNamed('quiz_list');
+                    } else {
+                      context.pushNamed(
+                        'training_chapters',
+                        queryParameters: {
+                          'training': serializeParam(
+                            FFAppState().trainingAfterQuiz,
+                            ParamType.JSON,
+                          ),
+                        }.withoutNulls,
+                      );
+                    }
+                  },
+                  text: FFAppState().trainingAfterQuiz != null
+                      ? 'Back To Training'
+                      : 'Back To Quiz',
+                  options: FFButtonOptions(
+                    width: 342.0,
+                    height: 50.0,
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: Color(0xFF39B6FF),
+                    textStyle: TextStyle(
+                      fontFamily: 'SF Pro Display Bold',
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.0,
                     ),
+                    elevation: 3.0,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                 ),
               ],
