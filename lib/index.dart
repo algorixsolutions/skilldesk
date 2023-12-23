@@ -56,6 +56,8 @@ export '/pages/settings/support_list/support_list_widget.dart'
 export '/pages/settings/support_details/support_details_widget.dart'
     show SupportDetailsWidget;
 export '/pages/settings/new_ticket/new_ticket_widget.dart' show NewTicketWidget;
-export '/pages/home/messages/messages_widget.dart' show MessagesWidget;
+export '/pages/home/message_list/message_list_widget.dart'
+    show MessageListWidget;
 export '/pages/home/message_details/message_details_widget.dart'
     show MessageDetailsWidget;
+export '/pages/home/new_message/new_message_widget.dart' show NewMessageWidget;

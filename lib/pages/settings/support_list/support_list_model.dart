@@ -18,8 +18,10 @@ class SupportListModel extends FlutterFlowModel<SupportListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  bool apiRequestCompleted = false;
-  String? apiRequestLastUniqueKey;
+  bool apiRequestCompleted2 = false;
+  String? apiRequestLastUniqueKey2;
+  bool apiRequestCompleted1 = false;
+  String? apiRequestLastUniqueKey1;
 
   /// Query cache managers for this widget.
 
@@ -54,7 +56,7 @@ class SupportListModel extends FlutterFlowModel<SupportListWidget> {
 
   /// Additional helper methods are added here.
 
-  Future waitForApiRequestCompleted({
+  Future waitForApiRequestCompleted2({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -62,7 +64,22 @@ class SupportListModel extends FlutterFlowModel<SupportListWidget> {
     while (true) {
       await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleted;
+      final requestComplete = apiRequestCompleted2;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForApiRequestCompleted1({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = apiRequestCompleted1;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

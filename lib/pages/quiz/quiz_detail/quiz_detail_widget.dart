@@ -1,16 +1,15 @@
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
-
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'quiz_detail_model.dart';
-
 export 'quiz_detail_model.dart';
 
 class QuizDetailWidget extends StatefulWidget {
@@ -40,7 +39,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
-        // FFAppState().trainingAfterQuiz = null;
+        FFAppState().trainingAfterQuiz = null;
         FFAppState().quizID = '';
       });
     });
@@ -90,7 +89,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.00, 0.00),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(20.0, 9.93, 20.0, 0.0),
@@ -321,7 +320,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.00, -1.00),
+                  alignment: AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(27.0, 27.0, 0.0, 0.0),

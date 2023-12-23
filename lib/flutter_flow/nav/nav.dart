@@ -331,14 +331,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => NewTicketWidget(),
         ),
         FFRoute(
-          name: 'messages',
-          path: '/messages',
-          builder: (context, params) => MessagesWidget(),
+          name: 'message_list',
+          path: '/messageList',
+          builder: (context, params) => MessageListWidget(),
         ),
         FFRoute(
           name: 'message_details',
           path: '/messageDetails',
-          builder: (context, params) => MessageDetailsWidget(),
+          builder: (context, params) => MessageDetailsWidget(
+            message: params.getParam('message', ParamType.JSON),
+          ),
+        ),
+        FFRoute(
+          name: 'new_message',
+          path: '/newMessage',
+          builder: (context, params) => NewMessageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

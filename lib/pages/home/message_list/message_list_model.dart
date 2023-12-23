@@ -8,50 +8,39 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/request_manager.dart';
 
 import 'dart:async';
-import 'message_details_widget.dart' show MessageDetailsWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:expandable/expandable.dart';
+import 'message_list_widget.dart' show MessageListWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class MessageDetailsModel extends FlutterFlowModel<MessageDetailsWidget> {
-  ///  Local state fields for this page.
-
-  bool buttonSendDisable = false;
-
+class MessageListModel extends FlutterFlowModel<MessageListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
   bool apiRequestCompleted = false;
   String? apiRequestLastUniqueKey;
-  // State field(s) for TextFieldReply widget.
-  FocusNode? textFieldReplyFocusNode;
-  TextEditingController? textFieldReplyController;
-  String? Function(BuildContext, String?)? textFieldReplyControllerValidator;
-  // Stores action output result for [Backend Call - API (Store Discussion Response )] action in IconButton widget.
-  ApiCallResponse? apiResultags;
 
   /// Query cache managers for this widget.
 
-  final _getDiscussionResponsesManager =
-      FutureRequestManager<ApiCallResponse>();
-  Future<ApiCallResponse> getDiscussionResponses({
+  final _getMessagesManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getMessages({
     String? uniqueQueryKey,
     bool? overrideCache,
     required Future<ApiCallResponse> Function() requestFn,
   }) =>
-      _getDiscussionResponsesManager.performRequest(
+      _getMessagesManager.performRequest(
         uniqueQueryKey: uniqueQueryKey,
         overrideCache: overrideCache,
         requestFn: requestFn,
       );
-  void clearGetDiscussionResponsesCache() =>
-      _getDiscussionResponsesManager.clear();
-  void clearGetDiscussionResponsesCacheKey(String? uniqueKey) =>
-      _getDiscussionResponsesManager.clearRequest(uniqueKey);
+  void clearGetMessagesCache() => _getMessagesManager.clear();
+  void clearGetMessagesCacheKey(String? uniqueKey) =>
+      _getMessagesManager.clearRequest(uniqueKey);
 
   /// Initialization and disposal methods.
 
@@ -59,12 +48,12 @@ class MessageDetailsModel extends FlutterFlowModel<MessageDetailsWidget> {
 
   void dispose() {
     unfocusNode.dispose();
-    textFieldReplyFocusNode?.dispose();
-    textFieldReplyController?.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
 
     /// Dispose query cache managers for this widget.
 
-    clearGetDiscussionResponsesCache();
+    clearGetMessagesCache();
   }
 
   /// Action blocks are added here.

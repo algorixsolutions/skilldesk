@@ -185,6 +185,45 @@ class FFAppState extends ChangeNotifier {
     _quizResult = _value;
   }
 
+  List<String> _ThemeColors = [
+    '#E26EE5',
+    '#7E30E1',
+    '#FF7676',
+    '#756AB6',
+    '#0C356A',
+    '#000000',
+    '#5FBDFF',
+    '#0ECEFF',
+    '#3887BE'
+  ];
+  List<String> get ThemeColors => _ThemeColors;
+  set ThemeColors(List<String> _value) {
+    _ThemeColors = _value;
+  }
+
+  void addToThemeColors(String _value) {
+    _ThemeColors.add(_value);
+  }
+
+  void removeFromThemeColors(String _value) {
+    _ThemeColors.remove(_value);
+  }
+
+  void removeAtIndexFromThemeColors(int _index) {
+    _ThemeColors.removeAt(_index);
+  }
+
+  void updateThemeColorsAtIndex(
+    int _index,
+    String Function(String) updateFn,
+  ) {
+    _ThemeColors[_index] = updateFn(_ThemeColors[_index]);
+  }
+
+  void insertAtIndexInThemeColors(int _index, String _value) {
+    _ThemeColors.insert(_index, _value);
+  }
+
   final _getUsersRankingManager = FutureRequestManager<ApiCallResponse>();
   Future<ApiCallResponse> getUsersRanking({
     String? uniqueQueryKey,
@@ -214,6 +253,21 @@ class FFAppState extends ChangeNotifier {
   void clearGetTicketsCategoriesCache() => _getTicketsCategoriesManager.clear();
   void clearGetTicketsCategoriesCacheKey(String? uniqueKey) =>
       _getTicketsCategoriesManager.clearRequest(uniqueKey);
+
+  final _getThemesManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getThemes({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getThemesManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetThemesCache() => _getThemesManager.clear();
+  void clearGetThemesCacheKey(String? uniqueKey) =>
+      _getThemesManager.clearRequest(uniqueKey);
 }
 
 LatLng? _latLngFromString(String? val) {

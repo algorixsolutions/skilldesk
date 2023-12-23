@@ -1,22 +1,19 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:skilldesk/pages/quiz/quiz_finderror/quiz_finderror_widget.dart';
-import 'package:skilldesk/pages/quiz/quiz_mcq/quiz_mcq_widget.dart';
-import 'package:skilldesk/pages/quiz/quiz_truefalse/quiz_truefalse_widget.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
-
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/flutter_flow_audio_player.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'quiz_image_answer_model.dart';
-
 export 'quiz_image_answer_model.dart';
 
 class QuizImageAnswerWidget extends StatefulWidget {
@@ -42,56 +39,181 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Map<String, dynamic> currQuestion = {};
-  bool isExplain = false;
-  bool showAnswer = false;
-  bool isTimerEnd = false;
-  List<int> selectedAns = [];
-
   @override
   void initState() {
     super.initState();
-
     _model = createModel(context, () => QuizImageAnswerModel());
 
-    setState(() {
-      currQuestion = widget.questions![widget.index!];
-      // FFAppState().currQuestion = widget.questions![widget.index!];
-      // FFAppState().selectedAns = [];
-      // FFAppState().isExplain = false;
-      // FFAppState().showAnswer = false;
-      FFAppState().startingTime = getCurrentTimestamp;
-      // FFAppState().isTimerEnd = false;
-    });
-    if (widget.isCompleted!) {
-      _model.timerController.onResetTimer();
-
-      _model.timerController.onStartTimer();
-      return;
-    } else {
-      if (functions.isCurrQuestionCompleted(currQuestion)) {
-        if (widget.questions?.length == functions.getIndex(widget.index!)) {
-          context.pushNamed(
-            'quiz_result',
-            queryParameters: {
-              'quizId': serializeParam(
-                widget.quizId,
-                ParamType.String,
-              ),
-            }.withoutNulls,
-          );
-
-          return;
-        } else {
-          navigateToNextScreen();
-        }
-      } else {
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().currQuestion = widget.questions![widget.index!];
+        FFAppState().selectedAns = [];
+        FFAppState().isExplain = false;
+        FFAppState().showAnswer = false;
+        FFAppState().startingTime = getCurrentTimestamp;
+        FFAppState().isTimerEnd = false;
+      });
+      if (widget.isCompleted!) {
         _model.timerController.onResetTimer();
 
         _model.timerController.onStartTimer();
         return;
+      } else {
+        if (functions.isCurrQuestionCompleted(FFAppState().currQuestion)) {
+          if (getJsonField(
+                widget.questions?[functions.getIndex(widget.index!)],
+                r'''$.type''',
+              ) ==
+              getJsonField(
+                FFAppState().quiztype,
+                r'''$.mcq''',
+              )) {
+            if (Navigator.of(context).canPop()) {
+              context.pop();
+            }
+            context.pushNamed(
+              'quiz_mcq',
+              queryParameters: {
+                'questions': serializeParam(
+                  widget.questions,
+                  ParamType.JSON,
+                  true,
+                ),
+                'index': serializeParam(
+                  functions.getIndex(widget.index!),
+                  ParamType.int,
+                ),
+                'quizId': serializeParam(
+                  widget.quizId,
+                  ParamType.String,
+                ),
+                'isCompleted': serializeParam(
+                  widget.isCompleted,
+                  ParamType.bool,
+                ),
+              }.withoutNulls,
+            );
+
+            return;
+          } else {
+            if (getJsonField(
+                  widget.questions?[functions.getIndex(widget.index!)],
+                  r'''$.type''',
+                ) ==
+                getJsonField(
+                  FFAppState().quiztype,
+                  r'''$.tf''',
+                )) {
+              context.pushNamed(
+                'quiz_truefalse',
+                queryParameters: {
+                  'questions': serializeParam(
+                    widget.questions,
+                    ParamType.JSON,
+                    true,
+                  ),
+                  'index': serializeParam(
+                    functions.getIndex(widget.index!),
+                    ParamType.int,
+                  ),
+                  'quizId': serializeParam(
+                    widget.quizId,
+                    ParamType.String,
+                  ),
+                  'isCompleted': serializeParam(
+                    widget.isCompleted,
+                    ParamType.bool,
+                  ),
+                }.withoutNulls,
+              );
+
+              return;
+            } else {
+              if (getJsonField(
+                    widget.questions?[functions.getIndex(widget.index!)],
+                    r'''$.type''',
+                  ) ==
+                  getJsonField(
+                    FFAppState().quiztype,
+                    r'''$.error''',
+                  )) {
+                if (Navigator.of(context).canPop()) {
+                  context.pop();
+                }
+                context.pushNamed(
+                  'quiz_finderror',
+                  queryParameters: {
+                    'questions': serializeParam(
+                      widget.questions,
+                      ParamType.JSON,
+                      true,
+                    ),
+                    'index': serializeParam(
+                      functions.getIndex(widget.index!),
+                      ParamType.int,
+                    ),
+                    'quizId': serializeParam(
+                      widget.quizId,
+                      ParamType.String,
+                    ),
+                    'isCompleted': serializeParam(
+                      widget.isCompleted,
+                      ParamType.bool,
+                    ),
+                  }.withoutNulls,
+                );
+
+                return;
+              } else {
+                if (getJsonField(
+                      widget.questions?[functions.getIndex(widget.index!)],
+                      r'''$.type''',
+                    ) ==
+                    getJsonField(
+                      FFAppState().quiztype,
+                      r'''$.image''',
+                    )) {
+                  context.pushNamed(
+                    'quiz_image_answer',
+                    queryParameters: {
+                      'questions': serializeParam(
+                        widget.questions,
+                        ParamType.JSON,
+                        true,
+                      ),
+                      'index': serializeParam(
+                        functions.getIndex(widget.index!),
+                        ParamType.int,
+                      ),
+                      'quizId': serializeParam(
+                        widget.quizId,
+                        ParamType.String,
+                      ),
+                      'isCompleted': serializeParam(
+                        widget.isCompleted,
+                        ParamType.bool,
+                      ),
+                    }.withoutNulls,
+                  );
+
+                  return;
+                } else {
+                  return;
+                }
+              }
+            }
+          }
+        } else {
+          _model.timerController.onResetTimer();
+
+          _model.timerController.onStartTimer();
+          return;
+        }
       }
-    }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -128,7 +250,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.00, -1.00),
+                  alignment: AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(20.0, 0.82, 0.0, 0.0),
@@ -187,14 +309,14 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                   ),
                 ),
                 if (functions.isMediaExist(getJsonField(
-                  currQuestion,
+                  FFAppState().currQuestion,
                   r'''$.media''',
                   true,
-                )))
+                )!))
                   Builder(
                     builder: (context) {
                       final media = getJsonField(
-                        currQuestion,
+                        FFAppState().currQuestion,
                         r'''$.media''',
                       ).toList();
                       return ListView.builder(
@@ -240,14 +362,13 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                     r'''$.audio''',
                                   ))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 20.0, 20.0, 20.0),
+                                  padding: EdgeInsets.all(20.0),
                                   child: FlutterFlowAudioPlayer(
                                     audio: Audio.network(
                                       getJsonField(
                                         mediaItem,
                                         r'''$.url''',
-                                      ),
+                                      ).toString(),
                                       metas: Metas(
                                         id: 'sample3.mp3-51edfd7e',
                                         title: getJsonField(
@@ -308,7 +429,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.00, -1.00),
+                                alignment: AlignmentDirectional(-1.0, -1.0),
                                 child: Text(
                                   'Find The Error',
                                   style:
@@ -318,13 +439,13 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                             ],
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.00, -1.00),
+                            alignment: AlignmentDirectional(-1.0, -1.0),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 9.0, 0.0, 0.0),
                               child: Text(
                                 getJsonField(
-                                  currQuestion,
+                                  FFAppState().currQuestion,
                                   r'''$.label''',
                                 ).toString(),
                                 style: FlutterFlowTheme.of(context)
@@ -454,14 +575,14 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                     children: [
                       Text(
                         'Number of correct answers: ${getJsonField(
-                          currQuestion,
+                          FFAppState().currQuestion,
                           r'''$.number_correct_answer''',
                         ).toString()}',
                         style: FlutterFlowTheme.of(context).bodyMedium,
                       ),
                       Flexible(
                         child: Align(
-                          alignment: AlignmentDirectional(1.00, 0.00),
+                          alignment: AlignmentDirectional(1.0, 0.0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 6.0, 0.0),
@@ -475,7 +596,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                       ),
                       FlutterFlowTimer(
                         initialTime: functions.getCountdownTimer(getJsonField(
-                          currQuestion,
+                          FFAppState().currQuestion,
                           r'''$.duration''',
                         ).toString()),
                         getDisplayTime: (value) =>
@@ -491,7 +612,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                           if (shouldUpdate) setState(() {});
                         },
                         onEnded: () async {
-                          if (isExplain) {
+                          if (FFAppState().isExplain) {
                             if (widget.questions?.length ==
                                 functions.getIndex(widget.index!)) {
                               context.pushNamed(
@@ -506,22 +627,162 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
 
                               return;
                             } else {
-                              navigateToNextScreen();
+                              if (getJsonField(
+                                    widget.questions?[
+                                        functions.getIndex(widget.index!)],
+                                    r'''$.type''',
+                                  ) ==
+                                  getJsonField(
+                                    FFAppState().quiztype,
+                                    r'''$.mcq''',
+                                  )) {
+                                context.goNamed(
+                                  'quiz_mcq',
+                                  queryParameters: {
+                                    'questions': serializeParam(
+                                      widget.questions,
+                                      ParamType.JSON,
+                                      true,
+                                    ),
+                                    'index': serializeParam(
+                                      functions.getIndex(widget.index!),
+                                      ParamType.int,
+                                    ),
+                                    'quizId': serializeParam(
+                                      widget.quizId,
+                                      ParamType.String,
+                                    ),
+                                    'isCompleted': serializeParam(
+                                      widget.isCompleted,
+                                      ParamType.bool,
+                                    ),
+                                  }.withoutNulls,
+                                );
+
+                                return;
+                              } else {
+                                if (getJsonField(
+                                      widget.questions?[
+                                          functions.getIndex(widget.index!)],
+                                      r'''$.type''',
+                                    ) ==
+                                    getJsonField(
+                                      FFAppState().quiztype,
+                                      r'''$.tf''',
+                                    )) {
+                                  context.goNamed(
+                                    'quiz_truefalse',
+                                    queryParameters: {
+                                      'questions': serializeParam(
+                                        widget.questions,
+                                        ParamType.JSON,
+                                        true,
+                                      ),
+                                      'index': serializeParam(
+                                        functions.getIndex(widget.index!),
+                                        ParamType.int,
+                                      ),
+                                      'quizId': serializeParam(
+                                        widget.quizId,
+                                        ParamType.String,
+                                      ),
+                                      'isCompleted': serializeParam(
+                                        widget.isCompleted,
+                                        ParamType.bool,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+
+                                  return;
+                                } else {
+                                  if (getJsonField(
+                                        widget.questions?[
+                                            functions.getIndex(widget.index!)],
+                                        r'''$.type''',
+                                      ) ==
+                                      getJsonField(
+                                        FFAppState().quiztype,
+                                        r'''$.error''',
+                                      )) {
+                                    context.goNamed(
+                                      'quiz_finderror',
+                                      queryParameters: {
+                                        'questions': serializeParam(
+                                          widget.questions,
+                                          ParamType.JSON,
+                                          true,
+                                        ),
+                                        'index': serializeParam(
+                                          functions.getIndex(widget.index!),
+                                          ParamType.int,
+                                        ),
+                                        'quizId': serializeParam(
+                                          widget.quizId,
+                                          ParamType.String,
+                                        ),
+                                        'isCompleted': serializeParam(
+                                          widget.isCompleted,
+                                          ParamType.bool,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+
+                                    return;
+                                  } else {
+                                    if (getJsonField(
+                                          widget.questions?[functions
+                                              .getIndex(widget.index!)],
+                                          r'''$.type''',
+                                        ) ==
+                                        getJsonField(
+                                          FFAppState().quiztype,
+                                          r'''$.image''',
+                                        )) {
+                                      context.goNamed(
+                                        'quiz_image_answer',
+                                        queryParameters: {
+                                          'questions': serializeParam(
+                                            widget.questions,
+                                            ParamType.JSON,
+                                            true,
+                                          ),
+                                          'index': serializeParam(
+                                            functions.getIndex(widget.index!),
+                                            ParamType.int,
+                                          ),
+                                          'quizId': serializeParam(
+                                            widget.quizId,
+                                            ParamType.String,
+                                          ),
+                                          'isCompleted': serializeParam(
+                                            widget.isCompleted,
+                                            ParamType.bool,
+                                          ),
+                                        }.withoutNulls,
+                                      );
+
+                                      return;
+                                    } else {
+                                      return;
+                                    }
+                                  }
+                                }
+                              }
                             }
                           } else {
                             if (functions.isAnswersValidate(
                                 getJsonField(
-                                  currQuestion,
+                                  FFAppState().currQuestion,
                                   r'''$.number_correct_answer''',
                                 ),
-                                selectedAns.length)) {
+                                FFAppState().selectedAns.length)) {
                               if (functions.isAnswerCorrect(
                                   getJsonField(
-                                    currQuestion,
+                                    FFAppState().currQuestion,
                                     r'''$.answers''',
                                     true,
                                   )!,
-                                  selectedAns.toList())) {
+                                  FFAppState().selectedAns.toList())) {
                                 await BaseUrlGroup.storeAnsweredQuestionCall
                                     .call(
                                   duration: functions.getDuration(
@@ -529,7 +790,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                       getCurrentTimestamp),
                                   isCorrect: 1,
                                   questionId: getJsonField(
-                                    currQuestion,
+                                    FFAppState().currQuestion,
                                     r'''$.id''',
                                   ).toString(),
                                   quizId: widget.quizId,
@@ -552,10 +813,10 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
                                 );
-                                // setState(() {
-                                //   FFAppState().correctAns =
-                                //       FFAppState().correctAns + 1;
-                                // });
+                                setState(() {
+                                  FFAppState().correctAns =
+                                      FFAppState().correctAns + 1;
+                                });
                               } else {
                                 await BaseUrlGroup.storeAnsweredQuestionCall
                                     .call(
@@ -564,7 +825,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                       getCurrentTimestamp),
                                   isCorrect: 0,
                                   questionId: getJsonField(
-                                    currQuestion,
+                                    FFAppState().currQuestion,
                                     r'''$.id''',
                                   ).toString(),
                                   quizId: widget.quizId,
@@ -586,8 +847,8 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                               }
 
                               setState(() {
-                                isExplain = true;
-                                isTimerEnd = true;
+                                FFAppState().isExplain = true;
+                                FFAppState().isTimerEnd = true;
                               });
                               return;
                             } else {
@@ -605,21 +866,9 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                       FlutterFlowTheme.of(context).error,
                                 ),
                               );
-                              await BaseUrlGroup.storeAnsweredQuestionCall.call(
-                                duration: functions.getDuration(
-                                    FFAppState().startingTime!,
-                                    getCurrentTimestamp),
-                                isCorrect: 0,
-                                questionId: getJsonField(
-                                  currQuestion,
-                                  r'''$.id''',
-                                ).toString(),
-                                quizId: widget.quizId,
-                                userId: currentUserUid,
-                              );
                               setState(() {
-                                isExplain = true;
-                                isTimerEnd = true;
+                                FFAppState().isExplain = true;
+                                FFAppState().isTimerEnd = true;
                               });
                               return;
                             }
@@ -647,11 +896,10 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                       Builder(
                         builder: (context) {
                           final answer = getJsonField(
-                            currQuestion,
+                            FFAppState().currQuestion,
                             r'''$.answers''',
                           ).toList();
                           return GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.zero,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -675,48 +923,52 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                     color: () {
                                       if (functions.isSelectedIdexCorrect(
                                               getJsonField(
-                                                currQuestion,
+                                                FFAppState().currQuestion,
                                                 r'''$.answers''',
                                                 true,
                                               )!,
                                               answerIndex) &&
-                                          isExplain &&
-                                          !isTimerEnd &&
+                                          FFAppState().isExplain &&
+                                          !FFAppState().isTimerEnd &&
                                           functions.isAnswerCorrect(
                                               getJsonField(
-                                                currQuestion,
+                                                FFAppState().currQuestion,
                                                 r'''$.answers''',
                                                 true,
                                               )!,
-                                              selectedAns.toList())) {
+                                              FFAppState()
+                                                  .selectedAns
+                                                  .toList())) {
                                         return FlutterFlowTheme.of(context)
                                             .quizSuccessBorder;
-                                      } else if (isExplain &&
+                                      } else if (FFAppState().isExplain &&
                                           !functions.isSelectedIdexCorrect(
                                               getJsonField(
-                                                currQuestion,
+                                                FFAppState().currQuestion,
                                                 r'''$.answers''',
                                                 true,
                                               )!,
                                               answerIndex) &&
                                           !functions.isAnswerCorrect(
                                               getJsonField(
-                                                currQuestion,
+                                                FFAppState().currQuestion,
                                                 r'''$.answers''',
                                                 true,
                                               )!,
-                                              selectedAns.toList()) &&
-                                          !isTimerEnd &&
+                                              FFAppState()
+                                                  .selectedAns
+                                                  .toList()) &&
+                                          !FFAppState().isTimerEnd &&
                                           functions.isValuePresent(
-                                              selectedAns.toList(),
+                                              FFAppState().selectedAns.toList(),
                                               answerIndex)) {
                                         return FlutterFlowTheme.of(context)
                                             .quizFailedBorder;
-                                      } else if (!isExplain &&
+                                      } else if (!FFAppState().isExplain &&
                                           functions.isValuePresent(
-                                              selectedAns.toList(),
+                                              FFAppState().selectedAns.toList(),
                                               answerIndex) &&
-                                          !isTimerEnd) {
+                                          !FFAppState().isTimerEnd) {
                                         return FlutterFlowTheme.of(context)
                                             .quizSelectedBorder;
                                       } else {
@@ -732,34 +984,25 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    if (isExplain) {
+                                    if (FFAppState().isExplain) {
                                       return;
                                     }
-                                    if (selectedAns.contains(answerIndex)) {
+
+                                    if (functions.isValuePresent(
+                                        FFAppState().selectedAns.toList(),
+                                        answerIndex)) {
                                       setState(() {
-                                        selectedAns.remove(answerIndex);
+                                        FFAppState()
+                                            .removeFromSelectedAns(answerIndex);
                                       });
+                                      return;
                                     } else {
                                       setState(() {
-                                        selectedAns.add(answerIndex);
+                                        FFAppState()
+                                            .addToSelectedAns(answerIndex);
                                       });
+                                      return;
                                     }
-
-                                    // if (functions.isValuePresent(
-                                    //     FFAppState().selectedAns.toList(),
-                                    //     answerIndex)) {
-                                    //   setState(() {
-                                    //     FFAppState()
-                                    //         .removeFromSelectedAns(answerIndex);
-                                    //   });
-                                    //   return;
-                                    // } else {
-                                    //   setState(() {
-                                    //     FFAppState()
-                                    //         .addToSelectedAns(answerIndex);
-                                    //   });
-                                    //   return;
-                                    // }
                                   },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(4.0),
@@ -782,21 +1025,21 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                     ],
                   ),
                 ),
-                if (showAnswer)
+                if (FFAppState().showAnswer)
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: AutoSizeText(
                       getJsonField(
-                        currQuestion,
+                        FFAppState().currQuestion,
                         r'''$.explain_correct_anwser''',
                       ).toString(),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ),
-                if (isExplain &&
+                if (FFAppState().isExplain &&
                     functions.isExplanationNotEmpty(getJsonField(
-                      currQuestion,
+                      FFAppState().currQuestion,
                       r'''$.explain_correct_anwser''',
                     ).toString()))
                   Padding(
@@ -805,7 +1048,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         setState(() {
-                          showAnswer = true;
+                          FFAppState().showAnswer = true;
                         });
                       },
                       text: 'Click here for explanation',
@@ -836,7 +1079,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 39.0, 0.0, 27.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      if (isExplain) {
+                      if (FFAppState().isExplain) {
                         if (widget.questions?.length ==
                             functions.getIndex(widget.index!)) {
                           context.pushNamed(
@@ -851,22 +1094,162 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
 
                           return;
                         } else {
-                          navigateToNextScreen();
+                          if (getJsonField(
+                                widget.questions?[
+                                    functions.getIndex(widget.index!)],
+                                r'''$.type''',
+                              ) ==
+                              getJsonField(
+                                FFAppState().quiztype,
+                                r'''$.mcq''',
+                              )) {
+                            context.goNamed(
+                              'quiz_mcq',
+                              queryParameters: {
+                                'questions': serializeParam(
+                                  widget.questions,
+                                  ParamType.JSON,
+                                  true,
+                                ),
+                                'index': serializeParam(
+                                  functions.getIndex(widget.index!),
+                                  ParamType.int,
+                                ),
+                                'quizId': serializeParam(
+                                  widget.quizId,
+                                  ParamType.String,
+                                ),
+                                'isCompleted': serializeParam(
+                                  widget.isCompleted,
+                                  ParamType.bool,
+                                ),
+                              }.withoutNulls,
+                            );
+
+                            return;
+                          } else {
+                            if (getJsonField(
+                                  widget.questions?[
+                                      functions.getIndex(widget.index!)],
+                                  r'''$.type''',
+                                ) ==
+                                getJsonField(
+                                  FFAppState().quiztype,
+                                  r'''$.tf''',
+                                )) {
+                              context.goNamed(
+                                'quiz_truefalse',
+                                queryParameters: {
+                                  'questions': serializeParam(
+                                    widget.questions,
+                                    ParamType.JSON,
+                                    true,
+                                  ),
+                                  'index': serializeParam(
+                                    functions.getIndex(widget.index!),
+                                    ParamType.int,
+                                  ),
+                                  'quizId': serializeParam(
+                                    widget.quizId,
+                                    ParamType.String,
+                                  ),
+                                  'isCompleted': serializeParam(
+                                    widget.isCompleted,
+                                    ParamType.bool,
+                                  ),
+                                }.withoutNulls,
+                              );
+
+                              return;
+                            } else {
+                              if (getJsonField(
+                                    widget.questions?[
+                                        functions.getIndex(widget.index!)],
+                                    r'''$.type''',
+                                  ) ==
+                                  getJsonField(
+                                    FFAppState().quiztype,
+                                    r'''$.error''',
+                                  )) {
+                                context.goNamed(
+                                  'quiz_finderror',
+                                  queryParameters: {
+                                    'questions': serializeParam(
+                                      widget.questions,
+                                      ParamType.JSON,
+                                      true,
+                                    ),
+                                    'index': serializeParam(
+                                      functions.getIndex(widget.index!),
+                                      ParamType.int,
+                                    ),
+                                    'quizId': serializeParam(
+                                      widget.quizId,
+                                      ParamType.String,
+                                    ),
+                                    'isCompleted': serializeParam(
+                                      widget.isCompleted,
+                                      ParamType.bool,
+                                    ),
+                                  }.withoutNulls,
+                                );
+
+                                return;
+                              } else {
+                                if (getJsonField(
+                                      widget.questions?[
+                                          functions.getIndex(widget.index!)],
+                                      r'''$.type''',
+                                    ) ==
+                                    getJsonField(
+                                      FFAppState().quiztype,
+                                      r'''$.image''',
+                                    )) {
+                                  context.goNamed(
+                                    'quiz_image_answer',
+                                    queryParameters: {
+                                      'questions': serializeParam(
+                                        widget.questions,
+                                        ParamType.JSON,
+                                        true,
+                                      ),
+                                      'index': serializeParam(
+                                        functions.getIndex(widget.index!),
+                                        ParamType.int,
+                                      ),
+                                      'quizId': serializeParam(
+                                        widget.quizId,
+                                        ParamType.String,
+                                      ),
+                                      'isCompleted': serializeParam(
+                                        widget.isCompleted,
+                                        ParamType.bool,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+
+                                  return;
+                                } else {
+                                  return;
+                                }
+                              }
+                            }
+                          }
                         }
                       } else {
                         if (functions.isAnswersValidate(
                             getJsonField(
-                              currQuestion,
+                              FFAppState().currQuestion,
                               r'''$.number_correct_answer''',
                             ),
-                            selectedAns.length)) {
+                            FFAppState().selectedAns.length)) {
                           if (functions.isAnswerCorrect(
                               getJsonField(
-                                currQuestion,
+                                FFAppState().currQuestion,
                                 r'''$.answers''',
                                 true,
                               )!,
-                              selectedAns.toList())) {
+                              FFAppState().selectedAns.toList())) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -890,16 +1273,16 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                   getCurrentTimestamp),
                               isCorrect: 1,
                               questionId: getJsonField(
-                                currQuestion,
+                                FFAppState().currQuestion,
                                 r'''$.id''',
                               ).toString(),
                               quizId: widget.quizId,
                               userId: currentUserUid,
                             );
-                            // setState(() {
-                            //   FFAppState().correctAns =
-                            //       FFAppState().correctAns + 1;
-                            // });
+                            setState(() {
+                              FFAppState().correctAns =
+                                  FFAppState().correctAns + 1;
+                            });
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -920,7 +1303,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                   getCurrentTimestamp),
                               isCorrect: 0,
                               questionId: getJsonField(
-                                currQuestion,
+                                FFAppState().currQuestion,
                                 r'''$.id''',
                               ).toString(),
                               quizId: widget.quizId,
@@ -929,7 +1312,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                           }
 
                           setState(() {
-                            isExplain = true;
+                            FFAppState().isExplain = true;
                           });
                           _model.timerController.onStopTimer();
                           return;
@@ -938,7 +1321,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                             SnackBar(
                               content: Text(
                                 'Please Select ${getJsonField(
-                                  currQuestion,
+                                  FFAppState().currQuestion,
                                   r'''$.number_correct_answer''',
                                 ).toString()} answer.',
                                 style: TextStyle(
@@ -955,7 +1338,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                         }
                       }
                     },
-                    text: isExplain ? 'Next' : 'Answer',
+                    text: FFAppState().isExplain ? 'Next' : 'Answer',
                     options: FFButtonOptions(
                       width: 350.0,
                       height: 50.0,
@@ -985,83 +1368,5 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
         ),
       ),
     );
-  }
-
-  navigateToNextScreen() {
-    if (getJsonField(
-          widget.questions?[functions.getIndex(widget.index!)],
-          r'''$.type''',
-        ) ==
-        getJsonField(
-          FFAppState().quiztype,
-          r'''$.mcq''',
-        )) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => QuizMcqWidget(
-              questions: widget.questions,
-              index: widget.index! + 1,
-              quizId: widget.quizId,
-              isCompleted: widget.isCompleted),
-        ),
-      );
-    } else if (getJsonField(
-          widget.questions?[functions.getIndex(widget.index!)],
-          r'''$.type''',
-        ) ==
-        getJsonField(
-          FFAppState().quiztype,
-          r'''$.tf''',
-        )) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => QuizTruefalseWidget(
-              questions: widget.questions,
-              index: widget.index! + 1,
-              quizId: widget.quizId,
-              isCompleted: widget.isCompleted),
-        ),
-      );
-    } else if (getJsonField(
-          widget.questions?[functions.getIndex(widget.index!)],
-          r'''$.type''',
-        ) ==
-        getJsonField(
-          FFAppState().quiztype,
-          r'''$.error''',
-        )) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => QuizFinderrorWidget(
-              questions: widget.questions,
-              index: widget.index! + 1,
-              quizId: widget.quizId,
-              isCompleted: widget.isCompleted),
-        ),
-      );
-    } else if (getJsonField(
-          widget.questions?[functions.getIndex(widget.index!)],
-          r'''$.type''',
-        ) ==
-        getJsonField(
-          FFAppState().quiztype,
-          r'''$.image''',
-        )) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => QuizImageAnswerWidget(
-              questions: widget.questions,
-              index: widget.index! + 1,
-              quizId: widget.quizId,
-              isCompleted: widget.isCompleted),
-        ),
-      );
-    } else {
-      return;
-    }
   }
 }
