@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -29,14 +30,23 @@ class BaseUrlGroup {
   static GetTrainingByIdCall getTrainingByIdCall = GetTrainingByIdCall();
   static GetTicketsCall getTicketsCall = GetTicketsCall();
   static StoreNewTicketCall storeNewTicketCall = StoreNewTicketCall();
+  static StoreNewDiscussionCall storeNewDiscussionCall =
+      StoreNewDiscussionCall();
+  static UpdateDiscussionStatusCall updateDiscussionStatusCall =
+      UpdateDiscussionStatusCall();
   static GetTicketDetailsCall getTicketDetailsCall = GetTicketDetailsCall();
   static GetTicketResponsesCall getTicketResponsesCall =
       GetTicketResponsesCall();
+  static GetDiscussionResponsesCall getDiscussionResponsesCall =
+      GetDiscussionResponsesCall();
   static GetTicketsCategoriesCall getTicketsCategoriesCall =
       GetTicketsCategoriesCall();
   static StoreTicketResponseCall storeTicketResponseCall =
       StoreTicketResponseCall();
+  static StoreDiscussionResponseCall storeDiscussionResponseCall =
+      StoreDiscussionResponseCall();
   static GetUsersRankingCall getUsersRankingCall = GetUsersRankingCall();
+  static GetDiscussionsCall getDiscussionsCall = GetDiscussionsCall();
 }
 
 class HomeInfosCall {
@@ -136,7 +146,9 @@ class GetQuizzesCall {
         true,
       ) as List?)
           ?.withoutNulls
-          .cast<String>();
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class GetThemesCall {
@@ -163,7 +175,9 @@ class GetThemesCall {
         true,
       ) as List?)
           ?.withoutNulls
-          .cast<String>();
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
   List? idList(dynamic response) => getJsonField(
         response,
         r'''$[:].id''',
@@ -449,41 +463,86 @@ class GetTicketsCall {
     );
   }
 
-  dynamic id(dynamic response) => getJsonField(
+  List<String>? id(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].id''',
-      );
-  dynamic object(dynamic response) => getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? object(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].object''',
-      );
-  dynamic number(dynamic response) => getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? number(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].number''',
-      );
-  dynamic status(dynamic response) => getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? status(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].status''',
-      );
-  dynamic message(dynamic response) => getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? message(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].message''',
-      );
-  dynamic createdby(dynamic response) => getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? createdby(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].created_by''',
-      );
-  dynamic createdat(dynamic response) => getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? createdat(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].created_at''',
-      );
-  dynamic category(dynamic response) => getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? category(dynamic response) => (getJsonField(
         response,
         r'''$.tickets[:].category''',
-      );
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
   List? tickets(dynamic response) => getJsonField(
         response,
         r'''$.tickets''',
+        true,
+      ) as List?;
+  List? filename(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].file_name''',
         true,
       ) as List?;
 }
@@ -507,6 +566,57 @@ class StoreNewTicketCall {
         'object': object,
         'message': message,
         'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class StoreNewDiscussionCall {
+  Future<ApiCallResponse> call({
+    String? object = '',
+    String? message = '',
+    String? from = '',
+    String? to = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Store New Discussion',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/store',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'from': from,
+        'object': object,
+        'message': message,
+        'to': to,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateDiscussionStatusCall {
+  Future<ApiCallResponse> call({
+    String? discussionID = '',
+    String? status = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update Discussion Status',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${discussionID}/update',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'status': status,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -611,6 +721,60 @@ class GetTicketResponsesCall {
       );
 }
 
+class GetDiscussionResponsesCall {
+  Future<ApiCallResponse> call({
+    String? discussionID = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Discussion Responses',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${discussionID}/responses',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? chats(dynamic response) => getJsonField(
+        response,
+        r'''$.chat''',
+        true,
+      ) as List?;
+  String? id(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chat[:].id''',
+      ));
+  String? status(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chat[:].status''',
+      ));
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chat[:].message''',
+      ));
+  String? createdbyid(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chat[:].created_by.id''',
+      ));
+  String? createdbyfullname(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.chat[:].created_by.full_name''',
+      ));
+  String? createdbyidemail(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chat[:].created_by.email''',
+      ));
+  String? createdat(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chat[:].created_at''',
+      ));
+}
+
 class GetTicketsCategoriesCall {
   Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
@@ -653,6 +817,32 @@ class StoreTicketResponseCall {
       params: {
         'ticket_id': ticketId,
         'created_by': createdBy,
+        'message': message,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class StoreDiscussionResponseCall {
+  Future<ApiCallResponse> call({
+    String? message = '',
+    String? chatId = '',
+    String? userId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Store Discussion Response ',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${chatId}/response/store',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'chat_id': chatId,
+        'user_id': userId,
         'message': message,
       },
       bodyType: BodyType.MULTIPART,
@@ -713,6 +903,80 @@ class GetUsersRankingCall {
         r'''$.users[:].rank''',
         true,
       ) as List?;
+}
+
+class GetDiscussionsCall {
+  Future<ApiCallResponse> call({
+    String? userID = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Discussions',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${userID}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? id(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].id''',
+      ));
+  String? object(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].object''',
+      ));
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].message''',
+      ));
+  String? status(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].status''',
+      ));
+  String? createdat(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].created_at''',
+      ));
+  String? updatedat(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].updated_at''',
+      ));
+  List? chats(dynamic response) => getJsonField(
+        response,
+        r'''$.chats''',
+        true,
+      ) as List?;
+  String? createdbyId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].created_by.id''',
+      ));
+  String? createdbyFullname(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].created_by.full_name''',
+      ));
+  String? createdbyEmail(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].created_by.email''',
+      ));
+  String? toID(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].to.id''',
+      ));
+  String? tofullname(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].to.full_name''',
+      ));
+  String? toemail(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.chats[:].to.email''',
+      ));
 }
 
 /// End BASE URL Group Code

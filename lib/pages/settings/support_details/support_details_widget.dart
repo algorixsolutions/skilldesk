@@ -162,6 +162,40 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
                                       ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                '${FFAppState().IMAGEURL}${getJsonField(
+                                              widget.ticket,
+                                              r'''$.file_name''',
+                                            ).toString()}');
+                                          },
+                                          child: Text(
+                                            'View attachment',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      'SF Pro Display Bold',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .trainingColor,
+                                                  fontSize: 12.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -180,43 +214,48 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
                                       ),
-                                      Text(
-                                        getJsonField(
-                                          widget.ticket,
-                                          r'''$.status''',
-                                        ).toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'SF Pro Display Bold',
-                                              color: () {
-                                                if (functions.compareString(
-                                                    getJsonField(
-                                                      widget.ticket,
-                                                      r'''$.status''',
-                                                    ).toString(),
-                                                    'CLOSED')) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .quizFailedBorder;
-                                                } else if (functions
-                                                    .compareString(
-                                                        getJsonField(
-                                                          widget.ticket,
-                                                          r'''$.status''',
-                                                        ).toString(),
-                                                        'RESOLVED')) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .quizSuccessBorder;
-                                                } else {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .trainingColor;
-                                                }
-                                              }(),
-                                              useGoogleFonts: false,
-                                            ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: Text(
+                                          getJsonField(
+                                            widget.ticket,
+                                            r'''$.status''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    'SF Pro Display Bold',
+                                                color: () {
+                                                  if (functions.compareString(
+                                                      getJsonField(
+                                                        widget.ticket,
+                                                        r'''$.status''',
+                                                      ).toString(),
+                                                      'CLOSED')) {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .quizFailedBorder;
+                                                  } else if (functions
+                                                      .compareString(
+                                                          getJsonField(
+                                                            widget.ticket,
+                                                            r'''$.status''',
+                                                          ).toString(),
+                                                          'RESOLVED')) {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .quizSuccessBorder;
+                                                  } else {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .trainingColor;
+                                                  }
+                                                }(),
+                                                useGoogleFonts: false,
+                                              ),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -224,11 +263,20 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                               ],
                             ),
                           ),
-                          Html(
-                            data: getJsonField(
-                              widget.ticket,
-                              r'''$.message''',
-                            ).toString(),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Divider(
+                                thickness: 1.0,
+                                color: FlutterFlowTheme.of(context).accent4,
+                              ),
+                              Html(
+                                data: getJsonField(
+                                  widget.ticket,
+                                  r'''$.message''',
+                                ).toString(),
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -1,14 +1,14 @@
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
 import 'training_chapters_model.dart';
-
 export 'training_chapters_model.dart';
 
 class TrainingChaptersWidget extends StatefulWidget {
@@ -72,7 +72,6 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
@@ -81,7 +80,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                   children: [
                     Padding(
                       padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 40.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 40.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -116,7 +115,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                     ),
                     Padding(
                       padding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
                       child: AutoSizeText(
                         getJsonField(
                           widget.training,
@@ -144,23 +143,23 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                   ),
                   child: Padding(
                     padding:
-                    EdgeInsetsDirectional.fromSTEB(0.0, 20.64, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.64, 0.0, 0.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
                         getJsonField(
-                          widget.training,
-                          r'''$.cover''',
-                        ) ==
-                            getJsonField(
-                              FFAppState().quizStatus,
-                              r'''$.null''',
-                            )
+                                  widget.training,
+                                  r'''$.cover''',
+                                ) ==
+                                getJsonField(
+                                  FFAppState().quizStatus,
+                                  r'''$.null''',
+                                )
                             ? 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'
                             : '${FFAppState().IMAGEURL}${getJsonField(
-                          widget.training,
-                          r'''$.cover''',
-                        ).toString()}',
+                                widget.training,
+                                r'''$.cover''',
+                              ).toString()}',
                         width: 342.0,
                         height: 199.0,
                         fit: BoxFit.cover,
@@ -170,8 +169,10 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(26.0, 39.07, 0, 0.0),
+                padding:
+                    EdgeInsetsDirectional.fromSTEB(26.0, 39.07, 316.0, 0.0),
                 child: Container(
+                  width: 60.0,
                   height: 16.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -187,7 +188,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                padding: EdgeInsets.all(20.0),
                 child: Builder(
                   builder: (context) {
                     final chapter = getJsonField(
@@ -203,8 +204,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                       itemBuilder: (context, chapterIndex) {
                         final chapterItem = chapter[chapterIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 10.0, 10.0, 10.0),
+                          padding: EdgeInsets.all(10.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -239,6 +239,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                             },
                             child: Container(
                               width: double.infinity,
+                              height: 60.0,
                               decoration: BoxDecoration(
                                 color: getJsonField(
                                   chapterItem,
@@ -246,7 +247,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                 )
                                     ? FlutterFlowTheme.of(context).trainingColor
                                     : FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                        .primaryBackground,
                                 boxShadow: [
                                   BoxShadow(
                                     blurRadius: 4.0,
@@ -267,7 +268,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     FaIcon(
                                       FontAwesomeIcons.bookOpen,
@@ -276,29 +277,29 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                         r'''$.is_completed''',
                                       )
                                           ? FlutterFlowTheme.of(context)
-                                          .primaryBackground
+                                              .primaryBackground
                                           : FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                              .primaryText,
                                       size: 24.0,
                                     ),
                                     Container(
-                                      width: 130.0,
+                                      width: 200.0,
                                       decoration: BoxDecoration(
                                         color: getJsonField(
                                           chapterItem,
                                           r'''$.is_completed''',
                                         )
                                             ? FlutterFlowTheme.of(context)
-                                            .trainingColor
+                                                .trainingColor
                                             : FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                                .primaryBackground,
                                       ),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           AutoSizeText(
                                             getJsonField(
@@ -309,19 +310,19 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
                                                 .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: getJsonField(
-                                                chapterItem,
-                                                r'''$.is_completed''',
-                                              )
-                                                  ? FlutterFlowTheme.of(
-                                                  context)
-                                                  .primaryBackground
-                                                  : FlutterFlowTheme.of(
-                                                  context)
-                                                  .primaryText,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                  fontFamily: 'Readex Pro',
+                                                  color: getJsonField(
+                                                    chapterItem,
+                                                    r'''$.is_completed''',
+                                                  )
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
                                           AutoSizeText(
                                             getJsonField(
@@ -332,67 +333,65 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                              fontFamily:
-                                              'SF Pro Display Bold',
-                                              color: getJsonField(
-                                                chapterItem,
-                                                r'''$.is_completed''',
-                                              )
-                                                  ? FlutterFlowTheme.of(
-                                                  context)
-                                                  .primaryBackground
-                                                  : FlutterFlowTheme.of(
-                                                  context)
-                                                  .primaryText,
-                                              fontWeight: FontWeight.normal,
-                                              useGoogleFonts: false,
-                                            ),
+                                                  fontFamily:
+                                                      'SF Pro Display Bold',
+                                                  color: getJsonField(
+                                                    chapterItem,
+                                                    r'''$.is_completed''',
+                                                  )
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    FittedBox(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            Icons.access_time,
-                                            color: getJsonField(
-                                              chapterItem,
-                                              r'''$.is_completed''',
-                                            )
-                                                ? FlutterFlowTheme.of(context)
-                                                .primaryBackground
-                                                : FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 20.0,
-                                          ),
-                                          Text(
-                                            getJsonField(
-                                              chapterItem,
-                                              r'''$.duration''',
-                                            ).toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                              fontFamily:
-                                              'SF Pro Display Bold',
-                                              color: getJsonField(
-                                                chapterItem,
-                                                r'''$.is_completed''',
-                                              )
-                                                  ? FlutterFlowTheme.of(
-                                                  context)
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.access_time,
+                                          color: getJsonField(
+                                            chapterItem,
+                                            r'''$.is_completed''',
+                                          )
+                                              ? FlutterFlowTheme.of(context)
                                                   .primaryBackground
-                                                  : FlutterFlowTheme.of(
-                                                  context)
+                                              : FlutterFlowTheme.of(context)
                                                   .primaryText,
-                                              fontWeight: FontWeight.normal,
-                                              useGoogleFonts: false,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                          size: 20.0,
+                                        ),
+                                        Text(
+                                          getJsonField(
+                                            chapterItem,
+                                            r'''$.duration''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    'SF Pro Display Bold',
+                                                color: getJsonField(
+                                                  chapterItem,
+                                                  r'''$.is_completed''',
+                                                )
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBackground
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                fontWeight: FontWeight.normal,
+                                                useGoogleFonts: false,
+                                              ),
+                                        ),
+                                      ],
                                     ),
                                   ].divide(SizedBox(width: 10.0)),
                                 ),

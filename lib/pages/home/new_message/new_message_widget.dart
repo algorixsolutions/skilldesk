@@ -15,19 +15,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'new_ticket_model.dart';
-export 'new_ticket_model.dart';
+import 'new_message_model.dart';
+export 'new_message_model.dart';
 
-class NewTicketWidget extends StatefulWidget {
-  const NewTicketWidget({Key? key}) : super(key: key);
+class NewMessageWidget extends StatefulWidget {
+  const NewMessageWidget({Key? key}) : super(key: key);
 
   @override
-  _NewTicketWidgetState createState() => _NewTicketWidgetState();
+  _NewMessageWidgetState createState() => _NewMessageWidgetState();
 }
 
-class _NewTicketWidgetState extends State<NewTicketWidget>
+class _NewMessageWidgetState extends State<NewMessageWidget>
     with TickerProviderStateMixin {
-  late NewTicketModel _model;
+  late NewMessageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -56,13 +56,13 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NewTicketModel());
+    _model = createModel(context, () => NewMessageModel());
 
     _model.textFieldObjectController ??= TextEditingController();
     _model.textFieldObjectFocusNode ??= FocusNode();
 
-    _model.ticketMessageController ??= TextEditingController();
-    _model.ticketMessageFocusNode ??= FocusNode();
+    _model.textMessageController ??= TextEditingController();
+    _model.textMessageFocusNode ??= FocusNode();
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -113,11 +113,11 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              context.goNamed('support_list');
+              context.pushNamed('message_list');
             },
           ),
           title: Text(
-            'Submit Ticket',
+            'New message',
             style: FlutterFlowTheme.of(context).titleLarge,
           ),
           actions: [],
@@ -142,13 +142,90 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          FutureBuilder<ApiCallResponse>(
+                            future: FFAppState().getUsersRanking(
+                              uniqueQueryKey: currentUserUid,
+                              requestFn: () =>
+                                  BaseUrlGroup.getUsersRankingCall.call(
+                                userID: currentUserUid,
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              final dropDownToGetUsersRankingResponse =
+                                  snapshot.data!;
+                              return FlutterFlowDropDown<String>(
+                                controller: _model.dropDownToValueController ??=
+                                    FormFieldController<String>(
+                                  _model.dropDownToValue ??= '',
+                                ),
+                                options: List<String>.from(
+                                    (BaseUrlGroup.getUsersRankingCall.id(
+                                  dropDownToGetUsersRankingResponse.jsonBody,
+                                ) as List)
+                                        .map<String>((s) => s.toString())
+                                        .toList()!
+                                        .map((e) => e.toString())
+                                        .toList()),
+                                optionLabels:
+                                    (BaseUrlGroup.getUsersRankingCall.fullname(
+                                  dropDownToGetUsersRankingResponse.jsonBody,
+                                ) as List)
+                                        .map<String>((s) => s.toString())
+                                        .toList()!
+                                        .map((e) => e.toString())
+                                        .toList(),
+                                onChanged: (val) => setState(
+                                    () => _model.dropDownToValue = val),
+                                height: 50.0,
+                                searchHintTextStyle:
+                                    FlutterFlowTheme.of(context).labelMedium,
+                                textStyle:
+                                    FlutterFlowTheme.of(context).bodyMedium,
+                                hintText: 'To ',
+                                searchHintText: 'Search for a user ...',
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 2.0,
+                                borderColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                borderWidth: 2.0,
+                                borderRadius: 8.0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 4.0, 16.0, 4.0),
+                                hidesUnderline: true,
+                                isOverButton: true,
+                                isSearchable: true,
+                                isMultiSelect: false,
+                              );
+                            },
+                          ),
                           TextFormField(
                             controller: _model.textFieldObjectController,
                             focusNode: _model.textFieldObjectFocusNode,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Enter title ...',
+                              labelText: 'Enter subject ...',
                               hintStyle:
                                   FlutterFlowTheme.of(context).labelMedium,
                               enabledBorder: OutlineInputBorder(
@@ -187,91 +264,15 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                             validator: _model.textFieldObjectControllerValidator
                                 .asValidator(context),
                           ),
-                          FutureBuilder<ApiCallResponse>(
-                            future: FFAppState().getTicketsCategories(
-                              requestFn: () =>
-                                  BaseUrlGroup.getTicketsCategoriesCall.call(),
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
-                              final dropDownCategoryGetTicketsCategoriesResponse =
-                                  snapshot.data!;
-                              return FlutterFlowDropDown<String>(
-                                controller:
-                                    _model.dropDownCategoryValueController ??=
-                                        FormFieldController<String>(
-                                  _model.dropDownCategoryValue ??= '',
-                                ),
-                                options: List<String>.from(
-                                    (BaseUrlGroup.getTicketsCategoriesCall.id(
-                                  dropDownCategoryGetTicketsCategoriesResponse
-                                      .jsonBody,
-                                ) as List)
-                                        .map<String>((s) => s.toString())
-                                        .toList()!
-                                        .map((e) => e.toString())
-                                        .toList()),
-                                optionLabels: (BaseUrlGroup
-                                        .getTicketsCategoriesCall
-                                        .title(
-                                  dropDownCategoryGetTicketsCategoriesResponse
-                                      .jsonBody,
-                                ) as List)
-                                    .map<String>((s) => s.toString())
-                                    .toList()!
-                                    .map((e) => e.toString())
-                                    .toList(),
-                                onChanged: (val) => setState(
-                                    () => _model.dropDownCategoryValue = val),
-                                height: 50.0,
-                                textStyle:
-                                    FlutterFlowTheme.of(context).bodyMedium,
-                                hintText: 'Select category ...',
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
-                                ),
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 2.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                borderWidth: 2.0,
-                                borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 4.0, 16.0, 4.0),
-                                hidesUnderline: true,
-                                isOverButton: true,
-                                isSearchable: false,
-                                isMultiSelect: false,
-                              );
-                            },
-                          ),
                           TextFormField(
-                            controller: _model.ticketMessageController,
-                            focusNode: _model.ticketMessageFocusNode,
+                            controller: _model.textMessageController,
+                            focusNode: _model.textMessageFocusNode,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelStyle:
                                   FlutterFlowTheme.of(context).labelMedium,
-                              hintText:
-                                  'Short Description of what is going on...',
+                              hintText: 'Type your message ...',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).alternate,
@@ -307,107 +308,108 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                             maxLines: 16,
                             minLines: 6,
                             cursorColor: FlutterFlowTheme.of(context).primary,
-                            validator: _model.ticketMessageControllerValidator
+                            validator: _model.textMessageControllerValidator
                                 .asValidator(context),
                           ),
                         ].divide(SizedBox(height: 12.0)),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          final selectedFiles = await selectFiles(
-                            allowedExtensions: ['pdf'],
-                            multiFile: false,
-                          );
-                          if (selectedFiles != null) {
-                            setState(() => _model.isDataUploading = true);
-                            var selectedUploadedFiles = <FFUploadedFile>[];
+                    if (false)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            final selectedFiles = await selectFiles(
+                              allowedExtensions: ['pdf'],
+                              multiFile: false,
+                            );
+                            if (selectedFiles != null) {
+                              setState(() => _model.isDataUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
 
-                            try {
-                              showUploadMessage(
-                                context,
-                                'Uploading file...',
-                                showLoading: true,
-                              );
-                              selectedUploadedFiles = selectedFiles
-                                  .map((m) => FFUploadedFile(
-                                        name: m.storagePath.split('/').last,
-                                        bytes: m.bytes,
-                                      ))
-                                  .toList();
-                            } finally {
-                              ScaffoldMessenger.of(context)
-                                  .hideCurrentSnackBar();
-                              _model.isDataUploading = false;
+                              try {
+                                showUploadMessage(
+                                  context,
+                                  'Uploading file...',
+                                  showLoading: true,
+                                );
+                                selectedUploadedFiles = selectedFiles
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                        ))
+                                    .toList();
+                              } finally {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                _model.isDataUploading = false;
+                              }
+                              if (selectedUploadedFiles.length ==
+                                  selectedFiles.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                });
+                                showUploadMessage(
+                                  context,
+                                  'Success!',
+                                );
+                              } else {
+                                setState(() {});
+                                showUploadMessage(
+                                  context,
+                                  'Failed to upload file',
+                                );
+                                return;
+                              }
                             }
-                            if (selectedUploadedFiles.length ==
-                                selectedFiles.length) {
-                              setState(() {
-                                _model.uploadedLocalFile =
-                                    selectedUploadedFiles.first;
-                              });
-                              showUploadMessage(
-                                context,
-                                'Success!',
-                              );
-                            } else {
-                              setState(() {});
-                              showUploadMessage(
-                                context,
-                                'Failed to upload file',
-                              );
-                              return;
-                            }
-                          }
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          constraints: BoxConstraints(
-                            maxWidth: 500.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            constraints: BoxConstraints(
+                              maxWidth: 500.0,
                             ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.file_present,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 32.0,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Upload file',
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(12.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.file_present,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 32.0,
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Upload file',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation']!),
-                    ),
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation']!),
+                      ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
@@ -415,16 +417,14 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                         onPressed: functions.isTextFieldEmpty(
                                     _model.textFieldObjectController.text) ||
                                 functions.isTextFieldEmpty(
-                                    _model.dropDownCategoryValue) ||
-                                functions.isTextFieldEmpty(
-                                    _model.ticketMessageController.text)
+                                    _model.textMessageController.text)
                             ? null
                             : () async {
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;
                                 }
-                                if (_model.dropDownCategoryValue == null) {
+                                if (_model.dropDownToValue == null) {
                                   return;
                                 }
                                 var confirmDialogResponse =
@@ -432,9 +432,9 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
-                                              title: Text('Submit New Ticket'),
+                                              title: Text('Send New Message'),
                                               content: Text(
-                                                  'Ready to submit the ticket ?'),
+                                                  'Ready to send your message ?'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () =>
@@ -455,23 +455,23 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                           },
                                         ) ??
                                         false;
-                                _model.apiResultja4 =
-                                    await BaseUrlGroup.storeNewTicketCall.call(
+                                _model.apiResultja4 = await BaseUrlGroup
+                                    .storeNewDiscussionCall
+                                    .call(
                                   object: _model.textFieldObjectController.text,
-                                  categoryId: _model.dropDownCategoryValue,
-                                  message: _model.ticketMessageController.text,
-                                  createdBy: currentUserUid,
-                                  file: _model.uploadedLocalFile,
+                                  from: currentUserUid,
+                                  to: _model.dropDownToValue,
+                                  message: _model.textMessageController.text,
                                 );
                                 if ((_model.apiResultja4?.succeeded ?? true)) {
-                                  context.goNamed('support_list');
+                                  context.goNamed('message_list');
                                 } else {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
                                         title: Text(
-                                            'Error while creating the ticket'),
+                                            'Error while sending the message'),
                                         content: Text(
                                             (_model.apiResultja4?.jsonBody ??
                                                     '')
@@ -490,7 +490,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
 
                                 setState(() {});
                               },
-                        text: 'Submit Ticket',
+                        text: 'Send Message',
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 48.0,

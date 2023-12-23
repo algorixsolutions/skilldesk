@@ -347,7 +347,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(height: 110.0)),
+                  ].divide(SizedBox(height: 80.0)),
                 ),
               ),
             ],

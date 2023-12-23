@@ -22,8 +22,9 @@ class DoubleitemStruct extends BaseStruct {
         doubleitem: castToType<double>(data['doubleitem']),
       );
 
-  static DoubleitemStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? DoubleitemStruct.fromMap(data) : null;
+  static DoubleitemStruct? maybeFromMap(dynamic data) => data is Map
+      ? DoubleitemStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'doubleitem': _doubleitem,
