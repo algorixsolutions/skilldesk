@@ -1,21 +1,10 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/request_manager.dart';
 
 import 'dart:async';
 import 'message_details_widget.dart' show MessageDetailsWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class MessageDetailsModel extends FlutterFlowModel<MessageDetailsWidget> {
   ///  Local state fields for this page.
@@ -55,8 +44,10 @@ class MessageDetailsModel extends FlutterFlowModel<MessageDetailsWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {}
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     textFieldReplyFocusNode?.dispose();
@@ -77,7 +68,7 @@ class MessageDetailsModel extends FlutterFlowModel<MessageDetailsWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = apiRequestCompleted;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {

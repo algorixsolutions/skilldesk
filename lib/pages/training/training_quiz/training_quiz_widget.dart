@@ -5,18 +5,17 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'training_quiz_model.dart';
 export 'training_quiz_model.dart';
 
 class TrainingQuizWidget extends StatefulWidget {
   const TrainingQuizWidget({
-    Key? key,
+    super.key,
     required this.chapters,
     required this.index,
     required this.trainingId,
-  }) : super(key: key);
+  });
 
   final List<dynamic>? chapters;
   final int? index;
@@ -63,7 +62,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFFFF80D),
+        backgroundColor: const Color(0xFFFFF80D),
         body: SafeArea(
           top: true,
           child: Stack(
@@ -74,11 +73,11 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
                             child: Icon(
@@ -88,15 +87,15 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 48.5, 0.0, 0.0, 0.0),
                             child: Container(
                               width: 222.0,
                               height: 21.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xFFFFF80D),
                               ),
-                              child: Align(
+                              child: const Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'Install Photoshop',
@@ -113,7 +112,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
                           106.0, 30.89, 105.0, 0.0),
                       child: Text(
@@ -129,11 +128,11 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 289.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 289.0, 0.0),
                       child: Container(
                         width: 101.0,
                         height: 144.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFFFFDA0D),
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
@@ -146,7 +145,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 430.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 430.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -168,7 +167,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -201,12 +200,12 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                             options: FFButtonOptions(
                               width: 164.0,
                               height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFFFFF80D),
-                              textStyle: TextStyle(
+                              color: const Color(0xFFFFF80D),
+                              textStyle: const TextStyle(
                                 fontFamily: 'SF Pro Display Bold',
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -220,7 +219,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 14.0, 0.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -246,12 +245,12 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                               options: FFButtonOptions(
                                 width: 164.0,
                                 height: 50.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: Color(0xFF39B6FF),
-                                textStyle: TextStyle(
+                                color: const Color(0xFF39B6FF),
+                                textStyle: const TextStyle(
                                   fontFamily: 'SF Pro Display Bold',
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -273,11 +272,11 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(44.0, 549.8, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(44.0, 549.8, 0.0, 0.0),
                       child: Container(
                         width: 74.83,
                         height: 74.83,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFFFFDA0D),
                           shape: BoxShape.circle,
                         ),
@@ -291,12 +290,12 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           294.96, 530.93, 0.0, 0.0),
                       child: Container(
                         width: 95.04,
                         height: 162.3,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFFFFDA0D),
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(25.0),
@@ -312,7 +311,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
               ),
               Padding(
                 padding:
-                    EdgeInsetsDirectional.fromSTEB(28.88, 279.65, 28.88, 0.0),
+                    const EdgeInsetsDirectional.fromSTEB(28.88, 279.65, 28.88, 0.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

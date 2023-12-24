@@ -4,16 +4,15 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'training_completed_model.dart';
 export 'training_completed_model.dart';
 
 class TrainingCompletedWidget extends StatefulWidget {
   const TrainingCompletedWidget({
-    Key? key,
+    super.key,
     required this.durations,
-  }) : super(key: key);
+  });
 
   final String? durations;
 
@@ -63,13 +62,13 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 36.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 36.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 122.82, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 122.82, 0.0, 0.0),
                   child: Container(
                     width: 318.0,
                     height: 291.0,
@@ -77,7 +76,7 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(23.0),
                       border: Border.all(
-                        color: Color(0xFFE6E6E6),
+                        color: const Color(0xFFE6E6E6),
                         width: 1.0,
                       ),
                     ),
@@ -85,12 +84,12 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 32.0, 0.0, 0.0),
                           child: Container(
                             width: 64.0,
                             height: 64.0,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                             ),
                             child: ClipRRect(
@@ -100,13 +99,13 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                                 width: 300.0,
                                 height: 200.0,
                                 fit: BoxFit.cover,
-                                alignment: Alignment(1.0, 0.0),
+                                alignment: const Alignment(1.0, 0.0),
                               ),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 34.77, 0.0, 0.0),
                           child: Container(
                             width: 218.0,
@@ -115,7 +114,7 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
-                            child: Text(
+                            child: const Text(
                               'The training was successfully completed',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -128,14 +127,14 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 41.88, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     35.33, 0.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -151,11 +150,11 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           13.73, 0.0, 0.0, 0.0),
                                       child: Text(
                                         widget.durations!,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -171,7 +170,7 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 189.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 189.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       if (Navigator.of(context).canPop()) {
@@ -184,18 +183,18 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                       width: 342.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF39B6FF),
-                      textStyle: TextStyle(
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF39B6FF),
+                      textStyle: const TextStyle(
                         fontFamily: 'SF Pro Display Bold',
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                         fontSize: 14.0,
                       ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

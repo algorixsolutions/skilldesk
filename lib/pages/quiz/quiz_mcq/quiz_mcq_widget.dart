@@ -11,19 +11,18 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'quiz_mcq_model.dart';
 export 'quiz_mcq_model.dart';
 
 class QuizMcqWidget extends StatefulWidget {
   const QuizMcqWidget({
-    Key? key,
+    super.key,
     required this.questions,
     required this.index,
     required this.quizId,
     required this.isCompleted,
-  }) : super(key: key);
+  });
 
   final List<dynamic>? questions;
   final int? index;
@@ -250,10 +249,10 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.0, -1.0),
+                  alignment: const AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.82, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.82, 0.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -268,11 +267,11 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                         width: 135.0,
                         height: 50.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFFDBEEF6),
+                          color: const Color(0xFFDBEEF6),
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               11.0, 15.0, 0.0, 15.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -287,7 +286,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 16.0, 0.0),
                                 child: Text(
                                   'Save and exit',
@@ -295,7 +294,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'SF Pro Display Bold',
-                                        color: Color(0xFF39B6FF),
+                                        color: const Color(0xFF39B6FF),
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
                                       ),
@@ -338,7 +337,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                     r'''$.image''',
                                   ))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 16.0, 20.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
@@ -362,7 +361,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                     r'''$.audio''',
                                   ))
                                 Padding(
-                                  padding: EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.all(20.0),
                                   child: FlutterFlowAudioPlayer(
                                     audio: Audio.network(
                                       getJsonField(
@@ -401,17 +400,17 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                   ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 23.0, 20.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 23.0, 20.0, 0.0),
                   child: Container(
                     width: 350.0,
                     height: 105.0,
                     decoration: BoxDecoration(
-                      color: Color(0xFF00D1FF),
+                      color: const Color(0xFF00D1FF),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 7.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 7.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -419,7 +418,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 6.0, 0.0),
                                 child: Icon(
                                   Icons.format_list_numbered,
@@ -429,7 +428,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                 child: Text(
                                   'Multiple Choice Question',
                                   style:
@@ -439,9 +438,9 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                             ],
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, -1.0),
+                            alignment: const AlignmentDirectional(-1.0, -1.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 9.0, 0.0, 0.0),
                               child: AutoSizeText(
                                 getJsonField(
@@ -467,7 +466,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 9.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 9.0, 20.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -493,7 +492,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 122.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Questions',
@@ -507,21 +506,21 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 6.0, 0.0, 0.0, 0.0),
                             child: Container(
                               width: 39.0,
                               height: 21.0,
                               decoration: BoxDecoration(
-                                color: Color(0xFF39B6FF),
+                                color: const Color(0xFF39B6FF),
                                 borderRadius: BorderRadius.circular(19.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     13.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   functions.getIndex(widget.index!).toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'SF Pro Display Bold',
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -532,11 +531,11 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              '/${widget.questions?.length?.toString()}',
-                              style: TextStyle(
+                              '/${widget.questions?.length.toString()}',
+                              style: const TextStyle(
                                 fontFamily: 'SF Pro Display Bold',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14.0,
@@ -549,20 +548,20 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                   child: Stack(
                     children: [
                       Container(
                         width: double.infinity,
                         height: 4.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFFDCDCDC),
                         ),
                       ),
                       Container(
                         width: 106.0,
                         height: 4.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFF00D1FF),
                         ),
                       ),
@@ -571,7 +570,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -585,9 +584,9 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                       ),
                       Flexible(
                         child: Align(
-                          alignment: AlignmentDirectional(1.0, 0.0),
+                          alignment: const AlignmentDirectional(1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 6.0, 0.0),
                             child: Icon(
                               Icons.timer_sharp,
@@ -805,11 +804,11 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                           .labelMedium
                                           .override(
                                             fontFamily: 'SF Pro Display Bold',
-                                            color: Color(0xFFE0E2E4),
+                                            color: const Color(0xFFE0E2E4),
                                             useGoogleFonts: false,
                                           ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -834,13 +833,13 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                 );
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
+                                    content: const Text(
                                       'Oops! Betterr luck next time',
                                       style: TextStyle(
                                         color: Color(0xFFDAE4ED),
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).error,
                                   ),
@@ -862,7 +861,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: Duration(milliseconds: 4000),
+                                  duration: const Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).error,
                                 ),
@@ -882,7 +881,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Builder(
                     builder: (context) {
                       final answer = getJsonField(
@@ -894,7 +893,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: answer.length,
-                        separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                         itemBuilder: (context, answerIndex) {
                           final answerItem = answer[answerIndex];
                           return Container(
@@ -948,7 +947,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                   return FlutterFlowTheme.of(context)
                                       .quizSelectedBackground;
                                 } else {
-                                  return Color(0xFFDAE4ED);
+                                  return const Color(0xFFDAE4ED);
                                 }
                               }(),
                               borderRadius: BorderRadius.circular(16.0),
@@ -1009,7 +1008,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(10.0),
+                              padding: const EdgeInsets.all(10.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1041,9 +1040,9 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                   children: [
                                     Container(
                                       width: 300.0,
-                                      decoration: BoxDecoration(),
+                                      decoration: const BoxDecoration(),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: AutoSizeText(
                                           getJsonField(
@@ -1089,14 +1088,14 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                                       .toList(),
                                                   answerIndex))
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   1.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () {
                                                   print('Button pressed ...');
                                                 },
                                                 text: '',
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   Icons.close_rounded,
                                                   color: Color(0xFFFF3636),
                                                   size: 26.0,
@@ -1104,12 +1103,12 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                                 options: FFButtonOptions(
                                                   width: 35.0,
                                                   height: 35.0,
-                                                  padding: EdgeInsets.all(0.0),
+                                                  padding: const EdgeInsets.all(0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(5.0, 0.0,
                                                               0.0, 0.0),
-                                                  color: Color(0xFFF9A1A1),
+                                                  color: const Color(0xFFF9A1A1),
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -1120,7 +1119,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                                             color: Colors.white,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -1149,14 +1148,14 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                                       .selectedAns
                                                       .toList()))
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   1.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () {
                                                   print('Button pressed ...');
                                                 },
                                                 text: '',
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   Icons.done_outline_rounded,
                                                   color: Color(0xFF32DC2C),
                                                   size: 26.0,
@@ -1164,12 +1163,12 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                                 options: FFButtonOptions(
                                                   width: 35.0,
                                                   height: 35.0,
-                                                  padding: EdgeInsets.all(0.0),
+                                                  padding: const EdgeInsets.all(0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(5.0, 0.0,
                                                               0.0, 0.0),
-                                                  color: Color(0xFFDBEEF6),
+                                                  color: const Color(0xFFDBEEF6),
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -1180,7 +1179,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                                             color: Colors.white,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -1218,7 +1217,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                     ).toString()))
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         setState(() {
@@ -1229,11 +1228,11 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                       options: FFButtonOptions(
                         width: 244.0,
                         height: 50.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFFFFCB00),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFFFFCB00),
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
@@ -1241,7 +1240,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 14.0,
                             ),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -1250,7 +1249,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                     ),
                   ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 39.0, 0.0, 27.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 39.0, 0.0, 27.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       if (FFAppState().isExplain) {
@@ -1432,11 +1431,11 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                       .labelMedium
                                       .override(
                                         fontFamily: 'SF Pro Display Bold',
-                                        color: Color(0xFFE0E2E4),
+                                        color: const Color(0xFFE0E2E4),
                                         useGoogleFonts: false,
                                       ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -1460,13 +1459,13 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(
+                                content: const Text(
                                   'Oops! Betterr luck next time',
                                   style: TextStyle(
                                     color: Color(0xFFDAE4ED),
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).error,
                               ),
@@ -1503,7 +1502,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).secondary,
                             ),
@@ -1517,10 +1516,10 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                       width: 350.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF00D1FF),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF00D1FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
@@ -1528,7 +1527,7 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                 fontSize: 14.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

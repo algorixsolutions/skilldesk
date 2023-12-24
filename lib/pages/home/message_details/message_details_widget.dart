@@ -3,24 +3,21 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'message_details_model.dart';
 export 'message_details_model.dart';
 
 class MessageDetailsWidget extends StatefulWidget {
   const MessageDetailsWidget({
-    Key? key,
+    super.key,
     required this.message,
-  }) : super(key: key);
+  });
 
   final dynamic message;
 
@@ -128,7 +125,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                       fontSize: 19.0,
                     ),
               ),
-              actions: [],
+              actions: const [],
               centerTitle: true,
               elevation: 0.0,
             ),
@@ -160,7 +157,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(12.0),
+                                padding: const EdgeInsets.all(12.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -183,7 +180,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(2.0),
+                                              padding: const EdgeInsets.all(2.0),
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(40.0),
@@ -198,7 +195,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -230,7 +227,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   0.0,
@@ -252,7 +249,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 0.0, 0.0),
                                                   child: Row(
@@ -273,7 +270,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     4.0,
                                                                     0.0,
@@ -312,7 +309,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 12.0, 0.0),
                                 child: Html(
                                   data: getJsonField(
@@ -327,7 +324,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: FutureBuilder<ApiCallResponse>(
                           future: _model.getDiscussionResponses(
                             uniqueQueryKey: getJsonField(
@@ -446,11 +443,11 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                 final responseItem =
                                                     response[responseIndex];
                                                 return Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 0.0, 12.0, 0.0),
                                                   child: Container(
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Container(
                                                       width: double.infinity,
                                                       color: Colors.white,
@@ -487,7 +484,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          EdgeInsets.all(
+                                                                          const EdgeInsets.all(
                                                                               2.0),
                                                                       child:
                                                                           ClipRRect(
@@ -507,7 +504,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -534,7 +531,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4.0,
                                                                             0.0,
@@ -584,7 +581,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                     listViewGetDiscussionResponsesResponse
                                                                         .jsonBody,
                                                                   )
-                                                                  .toString()!,
+                                                                  .toString(),
                                                             ),
                                                           ),
                                                           expanded: Column(
@@ -602,7 +599,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                             ],
                                                           ),
                                                           theme:
-                                                              ExpandableThemeData(
+                                                              const ExpandableThemeData(
                                                             tapHeaderToExpand:
                                                                 true,
                                                             tapBodyToExpand:
@@ -634,9 +631,9 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                         )!
                                         .toList()))
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, -1.0),
+                                    alignment: const AlignmentDirectional(0.0, -1.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 20.0, 0.0, 0.0),
                                       child: Text(
                                         'No responses to display.',
@@ -653,14 +650,14 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                     ],
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, 1.0),
+                    alignment: const AlignmentDirectional(0.0, 1.0),
                     child: Container(
                       height: 80.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -671,7 +668,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                 focusNode: _model.textFieldReplyFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.textFieldReplyController',
-                                  Duration(milliseconds: 2000),
+                                  const Duration(milliseconds: 2000),
                                   () async {
                                     if (functions.isTextFieldEmpty(
                                         _model.textFieldReplyController.text)) {
@@ -752,9 +749,9 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                 context: context,
                                                 builder: (alertDialogContext) {
                                                   return AlertDialog(
-                                                    title: Text(
+                                                    title: const Text(
                                                         'Reply to message'),
-                                                    content: Text(
+                                                    content: const Text(
                                                         'Are you ready to send your message ?'),
                                                     actions: [
                                                       TextButton(
@@ -762,14 +759,14 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                             Navigator.pop(
                                                                 alertDialogContext,
                                                                 false),
-                                                        child: Text('Cancel'),
+                                                        child: const Text('Cancel'),
                                                       ),
                                                       TextButton(
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext,
                                                                 true),
-                                                        child: Text('Confirm'),
+                                                        child: const Text('Confirm'),
                                                       ),
                                                     ],
                                                   );
@@ -797,15 +794,15 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: Text('Message sent'),
-                                                content: Text(
+                                                title: const Text('Message sent'),
+                                                content: const Text(
                                                     'Your message has been registered successfully.'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: Text('Ok'),
+                                                    child: const Text('Ok'),
                                                   ),
                                                 ],
                                               );
@@ -816,7 +813,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: Text(
+                                                title: const Text(
                                                     'Error while sending message'),
                                                 content: Text(getJsonField(
                                                   (_model.apiResultags
@@ -829,7 +826,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: Text('Ok'),
+                                                    child: const Text('Ok'),
                                                   ),
                                                 ],
                                               );

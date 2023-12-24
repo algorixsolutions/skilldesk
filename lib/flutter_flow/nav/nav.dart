@@ -1,21 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -80,45 +73,45 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : SignInWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const SignInWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : SignInWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const SignInWidget(),
         ),
         FFRoute(
           name: 'notifications_page',
           path: '/notificationsPage',
-          builder: (context, params) => NotificationsPageWidget(),
+          builder: (context, params) => const NotificationsPageWidget(),
         ),
         FFRoute(
           name: 'settings_menu',
           path: '/settingsMenu',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'settings_menu')
-              : SettingsMenuWidget(),
+              ? const NavBarPage(initialPage: 'settings_menu')
+              : const SettingsMenuWidget(),
         ),
         FFRoute(
           name: 'languages',
           path: '/languages',
-          builder: (context, params) => LanguagesWidget(),
+          builder: (context, params) => const LanguagesWidget(),
         ),
         FFRoute(
           name: 'reset_password1',
           path: '/resetPassword1',
-          builder: (context, params) => ResetPassword1Widget(),
+          builder: (context, params) => const ResetPassword1Widget(),
         ),
         FFRoute(
           name: 'sign_in',
           path: '/signIn',
-          builder: (context, params) => SignInWidget(),
+          builder: (context, params) => const SignInWidget(),
         ),
         FFRoute(
           name: 'reset_email_sent',
           path: '/resetEmailSent',
-          builder: (context, params) => ResetEmailSentWidget(),
+          builder: (context, params) => const ResetEmailSentWidget(),
         ),
         FFRoute(
           name: 'training_details',
@@ -176,8 +169,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'quiz_list',
           path: '/quizList',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'quiz_list')
-              : QuizListWidget(),
+              ? const NavBarPage(initialPage: 'quiz_list')
+              : const QuizListWidget(),
         ),
         FFRoute(
           name: 'quiz_detail',
@@ -223,12 +216,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'quiz_finderror_success',
           path: '/quizFinderrorSuccess',
-          builder: (context, params) => QuizFinderrorSuccessWidget(),
+          builder: (context, params) => const QuizFinderrorSuccessWidget(),
         ),
         FFRoute(
           name: 'quiz_finderror_fail',
           path: '/quizFinderrorFail',
-          builder: (context, params) => QuizFinderrorFailWidget(),
+          builder: (context, params) => const QuizFinderrorFailWidget(),
         ),
         FFRoute(
           name: 'quiz_image_answer',
@@ -244,7 +237,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'quiz_finderror_fail-duplicate',
           path: '/quizFinderrorFailDuplicate',
-          builder: (context, params) => QuizFinderrorFailDuplicateWidget(),
+          builder: (context, params) => const QuizFinderrorFailDuplicateWidget(),
         ),
         FFRoute(
           name: 'notifications_detail',
@@ -256,18 +249,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'onboarding',
           path: '/onboarding',
-          builder: (context, params) => OnboardingWidget(),
+          builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'home_old',
           path: '/homeOld',
-          builder: (context, params) => HomeOldWidget(),
+          builder: (context, params) => const HomeOldWidget(),
         ),
         FFRoute(
           name: 'statistics',
           path: '/statistics',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'statistics')
+              ? const NavBarPage(initialPage: 'statistics')
               : StatisticsWidget(
                   period: params.getParam('period', ParamType.String),
                   theme: params.getParam('theme', ParamType.String),
@@ -276,14 +269,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'sign_in-duplicate',
           path: '/signInDuplicate',
-          builder: (context, params) => SignInDuplicateWidget(),
+          builder: (context, params) => const SignInDuplicateWidget(),
         ),
         FFRoute(
           name: 'training_list',
           path: '/trainingList',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'training_list')
-              : TrainingListWidget(),
+              ? const NavBarPage(initialPage: 'training_list')
+              : const TrainingListWidget(),
         ),
         FFRoute(
           name: 'training_completed',
@@ -306,17 +299,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'home',
           path: '/home',
           builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'home') : HomeWidget(),
+              params.isEmpty ? const NavBarPage(initialPage: 'home') : const HomeWidget(),
         ),
         FFRoute(
           name: 'users_ranking',
           path: '/usersRanking',
-          builder: (context, params) => UsersRankingWidget(),
+          builder: (context, params) => const UsersRankingWidget(),
         ),
         FFRoute(
           name: 'support_list',
           path: '/supportList',
-          builder: (context, params) => SupportListWidget(),
+          builder: (context, params) => const SupportListWidget(),
         ),
         FFRoute(
           name: 'support_details',
@@ -328,12 +321,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'new_ticket',
           path: '/newTicket',
-          builder: (context, params) => NewTicketWidget(),
+          builder: (context, params) => const NewTicketWidget(),
         ),
         FFRoute(
           name: 'message_list',
           path: '/messageList',
-          builder: (context, params) => MessageListWidget(),
+          builder: (context, params) => const MessageListWidget(),
         ),
         FFRoute(
           name: 'message_details',
@@ -345,7 +338,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'new_message',
           path: '/newMessage',
-          builder: (context, params) => NewMessageWidget(),
+          builder: (context, params) => const NewMessageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -577,7 +570,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

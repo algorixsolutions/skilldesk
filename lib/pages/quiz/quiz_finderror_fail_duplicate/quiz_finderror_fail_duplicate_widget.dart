@@ -4,13 +4,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'quiz_finderror_fail_duplicate_model.dart';
 export 'quiz_finderror_fail_duplicate_model.dart';
 
 class QuizFinderrorFailDuplicateWidget extends StatefulWidget {
-  const QuizFinderrorFailDuplicateWidget({Key? key}) : super(key: key);
+  const QuizFinderrorFailDuplicateWidget({super.key});
 
   @override
   _QuizFinderrorFailDuplicateWidgetState createState() =>
@@ -63,19 +62,19 @@ class _QuizFinderrorFailDuplicateWidgetState
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.0, -1.0),
+                  alignment: const AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.82, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.82, 0.0, 0.0),
                     child: Container(
                       width: 135.0,
                       height: 50.0,
                       decoration: BoxDecoration(
-                        color: Color(0xFFDBEEF6),
+                        color: const Color(0xFFDBEEF6),
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             11.0, 15.0, 0.0, 15.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -90,7 +89,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 16.0, 0.0),
                               child: Text(
                                 'Save and exit',
@@ -98,7 +97,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'SF Pro Display Bold',
-                                      color: Color(0xFF39B6FF),
+                                      color: const Color(0xFF39B6FF),
                                       fontWeight: FontWeight.w500,
                                       useGoogleFonts: false,
                                     ),
@@ -112,7 +111,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: SvgPicture.asset(
@@ -125,17 +124,17 @@ class _QuizFinderrorFailDuplicateWidgetState
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 23.0, 20.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 23.0, 20.0, 0.0),
                   child: Container(
                     width: 350.0,
                     height: 105.0,
                     decoration: BoxDecoration(
-                      color: Color(0xFF00D1FF),
+                      color: const Color(0xFF00D1FF),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 7.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 7.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -143,7 +142,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 6.0, 0.0),
                                 child: Icon(
                                   Icons.error_outline_outlined,
@@ -153,7 +152,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                 child: Text(
                                   'Find The Error',
                                   style:
@@ -163,9 +162,9 @@ class _QuizFinderrorFailDuplicateWidgetState
                             ],
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, -1.0),
+                            alignment: const AlignmentDirectional(-1.0, -1.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 9.0, 0.0, 0.0),
                               child: Text(
                                 'Is Adobe the company that made Photoshop ?',
@@ -188,7 +187,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 9.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 9.0, 20.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -215,7 +214,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                             ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             122.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Questions',
@@ -231,16 +230,16 @@ class _QuizFinderrorFailDuplicateWidgetState
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 6.0, 0.0, 0.0, 0.0),
                             child: Container(
                               width: 39.0,
                               height: 21.0,
                               decoration: BoxDecoration(
-                                color: Color(0xFF39B6FF),
+                                color: const Color(0xFF39B6FF),
                                 borderRadius: BorderRadius.circular(19.0),
                               ),
-                              child: Padding(
+                              child: const Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     13.0, 0.0, 0.0, 0.0),
                                 child: Text(
@@ -255,7 +254,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                               ),
                             ),
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 0.0, 0.0),
                             child: Text(
@@ -273,20 +272,20 @@ class _QuizFinderrorFailDuplicateWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                   child: Stack(
                     children: [
                       Container(
                         width: double.infinity,
                         height: 4.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFFDCDCDC),
                         ),
                       ),
                       Container(
                         width: 106.0,
                         height: 4.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFF00D1FF),
                         ),
                       ),
@@ -295,7 +294,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -306,9 +305,9 @@ class _QuizFinderrorFailDuplicateWidgetState
                       ),
                       Flexible(
                         child: Align(
-                          alignment: AlignmentDirectional(1.0, 0.0),
+                          alignment: const AlignmentDirectional(1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 6.0, 0.0),
                             child: Icon(
                               Icons.timer_sharp,
@@ -331,7 +330,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(19.0, 16.0, 19.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(19.0, 16.0, 19.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -339,15 +338,15 @@ class _QuizFinderrorFailDuplicateWidgetState
                         width: 352.0,
                         height: 56.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFEEEE),
+                          color: const Color(0xFFFFEEEE),
                           borderRadius: BorderRadius.circular(16.0),
                           border: Border.all(
-                            color: Color(0xFFFF3636),
+                            color: const Color(0xFFFF3636),
                             width: 2.0,
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -362,7 +361,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Facebook',
@@ -378,13 +377,13 @@ class _QuizFinderrorFailDuplicateWidgetState
                               ),
                               Flexible(
                                 child: Align(
-                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  alignment: const AlignmentDirectional(1.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
                                       print('Button pressed ...');
                                     },
                                     text: '',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.close_rounded,
                                       color: Color(0xFFFF3636),
                                       size: 26.0,
@@ -392,11 +391,11 @@ class _QuizFinderrorFailDuplicateWidgetState
                                     options: FFButtonOptions(
                                       width: 38.0,
                                       height: 38.0,
-                                      padding: EdgeInsets.all(0.0),
+                                      padding: const EdgeInsets.all(0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               5.0, 0.0, 0.0, 0.0),
-                                      color: Color(0xFFF9A1A1),
+                                      color: const Color(0xFFF9A1A1),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -404,7 +403,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -422,15 +421,15 @@ class _QuizFinderrorFailDuplicateWidgetState
                         width: 352.0,
                         height: 56.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFEEEE),
+                          color: const Color(0xFFFFEEEE),
                           borderRadius: BorderRadius.circular(16.0),
                           border: Border.all(
-                            color: Color(0xFFFF3636),
+                            color: const Color(0xFFFF3636),
                             width: 2.0,
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -445,7 +444,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Microsoft',
@@ -461,13 +460,13 @@ class _QuizFinderrorFailDuplicateWidgetState
                               ),
                               Flexible(
                                 child: Align(
-                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  alignment: const AlignmentDirectional(1.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
                                       print('Button pressed ...');
                                     },
                                     text: '',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.close_rounded,
                                       color: Color(0xFFFF3636),
                                       size: 26.0,
@@ -475,11 +474,11 @@ class _QuizFinderrorFailDuplicateWidgetState
                                     options: FFButtonOptions(
                                       width: 38.0,
                                       height: 38.0,
-                                      padding: EdgeInsets.all(0.0),
+                                      padding: const EdgeInsets.all(0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               5.0, 0.0, 0.0, 0.0),
-                                      color: Color(0xFFF9A1A1),
+                                      color: const Color(0xFFF9A1A1),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -487,7 +486,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -505,15 +504,15 @@ class _QuizFinderrorFailDuplicateWidgetState
                         width: 352.0,
                         height: 56.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFFE7FFEE),
+                          color: const Color(0xFFE7FFEE),
                           borderRadius: BorderRadius.circular(16.0),
                           border: Border.all(
-                            color: Color(0xFF32DC2C),
+                            color: const Color(0xFF32DC2C),
                             width: 2.0,
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -528,7 +527,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Figma',
@@ -544,13 +543,13 @@ class _QuizFinderrorFailDuplicateWidgetState
                               ),
                               Flexible(
                                 child: Align(
-                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  alignment: const AlignmentDirectional(1.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
                                       print('Button pressed ...');
                                     },
                                     text: '',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.done_outline_rounded,
                                       color: Color(0xFF32DC2C),
                                       size: 26.0,
@@ -558,11 +557,11 @@ class _QuizFinderrorFailDuplicateWidgetState
                                     options: FFButtonOptions(
                                       width: 38.0,
                                       height: 38.0,
-                                      padding: EdgeInsets.all(0.0),
+                                      padding: const EdgeInsets.all(0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               5.0, 0.0, 0.0, 0.0),
-                                      color: Color(0xFFDBEEF6),
+                                      color: const Color(0xFFDBEEF6),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -570,7 +569,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -588,15 +587,15 @@ class _QuizFinderrorFailDuplicateWidgetState
                         width: 352.0,
                         height: 56.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFEEEE),
+                          color: const Color(0xFFFFEEEE),
                           borderRadius: BorderRadius.circular(16.0),
                           border: Border.all(
-                            color: Color(0xFFFF3636),
+                            color: const Color(0xFFFF3636),
                             width: 2.0,
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -611,7 +610,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Adobe',
@@ -627,13 +626,13 @@ class _QuizFinderrorFailDuplicateWidgetState
                               ),
                               Flexible(
                                 child: Align(
-                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  alignment: const AlignmentDirectional(1.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
                                       print('Button pressed ...');
                                     },
                                     text: '',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.close_rounded,
                                       color: Color(0xFFFF3636),
                                       size: 26.0,
@@ -641,11 +640,11 @@ class _QuizFinderrorFailDuplicateWidgetState
                                     options: FFButtonOptions(
                                       width: 38.0,
                                       height: 38.0,
-                                      padding: EdgeInsets.all(0.0),
+                                      padding: const EdgeInsets.all(0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               5.0, 0.0, 0.0, 0.0),
-                                      color: Color(0xFFF9A1A1),
+                                      color: const Color(0xFFF9A1A1),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -653,7 +652,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -667,11 +666,11 @@ class _QuizFinderrorFailDuplicateWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(height: 13.0)),
+                    ].divide(const SizedBox(height: 13.0)),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () {
                       print('Button pressed ...');
@@ -681,17 +680,17 @@ class _QuizFinderrorFailDuplicateWidgetState
                       width: 244.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFFFFCB00),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFFFFCB00),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 14.0,
                               ),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -700,7 +699,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 26.0, 0.0, 27.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 26.0, 0.0, 27.0),
                   child: FFButtonWidget(
                     onPressed: () {
                       print('Button pressed ...');
@@ -710,10 +709,10 @@ class _QuizFinderrorFailDuplicateWidgetState
                       width: 350.0,
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF00D1FF),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF00D1FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
@@ -721,7 +720,7 @@ class _QuizFinderrorFailDuplicateWidgetState
                                 fontSize: 14.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

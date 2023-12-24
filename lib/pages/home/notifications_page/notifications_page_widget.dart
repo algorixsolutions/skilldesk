@@ -3,17 +3,15 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'notifications_page_model.dart';
 export 'notifications_page_model.dart';
 
 class NotificationsPageWidget extends StatefulWidget {
-  const NotificationsPageWidget({Key? key}) : super(key: key);
+  const NotificationsPageWidget({super.key});
 
   @override
   _NotificationsPageWidgetState createState() =>
@@ -85,7 +83,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                   useGoogleFonts: false,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -122,13 +120,13 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                     itemBuilder: (context, notificationIndex) {
                       final notificationItem = notification[notificationIndex];
                       return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 29.0, 20.0, 0.0),
                         child: Container(
                           width: 350.0,
                           height: 76.0,
                           decoration: BoxDecoration(
-                            color: Color(0x16725DFF),
+                            color: const Color(0x16725DFF),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: InkWell(
@@ -151,16 +149,16 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       6.0, 0.0, 0.0, 0.0),
                                   child: Container(
                                     width: 42.0,
                                     height: 42.0,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xFF725DFF),
                                       shape: BoxShape.circle,
                                     ),
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.notifications,
                                       color: Colors.white,
                                       size: 24.0,
@@ -172,7 +170,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           14.0, 20.0, 0.0, 7.0),
                                       child: Text(
                                         getJsonField(
@@ -190,7 +188,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           14.0, 7.0, 0.0, 0.0),
                                       child: Text(
                                         functions.calculateNotifDuration(
@@ -202,7 +200,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'SF Pro Display Bold',
-                                              color: Color(0xFF725DFF),
+                                              color: const Color(0xFF725DFF),
                                               fontSize: 10.0,
                                               fontWeight: FontWeight.bold,
                                               useGoogleFonts: false,

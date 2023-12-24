@@ -1,21 +1,19 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'training_chapters_model.dart';
 export 'training_chapters_model.dart';
 
 class TrainingChaptersWidget extends StatefulWidget {
   const TrainingChaptersWidget({
-    Key? key,
+    super.key,
     required this.training,
-  }) : super(key: key);
+  });
 
   final dynamic training;
 
@@ -74,13 +72,13 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 40.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 40.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -104,7 +102,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                             onTap: () async {
                               context.safePop();
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.chevron_left,
                               color: Color(0xFF130F26),
                               size: 24.0,
@@ -115,13 +113,13 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
                       child: AutoSizeText(
                         getJsonField(
                           widget.training,
                           r'''$.title''',
                         ).toString().maybeHandleOverflow(maxChars: 25),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'SF Pro Display Bold',
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
@@ -133,7 +131,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.89, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.89, 0.0, 0.0),
                 child: Container(
                   width: 342.0,
                   height: 199.0,
@@ -143,7 +141,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 20.64, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.64, 0.0, 0.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
@@ -170,14 +168,14 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
               ),
               Padding(
                 padding:
-                    EdgeInsetsDirectional.fromSTEB(26.0, 39.07, 316.0, 0.0),
+                    const EdgeInsetsDirectional.fromSTEB(26.0, 39.07, 316.0, 0.0),
                 child: Container(
                   width: 60.0,
                   height: 16.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  child: Text(
+                  child: const Text(
                     'Chapters',
                     style: TextStyle(
                       fontFamily: 'SF Pro Display Bold',
@@ -188,7 +186,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Builder(
                   builder: (context) {
                     final chapter = getJsonField(
@@ -200,11 +198,11 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: chapter.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 5.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 5.0),
                       itemBuilder: (context, chapterIndex) {
                         final chapterItem = chapter[chapterIndex];
                         return Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -248,7 +246,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                     ? FlutterFlowTheme.of(context).trainingColor
                                     : FlutterFlowTheme.of(context)
                                         .primaryBackground,
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     blurRadius: 4.0,
                                     color: Color(0x33000000),
@@ -263,7 +261,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 10.0, 20.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -393,7 +391,7 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(SizedBox(width: 10.0)),
+                                  ].divide(const SizedBox(width: 10.0)),
                                 ),
                               ),
                             ),

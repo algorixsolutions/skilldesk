@@ -3,18 +3,15 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'users_ranking_model.dart';
 export 'users_ranking_model.dart';
 
 class UsersRankingWidget extends StatefulWidget {
-  const UsersRankingWidget({Key? key}) : super(key: key);
+  const UsersRankingWidget({super.key});
 
   @override
   _UsersRankingWidgetState createState() => _UsersRankingWidgetState();
@@ -85,7 +82,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                   useGoogleFonts: false,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -141,7 +138,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                       itemBuilder: (context, usersIndex) {
                         final usersItem = users[usersIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 10.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -152,14 +149,14 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                           usersItem,
                                           r'''$.id''',
                                         ).toString(),
-                                        '${currentUserUid}')
+                                        currentUserUid)
                                     ? FlutterFlowTheme.of(context).trainingColor
                                     : FlutterFlowTheme.of(context).alternate,
                                 width: 1.0,
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(20.0),
+                              padding: const EdgeInsets.all(20.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -186,7 +183,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 20.0, 0.0),
                                           child: Text(
                                             getJsonField(
@@ -203,15 +200,15 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, -1.0),
+                                              const AlignmentDirectional(0.0, -1.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     6.0, 0.0, 0.0, 0.0),
                                             child: Container(
                                               width: 42.0,
                                               height: 42.0,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Color(0xFFCBC9C9),
                                                 shape: BoxShape.circle,
                                               ),
@@ -233,7 +230,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       14.0, 0.0, 0.0, 7.0),
                                               child: Text(
@@ -258,7 +255,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           14.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -280,7 +277,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           14.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -310,17 +307,17 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                         ),
                                       ],
                                     ),
-                                    if ('${getJsonField(
+                                    if (getJsonField(
                                           usersItem,
                                           r'''$.id''',
-                                        ).toString()}' ==
+                                        ).toString() ==
                                         currentUserUid)
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            const AlignmentDirectional(1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 20.0, 0.0),
                                           child: Text(
                                             'Me',

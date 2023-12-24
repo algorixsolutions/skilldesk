@@ -10,16 +10,14 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'new_message_model.dart';
 export 'new_message_model.dart';
 
 class NewMessageWidget extends StatefulWidget {
-  const NewMessageWidget({Key? key}) : super(key: key);
+  const NewMessageWidget({super.key});
 
   @override
   _NewMessageWidgetState createState() => _NewMessageWidgetState();
@@ -46,8 +44,8 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 110.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 110.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -120,7 +118,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
             'New message',
             style: FlutterFlowTheme.of(context).titleLarge,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -130,7 +128,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.always,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -138,7 +136,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -177,16 +175,14 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                   dropDownToGetUsersRankingResponse.jsonBody,
                                 ) as List)
                                         .map<String>((s) => s.toString())
-                                        .toList()!
-                                        .map((e) => e.toString())
+                                        .toList().map((e) => e.toString())
                                         .toList()),
                                 optionLabels:
                                     (BaseUrlGroup.getUsersRankingCall.fullname(
                                   dropDownToGetUsersRankingResponse.jsonBody,
                                 ) as List)
                                         .map<String>((s) => s.toString())
-                                        .toList()!
-                                        .map((e) => e.toString())
+                                        .toList().map((e) => e.toString())
                                         .toList(),
                                 onChanged: (val) => setState(
                                     () => _model.dropDownToValue = val),
@@ -210,7 +206,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -256,7 +252,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 12.0, 16.0, 12.0),
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
@@ -301,7 +297,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 24.0, 16.0, 12.0),
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
@@ -311,13 +307,13 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                             validator: _model.textMessageControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(SizedBox(height: 12.0)),
+                        ].divide(const SizedBox(height: 12.0)),
                       ),
                     ),
                     if (false)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -371,7 +367,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                           },
                           child: Container(
                             width: double.infinity,
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 500.0,
                             ),
                             decoration: BoxDecoration(
@@ -384,7 +380,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -394,7 +390,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                     size: 32.0,
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Upload file',
@@ -412,7 +408,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                       ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                       child: FFButtonWidget(
                         onPressed: functions.isTextFieldEmpty(
                                     _model.textFieldObjectController.text) ||
@@ -432,8 +428,8 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
-                                              title: Text('Send New Message'),
-                                              content: Text(
+                                              title: const Text('Send New Message'),
+                                              content: const Text(
                                                   'Ready to send your message ?'),
                                               actions: [
                                                 TextButton(
@@ -441,14 +437,14 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                                       Navigator.pop(
                                                           alertDialogContext,
                                                           false),
-                                                  child: Text('No'),
+                                                  child: const Text('No'),
                                                 ),
                                                 TextButton(
                                                   onPressed: () =>
                                                       Navigator.pop(
                                                           alertDialogContext,
                                                           true),
-                                                  child: Text('Yes'),
+                                                  child: const Text('Yes'),
                                                 ),
                                               ],
                                             );
@@ -470,7 +466,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: Text(
+                                        title: const Text(
                                             'Error while sending the message'),
                                         content: Text(
                                             (_model.apiResultja4?.jsonBody ??
@@ -480,7 +476,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: Text('Ok'),
+                                            child: const Text('Ok'),
                                           ),
                                         ],
                                       );
@@ -494,8 +490,8 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 48.0,
-                          padding: EdgeInsets.all(0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsets.all(0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -504,7 +500,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                     color: Colors.white,
                                   ),
                           elevation: 4.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
