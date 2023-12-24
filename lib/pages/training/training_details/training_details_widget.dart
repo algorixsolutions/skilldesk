@@ -105,17 +105,19 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
-                        child: AutoSizeText(
-                          getJsonField(
-                            widget.training,
-                            r'''$.title''',
-                          ).toString().maybeHandleOverflow(maxChars: 25),
-                          style: TextStyle(
-                            fontFamily: 'SF Pro Display Bold',
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18.0,
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
+                        child: Expanded(
+                          child: AutoSizeText(
+                            getJsonField(
+                              widget.training,
+                              r'''$.title''',
+                            ).toString(),
+                            style: TextStyle(
+                              fontFamily: 'SF Pro Display Bold',
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18.0,
+                            ),
                           ),
                         ),
                       ),
@@ -161,9 +163,9 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                 Stack(
                   children: [
                     if (getJsonField(
-                      FFAppState().currchapter,
-                      r'''$.cover''',
-                    ) ==
+                          FFAppState().currchapter,
+                          r'''$.cover''',
+                        ) ==
                         getJsonField(
                           FFAppState().quizStatus,
                           r'''$.null''',
@@ -182,9 +184,9 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                         ),
                       ),
                     if (getJsonField(
-                      widget.training,
-                      r'''$.cover''',
-                    ) !=
+                          widget.training,
+                          r'''$.cover''',
+                        ) !=
                         getJsonField(
                           FFAppState().quizStatus,
                           r'''$.null''',
@@ -387,7 +389,7 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                 ),
                 Padding(
                   padding:
-                  EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                   child: Container(
                     width: double.infinity,
                     height: 300.0,
@@ -413,9 +415,9 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                   child: FFButtonWidget(
                     onPressed: () async {
                       if (getJsonField(
-                        widget.training,
-                        r'''$.prior_training''',
-                      ) ==
+                            widget.training,
+                            r'''$.prior_training''',
+                          ) ==
                           null) {
                         context.pushNamed(
                           'training_chapters',
@@ -454,12 +456,12 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                                 ).toString()} first',
                                 style: TextStyle(
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
                               duration: Duration(milliseconds: 4000),
                               backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
+                                  FlutterFlowTheme.of(context).secondary,
                             ),
                           );
                         }
@@ -472,15 +474,15 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                       width: 342.0,
                       height: 50.0,
                       padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: Color(0xFF725DFF),
                       textStyle:
-                      FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
-                        lineHeight: 0.0,
-                      ),
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Readex Pro',
+                                lineHeight: 0.0,
+                              ),
                       elevation: 3.0,
                       borderSide: BorderSide(
                         color: Colors.transparent,

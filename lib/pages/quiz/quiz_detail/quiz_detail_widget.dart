@@ -116,19 +116,21 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                         Container(
                           width: 300.0,
                           decoration: BoxDecoration(),
-                          child: Text(
-                            getJsonField(
-                              widget.quiz,
-                              r'''$.title''',
-                            ).toString().maybeHandleOverflow(maxChars: 25),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'SF Pro Display Bold',
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w500,
-                                  useGoogleFonts: false,
-                                ),
+                          child: Expanded(
+                            child: Text(
+                              getJsonField(
+                                widget.quiz,
+                                r'''$.title''',
+                              ).toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'SF Pro Display Bold',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w500,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
                           ),
                         ),
                       ].divide(SizedBox(width: 40.0)),

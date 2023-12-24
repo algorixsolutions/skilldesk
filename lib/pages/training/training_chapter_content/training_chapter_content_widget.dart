@@ -96,7 +96,7 @@ class _TrainingChapterContentWidgetState
                     children: [
                       Padding(
                         padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -145,7 +145,7 @@ class _TrainingChapterContentWidgetState
                 ),
                 Padding(
                   padding:
-                  EdgeInsetsDirectional.fromSTEB(24.0, 25.89, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(24.0, 25.89, 0.0, 0.0),
                   child: Container(
                     height: 199.0,
                     decoration: BoxDecoration(
@@ -155,9 +155,9 @@ class _TrainingChapterContentWidgetState
                     child: Stack(
                       children: [
                         if (getJsonField(
-                          FFAppState().currchapter,
-                          r'''$.cover''',
-                        ) ==
+                              FFAppState().currchapter,
+                              r'''$.cover''',
+                            ) ==
                             getJsonField(
                               FFAppState().quizStatus,
                               r'''$.null''',
@@ -176,9 +176,9 @@ class _TrainingChapterContentWidgetState
                             ),
                           ),
                         if (getJsonField(
-                          FFAppState().currchapter,
-                          r'''$.cover''',
-                        ) !=
+                              FFAppState().currchapter,
+                              r'''$.cover''',
+                            ) !=
                             getJsonField(
                               FFAppState().quizStatus,
                               r'''$.null''',
@@ -205,14 +205,14 @@ class _TrainingChapterContentWidgetState
                 ),
                 Padding(
                   padding:
-                  EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
                         padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                         child: Icon(
                           Icons.access_time,
                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -221,7 +221,7 @@ class _TrainingChapterContentWidgetState
                       ),
                       FlutterFlowTimer(
                         initialTime:
-                        functions.getCountDownTImerForChapter(getJsonField(
+                            functions.getCountDownTImerForChapter(getJsonField(
                           FFAppState().currchapter,
                           r'''$.duration''',
                         ).toString()),
@@ -242,10 +242,10 @@ class _TrainingChapterContentWidgetState
                         },
                         textAlign: TextAlign.start,
                         style:
-                        FlutterFlowTheme.of(context).headlineSmall.override(
-                          fontFamily: 'Outfit',
-                          fontSize: 18.0,
-                        ),
+                            FlutterFlowTheme.of(context).headlineSmall.override(
+                                  fontFamily: 'Outfit',
+                                  fontSize: 18.0,
+                                ),
                       ),
                     ],
                   ),
@@ -281,9 +281,9 @@ class _TrainingChapterContentWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     if (getJsonField(
-                                      contentItem,
-                                      r'''$.media_type''',
-                                    ) ==
+                                          contentItem,
+                                          r'''$.media_type''',
+                                        ) ==
                                         getJsonField(
                                           FFAppState().contentType,
                                           r'''$.audio''',
@@ -301,7 +301,7 @@ class _TrainingChapterContentWidgetState
                                             itemCount: audio.length,
                                             itemBuilder: (context, audioIndex) {
                                               final audioItem =
-                                              audio[audioIndex];
+                                                  audio[audioIndex];
                                               return FlutterFlowAudioPlayer(
                                                 audio: Audio.network(
                                                   '${FFAppState().AUDIOURL}${getJsonField(
@@ -317,33 +317,33 @@ class _TrainingChapterContentWidgetState
                                                   ),
                                                 ),
                                                 titleTextStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge,
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge,
                                                 playbackDurationTextStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium,
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium,
                                                 fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
                                                 playbackButtonColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                 activeTrackColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
                                                 elevation: 4.0,
                                                 playInBackground:
-                                                PlayInBackground
-                                                    .disabledPause,
+                                                    PlayInBackground
+                                                        .disabledPause,
                                               );
                                             },
                                           );
                                         },
                                       ),
                                     if (getJsonField(
-                                      contentItem,
-                                      r'''$.media_type''',
-                                    ) ==
+                                          contentItem,
+                                          r'''$.media_type''',
+                                        ) ==
                                         getJsonField(
                                           FFAppState().contentType,
                                           r'''$.video''',
@@ -361,7 +361,7 @@ class _TrainingChapterContentWidgetState
                                             itemCount: video.length,
                                             itemBuilder: (context, videoIndex) {
                                               final videoItem =
-                                              video[videoIndex];
+                                                  video[videoIndex];
                                               return FlutterFlowVideoPlayer(
                                                 path: '${getJsonField(
                                                   videoItem,
@@ -380,9 +380,9 @@ class _TrainingChapterContentWidgetState
                                         },
                                       ),
                                     if (getJsonField(
-                                      contentItem,
-                                      r'''$.media_type''',
-                                    ) ==
+                                          contentItem,
+                                          r'''$.media_type''',
+                                        ) ==
                                         getJsonField(
                                           FFAppState().contentType,
                                           r'''$.text''',
@@ -390,9 +390,9 @@ class _TrainingChapterContentWidgetState
                                       Column(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             getJsonField(
@@ -414,9 +414,9 @@ class _TrainingChapterContentWidgetState
                                         ].divide(SizedBox(height: 10.0)),
                                       ),
                                     if (getJsonField(
-                                      contentItem,
-                                      r'''$.media_type''',
-                                    ) ==
+                                          contentItem,
+                                          r'''$.media_type''',
+                                        ) ==
                                         getJsonField(
                                           FFAppState().contentType,
                                           r'''$.image''',
@@ -434,10 +434,10 @@ class _TrainingChapterContentWidgetState
                                             itemCount: image.length,
                                             itemBuilder: (context, imageIndex) {
                                               final imageItem =
-                                              image[imageIndex];
+                                                  image[imageIndex];
                                               return ClipRRect(
                                                 borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                    BorderRadius.circular(24.0),
                                                 child: Image.network(
                                                   '${FFAppState().IMAGEURL}${getJsonField(
                                                     imageItem,
@@ -464,7 +464,7 @@ class _TrainingChapterContentWidgetState
                 ),
                 Padding(
                   padding:
-                  EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -501,7 +501,7 @@ class _TrainingChapterContentWidgetState
                       ),
                       Padding(
                         padding:
-                        EdgeInsetsDirectional.fromSTEB(14.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(14.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -523,9 +523,9 @@ class _TrainingChapterContentWidgetState
                               _shouldSetState = true;
                               if ((_model.apiResult09l?.succeeded ?? true)) {
                                 if (getJsonField(
-                                  FFAppState().currchapter,
-                                  r'''$.quiz''',
-                                ) ==
+                                      FFAppState().currchapter,
+                                      r'''$.quiz''',
+                                    ) ==
                                     getJsonField(
                                       FFAppState().quizStatus,
                                       r'''$.null''',
@@ -546,10 +546,10 @@ class _TrainingChapterContentWidgetState
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 2000),
                                         backgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondary,
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
                                       ),
                                     );
                                   } else {
@@ -610,7 +610,7 @@ class _TrainingChapterContentWidgetState
                                     ),
                                     duration: Duration(milliseconds: 4000),
                                     backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
+                                        FlutterFlowTheme.of(context).secondary,
                                   ),
                                 );
                                 if (_shouldSetState) setState(() {});
@@ -628,7 +628,7 @@ class _TrainingChapterContentWidgetState
                                   ),
                                   duration: Duration(milliseconds: 4000),
                                   backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
+                                      FlutterFlowTheme.of(context).secondary,
                                 ),
                               );
                               if (_shouldSetState) setState(() {});
@@ -642,7 +642,7 @@ class _TrainingChapterContentWidgetState
                             height: 50.0,
                             decoration: BoxDecoration(
                               color:
-                              isTimerEnd ? Color(0xFF725DFF) : Colors.grey,
+                                  isTimerEnd ? Color(0xFF725DFF) : Colors.grey,
                               borderRadius: BorderRadius.circular(12.0),
                             ),
                             alignment: AlignmentDirectional(0.00, 0.00),
@@ -663,17 +663,17 @@ class _TrainingChapterContentWidgetState
                                     ),
                                     FlutterFlowTimer(
                                       initialTime:
-                                      functions.getCountDownTImerForChapter(
-                                          getJsonField(
-                                            FFAppState().currchapter,
-                                            r'''$.duration''',
-                                          ).toString()),
+                                          functions.getCountDownTImerForChapter(
+                                              getJsonField(
+                                        FFAppState().currchapter,
+                                        r'''$.duration''',
+                                      ).toString()),
                                       getDisplayTime: (value) =>
                                           StopWatchTimer.getDisplayTime(value,
                                               milliSecond: false),
                                       controller: _model.timerController,
                                       updateStateInterval:
-                                      Duration(milliseconds: 1000),
+                                          Duration(milliseconds: 1000),
                                       onChanged:
                                           (value, displayTime, shouldUpdate) {
                                         _model.timerMilliseconds = value;
@@ -689,10 +689,10 @@ class _TrainingChapterContentWidgetState
                                       style: FlutterFlowTheme.of(context)
                                           .headlineSmall
                                           .override(
-                                        color: Colors.white,
-                                        fontFamily: 'Outfit',
-                                        fontSize: 18.0,
-                                      ),
+                                            color: Colors.white,
+                                            fontFamily: 'Outfit',
+                                            fontSize: 18.0,
+                                          ),
                                     ),
                                   ],
                                 ),
