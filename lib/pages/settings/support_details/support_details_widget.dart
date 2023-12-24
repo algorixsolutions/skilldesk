@@ -3,7 +3,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -11,16 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'support_details_model.dart';
 export 'support_details_model.dart';
 
 class SupportDetailsWidget extends StatefulWidget {
   const SupportDetailsWidget({
-    Key? key,
+    super.key,
     required this.ticket,
-  }) : super(key: key);
+  });
 
   final dynamic ticket;
 
@@ -106,7 +104,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                   useGoogleFonts: false,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -119,14 +117,14 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0x1B725DFF),
+                      color: const Color(0x1B725DFF),
                       border: Border.all(
                         color: FlutterFlowTheme.of(context).alternate,
                         width: 1.0,
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           20.0, 10.0, 20.0, 10.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -140,7 +138,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -163,7 +161,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                             .bodyMedium,
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -215,7 +213,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                             .bodyMedium,
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Text(
                                           getJsonField(
@@ -347,7 +345,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 10.0, 20.0, 10.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -369,7 +367,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                                       height: 40.0,
                                                       clipBehavior:
                                                           Clip.antiAlias,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                         shape: BoxShape.circle,
                                                       ),
                                                       child: Image.network(
@@ -379,7 +377,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   0.0,
@@ -430,7 +428,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                   )!
                                   .toList()))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 20.0, 0.0, 0.0),
                               child: Text(
                                 'No responses yet.',
@@ -444,7 +442,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                 ],
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Container(
                   height: 80.0,
                   decoration: BoxDecoration(
@@ -452,7 +450,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -462,7 +460,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 2000),
                               () async {
                                 if (functions.isTextFieldEmpty(
                                     _model.textController.text)) {
@@ -538,8 +536,8 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: Text('Reply to ticket'),
-                                                content: Text(
+                                                title: const Text('Reply to ticket'),
+                                                content: const Text(
                                                     'Are you ready to send your message ?'),
                                                 actions: [
                                                   TextButton(
@@ -547,14 +545,14 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: Text('Cancel'),
+                                                    child: const Text('Cancel'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: Text('Confirm'),
+                                                    child: const Text('Confirm'),
                                                   ),
                                                 ],
                                               );
@@ -578,14 +576,14 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text('Reply sent'),
-                                            content: Text(
+                                            title: const Text('Reply sent'),
+                                            content: const Text(
                                                 'Your response has been registered successfully.'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext),
-                                                child: Text('Ok'),
+                                                child: const Text('Ok'),
                                               ),
                                             ],
                                           );
@@ -596,7 +594,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text(
+                                            title: const Text(
                                                 'Error while sending reply'),
                                             content: Text(getJsonField(
                                               (_model.apiResultags?.jsonBody ??
@@ -607,7 +605,7 @@ class _SupportDetailsWidgetState extends State<SupportDetailsWidget> {
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext),
-                                                child: Text('Ok'),
+                                                child: const Text('Ok'),
                                               ),
                                             ],
                                           );

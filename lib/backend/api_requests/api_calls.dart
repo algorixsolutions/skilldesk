@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
-import '../schema/structs/index.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -55,7 +53,7 @@ class HomeInfosCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Home Infos',
-      apiUrl: '${BaseUrlGroup.baseUrl}/home/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/home/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -121,7 +119,7 @@ class GetQuizzesCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Quizzes',
-      apiUrl: '${BaseUrlGroup.baseUrl}/quizzes/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/quizzes/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -157,7 +155,7 @@ class GetThemesCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Themes',
-      apiUrl: '${BaseUrlGroup.baseUrl}/themes/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/themes/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -191,7 +189,7 @@ class GetTrainingsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Trainings ',
-      apiUrl: '${BaseUrlGroup.baseUrl}/trainings/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/trainings/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -218,7 +216,7 @@ class GetUserStatsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get User Stats',
-      apiUrl: '${BaseUrlGroup.baseUrl}/stats/${userID}/${period}/${themeID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/stats/$userID/$period/$themeID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -315,7 +313,7 @@ class StoreAnsweredQuestionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Store Answered Question',
       apiUrl:
-          '${BaseUrlGroup.baseUrl}/quizzes/answer-question/store?duration=${duration}&is_correct=${isCorrect}&question_id=${questionId}&quiz_id=${quizId}&user_id=${userId}',
+          '${BaseUrlGroup.baseUrl}/quizzes/answer-question/store?duration=$duration&is_correct=$isCorrect&question_id=$questionId&quiz_id=$quizId&user_id=$userId',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -361,7 +359,7 @@ class GetNotificationCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Notification',
-      apiUrl: '${BaseUrlGroup.baseUrl}/notifications/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/notifications/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -381,7 +379,7 @@ class IncrementNotificationViewCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Increment Notification View',
       apiUrl:
-          '${BaseUrlGroup.baseUrl}/notifications/increment-view/${notificationID}',
+          '${BaseUrlGroup.baseUrl}/notifications/increment-view/$notificationID',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -402,7 +400,7 @@ class GetQuizByIdCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Quiz By Id',
-      apiUrl: '${BaseUrlGroup.baseUrl}/quizzes/${quizzId}/${userId}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/quizzes/$quizzId/$userId',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -427,7 +425,7 @@ class GetTrainingByIdCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Training By Id',
-      apiUrl: '${BaseUrlGroup.baseUrl}/trainings/${trainingId}/${userId}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/trainings/$trainingId/$userId',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -451,7 +449,7 @@ class GetTicketsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Tickets',
-      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -612,7 +610,7 @@ class UpdateDiscussionStatusCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Update Discussion Status',
-      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${discussionID}/update',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/$discussionID/update',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -634,7 +632,7 @@ class GetTicketDetailsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Ticket Details',
-      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${ticketID}/show',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/$ticketID/show',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -686,7 +684,7 @@ class GetTicketResponsesCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Ticket Responses',
-      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${ticketID}/responses',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/$ticketID/responses',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -727,7 +725,7 @@ class GetDiscussionResponsesCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Discussion Responses',
-      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${discussionID}/responses',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/$discussionID/responses',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -811,7 +809,7 @@ class StoreTicketResponseCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Store Ticket Response',
-      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/${ticketId}/response/store',
+      apiUrl: '${BaseUrlGroup.baseUrl}/tickets/$ticketId/response/store',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -837,7 +835,7 @@ class StoreDiscussionResponseCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Store Discussion Response ',
-      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${chatId}/response/store',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/$chatId/response/store',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -861,7 +859,7 @@ class GetUsersRankingCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Users Ranking',
-      apiUrl: '${BaseUrlGroup.baseUrl}/users/ranking/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/users/ranking/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -911,7 +909,7 @@ class GetDiscussionsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Discussions',
-      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/${userID}',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -987,7 +985,7 @@ class GetTrainingListCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'GET TRAINING LIST',
-      apiUrl: 'https://quizback.algorixdev.com/api/trainings/${userID}',
+      apiUrl: 'https://quizback.algorixdev.com/api/trainings/$userID',
       callType: ApiCallType.GET,
       headers: {},
       params: {},

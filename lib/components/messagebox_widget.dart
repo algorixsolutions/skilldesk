@@ -3,13 +3,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'messagebox_model.dart';
 export 'messagebox_model.dart';
 
 class MessageboxWidget extends StatefulWidget {
-  const MessageboxWidget({Key? key}) : super(key: key);
+  const MessageboxWidget({super.key});
 
   @override
   _MessageboxWidgetState createState() => _MessageboxWidgetState();
@@ -46,12 +45,12 @@ class _MessageboxWidgetState extends State<MessageboxWidget> {
 
     return Container(
       width: double.infinity,
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxWidth: 570.0,
       ),
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 3.0,
             color: Color(0x33000000),
@@ -60,13 +59,13 @@ class _MessageboxWidgetState extends State<MessageboxWidget> {
         ],
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 44.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 44.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 0.0, 0.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 8.0,
@@ -84,7 +83,7 @@ class _MessageboxWidgetState extends State<MessageboxWidget> {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.fullNameController,
                   focusNode: _model.fullNameFocusNode,
@@ -101,21 +100,21 @@ class _MessageboxWidgetState extends State<MessageboxWidget> {
                       borderRadius: BorderRadius.circular(4.0),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(0x00000000),
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(4.0),
                     ),
                     errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(0x00000000),
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(4.0),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(0x00000000),
                         width: 1.0,
                       ),
@@ -124,7 +123,7 @@ class _MessageboxWidgetState extends State<MessageboxWidget> {
                     filled: true,
                     fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                     contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 24.0, 20.0, 24.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 24.0, 20.0, 24.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
                   maxLines: 5,
@@ -138,7 +137,7 @@ class _MessageboxWidgetState extends State<MessageboxWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,

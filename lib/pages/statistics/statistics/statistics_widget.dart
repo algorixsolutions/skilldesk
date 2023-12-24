@@ -5,12 +5,10 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -19,11 +17,10 @@ export 'statistics_model.dart';
 
 class StatisticsWidget extends StatefulWidget {
   const StatisticsWidget({
-    Key? key,
+    super.key,
     String? period,
     this.theme,
-  })  : this.period = period ?? 'day',
-        super(key: key);
+  })  : period = period ?? 'day';
 
   final String period;
   final String? theme;
@@ -62,7 +59,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
     }
 
     context.watch<FFAppState>();
-    final chartPieChartColorsList2 = [Color(0xFF725DFF), Color(0xFF00D1FF)];
+    final chartPieChartColorsList2 = [const Color(0xFF725DFF), const Color(0xFF00D1FF)];
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -101,7 +98,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             'Statistic',
                             style: FlutterFlowTheme.of(context)
@@ -119,7 +116,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 190.0, 0.0, 0.0),
                                 child: Container(
                                   width: 341.74,
@@ -129,7 +126,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(12.0),
                                     border: Border.all(
-                                      color: Color(0xFFE6E6E6),
+                                      color: const Color(0xFFE6E6E6),
                                       width: 2.0,
                                     ),
                                   ),
@@ -137,8 +134,8 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.69),
-                                        child: Container(
+                                            const AlignmentDirectional(0.0, 0.69),
+                                        child: SizedBox(
                                           width: 341.0,
                                           height: 135.62,
                                           child: FlutterFlowLineChart(
@@ -162,14 +159,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                           false,
                                                         )),
                                                 settings: LineChartBarData(
-                                                  color: Color(0xFF1363DF),
+                                                  color: const Color(0xFF1363DF),
                                                   barWidth: 2.0,
                                                   isCurved: true,
                                                   dotData:
                                                       FlDotData(show: false),
                                                   belowBarData: BarAreaData(
                                                     show: true,
-                                                    color: Color(0xFFEEF4FC),
+                                                    color: const Color(0xFFEEF4FC),
                                                   ),
                                                 ),
                                               )
@@ -180,14 +177,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       .secondaryBackground,
                                               showBorder: false,
                                             ),
-                                            axisBounds: AxisBounds(),
-                                            xAxisLabelInfo: AxisLabelInfo(),
-                                            yAxisLabelInfo: AxisLabelInfo(),
+                                            axisBounds: const AxisBounds(),
+                                            xAxisLabelInfo: const AxisLabelInfo(),
+                                            yAxisLabelInfo: const AxisLabelInfo(),
                                           ),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             15.69, 15.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -195,7 +192,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 21.72),
                                               child: Container(
@@ -221,7 +218,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Row(
@@ -232,14 +229,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         width: 12.0,
                                                         height: 12.0,
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                           color:
                                                               Color(0xFFD9D9D9),
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
                                                       ),
-                                                      Padding(
+                                                      const Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
@@ -260,7 +257,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     14.0,
                                                                     0.0,
@@ -274,7 +271,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                     .jsonBody,
                                                               )
                                                               .toString(),
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                             fontFamily:
                                                                 'SF Pro Display Bold',
                                                             fontWeight:
@@ -287,7 +284,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Row(
@@ -298,14 +295,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         width: 12.0,
                                                         height: 12.0,
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                           color:
                                                               Color(0xFF725DFF),
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
                                                       ),
-                                                      Padding(
+                                                      const Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
@@ -326,7 +323,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     14.0,
                                                                     0.0,
@@ -340,7 +337,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                     .jsonBody,
                                                               )
                                                               .toString(),
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                             fontFamily:
                                                                 'SF Pro Display Bold',
                                                             fontWeight:
@@ -359,13 +356,13 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     Container(
                                                       width: 12.0,
                                                       height: 12.0,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                         color:
                                                             Color(0xFF00D1FF),
                                                         shape: BoxShape.circle,
                                                       ),
                                                     ),
-                                                    Padding(
+                                                    const Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
@@ -386,7 +383,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   14.0,
                                                                   0.0,
@@ -400,7 +397,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                   .jsonBody,
                                                             )
                                                             .toString(),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontFamily:
                                                               'SF Pro Display Bold',
                                                           fontWeight:
@@ -424,7 +421,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 6.49, 0.0, 0.0),
                           child: Container(
                             width: 342.0,
@@ -434,12 +431,12 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                   .secondaryBackground,
                               borderRadius: BorderRadius.circular(12.0),
                               border: Border.all(
-                                color: Color(0xFFE6E6E6),
+                                color: const Color(0xFFE6E6E6),
                                 width: 2.0,
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.49, 0.0, 0.0),
                               child: FutureBuilder<ApiCallResponse>(
                                 future: BaseUrlGroup.getThemesCall.call(
@@ -470,14 +467,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 9.04, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Expanded(
+                                            const Expanded(
                                               flex: 2,
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
@@ -497,7 +494,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             Expanded(
                                               flex: 3,
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 16.0, 0.0),
                                                 child:
@@ -518,8 +515,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ) as List)
                                                           .map<String>((s) =>
                                                               s.toString())
-                                                          .toList()!
-                                                          .map((e) =>
+                                                          .toList().map((e) =>
                                                               e.toString())
                                                           .toList()),
                                                   optionLabels: (BaseUrlGroup
@@ -530,7 +526,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ) as List)
                                                       .map<String>(
                                                           (s) => s.toString())
-                                                      .toList()!,
+                                                      .toList(),
                                                   onChanged: (val) async {
                                                     setState(() => _model
                                                             .themeQDropDownValue =
@@ -569,7 +565,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         .primaryText,
                                                     size: 24.0,
                                                   ),
-                                                  fillColor: Color(0xFFE6E6E6),
+                                                  fillColor: const Color(0xFFE6E6E6),
                                                   elevation: 2.0,
                                                   borderColor:
                                                       FlutterFlowTheme.of(
@@ -577,7 +573,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                           .alternate,
                                                   borderWidth: 2.0,
                                                   borderRadius: 17.0,
-                                                  margin: EdgeInsetsDirectional
+                                                  margin: const EdgeInsetsDirectional
                                                       .fromSTEB(18.0, 0.0,
                                                           14.01, 0.0),
                                                   hidesUnderline: true,
@@ -590,13 +586,13 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 9.96, 16.0, 0.0),
                                         child: Container(
                                           width: 322.0,
                                           height: 45.0,
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFE6F1F8),
+                                            color: const Color(0xFFE6F1F8),
                                             borderRadius:
                                                 BorderRadius.circular(60.0),
                                           ),
@@ -613,7 +609,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -629,7 +625,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Container(
@@ -637,14 +633,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       height: 20.0,
                                                       decoration: BoxDecoration(
                                                         color:
-                                                            Color(0xFF39B6FF),
+                                                            const Color(0xFF39B6FF),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(46.0),
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           '${BaseUrlGroup.getUserStatsCall.myQuizPosition(
@@ -666,7 +662,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 ],
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         65.0, 13.0, 19.0, 12.0),
                                                 child: Row(
@@ -716,7 +712,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 22.31, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -728,7 +724,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Padding(
+                                                    const Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
@@ -748,7 +744,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -762,7 +758,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                   .jsonBody,
                                                             )
                                                             .toString(),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontFamily:
                                                               'SF Pro Display Bold',
                                                           fontWeight:
@@ -779,13 +775,13 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   animation: true,
                                                   animateFromLastPercent: true,
                                                   progressColor:
-                                                      Color(0xFF725DFF),
+                                                      const Color(0xFF725DFF),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .accent4,
                                                   barRadius:
-                                                      Radius.circular(8.0),
+                                                      const Radius.circular(8.0),
                                                   padding: EdgeInsets.zero,
                                                 ),
                                               ],
@@ -793,7 +789,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 22.31, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -805,7 +801,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Padding(
+                                                    const Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
@@ -825,7 +821,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -839,7 +835,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                   .jsonBody,
                                                             )
                                                             .toString(),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontFamily:
                                                               'SF Pro Display Bold',
                                                           fontWeight:
@@ -856,13 +852,13 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   animation: true,
                                                   animateFromLastPercent: true,
                                                   progressColor:
-                                                      Color(0xFFFFCB00),
+                                                      const Color(0xFFFFCB00),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .accent4,
                                                   barRadius:
-                                                      Radius.circular(8.0),
+                                                      const Radius.circular(8.0),
                                                   padding: EdgeInsets.zero,
                                                 ),
                                               ],
@@ -870,7 +866,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 22.31, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -882,7 +878,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Padding(
+                                                    const Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
@@ -902,7 +898,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -916,7 +912,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                   .jsonBody,
                                                             )
                                                             .toString(),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontFamily:
                                                               'SF Pro Display Bold',
                                                           fontWeight:
@@ -933,13 +929,13 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   animation: true,
                                                   animateFromLastPercent: true,
                                                   progressColor:
-                                                      Color(0xFF00D1FF),
+                                                      const Color(0xFF00D1FF),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .accent4,
                                                   barRadius:
-                                                      Radius.circular(8.0),
+                                                      const Radius.circular(8.0),
                                                   padding: EdgeInsets.zero,
                                                 ),
                                               ],
@@ -948,7 +944,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 35.0),
                                         child: Container(
                                           width: 342.0,
@@ -963,7 +959,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         25.0, 32.0, 0.0, 0.0),
                                                 child: Container(
@@ -974,7 +970,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                             context)
                                                         .secondaryBackground,
                                                   ),
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     width: 382.0,
                                                     height: 230.0,
                                                     child: FlutterFlowPieChart(
@@ -1004,10 +1000,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     1.0, 0.0),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           55.0, 55.0, 0.0, 0.0),
                                                   child: Column(
@@ -1025,14 +1021,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                             width: 15.0,
                                                             height: 15.0,
                                                             decoration:
-                                                                BoxDecoration(
+                                                                const BoxDecoration(
                                                               color: Color(
                                                                   0xFF725DFF),
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
                                                           ),
-                                                          Padding(
+                                                          const Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
@@ -1055,7 +1051,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     30.0,
@@ -1069,14 +1065,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                               width: 15.0,
                                                               height: 15.0,
                                                               decoration:
-                                                                  BoxDecoration(
+                                                                  const BoxDecoration(
                                                                 color: Color(
                                                                     0xFF39B6FF),
                                                                 shape: BoxShape
                                                                     .circle,
                                                               ),
                                                             ),
-                                                            Padding(
+                                                            const Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
@@ -1116,7 +1112,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Container(
                             width: 342.0,
@@ -1155,7 +1151,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 9.04, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1164,7 +1160,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Expanded(
+                                          const Expanded(
                                             flex: 2,
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
@@ -1184,7 +1180,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           Expanded(
                                             flex: 3,
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 16.0, 0.0),
                                               child:
@@ -1203,8 +1199,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 ) as List)
                                                         .map<String>(
                                                             (s) => s.toString())
-                                                        .toList()!
-                                                        .map(
+                                                        .toList().map(
                                                             (e) => e.toString())
                                                         .toList()),
                                                 optionLabels: (BaseUrlGroup
@@ -1215,7 +1210,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 ) as List)
                                                     .map<String>(
                                                         (s) => s.toString())
-                                                    .toList()!,
+                                                    .toList(),
                                                 onChanged: (val) async {
                                                   setState(() => _model
                                                           .themeTDropDownValue =
@@ -1253,14 +1248,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       .primaryText,
                                                   size: 24.0,
                                                 ),
-                                                fillColor: Color(0xFFE6E6E6),
+                                                fillColor: const Color(0xFFE6E6E6),
                                                 elevation: 2.0,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
                                                 borderWidth: 2.0,
                                                 borderRadius: 17.0,
-                                                margin: EdgeInsetsDirectional
+                                                margin: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         18.0, 0.0, 14.01, 0.0),
                                                 hidesUnderline: true,
@@ -1273,7 +1268,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 22.31, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1283,7 +1278,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Padding(
+                                              const Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 2.69),
@@ -1297,7 +1292,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 100.5, 0.0),
                                                 child: Text(
@@ -1307,7 +1302,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                             .jsonBody,
                                                       )
                                                       .toString(),
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontFamily:
                                                         'SF Pro Display Bold',
                                                     fontWeight: FontWeight.w600,
@@ -1322,18 +1317,18 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             lineHeight: 8.0,
                                             animation: true,
                                             animateFromLastPercent: true,
-                                            progressColor: Color(0xFF725DFF),
+                                            progressColor: const Color(0xFF725DFF),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .accent4,
-                                            barRadius: Radius.circular(8.0),
+                                            barRadius: const Radius.circular(8.0),
                                             padding: EdgeInsets.zero,
                                           ),
                                         ],
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 22.31, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1343,7 +1338,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Padding(
+                                              const Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 2.69),
@@ -1357,7 +1352,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 187.0, 0.0),
                                                 child: Text(
@@ -1367,7 +1362,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                             .jsonBody,
                                                       )
                                                       .toString(),
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontFamily:
                                                         'SF Pro Display Bold',
                                                     fontWeight: FontWeight.w600,
@@ -1382,18 +1377,18 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             lineHeight: 8.0,
                                             animation: true,
                                             animateFromLastPercent: true,
-                                            progressColor: Color(0xFFFFCB00),
+                                            progressColor: const Color(0xFFFFCB00),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .accent4,
-                                            barRadius: Radius.circular(8.0),
+                                            barRadius: const Radius.circular(8.0),
                                             padding: EdgeInsets.zero,
                                           ),
                                         ],
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 22.31, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1403,7 +1398,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Padding(
+                                              const Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 2.69),
@@ -1417,7 +1412,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 131.0, 0.0),
                                                 child: Text(
@@ -1427,7 +1422,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                             .jsonBody,
                                                       )
                                                       .toString(),
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontFamily:
                                                         'SF Pro Display Bold',
                                                     fontWeight: FontWeight.w600,
@@ -1442,11 +1437,11 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             lineHeight: 8.0,
                                             animation: true,
                                             animateFromLastPercent: true,
-                                            progressColor: Color(0xFF00D1FF),
+                                            progressColor: const Color(0xFF00D1FF),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .accent4,
-                                            barRadius: Radius.circular(8.0),
+                                            barRadius: const Radius.circular(8.0),
                                             padding: EdgeInsets.zero,
                                           ),
                                         ],
@@ -1489,7 +1484,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             'Statistics',
                             style: FlutterFlowTheme.of(context)
@@ -1506,7 +1501,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 18.73, 0.0, 0.0),
                               child: Container(
                                 width: 342.0,
@@ -1516,7 +1511,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(60.0),
                                   border: Border.all(
-                                    color: Color(0xFFE6E6E6),
+                                    color: const Color(0xFFE6E6E6),
                                     width: 2.0,
                                   ),
                                 ),
@@ -1526,10 +1521,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
                                         child: FlutterFlowChoiceChips(
-                                          options: [
+                                          options: const [
                                             ChipData('day'),
                                             ChipData('week'),
                                             ChipData('month')
@@ -1552,7 +1547,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             );
                                           },
                                           selectedChipStyle: ChipStyle(
-                                            backgroundColor: Color(0xFF39B6FF),
+                                            backgroundColor: const Color(0xFF39B6FF),
                                             textStyle: GoogleFonts.getFont(
                                               'Inter',
                                               color:
@@ -1565,7 +1560,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     .primaryText,
                                             iconSize: 0.0,
                                             labelPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     31.0, 5.0, 31.0, 6.0),
                                             elevation: 0.0,
                                             borderRadius:
@@ -1584,7 +1579,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     .secondaryText,
                                             iconSize: 18.0,
                                             labelPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     28.0, 8.0, 28.0, 7.0),
                                             elevation: 0.0,
                                             borderRadius:
@@ -1610,9 +1605,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.0, -1.0),
+                              alignment: const AlignmentDirectional(0.0, -1.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Container(
                                   width: 342.0,
@@ -1627,11 +1622,11 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         width: 342.0,
                                         height: 100.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFF9F9F9),
+                                          color: const Color(0xFFF9F9F9),
                                           borderRadius:
                                               BorderRadius.circular(16.0),
                                           border: Border.all(
-                                            color: Color(0xFFE6E6E6),
+                                            color: const Color(0xFFE6E6E6),
                                             width: 2.0,
                                           ),
                                         ),
@@ -1646,7 +1641,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 0.0, 15.0),
                                                   child: Text(
@@ -1660,21 +1655,21 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 14.0),
                                                   child: Container(
                                                     width: 51.0,
                                                     height: 20.0,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFF39B6FF),
+                                                      color: const Color(0xFF39B6FF),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               46.0),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         '${BaseUrlGroup.getUserStatsCall.myPointsProgress(
@@ -1696,7 +1691,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       52.0, 0.0, 16.0, 14.0),
                                               child: Text(
@@ -1723,7 +1718,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                           border: Border.all(
-                                            color: Color(0xFFE6E6E6),
+                                            color: const Color(0xFFE6E6E6),
                                             width: 2.0,
                                           ),
                                         ),
@@ -1741,7 +1736,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1755,21 +1750,21 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Container(
                                                     width: 75.0,
                                                     height: 20.0,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFF39B6FF),
+                                                      color: const Color(0xFF39B6FF),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               46.0),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         '+ 2 Position',
@@ -1788,7 +1783,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       116.0, 15.0, 19.0, 14.0),
                                               child: Row(
@@ -1852,7 +1847,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Icon(
                         Icons.chevron_left_sharp,
                         color: FlutterFlowTheme.of(context).secondaryText,

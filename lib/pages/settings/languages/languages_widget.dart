@@ -1,15 +1,13 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'languages_model.dart';
 export 'languages_model.dart';
 
 class LanguagesWidget extends StatefulWidget {
-  const LanguagesWidget({Key? key}) : super(key: key);
+  const LanguagesWidget({super.key});
 
   @override
   _LanguagesWidgetState createState() => _LanguagesWidgetState();
@@ -59,7 +57,7 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 14.82, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 14.82, 0.0, 0.0),
                 child: Container(
                   width: 390.0,
                   height: 23.0,
@@ -71,7 +69,7 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(23.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(23.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -87,7 +85,7 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             111.0, 0.0, 0.0, 0.0),
                         child: Text(
@@ -104,14 +102,14 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                 child: Container(
                   width: 350.0,
                   height: 113.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     border: Border.all(
-                      color: Color(0xFFBEBEBE),
+                      color: const Color(0xFFBEBEBE),
                       width: 1.0,
                     ),
                   ),
@@ -119,13 +117,13 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             19.0, 16.0, 12.91, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Français',
                               style: TextStyle(
                                 fontFamily: 'SF Pro Display Bold',
@@ -148,11 +146,11 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           border: Border.all(
-                            color: Color(0xFFBEBEBE),
+                            color: const Color(0xFFBEBEBE),
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             19.0, 16.0, 12.91, 16.0),
                         child: Row(

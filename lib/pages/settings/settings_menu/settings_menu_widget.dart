@@ -5,13 +5,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'settings_menu_model.dart';
 export 'settings_menu_model.dart';
 
 class SettingsMenuWidget extends StatefulWidget {
-  const SettingsMenuWidget({Key? key}) : super(key: key);
+  const SettingsMenuWidget({super.key});
 
   @override
   _SettingsMenuWidgetState createState() => _SettingsMenuWidgetState();
@@ -70,9 +69,9 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(-1.0, -1.0),
+                      alignment: const AlignmentDirectional(-1.0, -1.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 25.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -92,7 +91,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(103.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(103.0, 0.0, 0.0, 0.0),
                       child: Container(
                         width: 84.0,
                         height: 84.0,
@@ -115,10 +114,10 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
                 child: Text(
-                  'Welcome ${currentUserDisplayName}',
-                  style: TextStyle(
+                  'Welcome $currentUserDisplayName',
+                  style: const TextStyle(
                     fontFamily: 'SF Pro Display Bold',
                     fontWeight: FontWeight.bold,
                     fontSize: 19.0,
@@ -126,15 +125,14 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                 child: Container(
                   width: 350.0,
-                  height: 171.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(16.0),
                     border: Border.all(
-                      color: Color(0xFFBEBEBE),
+                      color: const Color(0xFFBEBEBE),
                       width: 1.0,
                     ),
                   ),
@@ -156,7 +154,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   19.0, 15.5, 0.0, 15.5),
                               child: Text(
                                 'Support',
@@ -171,7 +169,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                                     ),
                               ),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 15.5, 17.0, 15.5),
                               child: Icon(
@@ -183,6 +181,54 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                           ],
                         ),
                       ),
+                      if (false)
+                        Container(
+                          width: 350.0,
+                          height: 1.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            border: Border.all(
+                              color: const Color(0xFFBEBEBE),
+                            ),
+                          ),
+                        ),
+                      if (false)
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.5, 0.0, 15.5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    19.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Account Settings',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'SF Pro Display Bold',
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: false,
+                                      ),
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 17.0, 0.0),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Color(0xFF130F26),
+                                  size: 24.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       Container(
                         width: 350.0,
                         height: 1.0,
@@ -190,65 +236,19 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           border: Border.all(
-                            color: Color(0xFFBEBEBE),
+                            color: const Color(0xFFBEBEBE),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 15.5, 0.0, 15.5),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  19.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Account Settings',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'SF Pro Display Bold',
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w600,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 17.0, 0.0),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color(0xFF130F26),
-                                size: 24.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 350.0,
-                        height: 1.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          border: Border.all(
-                            color: Color(0xFFBEBEBE),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 15.5, 0.0, 15.5),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   19.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Language',
@@ -264,7 +264,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 17.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -274,7 +274,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                                 onTap: () async {
                                   context.pushNamed('languages');
                                 },
-                                child: Icon(
+                                child: const Icon(
                                   Icons.arrow_forward_ios,
                                   color: Color(0xFF130F26),
                                   size: 24.0,
@@ -296,24 +296,11 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 45.0, 0.0, 0.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/Coding_website.png',
-                          width: 236.22,
-                          height: 228.12,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 1.0),
+                      alignment: const AlignmentDirectional(0.0, 1.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             GoRouter.of(context).prepareAuthEvent();
@@ -326,19 +313,19 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                           options: FFButtonOptions(
                             width: 350.0,
                             height: 50.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF725DFF),
-                            textStyle: TextStyle(
+                            color: const Color(0xFF725DFF),
+                            textStyle: const TextStyle(
                               fontFamily: 'SF Pro Display Bold',
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 16.0,
                             ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -347,7 +334,20 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(height: 80.0)),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 45.0, 0.0, 0.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/Coding_website.png',
+                          width: 236.22,
+                          height: 228.12,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ].divide(const SizedBox(height: 80.0)),
                 ),
               ),
             ],

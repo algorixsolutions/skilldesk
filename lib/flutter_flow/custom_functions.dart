@@ -320,3 +320,14 @@ String? randomColorsFromRange() {
   int index = math.Random().nextInt(colors.length);
   return colors[index];
 }
+
+bool? isTextContainsString(
+  String? text,
+  String? searchString,
+) {
+  // test if a text contains a string  passed in arguments not case sensitive
+  if (text == null || searchString == null) {
+    return null;
+  }
+  return text.toLowerCase().contains(searchString.toLowerCase());
+}

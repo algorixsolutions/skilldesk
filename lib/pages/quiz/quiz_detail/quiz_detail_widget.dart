@@ -1,23 +1,24 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'quiz_detail_model.dart';
+
 export 'quiz_detail_model.dart';
 
 class QuizDetailWidget extends StatefulWidget {
   const QuizDetailWidget({
-    Key? key,
+    super.key,
     required this.quiz,
     this.allQuiz,
-  }) : super(key: key);
+  });
 
   final dynamic quiz;
   final List<dynamic>? allQuiz;
@@ -89,10 +90,10 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 9.93, 20.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        20.0, 9.93, 20.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -114,28 +115,31 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                         ),
                         Container(
                           width: 300.0,
-                          decoration: BoxDecoration(),
-                          child: Text(
-                            getJsonField(
-                              widget.quiz,
-                              r'''$.title''',
-                            ).toString().maybeHandleOverflow(maxChars: 25),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'SF Pro Display Bold',
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w500,
-                                  useGoogleFonts: false,
-                                ),
+                          decoration: const BoxDecoration(),
+                          child: Expanded(
+                            child: Text(
+                              getJsonField(
+                                widget.quiz,
+                                r'''$.title''',
+                              ).toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'SF Pro Display Bold',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w500,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 40.0)),
+                      ].divide(const SizedBox(width: 40.0)),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Text(
                     '${getJsonField(
                       widget.quiz,
@@ -150,10 +154,10 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                 ),
                 Flexible(
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(70.0, 10.0, 70.0, 10.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        70.0, 10.0, 70.0, 10.0),
                     child: LinearPercentIndicator(
-                      key: ValueKey('0.66'),
+                      key: const ValueKey('0.66'),
                       percent: functions.calculateProgress(getJsonField(
                         widget.quiz,
                         r'''$.progress''',
@@ -163,8 +167,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                       animation: true,
                       animateFromLastPercent: true,
                       progressColor: FlutterFlowTheme.of(context).primary,
-                      backgroundColor: Color(0xFFBBBCBD),
-                      barRadius: Radius.circular(32.0),
+                      backgroundColor: const Color(0xFFBBBCBD),
+                      barRadius: const Radius.circular(32.0),
                       padding: EdgeInsets.zero,
                     ),
                   ),
@@ -180,7 +184,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                           r'''$.null''',
                         ))
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             23.0, 18.0, 24.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(14.0),
@@ -201,7 +205,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                           r'''$.null''',
                         ))
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             23.0, 18.0, 24.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(14.0),
@@ -219,7 +223,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -239,11 +244,11 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                         ),
                         options: FFButtonOptions(
                           height: 34.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               19.0, 0.0, 23.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFFEBEBEB),
+                          color: const Color(0xFFEBEBEB),
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
@@ -251,7 +256,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 13.0,
                               ),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -268,11 +273,11 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                         ).toString()}',
                         options: FFButtonOptions(
                           height: 34.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               19.0, 0.0, 23.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFFEBEBEB),
+                          color: const Color(0xFFEBEBEB),
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
@@ -280,7 +285,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 13.0,
                               ),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -297,11 +302,11 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                         ).toString(),
                         options: FFButtonOptions(
                           height: 34.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               19.0, 0.0, 23.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFFEBEBEB),
+                          color: const Color(0xFFEBEBEB),
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
@@ -309,21 +314,21 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 13.0,
                               ),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(61.0),
                         ),
                       ),
-                    ].divide(SizedBox(width: 7.0)),
+                    ].divide(const SizedBox(width: 7.0)),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, -1.0),
+                  alignment: const AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(27.0, 27.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        27.0, 27.0, 0.0, 0.0),
                     child: Text(
                       '${getJsonField(
                         widget.quiz,
@@ -338,8 +343,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(17.0, 14.0, 17.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      17.0, 14.0, 17.0, 0.0),
                   child: Text(
                     functions.removeHtmlTags(getJsonField(
                       widget.quiz,
@@ -353,7 +358,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 131.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 131.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       if (getJsonField(
@@ -561,7 +567,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).secondary,
                             ),
@@ -769,7 +775,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).secondary,
                             ),
@@ -782,11 +788,11 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                     options: FFButtonOptions(
                       width: 342.0,
                       height: 50.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF39B6FF),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          24.0, 0.0, 24.0, 0.0),
+                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF39B6FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
@@ -794,7 +800,7 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                                 fontSize: 14.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

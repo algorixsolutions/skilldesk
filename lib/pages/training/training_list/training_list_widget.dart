@@ -10,15 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'training_list_model.dart';
 export 'training_list_model.dart';
 
 class TrainingListWidget extends StatefulWidget {
-  const TrainingListWidget({Key? key}) : super(key: key);
+  const TrainingListWidget({super.key});
 
   @override
   _TrainingListWidgetState createState() => _TrainingListWidgetState();
@@ -79,13 +77,13 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             143.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: 104.0,
@@ -95,7 +93,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                 .secondaryBackground,
                           ),
                           child: Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               'Training',
                               style: FlutterFlowTheme.of(context)
@@ -111,9 +109,9 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
+                        alignment: const AlignmentDirectional(1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               83.11, 0.0, 32.0, 0.0),
                           child: Container(
                             width: 27.79,
@@ -129,22 +127,22 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Container(
                     width: 350.0,
                     height: 44.0,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF4F4F4),
+                      color: const Color(0xFFF4F4F4),
                       borderRadius: BorderRadius.circular(40.0),
                     ),
-                    child: Container(
+                    child: SizedBox(
                       width: 350.0,
                       child: TextFormField(
                         controller: _model.searchFieldController,
                         focusNode: _model.searchFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.searchFieldController',
-                          Duration(milliseconds: 500),
+                          const Duration(milliseconds: 500),
                           () async {
                             setState(() {
                               FFAppState().selectedQuizLabel = '';
@@ -191,7 +189,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                             ),
                             borderRadius: BorderRadius.circular(40.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 20.0, 0.0),
                           suffixIcon: Icon(
                             Icons.search_rounded,
@@ -207,7 +205,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(31.0),
+                  padding: const EdgeInsets.all(31.0),
                   child: Container(
                     width: 350.0,
                     height: 31.0,
@@ -247,7 +245,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                               scrollDirection: Axis.horizontal,
                               itemCount: theme.length,
                               separatorBuilder: (_, __) =>
-                                  SizedBox(width: 15.0),
+                                  const SizedBox(width: 15.0),
                               itemBuilder: (context, themeIndex) {
                                 final themeItem = theme[themeIndex];
                                 return InkWell(
@@ -317,7 +315,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                 ),
                                           ),
                                         ),
-                                    ].divide(SizedBox(height: 5.0)),
+                                    ].divide(const SizedBox(height: 5.0)),
                                   ),
                                 );
                               },
@@ -329,7 +327,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   child: FutureBuilder<ApiCallResponse>(
                     future: BaseUrlGroup.getTrainingsCall.call(
                       userID: currentUserUid,
@@ -361,7 +359,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                           return GridView.builder(
                             padding: EdgeInsets.zero,
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 20.0,
                               mainAxisSpacing: 10.0,
@@ -455,7 +453,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 4.0,
                                           color: Color(0x33000000),
@@ -464,9 +462,9 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -491,7 +489,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                     height: 100.0,
                                                     fit: BoxFit.contain,
                                                     alignment:
-                                                        Alignment(0.0, 0.0),
+                                                        const Alignment(0.0, 0.0),
                                                   ),
                                                 ),
                                               if (getJsonField(
@@ -512,7 +510,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                     height: 100.0,
                                                     fit: BoxFit.contain,
                                                     alignment:
-                                                        Alignment(0.0, 0.0),
+                                                        const Alignment(0.0, 0.0),
                                                   ),
                                                 ),
                                             ],
@@ -555,7 +553,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                         fontFamily:
                                                             'SF Pro Display Bold',
                                                         color:
-                                                            Color(0xFFACACAC),
+                                                            const Color(0xFFACACAC),
                                                         useGoogleFonts: false,
                                                       ),
                                             ),
@@ -665,7 +663,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                               ),
                                                         ),
                                                         barRadius:
-                                                            Radius.circular(
+                                                            const Radius.circular(
                                                                 16.0),
                                                         padding:
                                                             EdgeInsets.zero,
@@ -706,7 +704,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                               .bodyMedium,
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 10.0)),
+                                                      const SizedBox(width: 10.0)),
                                                 ),
                                               if ((getJsonField(
                                                         trainingItemItem,
@@ -725,7 +723,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                         r'''$.notStarted''',
                                                       )))
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 9.0, 0.0, 0.0),
                                                   child: FFButtonWidget(
@@ -757,20 +755,20 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                       width: 184.0,
                                                       height: 31.0,
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
-                                                      color: Color(0xFFEBEBEB),
+                                                      color: const Color(0xFFEBEBEB),
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -778,11 +776,11 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xFF39B6FF),
                                                                 fontSize: 14.0,
                                                               ),
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                       ),
@@ -794,7 +792,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                 ),
                                             ],
                                           ),
-                                        ].divide(SizedBox(height: 5.0)),
+                                        ].divide(const SizedBox(height: 5.0)),
                                       ),
                                     ),
                                   ),

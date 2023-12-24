@@ -10,16 +10,14 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'new_ticket_model.dart';
 export 'new_ticket_model.dart';
 
 class NewTicketWidget extends StatefulWidget {
-  const NewTicketWidget({Key? key}) : super(key: key);
+  const NewTicketWidget({super.key});
 
   @override
   _NewTicketWidgetState createState() => _NewTicketWidgetState();
@@ -46,8 +44,8 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.0, 110.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(0.0, 110.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -120,7 +118,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
             'Submit Ticket',
             style: FlutterFlowTheme.of(context).titleLarge,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -130,7 +128,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.always,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -138,7 +136,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -179,7 +177,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 12.0, 16.0, 12.0),
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
@@ -221,8 +219,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                       .jsonBody,
                                 ) as List)
                                         .map<String>((s) => s.toString())
-                                        .toList()!
-                                        .map((e) => e.toString())
+                                        .toList().map((e) => e.toString())
                                         .toList()),
                                 optionLabels: (BaseUrlGroup
                                         .getTicketsCategoriesCall
@@ -231,8 +228,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                       .jsonBody,
                                 ) as List)
                                     .map<String>((s) => s.toString())
-                                    .toList()!
-                                    .map((e) => e.toString())
+                                    .toList().map((e) => e.toString())
                                     .toList(),
                                 onChanged: (val) => setState(
                                     () => _model.dropDownCategoryValue = val),
@@ -253,7 +249,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -300,7 +296,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 24.0, 16.0, 12.0),
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
@@ -310,12 +306,12 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                             validator: _model.ticketMessageControllerValidator
                                 .asValidator(context),
                           ),
-                        ].divide(SizedBox(height: 12.0)),
+                        ].divide(const SizedBox(height: 12.0)),
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -369,7 +365,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                         },
                         child: Container(
                           width: double.infinity,
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             maxWidth: 500.0,
                           ),
                           decoration: BoxDecoration(
@@ -382,7 +378,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -392,7 +388,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                   size: 32.0,
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Upload file',
@@ -410,7 +406,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                       child: FFButtonWidget(
                         onPressed: functions.isTextFieldEmpty(
                                     _model.textFieldObjectController.text) ||
@@ -432,8 +428,8 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return AlertDialog(
-                                              title: Text('Submit New Ticket'),
-                                              content: Text(
+                                              title: const Text('Submit New Ticket'),
+                                              content: const Text(
                                                   'Ready to submit the ticket ?'),
                                               actions: [
                                                 TextButton(
@@ -441,14 +437,14 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                                       Navigator.pop(
                                                           alertDialogContext,
                                                           false),
-                                                  child: Text('No'),
+                                                  child: const Text('No'),
                                                 ),
                                                 TextButton(
                                                   onPressed: () =>
                                                       Navigator.pop(
                                                           alertDialogContext,
                                                           true),
-                                                  child: Text('Yes'),
+                                                  child: const Text('Yes'),
                                                 ),
                                               ],
                                             );
@@ -470,7 +466,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: Text(
+                                        title: const Text(
                                             'Error while creating the ticket'),
                                         content: Text(
                                             (_model.apiResultja4?.jsonBody ??
@@ -480,7 +476,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: Text('Ok'),
+                                            child: const Text('Ok'),
                                           ),
                                         ],
                                       );
@@ -494,8 +490,8 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 48.0,
-                          padding: EdgeInsets.all(0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsets.all(0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -504,7 +500,7 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                     color: Colors.white,
                                   ),
                           elevation: 4.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

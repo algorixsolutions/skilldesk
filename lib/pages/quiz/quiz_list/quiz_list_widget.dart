@@ -10,14 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'quiz_list_model.dart';
 export 'quiz_list_model.dart';
 
 class QuizListWidget extends StatefulWidget {
-  const QuizListWidget({Key? key}) : super(key: key);
+  const QuizListWidget({super.key});
 
   @override
   _QuizListWidgetState createState() => _QuizListWidgetState();
@@ -79,13 +78,13 @@ class _QuizListWidgetState extends State<QuizListWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             143.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: 104.0,
@@ -95,7 +94,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                 .secondaryBackground,
                           ),
                           child: Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               'Quizes',
                               style: FlutterFlowTheme.of(context)
@@ -111,9 +110,9 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
+                        alignment: const AlignmentDirectional(1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               83.11, 0.0, 32.0, 0.0),
                           child: Container(
                             width: 27.79,
@@ -129,22 +128,22 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Container(
                     width: 350.0,
                     height: 44.0,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF4F4F4),
+                      color: const Color(0xFFF4F4F4),
                       borderRadius: BorderRadius.circular(40.0),
                     ),
-                    child: Container(
+                    child: SizedBox(
                       width: 350.0,
                       child: TextFormField(
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          Duration(milliseconds: 1000),
+                          const Duration(milliseconds: 1000),
                           () async {
                             setState(() {
                               FFAppState().selectedQuizLabel = '';
@@ -191,7 +190,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                             ),
                             borderRadius: BorderRadius.circular(40.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 20.0, 0.0),
                           suffixIcon: Icon(
                             Icons.search_rounded,
@@ -207,7 +206,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(31.0),
+                  padding: const EdgeInsets.all(31.0),
                   child: Container(
                     width: 350.0,
                     height: 31.0,
@@ -247,7 +246,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                               scrollDirection: Axis.horizontal,
                               itemCount: theme.length,
                               separatorBuilder: (_, __) =>
-                                  SizedBox(width: 15.0),
+                                  const SizedBox(width: 15.0),
                               itemBuilder: (context, themeIndex) {
                                 final themeItem = theme[themeIndex];
                                 return InkWell(
@@ -317,7 +316,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                 ),
                                           ),
                                         ),
-                                    ].divide(SizedBox(height: 5.0)),
+                                    ].divide(const SizedBox(height: 5.0)),
                                   ),
                                 );
                               },
@@ -329,7 +328,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: FutureBuilder<ApiCallResponse>(
                     future: BaseUrlGroup.getQuizzesCall.call(
                       userID: currentUserUid,
@@ -363,7 +362,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: quiz.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                             itemBuilder: (context, quizIndex) {
                               final quizItem = quiz[quizIndex];
                               return Visibility(
@@ -403,7 +402,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(16.0),
                                     border: Border.all(
-                                      color: Color(0xFFEBEBEB),
+                                      color: const Color(0xFFEBEBEB),
                                       width: 2.0,
                                     ),
                                   ),
@@ -463,7 +462,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                   r'''$.null''',
                                                 ))
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         13.0, 0.0, 0.0, 0.0),
                                                 child: Container(
@@ -499,7 +498,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                   r'''$.null''',
                                                 ))
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         13.0, 0.0, 0.0, 0.0),
                                                 child: Container(
@@ -533,7 +532,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 14.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -563,7 +562,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 8.0, 0.0, 0.0),
                                                 child: AutoSizeText(
@@ -584,7 +583,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                         fontFamily:
                                                             'SF Pro Display Bold',
                                                         color:
-                                                            Color(0xFFACACAC),
+                                                            const Color(0xFFACACAC),
                                                         fontSize: 12.0,
                                                         useGoogleFonts: false,
                                                       ),
@@ -612,7 +611,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                           )))
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   9.0,
@@ -648,21 +647,21 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                           width: 184.0,
                                                           height: 31.0,
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       24.0,
                                                                       0.0,
                                                                       24.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
                                                                       0.0,
                                                                       0.0),
                                                           color:
-                                                              Color(0xFFEBEBEB),
+                                                              const Color(0xFFEBEBEB),
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -670,13 +669,13 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                                   .override(
                                                                     fontFamily:
                                                                         'Readex Pro',
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xFF39B6FF),
                                                                     fontSize:
                                                                         14.0,
                                                                   ),
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                           ),
@@ -701,7 +700,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   -0.76, 0.84),
                                                           child: Icon(
                                                             Icons
@@ -714,7 +713,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   -0.61, -1.28),
                                                           child: Text(
                                                             getJsonField(
@@ -740,7 +739,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                                 ),
                                                           ),
                                                         ),
-                                                      ].divide(SizedBox(
+                                                      ].divide(const SizedBox(
                                                           width: 10.0)),
                                                     ),
                                                   if ((getJsonField(
@@ -817,7 +816,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.05, 1.07),
                                                             child:
                                                                 LinearPercentIndicator(
@@ -840,7 +839,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                                   FlutterFlowTheme.of(
                                                                           context)
                                                                       .accent4,
-                                                              barRadius: Radius
+                                                              barRadius: const Radius
                                                                   .circular(
                                                                       32.0),
                                                               padding:
@@ -853,7 +852,7 @@ class _QuizListWidgetState extends State<QuizListWidget> {
                                                     ),
                                                 ],
                                               ),
-                                            ].divide(SizedBox(height: 3.0)),
+                                            ].divide(const SizedBox(height: 3.0)),
                                           ),
                                         ),
                                       ],

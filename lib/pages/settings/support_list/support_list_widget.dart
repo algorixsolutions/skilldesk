@@ -3,18 +3,15 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'support_list_model.dart';
 export 'support_list_model.dart';
 
 class SupportListWidget extends StatefulWidget {
-  const SupportListWidget({Key? key}) : super(key: key);
+  const SupportListWidget({super.key});
 
   @override
   _SupportListWidgetState createState() => _SupportListWidgetState();
@@ -131,7 +128,7 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                       useGoogleFonts: false,
                     ),
               ),
-              actions: [],
+              actions: const [],
               centerTitle: true,
               elevation: 0.0,
             ),
@@ -146,7 +143,7 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                       .toList()))
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: FutureBuilder<ApiCallResponse>(
                         future: _model
                             .getTickets(
@@ -208,7 +205,7 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                                   itemBuilder: (context, ticketIndex) {
                                     final ticketItem = ticket[ticketIndex];
                                     return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 10.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -234,7 +231,7 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                                                       r'''$.status''',
                                                     ).toString(),
                                                     'OPEN')
-                                                ? Color(0x1B725DFF)
+                                                ? const Color(0x1B725DFF)
                                                 : FlutterFlowTheme.of(context)
                                                     .primaryBackground,
                                             borderRadius:
@@ -247,14 +244,14 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(20.0),
+                                            padding: const EdgeInsets.all(20.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 7.0),
                                                   child: Text(
@@ -314,7 +311,7 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         5.0,
@@ -382,7 +379,7 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         5.0,
@@ -456,9 +453,9 @@ class _SupportListWidgetState extends State<SupportListWidget> {
                       )!
                       .toList()))
                     Align(
-                      alignment: AlignmentDirectional(0.0, -1.0),
+                      alignment: const AlignmentDirectional(0.0, -1.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 0.0, 0.0),
                         child: Text(
                           'No tickets to display.',
