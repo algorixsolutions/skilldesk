@@ -1,7 +1,3 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'training_details_model.dart';
+
 export 'training_details_model.dart';
 
 class TrainingDetailsWidget extends StatefulWidget {
@@ -70,13 +72,14 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 40.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          20.0, 0.0, 40.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -101,18 +104,20 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
-                      child: AutoSizeText(
-                        getJsonField(
-                          widget.training,
-                          r'''$.title''',
-                        ).toString().maybeHandleOverflow(maxChars: 25),
-                        style: const TextStyle(
-                          fontFamily: 'SF Pro Display Bold',
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18.0,
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 0.0, 84.0, 0.0),
+                      child: Expanded(
+                        child: AutoSizeText(
+                          getJsonField(
+                            widget.training,
+                            r'''$.title''',
+                          ).toString(),
+                          style: const TextStyle(
+                            fontFamily: 'SF Pro Display Bold',
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
+                          ),
                         ),
                       ),
                     ),
@@ -120,7 +125,8 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.09, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 20.09, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -139,7 +145,8 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 14.0, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(20.0, 14.0, 0.0, 0.0),
                 child: LinearPercentIndicator(
                   percent: functions.calculateProgress(getJsonField(
                     widget.training,
@@ -166,8 +173,8 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                         r'''$.null''',
                       ))
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.64, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 20.64, 0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: SvgPicture.asset(
@@ -187,8 +194,8 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                         r'''$.null''',
                       ))
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.64, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 20.64, 0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.network(
@@ -205,7 +212,8 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -466,10 +474,10 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                   options: FFButtonOptions(
                     width: 342.0,
                     height: 50.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        24.0, 0.0, 24.0, 0.0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 0.0),
                     color: const Color(0xFF725DFF),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',

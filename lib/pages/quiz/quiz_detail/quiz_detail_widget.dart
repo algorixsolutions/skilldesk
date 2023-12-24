@@ -1,14 +1,16 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'quiz_detail_model.dart';
+
 export 'quiz_detail_model.dart';
 
 class QuizDetailWidget extends StatefulWidget {
@@ -90,8 +92,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                 Align(
                   alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 9.93, 20.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        20.0, 9.93, 20.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -114,19 +116,21 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                         Container(
                           width: 300.0,
                           decoration: const BoxDecoration(),
-                          child: Text(
-                            getJsonField(
-                              widget.quiz,
-                              r'''$.title''',
-                            ).toString().maybeHandleOverflow(maxChars: 25),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'SF Pro Display Bold',
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w500,
-                                  useGoogleFonts: false,
-                                ),
+                          child: Expanded(
+                            child: Text(
+                              getJsonField(
+                                widget.quiz,
+                                r'''$.title''',
+                              ).toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'SF Pro Display Bold',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w500,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
                           ),
                         ),
                       ].divide(const SizedBox(width: 40.0)),
@@ -134,7 +138,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Text(
                     '${getJsonField(
                       widget.quiz,
@@ -149,8 +154,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                 ),
                 Flexible(
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(70.0, 10.0, 70.0, 10.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        70.0, 10.0, 70.0, 10.0),
                     child: LinearPercentIndicator(
                       key: const ValueKey('0.66'),
                       percent: functions.calculateProgress(getJsonField(
@@ -218,7 +223,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -321,8 +327,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                 Align(
                   alignment: const AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(27.0, 27.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        27.0, 27.0, 0.0, 0.0),
                     child: Text(
                       '${getJsonField(
                         widget.quiz,
@@ -337,8 +343,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(17.0, 14.0, 17.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      17.0, 14.0, 17.0, 0.0),
                   child: Text(
                     functions.removeHtmlTags(getJsonField(
                       widget.quiz,
@@ -352,7 +358,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 131.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 131.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       if (getJsonField(
@@ -781,10 +788,10 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                     options: FFButtonOptions(
                       width: 342.0,
                       height: 50.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          24.0, 0.0, 24.0, 0.0),
+                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 0.0, 0.0, 0.0),
                       color: const Color(0xFF39B6FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
