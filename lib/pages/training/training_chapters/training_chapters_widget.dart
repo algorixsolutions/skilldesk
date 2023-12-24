@@ -211,75 +211,31 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (chapterIndex == 0) {
-                                context.pushNamed(
-                                  'training_chapter_content',
-                                  queryParameters: {
-                                    'chapters': serializeParam(
-                                      getJsonField(
-                                        widget.training,
-                                        r'''$.chapters''',
-                                        true,
-                                      ),
-                                      ParamType.JSON,
+                              context.pushNamed(
+                                'training_chapter_content',
+                                queryParameters: {
+                                  'chapters': serializeParam(
+                                    getJsonField(
+                                      widget.training,
+                                      r'''$.chapters''',
                                       true,
                                     ),
-                                    'trainingId': serializeParam(
-                                      getJsonField(
-                                        widget.training,
-                                        r'''$.id''',
-                                      ).toString(),
-                                      ParamType.String,
-                                    ),
-                                    'index': serializeParam(
-                                      chapterIndex,
-                                      ParamType.int,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              } else if (chapter[chapterIndex - 1]
-                                  ["is_completed"]) {
-                                context.pushNamed(
-                                  'training_chapter_content',
-                                  queryParameters: {
-                                    'chapters': serializeParam(
-                                      getJsonField(
-                                        widget.training,
-                                        r'''$.chapters''',
-                                        true,
-                                      ),
-                                      ParamType.JSON,
-                                      true,
-                                    ),
-                                    'trainingId': serializeParam(
-                                      getJsonField(
-                                        widget.training,
-                                        r'''$.id''',
-                                      ).toString(),
-                                      ParamType.String,
-                                    ),
-                                    'index': serializeParam(
-                                      chapterIndex,
-                                      ParamType.int,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Please complete previous chapter first.',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 2000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
+                                    ParamType.JSON,
+                                    true,
                                   ),
-                                );
-                              }
+                                  'trainingId': serializeParam(
+                                    getJsonField(
+                                      widget.training,
+                                      r'''$.id''',
+                                    ).toString(),
+                                    ParamType.String,
+                                  ),
+                                  'index': serializeParam(
+                                    chapterIndex,
+                                    ParamType.int,
+                                  ),
+                                }.withoutNulls,
+                              );
                             },
                             child: Container(
                               width: double.infinity,

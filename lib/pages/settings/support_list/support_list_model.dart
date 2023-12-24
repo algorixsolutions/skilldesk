@@ -1,25 +1,19 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/request_manager.dart';
 
 import 'dart:async';
 import 'support_list_widget.dart' show SupportListWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class SupportListModel extends FlutterFlowModel<SupportListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  bool apiRequestCompleted = false;
-  String? apiRequestLastUniqueKey;
+  bool apiRequestCompleted2 = false;
+  String? apiRequestLastUniqueKey2;
+  bool apiRequestCompleted1 = false;
+  String? apiRequestLastUniqueKey1;
 
   /// Query cache managers for this widget.
 
@@ -40,8 +34,10 @@ class SupportListModel extends FlutterFlowModel<SupportListWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {}
 
+  @override
   void dispose() {
     unfocusNode.dispose();
 
@@ -54,15 +50,30 @@ class SupportListModel extends FlutterFlowModel<SupportListWidget> {
 
   /// Additional helper methods are added here.
 
-  Future waitForApiRequestCompleted({
+  Future waitForApiRequestCompleted2({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleted;
+      final requestComplete = apiRequestCompleted2;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForApiRequestCompleted1({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = apiRequestCompleted1;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

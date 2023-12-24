@@ -3,13 +3,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'reset_email_sent_model.dart';
 export 'reset_email_sent_model.dart';
 
 class ResetEmailSentWidget extends StatefulWidget {
-  const ResetEmailSentWidget({Key? key}) : super(key: key);
+  const ResetEmailSentWidget({super.key});
 
   @override
   _ResetEmailSentWidgetState createState() => _ResetEmailSentWidgetState();
@@ -66,7 +65,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(118.0, 68.0, 117.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(118.0, 68.0, 117.0, 0.0),
                     child: Container(
                       width: 155.0,
                       height: 44.0,
@@ -84,7 +83,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 43.0, 0.0, 0.0),
                     child: Text(
@@ -97,10 +96,10 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(34.0, 43.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(34.0, 43.0, 0.0, 0.0),
                       child: Text(
                         'Email',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -114,7 +113,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(31.0, 5.0, 31.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(31.0, 5.0, 31.0, 0.0),
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
@@ -125,7 +124,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                         labelStyle: FlutterFlowTheme.of(context).labelMedium,
                         hintStyle: FlutterFlowTheme.of(context).labelMedium,
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Color(0xFFBEBEBE),
                             width: 1.0,
                           ),
@@ -160,7 +159,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () {
                         print('Button pressed ...');
@@ -169,18 +168,18 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                       options: FFButtonOptions(
                         width: 327.0,
                         height: 50.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF725DFF),
-                        textStyle: TextStyle(
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF725DFF),
+                        textStyle: const TextStyle(
                           fontFamily: 'SF Pro Display Bold',
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
                         ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -191,7 +190,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
+                      const Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                         child: Text(
@@ -214,7 +213,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 147.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 147.0, 0.0, 0.0),
                     child: Container(
                       width: 236.22,
                       height: 228.12,
@@ -239,13 +238,13 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0xFF868585),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 126.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 126.0, 0.0, 0.0),
                 child: Container(
                   width: 390.0,
                   height: 296.0,
@@ -257,7 +256,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 26.06, 0.0, 0.0),
                         child: Container(
                           width: 36.0,
@@ -273,7 +272,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 22.06, 0.0, 0.0),
                         child: Text(
@@ -285,7 +284,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 0.0),
                         child: Text(
@@ -299,7 +298,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 46.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 46.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             context.pushNamed('sign_in');
@@ -308,18 +307,18 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                           options: FFButtonOptions(
                             width: 226.0,
                             height: 50.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF725DFF),
-                            textStyle: TextStyle(
+                            color: const Color(0xFF725DFF),
+                            textStyle: const TextStyle(
                               fontFamily: 'SF Pro Display Bold',
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

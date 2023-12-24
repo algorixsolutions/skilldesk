@@ -1,14 +1,17 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'new_ticket_widget.dart' show NewTicketWidget;
+import 'new_message_widget.dart' show NewMessageWidget;
 import 'package:flutter/material.dart';
 
-class NewTicketModel extends FlutterFlowModel<NewTicketWidget> {
+class NewMessageModel extends FlutterFlowModel<NewMessageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // State field(s) for DropDownTo widget.
+  String? dropDownToValue;
+  FormFieldController<String>? dropDownToValueController;
   // State field(s) for TextFieldObject widget.
   FocusNode? textFieldObjectFocusNode;
   TextEditingController? textFieldObjectController;
@@ -22,14 +25,11 @@ class NewTicketModel extends FlutterFlowModel<NewTicketWidget> {
     return null;
   }
 
-  // State field(s) for DropDownCategory widget.
-  String? dropDownCategoryValue;
-  FormFieldController<String>? dropDownCategoryValueController;
-  // State field(s) for TicketMessage widget.
-  FocusNode? ticketMessageFocusNode;
-  TextEditingController? ticketMessageController;
-  String? Function(BuildContext, String?)? ticketMessageControllerValidator;
-  String? _ticketMessageControllerValidator(BuildContext context, String? val) {
+  // State field(s) for TextMessage widget.
+  FocusNode? textMessageFocusNode;
+  TextEditingController? textMessageController;
+  String? Function(BuildContext, String?)? textMessageControllerValidator;
+  String? _textMessageControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -41,7 +41,7 @@ class NewTicketModel extends FlutterFlowModel<NewTicketWidget> {
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  // Stores action output result for [Backend Call - API (Store New Ticket)] action in Button widget.
+  // Stores action output result for [Backend Call - API (Store New Discussion)] action in Button widget.
   ApiCallResponse? apiResultja4;
 
   /// Initialization and disposal methods.
@@ -49,7 +49,7 @@ class NewTicketModel extends FlutterFlowModel<NewTicketWidget> {
   @override
   void initState(BuildContext context) {
     textFieldObjectControllerValidator = _textFieldObjectControllerValidator;
-    ticketMessageControllerValidator = _ticketMessageControllerValidator;
+    textMessageControllerValidator = _textMessageControllerValidator;
   }
 
   @override
@@ -58,8 +58,8 @@ class NewTicketModel extends FlutterFlowModel<NewTicketWidget> {
     textFieldObjectFocusNode?.dispose();
     textFieldObjectController?.dispose();
 
-    ticketMessageFocusNode?.dispose();
-    ticketMessageController?.dispose();
+    textMessageFocusNode?.dispose();
+    textMessageController?.dispose();
   }
 
   /// Action blocks are added here.

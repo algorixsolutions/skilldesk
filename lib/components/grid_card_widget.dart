@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'grid_card_model.dart';
@@ -12,10 +10,10 @@ export 'grid_card_model.dart';
 
 class GridCardWidget extends StatefulWidget {
   const GridCardWidget({
-    Key? key,
+    super.key,
     this.progression,
     required this.jsonItem,
-  }) : super(key: key);
+  });
 
   final double? progression;
   final dynamic jsonItem;
@@ -51,7 +49,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
       child: InkWell(
         splashColor: Colors.transparent,
         focusColor: Colors.transparent,
@@ -92,7 +90,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
             color: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: BorderRadius.circular(16.0),
             border: Border.all(
-              color: Color(0xFFBEBEBE),
+              color: const Color(0xFFBEBEBE),
             ),
           ),
           child: Column(
@@ -100,7 +98,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   height: 100.0,
@@ -110,13 +108,13 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      '${functions.getImageUrl(getJsonField(
+                      functions.getImageUrl(getJsonField(
                             widget.jsonItem,
                             r'''$.cover''',
                           ).toString(), getJsonField(
                             widget.jsonItem,
                             r'''$.type''',
-                          ).toString(), FFAppState().IMAGEURL)}',
+                          ).toString(), FFAppState().IMAGEURL),
                       width: 126.0,
                       height: 89.0,
                       fit: BoxFit.cover,
@@ -125,7 +123,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(13.0, 10.52, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(13.0, 10.52, 0.0, 0.0),
                 child: Text(
                   getJsonField(
                     widget.jsonItem,
@@ -149,7 +147,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(13.0, 8.89, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(13.0, 8.89, 0.0, 0.0),
                   child: Text(
                     functions
                         .removeHtmlTags(getJsonField(
@@ -161,7 +159,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                           replacement: '…',
                         ),
                     maxLines: 2,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xFFACACAC),
                       fontWeight: FontWeight.normal,
                       fontSize: 12.0,
@@ -170,22 +168,22 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                 ),
               ),
               Stack(
-                alignment: AlignmentDirectional(0.0, 1.0),
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 children: [
                   if (widget.progression! >= 0.0)
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.89, 0.0, 0.0),
                             child: Text(
                               'You Completed ${widget.progression?.toString()} %',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'SF Pro Display Bold',
                                 color: Color(0xFF110C2C),
                                 fontWeight: FontWeight.w600,
@@ -194,7 +192,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 7.6, 0.0, 0.0),
                             child: LinearPercentIndicator(
                               percent: valueOrDefault<double>(
@@ -224,7 +222,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                                 style:
                                     FlutterFlowTheme.of(context).headlineSmall,
                               ),
-                              barRadius: Radius.circular(4.0),
+                              barRadius: const Radius.circular(4.0),
                               padding: EdgeInsets.zero,
                             ),
                           ),
@@ -239,7 +237,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                       'PENDING'))
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -249,9 +247,9 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                             size: 20.0,
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 getJsonField(
@@ -274,7 +272,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                       (widget.progression == null))
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () {
                           print('Button pressed ...');
@@ -283,18 +281,18 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                         options: FFButtonOptions(
                           width: 126.0,
                           height: 30.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFFF8F7FE),
+                          color: const Color(0xFFF8F7FE),
                           textStyle: TextStyle(
                             fontFamily: 'SF Pro Display Bold',
                             color: FlutterFlowTheme.of(context).trainingColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 11.0,
                           ),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

@@ -1,21 +1,19 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'notifications_detail_model.dart';
 export 'notifications_detail_model.dart';
 
 class NotificationsDetailWidget extends StatefulWidget {
   const NotificationsDetailWidget({
-    Key? key,
+    super.key,
     required this.notification,
-  }) : super(key: key);
+  });
 
   final dynamic notification;
 
@@ -79,13 +77,13 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 14.82, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 14.82, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                       child: Container(
                         width: 24.0,
                         height: 24.0,
@@ -101,7 +99,7 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                           onTap: () async {
                             context.safePop();
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.chevron_left,
                             color: Colors.black,
                             size: 24.0,
@@ -111,7 +109,7 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                       child: Container(
                         width: 184.0,
                         height: 23.0,
@@ -124,7 +122,7 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                             widget.notification,
                             r'''$.object''',
                           ).toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'SF Pro Display Bold',
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -140,10 +138,10 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(71.0, 6.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(71.0, 6.0, 0.0, 0.0),
                       child: Text(
                         functions.calculateNotifDuration(getJsonField(
                           widget.notification,
@@ -151,7 +149,7 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                         ).toString()),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'SF Pro Display Bold',
-                              color: Color(0xFF725DFF),
+                              color: const Color(0xFF725DFF),
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
                               useGoogleFonts: false,
@@ -166,15 +164,15 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                       null)
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(52.0, 56.0, 54.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(52.0, 56.0, 54.0, 0.0),
                       child: Container(
                         width: 284.0,
                         height: 186.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFFE1F5FE),
+                          color: const Color(0xFFE1F5FE),
                           borderRadius: BorderRadius.circular(15.0),
                           border: Border.all(
-                            color: Color(0xFF00D1FF),
+                            color: const Color(0xFF00D1FF),
                             width: 1.5,
                           ),
                         ),
@@ -193,10 +191,10 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                       ),
                     ),
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(47.0, 27.0, 34.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(47.0, 27.0, 34.0, 0.0),
                       child: Container(
                         width: 309.0,
                         height: 171.0,
@@ -212,7 +210,7 @@ class _NotificationsDetailWidgetState extends State<NotificationsDetailWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'SF Pro Display Bold',
-                                    color: Color(0xFF595959),
+                                    color: const Color(0xFF595959),
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w300,
                                     useGoogleFonts: false,

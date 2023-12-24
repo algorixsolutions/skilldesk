@@ -4,13 +4,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'onboarding_model.dart';
 export 'onboarding_model.dart';
 
 class OnboardingWidget extends StatefulWidget {
-  const OnboardingWidget({Key? key}) : super(key: key);
+  const OnboardingWidget({super.key});
 
   @override
   _OnboardingWidgetState createState() => _OnboardingWidgetState();
@@ -62,15 +61,15 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
               desktop: false,
             ),
             child: Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 44.82, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 44.82, 0.0, 0.0),
                       child: Container(
                         width: 215.0,
                         height: 128.0,
@@ -86,7 +85,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   'Let’s',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -98,7 +97,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'learn',
                                       style: TextStyle(
                                         fontFamily: 'SF Pro Display Bold',
@@ -118,9 +117,9 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                     ),
                                   ],
                                 ),
-                              ].divide(SizedBox(width: 6.0)),
+                              ].divide(const SizedBox(width: 6.0)),
                             ),
-                            Row(
+                            const Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
@@ -133,7 +132,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 ),
                               ],
                             ),
-                            Row(
+                            const Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
@@ -146,20 +145,20 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(height: 8.0)),
+                          ].divide(const SizedBox(height: 8.0)),
                         ),
                       ),
                     ),
                   ),
                   Flexible(
                     child: Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 79.52, 0.0, 0.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
@@ -176,10 +175,10 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 59.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 59.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('sign_in');
@@ -188,11 +187,11 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                         options: FFButtonOptions(
                           width: 342.0,
                           height: 50.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFF725DFF),
+                          color: const Color(0xFF725DFF),
                           textStyle: FlutterFlowTheme.of(context)
                               .displayMedium
                               .override(
@@ -200,7 +199,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 fontWeight: FontWeight.normal,
                                 useGoogleFonts: false,
                               ),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

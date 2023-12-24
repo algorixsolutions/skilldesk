@@ -546,7 +546,7 @@ class _TrainingChapterContentWidgetState
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: Duration(milliseconds: 2000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
                                                 .secondary,

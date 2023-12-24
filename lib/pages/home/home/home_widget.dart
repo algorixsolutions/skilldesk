@@ -1,23 +1,22 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/grid_card_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
-
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/components/grid_card_widget.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'home_model.dart';
-
 export 'home_model.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key? key}) : super(key: key);
+  const HomeWidget({super.key});
 
   @override
   _HomeWidgetState createState() => _HomeWidgetState();
@@ -91,7 +90,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                     child: Container(
                       height: 52.0,
                       decoration: BoxDecoration(
@@ -103,9 +102,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.00, 0.00),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
                               child: Container(
                                 width: 24.0,
@@ -136,149 +135,90 @@ class _HomeWidgetState extends State<HomeWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 20.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(0.00, 0.00),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 10.0, 0.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        border: Border.all(
-                                          color: Color(0xFFBEBEBE),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed('users_ranking');
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          border: Border.all(
+                                            color: const Color(0xFFBEBEBE),
+                                          ),
                                         ),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 22.91,
-                                            height: 34.91,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: SvgPicture.asset(
-                                                'assets/images/12-Champion.svg',
-                                                width: 22.91,
-                                                height: 34.91,
-                                                fit: BoxFit.cover,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: 22.91,
+                                              height: 34.91,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
                                               ),
-                                            ),
-                                          ),
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 9.0, 0.0, 0.0),
-                                                child: Text(
-                                                  BaseUrlGroup.homeInfosCall
-                                                      .myXP(
-                                                        homeHomeInfosResponse
-                                                            .jsonBody,
-                                                      )
-                                                      .toString(),
-                                                  textAlign: TextAlign.start,
-                                                  style: GoogleFonts.getFont(
-                                                    'Inter',
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20.0,
-                                                  ),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/12-Champion.svg',
+                                                  width: 22.91,
+                                                  height: 34.91,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 9.0),
-                                                child: Text(
-                                                  'Xp',
-                                                  style: GoogleFonts.getFont(
-                                                    'Inter',
-                                                    color: Color(0xFFACACAC),
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 11.0,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 9.0, 0.0, 0.0),
-                                            child: Column(
+                                            ),
+                                            Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      BaseUrlGroup.homeInfosCall
-                                                          .myRank(
-                                                            homeHomeInfosResponse
-                                                                .jsonBody,
-                                                          )
-                                                          .toString(),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style:
-                                                          GoogleFonts.getFont(
-                                                        'Inter',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20.0,
-                                                      ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 9.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    BaseUrlGroup.homeInfosCall
+                                                        .myXP(
+                                                          homeHomeInfosResponse
+                                                              .jsonBody,
+                                                        )
+                                                        .toString(),
+                                                    textAlign: TextAlign.start,
+                                                    style: GoogleFonts.getFont(
+                                                      'Inter',
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20.0,
                                                     ),
-                                                    Text(
-                                                      ' / ${BaseUrlGroup.homeInfosCall.totalUsers(
-                                                            homeHomeInfosResponse
-                                                                .jsonBody,
-                                                          ).toString()}',
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodySmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            fontSize: 11.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 9.0),
                                                   child: Text(
-                                                    'Ranked',
+                                                    'Xp',
                                                     style: GoogleFonts.getFont(
                                                       'Inter',
-                                                      color: Color(0xFFACACAC),
+                                                      color: const Color(0xFFACACAC),
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 11.0,
@@ -287,16 +227,117 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                        ]
-                                            .divide(SizedBox(width: 10.0))
-                                            .around(SizedBox(width: 10.0)),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 9.0, 0.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        BaseUrlGroup
+                                                            .homeInfosCall
+                                                            .myRank(
+                                                              homeHomeInfosResponse
+                                                                  .jsonBody,
+                                                            )
+                                                            .toString(),
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style:
+                                                            GoogleFonts.getFont(
+                                                          'Inter',
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 20.0,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        ' / ${BaseUrlGroup.homeInfosCall.totalUsers(
+                                                              homeHomeInfosResponse
+                                                                  .jsonBody,
+                                                            ).toString()}',
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 11.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 9.0),
+                                                    child: Text(
+                                                      'Ranked',
+                                                      style:
+                                                          GoogleFonts.getFont(
+                                                        'Inter',
+                                                        color:
+                                                            const Color(0xFFACACAC),
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 11.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ]
+                                              .divide(const SizedBox(width: 10.0))
+                                              .around(const SizedBox(width: 10.0)),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.00, 0.00),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 10.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed('message_list');
+                                        },
+                                        child: const Icon(
+                                          Icons.email,
+                                          color: Color(0xFF725DFF),
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -310,7 +351,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       onTap: () async {
                                         context.pushNamed('notifications_page');
                                       },
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.notifications_rounded,
                                         color: Color(0xFF725DFF),
                                         size: 24.0,
@@ -327,13 +368,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
-                          color: Color(0xFFBEBEBE),
+                          color: const Color(0xFFBEBEBE),
                           width: 1.0,
                         ),
                       ),
@@ -346,7 +387,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               Stack(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         13.0, 13.0, 0.0, 0.0),
                                     child: Container(
                                       width: 24.0,
@@ -368,13 +409,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         31.0, 13.0, 0.0, 0.0),
                                     child: Container(
                                       width: 7.0,
                                       height: 7.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFC7BEFF),
+                                        color: const Color(0xFFC7BEFF),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: Colors.white,
@@ -384,7 +425,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                 ],
                               ),
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     7.0, 15.91, 0.0, 0.0),
                                 child: Text(
@@ -399,8 +440,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 20.0, 20.0, 20.0),
+                            padding: const EdgeInsets.all(20.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -420,8 +460,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         progressColor:
                                             FlutterFlowTheme.of(context)
                                                 .primaryText,
-                                        backgroundColor: Color(0xFFD9D9D9),
-                                        barRadius: Radius.circular(12.0),
+                                        backgroundColor: const Color(0xFFD9D9D9),
+                                        barRadius: const Radius.circular(12.0),
                                         padding: EdgeInsets.zero,
                                       ),
                                       Row(
@@ -439,7 +479,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'learning time',
@@ -459,7 +499,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
                                       ),
-                                    ].divide(SizedBox(height: 10.0)),
+                                    ].divide(const SizedBox(height: 10.0)),
                                   ),
                                 ),
                                 Expanded(
@@ -483,8 +523,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         progressColor:
                                             FlutterFlowTheme.of(context)
                                                 .quizColor,
-                                        backgroundColor: Color(0xFFD9D9D9),
-                                        barRadius: Radius.circular(12.0),
+                                        backgroundColor: const Color(0xFFD9D9D9),
+                                        barRadius: const Radius.circular(12.0),
                                         padding: EdgeInsets.zero,
                                       ),
                                       Row(
@@ -502,7 +542,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Quiz',
@@ -522,7 +562,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
                                       ),
-                                    ].divide(SizedBox(height: 10.0)),
+                                    ].divide(const SizedBox(height: 10.0)),
                                   ),
                                 ),
                                 Expanded(
@@ -547,8 +587,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         progressColor:
                                             FlutterFlowTheme.of(context)
                                                 .trainingColor,
-                                        backgroundColor: Color(0xFFD9D9D9),
-                                        barRadius: Radius.circular(12.0),
+                                        backgroundColor: const Color(0xFFD9D9D9),
+                                        barRadius: const Radius.circular(12.0),
                                         padding: EdgeInsets.zero,
                                       ),
                                       Row(
@@ -566,7 +606,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Training',
@@ -586,10 +626,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
                                       ),
-                                    ].divide(SizedBox(height: 10.0)),
+                                    ].divide(const SizedBox(height: 10.0)),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ],
@@ -598,13 +638,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(-1.00, 0.00),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed('quiz_list');
@@ -613,18 +653,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                             options: FFButtonOptions(
                               width: 167.0,
                               height: 35.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF39B6FF),
-                              textStyle: TextStyle(
+                              color: const Color(0xFF39B6FF),
+                              textStyle: const TextStyle(
                                 fontFamily: 'SF Pro Display Bold',
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -633,7 +673,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(-1.00, 0.00),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed('training_list');
@@ -642,18 +682,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                             options: FFButtonOptions(
                               width: 167.0,
                               height: 35.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF725DFF),
-                              textStyle: TextStyle(
+                              color: const Color(0xFF725DFF),
+                              textStyle: const TextStyle(
                                 fontFamily: 'SF Pro Display Bold',
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -667,7 +707,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -675,7 +715,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.32, 0.0, 11.68),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -732,12 +772,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 inProgress[inProgressIndex];
                                             return GridCardWidget(
                                               key: Key(
-                                                  'Keycdz_${inProgressIndex}_of_${inProgress.length}'),
+                                                  'Keyrkp_${inProgressIndex}_of_${inProgress.length}'),
                                               progression: getJsonField(
-                                                    inProgressItem,
-                                                    r'''$.percentage''',
-                                                  ).toDouble() ??
-                                                  0,
+                                                inProgressItem,
+                                                r'''$.percentage''',
+                                              ),
                                               jsonItem: inProgressItem,
                                             );
                                           },
@@ -752,7 +791,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         )!
                                         .toList()))
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 20.0, 0.0, 0.0),
                                     child: Text(
                                       'No quiz or training  in progress.',
@@ -763,7 +802,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 48.23, 0.0, 11.68),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -771,7 +810,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Upcoming',
+                                    'Training Themes',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -784,74 +823,143 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 ],
                               ),
                             ),
-                            Stack(
-                              children: [
-                                if (!functions
-                                    .isListNull(BaseUrlGroup.homeInfosCall
-                                        .upcoming(
-                                          homeHomeInfosResponse.jsonBody,
-                                        )!
-                                        .toList()))
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 21.0, 0.0, 0.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 230.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final upcoming =
-                                              BaseUrlGroup.homeInfosCall
-                                                      .upcoming(
-                                                        homeHomeInfosResponse
-                                                            .jsonBody,
-                                                      )
-                                                      ?.toList() ??
-                                                  [];
-                                          return ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: upcoming.length,
-                                            itemBuilder:
-                                                (context, upcomingIndex) {
-                                              final upcomingItem =
-                                                  upcoming[upcomingIndex];
-                                              return GridCardWidget(
-                                                key: Key(
-                                                    'Keythi_${upcomingIndex}_of_${upcoming.length}'),
-                                                progression: getJsonField(
-                                                  upcomingItem,
-                                                  r'''$.percentage''',
-                                                ),
-                                                jsonItem: upcomingItem,
-                                              );
-                                            },
-                                          );
-                                        },
+                            FutureBuilder<ApiCallResponse>(
+                              future: FFAppState().getThemes(
+                                uniqueQueryKey: currentUserUid,
+                                requestFn: () =>
+                                    BaseUrlGroup.getThemesCall.call(
+                                  userID: currentUserUid,
+                                ),
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                if (functions
-                                    .isListNull(BaseUrlGroup.homeInfosCall
-                                        .upcoming(
-                                          homeHomeInfosResponse.jsonBody,
-                                        )!
-                                        .toList()))
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 20.0, 0.0, 0.0),
-                                    child: Text(
-                                      'No upcoming quiz or training.',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge,
-                                    ),
-                                  ),
-                              ],
+                                  );
+                                }
+                                final stackGetThemesResponse = snapshot.data!;
+                                return Stack(
+                                  children: [
+                                    if (!functions.isListNull(
+                                        stackGetThemesResponse.jsonBody))
+                                      Container(
+                                        width: double.infinity,
+                                        height: 60.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: Builder(
+                                          builder: (context) {
+                                            final themes =
+                                                stackGetThemesResponse.jsonBody
+                                                    .toList();
+                                            return ListView.separated(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                20.0,
+                                                0,
+                                                0,
+                                                0,
+                                              ),
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount: themes.length,
+                                              separatorBuilder: (_, __) =>
+                                                  const SizedBox(width: 20.0),
+                                              itemBuilder:
+                                                  (context, themesIndex) {
+                                                final themesItem =
+                                                    themes[themesIndex];
+                                                return Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 3.0,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  child: Container(
+                                                    height: 100.0,
+                                                    decoration: BoxDecoration(
+                                                      color: colorFromCssString(
+                                                        FFAppState()
+                                                                .ThemeColors[
+                                                            random_data
+                                                                .randomInteger(
+                                                                    0, 8)],
+                                                        defaultColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .trainingColor,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          getJsonField(
+                                                            themesItem,
+                                                            r'''$.label''',
+                                                          ).toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'SF Pro Display Bold',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                fontSize: 16.0,
+                                                                useGoogleFonts:
+                                                                    false,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    if (functions.isListNull(
+                                        stackGetThemesResponse.jsonBody))
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 20.0, 0.0, 0.0),
+                                        child: Text(
+                                          'No themes available. ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge,
+                                        ),
+                                      ),
+                                  ],
+                                );
+                              },
                             ),
                           ],
                         ),

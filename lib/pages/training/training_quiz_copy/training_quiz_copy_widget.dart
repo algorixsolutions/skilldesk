@@ -5,18 +5,17 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'training_quiz_copy_model.dart';
 export 'training_quiz_copy_model.dart';
 
 class TrainingQuizCopyWidget extends StatefulWidget {
   const TrainingQuizCopyWidget({
-    Key? key,
+    super.key,
     required this.chapters,
     required this.index,
     required this.trainingId,
-  }) : super(key: key);
+  });
 
   final List<dynamic>? chapters;
   final int? index;
@@ -63,7 +62,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFFFF80D),
+        backgroundColor: const Color(0xFFFFF80D),
         body: SafeArea(
           top: true,
           child: Column(
@@ -71,7 +70,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
             children: [
               Container(
                 height: MediaQuery.sizeOf(context).height * 1.0,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xFFFFF80D),
                 ),
                 child: Column(
@@ -86,12 +85,12 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 9.93, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 0.0, 0.0),
                                       child: Icon(
@@ -101,15 +100,15 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           48.5, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: 222.0,
                                         height: 21.0,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color(0xFFFFF80D),
                                         ),
-                                        child: Align(
+                                        child: const Align(
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: Text(
@@ -127,7 +126,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                   ],
                                 ),
                               ),
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     106.0, 30.89, 105.0, 0.0),
                                 child: Text(
@@ -142,12 +141,12 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 289.0, 0.0),
                                 child: Container(
                                   width: 101.0,
                                   height: 144.0,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xFFFFDA0D),
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
@@ -162,7 +161,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               28.88, 0.0, 28.88, 0.0),
                           child: SingleChildScrollView(
                             child: Column(
@@ -172,7 +171,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                 Container(
                                   height:
                                       MediaQuery.sizeOf(context).height * 0.6,
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
@@ -189,7 +188,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -217,7 +216,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                                               .primaryText,
                                                         ),
                                                       ),
-                                                      duration: Duration(
+                                                      duration: const Duration(
                                                           milliseconds: 4000),
                                                       backgroundColor:
                                                           FlutterFlowTheme.of(
@@ -256,15 +255,15 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                               options: FFButtonOptions(
                                                 width: 164.0,
                                                 height: 50.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
-                                                color: Color(0xFFFFF80D),
-                                                textStyle: TextStyle(
+                                                color: const Color(0xFFFFF80D),
+                                                textStyle: const TextStyle(
                                                   fontFamily:
                                                       'SF Pro Display Bold',
                                                   color: Colors.black,
@@ -282,7 +281,7 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       14.0, 0.0, 0.0, 0.0),
                                               child: FFButtonWidget(
@@ -310,15 +309,15 @@ class _TrainingQuizCopyWidgetState extends State<TrainingQuizCopyWidget> {
                                                 options: FFButtonOptions(
                                                   width: 164.0,
                                                   height: 50.0,
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
-                                                  color: Color(0xFF39B6FF),
-                                                  textStyle: TextStyle(
+                                                  color: const Color(0xFF39B6FF),
+                                                  textStyle: const TextStyle(
                                                     fontFamily:
                                                         'SF Pro Display Bold',
                                                     color: Colors.white,

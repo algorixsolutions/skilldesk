@@ -130,15 +130,15 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFFF5963);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color quizColor = Color(0xFF39B6FF);
-  late Color trainingColor = Color(0xFF725DFF);
-  late Color quizDefaultBorder = Color(0xFFE6E6E6);
-  late Color quizSelectedBackground = Color(0xFFE7F6FE);
-  late Color quizSelectedBorder = Color(0xFF45B6F8);
-  late Color quizFailedBackground = Color(0xFFFCEEEE);
-  late Color quizFailedBorder = Color(0xFFED3833);
-  late Color quizSuccessBackground = Color(0xFFE6FDEE);
-  late Color quizSuccessBorder = Color(0xFF68DD39);
+  late Color quizColor = const Color(0xFF39B6FF);
+  late Color trainingColor = const Color(0xFF725DFF);
+  late Color quizDefaultBorder = const Color(0xFFE6E6E6);
+  late Color quizSelectedBackground = const Color(0xFFE7F6FE);
+  late Color quizSelectedBorder = const Color(0xFF45B6F8);
+  late Color quizFailedBackground = const Color(0xFFFCEEEE);
+  late Color quizFailedBorder = const Color(0xFFED3833);
+  late Color quizSuccessBackground = const Color(0xFFE6FDEE);
+  late Color quizSuccessBorder = const Color(0xFF68DD39);
 }
 
 abstract class Typography {
@@ -187,7 +187,7 @@ class ThemeTypography extends Typography {
         fontSize: 64.0,
       );
   String get displayMediumFamily => 'SF Pro Display Bold';
-  TextStyle get displayMedium => TextStyle(
+  TextStyle get displayMedium => const TextStyle(
         fontFamily: 'SF Pro Display Bold',
         color: Colors.white,
         fontWeight: FontWeight.w600,
@@ -250,7 +250,7 @@ class ThemeTypography extends Typography {
         fontSize: 16.0,
       );
   String get labelMediumFamily => 'SF Pro Display Bold';
-  TextStyle get labelMedium => TextStyle(
+  TextStyle get labelMedium => const TextStyle(
         fontFamily: 'SF Pro Display Bold',
         color: Colors.white,
         fontWeight: FontWeight.w600,

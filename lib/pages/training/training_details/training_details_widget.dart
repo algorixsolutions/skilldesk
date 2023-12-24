@@ -106,18 +106,16 @@ class _TrainingDetailsWidgetState extends State<TrainingDetailsWidget> {
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
-                        child: Expanded(
-                          child: AutoSizeText(
-                            getJsonField(
-                              widget.training,
-                              r'''$.title''',
-                            ).toString(),
-                            style: TextStyle(
-                              fontFamily: 'SF Pro Display Bold',
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18.0,
-                            ),
+                        child: AutoSizeText(
+                          getJsonField(
+                            widget.training,
+                            r'''$.title''',
+                          ).toString().maybeHandleOverflow(maxChars: 25),
+                          style: TextStyle(
+                            fontFamily: 'SF Pro Display Bold',
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
                           ),
                         ),
                       ),
