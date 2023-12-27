@@ -60,5 +60,4 @@ export '/pages/training/training_list/training_list_widget.dart'
 export '/pages/training/training_quiz/training_quiz_widget.dart'
     show TrainingQuizWidget;
 export '/pages/training/training_quiz_copy/training_quiz_copy_widget.dart'
-    show TrainingQuizCopy'/pages/home/new_message/new_message_widget.dart' show NewMessageWidget;
-
+    show TrainingQuizCopyWidget;
