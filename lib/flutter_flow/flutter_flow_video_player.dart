@@ -3,9 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:skilldesk/flutter_flow/flutter_flow_util.dart';
 import 'package:video_player/video_player.dart';
-
-import '/flutter_flow/flutter_flow_util.dart' show routeObserver;
 
 const kDefaultAspectRatio = 16 / 9;
 
@@ -17,7 +16,8 @@ enum VideoType {
 Set<VideoPlayerController> _videoPlayers = {};
 
 class FlutterFlowVideoPlayer extends StatefulWidget {
-  const FlutterFlowVideoPlayer({super.key, 
+  const FlutterFlowVideoPlayer({
+    super.key,
     required this.path,
     this.videoType = VideoType.network,
     this.width,
@@ -55,11 +55,13 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer>
   ChewieController? _chewieController;
   bool _loggedError = false;
   bool _subscribedRoute = false;
+
   bool _isFullScreen = false;
 
   @override
   void initState() {
     super.initState();
+
     _initializePlayer();
   }
 
@@ -68,7 +70,9 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer>
     if (_subscribedRoute) {
       routeObserver.unsubscribe(this);
     }
+
     _disposeCurrentPlayer();
+
     super.dispose();
   }
 

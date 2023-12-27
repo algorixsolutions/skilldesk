@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'training_list_widget.dart' show TrainingListWidget;
-import 'package:flutter/material.dart';
 
 class TrainingListModel extends FlutterFlowModel<TrainingListWidget> {
   ///  State fields for stateful widgets in this page.

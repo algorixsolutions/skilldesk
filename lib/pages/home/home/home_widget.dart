@@ -1,18 +1,20 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/components/grid_card_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/grid_card_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'home_model.dart';
+
 export 'home_model.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -91,6 +93,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+
                     child: Container(
                       height: 52.0,
                       decoration: BoxDecoration(
@@ -102,9 +105,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
+
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
+
                                   20.0, 0.0, 0.0, 0.0),
                               child: Container(
                                 width: 24.0,
@@ -136,6 +141,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
+
                                 0.0, 0.0, 20.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -219,7 +225,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     style: GoogleFonts.getFont(
                                                       'Inter',
                                                       color: const Color(0xFFACACAC),
-                                                      fontWeight:
+                                                     fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 11.0,
                                                     ),
@@ -305,11 +311,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               .divide(const SizedBox(width: 10.0))
                                               .around(const SizedBox(width: 10.0)),
                                         ),
+
                                       ),
                                     ),
                                   ),
                                 ),
                                 Align(
+
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -352,6 +360,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         context.pushNamed('notifications_page');
                                       },
                                       child: const Icon(
+
                                         Icons.notifications_rounded,
                                         color: Color(0xFF725DFF),
                                         size: 24.0,
@@ -368,13 +377,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                   Padding(
                     padding:
+
                         const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
                           color: const Color(0xFFBEBEBE),
+
                           width: 1.0,
                         ),
                       ),
@@ -388,6 +400,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
+
                                         13.0, 13.0, 0.0, 0.0),
                                     child: Container(
                                       width: 24.0,
@@ -409,13 +422,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                   ),
                                   Padding(
+
                                     padding: const EdgeInsetsDirectional.fromSTEB(
+
                                         31.0, 13.0, 0.0, 0.0),
                                     child: Container(
                                       width: 7.0,
                                       height: 7.0,
                                       decoration: BoxDecoration(
                                         color: const Color(0xFFC7BEFF),
+
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: Colors.white,
@@ -425,7 +441,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                 ],
                               ),
+
                               const Padding(
+
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     7.0, 15.91, 0.0, 0.0),
                                 child: Text(
@@ -440,6 +458,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             ],
                           ),
                           Padding(
+
                             padding: const EdgeInsets.all(20.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -462,6 +481,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .primaryText,
                                         backgroundColor: const Color(0xFFD9D9D9),
                                         barRadius: const Radius.circular(12.0),
+
                                         padding: EdgeInsets.zero,
                                       ),
                                       Row(
@@ -480,6 +500,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
+
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'learning time',
@@ -525,6 +546,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .quizColor,
                                         backgroundColor: const Color(0xFFD9D9D9),
                                         barRadius: const Radius.circular(12.0),
+
                                         padding: EdgeInsets.zero,
                                       ),
                                       Row(
@@ -543,6 +565,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
+
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Quiz',
@@ -589,6 +612,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .trainingColor,
                                         backgroundColor: const Color(0xFFD9D9D9),
                                         barRadius: const Radius.circular(12.0),
+
                                         padding: EdgeInsets.zero,
                                       ),
                                       Row(
@@ -606,6 +630,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                           Padding(
                                             padding:
+
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
@@ -626,6 +651,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge,
                                       ),
+
                                     ].divide(const SizedBox(height: 10.0)),
                                   ),
                                 ),
@@ -638,13 +664,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                   Padding(
                     padding:
+
                         const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Align(
+
                           alignment: const AlignmentDirectional(-1.0, 0.0),
+
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed('quiz_list');
@@ -653,18 +683,21 @@ class _HomeWidgetState extends State<HomeWidget> {
                             options: FFButtonOptions(
                               width: 167.0,
                               height: 35.0,
+
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: const Color(0xFF39B6FF),
                               textStyle: const TextStyle(
+
                                 fontFamily: 'SF Pro Display Bold',
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
+
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -674,6 +707,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                         Align(
                           alignment: const AlignmentDirectional(-1.0, 0.0),
+
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed('training_list');
@@ -693,6 +727,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 fontWeight: FontWeight.w600,
                               ),
                               elevation: 3.0,
+
                               borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
@@ -716,6 +751,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
+
                                   0.0, 20.32, 0.0, 11.68),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -777,6 +813,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 inProgressItem,
                                                 r'''$.percentage''',
                                               ),
+
                                               jsonItem: inProgressItem,
                                             );
                                           },
@@ -791,7 +828,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         )!
                                         .toList()))
                                   Padding(
+
                                     padding: const EdgeInsetsDirectional.fromSTEB(
+
                                         20.0, 20.0, 0.0, 0.0),
                                     child: Text(
                                       'No quiz or training  in progress.',
@@ -802,7 +841,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ],
                             ),
                             Padding(
+
                               padding: const EdgeInsetsDirectional.fromSTEB(
+
                                   0.0, 48.23, 0.0, 11.68),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -811,6 +852,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 children: [
                                   Text(
                                     'Training Themes',
+
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(

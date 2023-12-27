@@ -4,6 +4,7 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'quiz_truefalse_widget.dart' show QuizTruefalseWidget;
 import 'package:flutter/material.dart';
 
+
 class QuizTruefalseModel extends FlutterFlowModel<QuizTruefalseWidget> {
   ///  State fields for stateful widgets in this page.
 
@@ -24,6 +25,7 @@ class QuizTruefalseModel extends FlutterFlowModel<QuizTruefalseWidget> {
   void initState(BuildContext context) {}
 
   @override
+
   void dispose() {
     unfocusNode.dispose();
     timerController.dispose();

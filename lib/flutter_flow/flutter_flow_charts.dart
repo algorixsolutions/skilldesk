@@ -14,7 +14,7 @@ class FlutterFlowLineChart extends StatelessWidget {
     required this.xAxisLabelInfo,
     required this.yAxisLabelInfo,
     required this.axisBounds,
-    this.chartStylingInfo = const ChartStylingInfo(),
+    required this.chartStylingInfo,
   });
 
   final List<FFLineChartData> data;

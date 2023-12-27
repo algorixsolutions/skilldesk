@@ -1,20 +1,20 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/flutter_flow_audio_player.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:stop_watch_timer/stop_watch_timer.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'training_chapter_content_model.dart';
+
 export 'training_chapter_content_model.dart';
 
 class TrainingChapterContentWidget extends StatefulWidget {
@@ -40,23 +40,20 @@ class _TrainingChapterContentWidgetState
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  bool isTimerEnd = false;
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => TrainingChapterContentModel());
 
+    _model.timerController.onResetTimer();
+    _model.timerController.onStartTimer();
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.timerController.onResetTimer();
-
-      setState(() {
-        FFAppState().currchapter = widget.chapters![widget.index!];
-        FFAppState().isTimerEnd = false;
-      });
-      _model.timerController.onStartTimer();
+    setState(() {
+      FFAppState().currchapter = widget.chapters![widget.index!];
+      // FFAppState().isTimerEnd = false;
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -94,13 +91,14 @@ class _TrainingChapterContentWidgetState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -124,26 +122,22 @@ class _TrainingChapterContentWidgetState
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                      Expanded(
                         child: Container(
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                           ),
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: AutoSizeText(
-                              getJsonField(
-                                widget.chapters![widget.index!],
-                                r'''$.title''',
-                              ).toString(),
-                              style: const TextStyle(
-                                fontFamily: 'SF Pro Display Bold',
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18.0,
-                              ),
+                          child: Text(
+                            getJsonField(
+                              widget.chapters![widget.index!],
+                              r'''$.title''',
+                            ).toString(),
+                            style: TextStyle(
+                              fontFamily: 'SF Pro Display Bold',
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18.0,
                             ),
                           ),
                         ),
@@ -152,8 +146,8 @@ class _TrainingChapterContentWidgetState
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 25.89, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      24.0, 25.89, 0.0, 0.0),
                   child: Container(
                     height: 199.0,
                     decoration: BoxDecoration(
@@ -218,8 +212,8 @@ class _TrainingChapterContentWidgetState
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 0.0, 10.0, 0.0),
                         child: Icon(
                           Icons.access_time,
                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -244,7 +238,7 @@ class _TrainingChapterContentWidgetState
                         },
                         onEnded: () async {
                           setState(() {
-                            FFAppState().isTimerEnd = true;
+                            isTimerEnd = true;
                           });
                         },
                         textAlign: TextAlign.start,
@@ -258,7 +252,8 @@ class _TrainingChapterContentWidgetState
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     height: 380.0,
@@ -278,7 +273,8 @@ class _TrainingChapterContentWidgetState
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: content.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(height: 10.0),
                             itemBuilder: (context, contentIndex) {
                               final contentItem = content[contentIndex];
                               return SingleChildScrollView(
@@ -369,10 +365,10 @@ class _TrainingChapterContentWidgetState
                                               final videoItem =
                                                   video[videoIndex];
                                               return FlutterFlowVideoPlayer(
-                                                path: getJsonField(
+                                                path: '${getJsonField(
                                                   videoItem,
                                                   r'''$.url''',
-                                                ).toString(),
+                                                ).toString()}',
                                                 videoType: VideoType.network,
                                                 autoPlay: false,
                                                 looping: false,
@@ -476,10 +472,11 @@ class _TrainingChapterContentWidgetState
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          context.safePop();
+                          // context.safePop();
+                          context.pushNamed('training_list');
                         },
                         text: 'Save & Exit',
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.keyboard_backspace,
                           size: 15.0,
                         ),
@@ -504,16 +501,16 @@ class _TrainingChapterContentWidgetState
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(14.0, 0.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            14.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            var shouldSetState = false;
-                            if (FFAppState().isTimerEnd) {
+                            var _shouldSetState = false;
+                            if (isTimerEnd) {
                               _model.apiResult09l = await BaseUrlGroup
                                   .storeChapterProgressionCall
                                   .call(
@@ -524,7 +521,9 @@ class _TrainingChapterContentWidgetState
                                 userId: currentUserUid,
                                 trainingId: widget.trainingId,
                               );
-                              shouldSetState = true;
+
+                              _shouldSetState = true;
+
                               if ((_model.apiResult09l?.succeeded ?? true)) {
                                 if (getJsonField(
                                       FFAppState().currchapter,
@@ -550,7 +549,8 @@ class _TrainingChapterContentWidgetState
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration:
+                                            const Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
                                                 .secondary,
@@ -577,7 +577,8 @@ class _TrainingChapterContentWidgetState
                                     );
                                   }
 
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
+
                                   return;
                                 } else {
                                   context.pushNamed(
@@ -589,7 +590,7 @@ class _TrainingChapterContentWidgetState
                                         true,
                                       ),
                                       'index': serializeParam(
-                                        functions.getIndex(widget.index!),
+                                        widget.index,
                                         ParamType.int,
                                       ),
                                       'trainingId': serializeParam(
@@ -599,7 +600,7 @@ class _TrainingChapterContentWidgetState
                                     }.withoutNulls,
                                   );
 
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
@@ -612,59 +613,101 @@ class _TrainingChapterContentWidgetState
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
+                                    duration:
+                                        const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
                                 );
-                                if (shouldSetState) setState(() {});
+
+                                if (_shouldSetState) setState(() {});
+
                                 return;
                               }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    'Please Wait tilll timer ends.',
+                                    'Please Wait till timer ends.',
                                     style: TextStyle(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
+                                  duration: Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
                               );
-                              if (shouldSetState) setState(() {});
+
+                              if (_shouldSetState) setState(() {});
                               return;
                             }
 
-                            if (shouldSetState) setState(() {});
+                            if (_shouldSetState) setState(() {});
                           },
                           child: Container(
-                            width: 164.0,
+                            width: 140.0,
                             height: 50.0,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF725DFF),
+                              color:
+                                  isTimerEnd ? Color(0xFF725DFF) : Colors.grey,
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: const Row(
+                            alignment: AlignmentDirectional(0.00, 0.00),
+                            child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text(
-                                  'Next Chapter',
-                                  style: TextStyle(
-                                    fontFamily: 'SF Pro Display Bold',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14.0,
-                                  ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      'Next Chapter',
+                                      style: TextStyle(
+                                        fontFamily: 'SF Pro Display Bold',
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
+                                    FlutterFlowTimer(
+                                      initialTime:
+                                          functions.getCountDownTImerForChapter(
+                                              getJsonField(
+                                        FFAppState().currchapter,
+                                        r'''$.duration''',
+                                      ).toString()),
+                                      getDisplayTime: (value) =>
+                                          StopWatchTimer.getDisplayTime(value,
+                                              milliSecond: false),
+                                      controller: _model.timerController,
+                                      updateStateInterval:
+                                          Duration(milliseconds: 1000),
+                                      onChanged:
+                                          (value, displayTime, shouldUpdate) {
+                                        _model.timerMilliseconds = value;
+                                        _model.timerValue = displayTime;
+                                        if (shouldUpdate) setState(() {});
+                                      },
+                                      onEnded: () async {
+                                        setState(() {
+                                          isTimerEnd = true;
+                                        });
+                                      },
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            color: Colors.white,
+                                            fontFamily: 'Outfit',
+                                            fontSize: 18.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 28.25, 0.0),
+                                      0.0, 0.0, 10, 0.0),
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     color: Colors.white,

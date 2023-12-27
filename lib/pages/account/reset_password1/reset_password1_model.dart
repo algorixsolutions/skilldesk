@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'reset_password1_widget.dart' show ResetPassword1Widget;
-import 'package:flutter/material.dart';
 
 class ResetPassword1Model extends FlutterFlowModel<ResetPassword1Widget> {
   ///  State fields for stateful widgets in this page.
@@ -12,7 +13,6 @@ class ResetPassword1Model extends FlutterFlowModel<ResetPassword1Widget> {
   String? Function(BuildContext, String?)? emailControllerValidator;
 
   /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 

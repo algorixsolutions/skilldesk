@@ -1,6 +1,9 @@
+
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'quiz_failed_widget.dart' show QuizFailedWidget;
-import 'package:flutter/material.dart';
+
 
 class QuizFailedModel extends FlutterFlowModel<QuizFailedWidget> {
   ///  State fields for stateful widgets in this page.
@@ -13,6 +16,7 @@ class QuizFailedModel extends FlutterFlowModel<QuizFailedWidget> {
   void initState(BuildContext context) {}
 
   @override
+
   void dispose() {
     unfocusNode.dispose();
   }

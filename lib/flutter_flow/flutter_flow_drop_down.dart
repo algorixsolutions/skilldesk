@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/material.dart';
 
 import 'form_field_controller.dart';
-import 'package:flutter/material.dart';
 
 class FlutterFlowDropDown<T> extends StatefulWidget {
   const FlutterFlowDropDown({
@@ -10,7 +10,6 @@ class FlutterFlowDropDown<T> extends StatefulWidget {
     this.hintText,
     this.searchHintText,
     required this.options,
-    this.optionLabels,
     this.onChanged,
     this.onChangedForMultiSelect,
     this.icon,
@@ -31,6 +30,7 @@ class FlutterFlowDropDown<T> extends StatefulWidget {
     this.isOverButton = false,
     this.isSearchable = false,
     this.isMultiSelect = false,
+    this.optionLabels,
   });
 
   final FormFieldController<T> controller;
@@ -44,6 +44,7 @@ class FlutterFlowDropDown<T> extends StatefulWidget {
   final double? width;
   final double? height;
   final double? maxHeight;
+
   final Color? fillColor;
   final TextStyle? searchHintTextStyle;
   final Color? searchCursorColor;
@@ -55,7 +56,9 @@ class FlutterFlowDropDown<T> extends StatefulWidget {
   final EdgeInsetsGeometry margin;
   final bool hidesUnderline;
   final bool disabled;
+
   final bool isOverButton;
+
   final bool isSearchable;
   final bool isMultiSelect;
 

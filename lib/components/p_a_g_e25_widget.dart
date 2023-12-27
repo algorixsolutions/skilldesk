@@ -1,13 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'p_a_g_e25_model.dart';
+
 export 'p_a_g_e25_model.dart';
 
 class PAGE25Widget extends StatefulWidget {
   const PAGE25Widget({super.key});
+
 
   @override
   _PAGE25WidgetState createState() => _PAGE25WidgetState();
@@ -42,7 +45,9 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
     return Material(
       color: Colors.transparent,
       elevation: 5.0,
+
       shape: const RoundedRectangleBorder(
+
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
@@ -55,6 +60,7 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           borderRadius: const BorderRadius.only(
+
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(16.0),
@@ -66,6 +72,7 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
           children: [
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(33.0, 37.0, 33.0, 0.0),
+
               child: Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -79,6 +86,7 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 38.0, 0.0, 0.0),
+
               child: FFButtonWidget(
                 onPressed: () {
                   print('Button pressed ...');
@@ -91,6 +99,7 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: const Color(0xFF00D1FF),
+
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
                         color: Colors.white,
@@ -98,6 +107,7 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
                       ),
                   elevation: 3.0,
                   borderSide: const BorderSide(
+
                     color: Colors.transparent,
                     width: 1.0,
                   ),

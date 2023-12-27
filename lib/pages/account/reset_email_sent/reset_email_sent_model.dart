@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'reset_email_sent_widget.dart' show ResetEmailSentWidget;
-import 'package:flutter/material.dart';
 
 class ResetEmailSentModel extends FlutterFlowModel<ResetEmailSentWidget> {
   ///  State fields for stateful widgets in this page.

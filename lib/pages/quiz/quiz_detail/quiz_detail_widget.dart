@@ -40,7 +40,8 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
-        FFAppState().trainingAfterQuiz = null;
+        // FFAppState().trainingAfterQuiz = null;
+
         FFAppState().quizID = '';
       });
     });
@@ -113,10 +114,10 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                             size: 24.0,
                           ),
                         ),
-                        Container(
-                          width: 300.0,
-                          decoration: const BoxDecoration(),
-                          child: Expanded(
+                        Expanded(
+                          child: Container(
+                            width: 300.0,
+                            decoration: const BoxDecoration(),
                             child: Text(
                               getJsonField(
                                 widget.quiz,
@@ -162,7 +163,6 @@ class _QuizDetailWidgetState extends State<QuizDetailWidget> {
                         widget.quiz,
                         r'''$.progress''',
                       )),
-                      width: 280.0,
                       lineHeight: 8.0,
                       animation: true,
                       animateFromLastPercent: true,

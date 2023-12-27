@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'training_completed_widget.dart' show TrainingCompletedWidget;
-import 'package:flutter/material.dart';
 
 class TrainingCompletedModel extends FlutterFlowModel<TrainingCompletedWidget> {
   ///  State fields for stateful widgets in this page.

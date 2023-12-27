@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'sign_in_duplicate_widget.dart' show SignInDuplicateWidget;
-import 'package:flutter/material.dart';
 
 class SignInDuplicateModel extends FlutterFlowModel<SignInDuplicateWidget> {
   ///  State fields for stateful widgets in this page.

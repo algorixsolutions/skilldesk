@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:core';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
-import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
+import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:mime_type/mime_type.dart';
 
@@ -28,7 +28,9 @@ enum BodyType {
 }
 
 class ApiCallRecord extends Equatable {
+
   const ApiCallRecord(this.callName, this.apiUrl, this.headers, this.params,
+
       this.body, this.bodyType);
   final String callName;
   final String apiUrl;
@@ -94,7 +96,9 @@ class ApiManager {
   ApiManager._();
 
   // Cache that will ensure identical calls are not repeatedly made.
+
   static final Map<ApiCallRecord, ApiCallResponse> _apiCache = {};
+
 
   static ApiManager? _instance;
   static ApiManager get instance => _instance ??= ApiManager._();
@@ -149,6 +153,7 @@ class ApiManager {
     BodyType? bodyType,
     bool returnBody,
     bool encodeBodyUtf8,
+
     bool decodeUtf8,
     bool alwaysAllowBody, {
     http.Client? client,
@@ -162,15 +167,19 @@ class ApiManager {
         createBody(headers, params, body, bodyType, encodeBodyUtf8);
 
     if (bodyType == BodyType.MULTIPART) {
+
       return multipartRequest(type, apiUrl, headers, params, returnBody,
           decodeUtf8, alwaysAllowBody);
+
     }
 
     final requestFn = {
       ApiCallType.POST: client != null ? client.post : http.post,
       ApiCallType.PUT: client != null ? client.put : http.put,
       ApiCallType.PATCH: client != null ? client.patch : http.patch,
+
       ApiCallType.DELETE: client != null ? client.delete : http.delete,
+
     }[type]!;
     final response = await requestFn(Uri.parse(apiUrl),
         headers: toStringMap(headers), body: postBody);
@@ -184,6 +193,7 @@ class ApiManager {
     Map<String, dynamic> params,
     bool returnBody,
     bool decodeUtf8,
+
     bool alwaysAllowBody,
   ) async {
     assert(
@@ -197,24 +207,30 @@ class ApiManager {
         (e is List && e.firstOrNull is FFUploadedFile);
 
     final nonFileParams = toStringMap(
+
         Map.fromEntries(params.entries.where((e) => !isFile(e.value))));
 
     List<http.MultipartFile> files = [];
     params.entries.where((e) => isFile(e.value)).forEach((e) {
+
       final param = e.value;
       final uploadedFiles = param is List
           ? param as List<FFUploadedFile>
           : [param as FFUploadedFile];
+
       for (var uploadedFile in uploadedFiles) {
         files.add(
+
             http.MultipartFile.fromBytes(
               e.key,
               uploadedFile.bytes ?? Uint8List.fromList([]),
               filename: uploadedFile.name,
               contentType: _getMediaType(uploadedFile.name),
             ),
+
           );
       }
+
     });
 
     final request = http.MultipartRequest(
@@ -291,7 +307,9 @@ class ApiManager {
     bool encodeBodyUtf8 = false,
     bool decodeUtf8 = false,
     bool cache = false,
+
     bool alwaysAllowBody = false,
+
     http.Client? client,
   }) async {
     final callRecord =
@@ -314,6 +332,7 @@ class ApiManager {
     try {
       switch (callType) {
         case ApiCallType.GET:
+
           result = await urlRequest(
             callType,
             apiUrl,
@@ -362,7 +381,9 @@ class ApiManager {
             returnBody,
             encodeBodyUtf8,
             decodeUtf8,
+
             alwaysAllowBody,
+
             client: client,
           );
           break;
@@ -373,7 +394,9 @@ class ApiManager {
         _apiCache[callRecord] = result;
       }
     } catch (e) {
+
       result = const ApiCallResponse(
+
         null,
         {},
         -1,

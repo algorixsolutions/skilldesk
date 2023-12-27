@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'quiz_result_widget.dart' show QuizResultWidget;
-import 'package:flutter/material.dart';
+
 
 class QuizResultModel extends FlutterFlowModel<QuizResultWidget> {
   ///  State fields for stateful widgets in this page.
@@ -13,6 +15,7 @@ class QuizResultModel extends FlutterFlowModel<QuizResultWidget> {
   void initState(BuildContext context) {}
 
   @override
+
   void dispose() {
     unfocusNode.dispose();
   }

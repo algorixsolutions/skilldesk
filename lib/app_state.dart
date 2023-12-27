@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'flutter_flow/request_manager.dart';
-import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'backend/api_requests/api_manager.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'flutter_flow/request_manager.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -49,132 +50,135 @@ class FFAppState extends ChangeNotifier {
   }
 
   dynamic _quizStatus = jsonDecode(
-      '{"pending":"PENDING","notStarted":"not_started","publish":"PUBLISHED","null":null}');
+      '{\"pending\":\"PENDING\",\"notStarted\":\"not_started\",\"publish\":\"PUBLISHED\",\"null\":null}');
   dynamic get quizStatus => _quizStatus;
-  set quizStatus(dynamic value) {
-    _quizStatus = value;
+  set quizStatus(dynamic _value) {
+    _quizStatus = _value;
   }
 
   String _selectedQuizLabel = '';
   String get selectedQuizLabel => _selectedQuizLabel;
-  set selectedQuizLabel(String value) {
-    _selectedQuizLabel = value;
+
+  set selectedQuizLabel(String _value) {
+    _selectedQuizLabel = _value;
   }
 
   dynamic _quiztype = jsonDecode(
-      '{"mcq":"MCQ","tf":"TRUE_FALSE","error":"FIND_THE_ERROR","image":"IMAGE","true":true}');
+      '{\"mcq\":\"MCQ\",\"tf\":\"TRUE_FALSE\",\"error\":\"FIND_THE_ERROR\",\"image\":\"IMAGE\",\"true\":true}');
   dynamic get quiztype => _quiztype;
-  set quiztype(dynamic value) {
-    _quiztype = value;
+  set quiztype(dynamic _value) {
+    _quiztype = _value;
   }
 
-  dynamic _currQuestion;
-  dynamic get currQuestion => _currQuestion;
-  set currQuestion(dynamic value) {
-    _currQuestion = value;
-  }
+  // dynamic _currQuestion;
+  // dynamic get currQuestion => _currQuestion;
+  // set currQuestion(dynamic _value) {
+  //   _currQuestion = _value;
+  // }
 
-  List<int> _selectedAns = [];
-  List<int> get selectedAns => _selectedAns;
-  set selectedAns(List<int> value) {
-    _selectedAns = value;
-  }
+  // List<int> _selectedAns = [];
+  // List<int> get selectedAns => _selectedAns;
+  // set selectedAns(List<int> _value) {
+  //   _selectedAns = _value;
+  // }
 
-  void addToSelectedAns(int value) {
-    _selectedAns.add(value);
-  }
+  // void addToSelectedAns(int _value) {
+  //   _selectedAns.add(_value);
+  // }
+  //
+  // void removeFromSelectedAns(int _value) {
+  //   _selectedAns.remove(_value);
+  // }
+  //
+  // void removeAtIndexFromSelectedAns(int _index) {
+  //   _selectedAns.removeAt(_index);
+  // }
 
-  void removeFromSelectedAns(int value) {
-    _selectedAns.remove(value);
-  }
-
-  void removeAtIndexFromSelectedAns(int index) {
-    _selectedAns.removeAt(index);
-  }
-
-  void updateSelectedAnsAtIndex(
-    int index,
-    int Function(int) updateFn,
-  ) {
-    _selectedAns[index] = updateFn(_selectedAns[index]);
-  }
-
-  void insertAtIndexInSelectedAns(int index, int value) {
-    _selectedAns.insert(index, value);
-  }
-
-  bool _isExplain = false;
-  bool get isExplain => _isExplain;
-  set isExplain(bool value) {
-    _isExplain = value;
-  }
-
-  bool _showAnswer = false;
-  bool get showAnswer => _showAnswer;
-  set showAnswer(bool value) {
-    _showAnswer = value;
-  }
-
-  int _correctAns = 0;
-  int get correctAns => _correctAns;
-  set correctAns(int value) {
-    _correctAns = value;
-  }
+  // void updateSelectedAnsAtIndex(
+  //   int _index,
+  //   int Function(int) updateFn,
+  // ) {
+  //   _selectedAns[_index] = updateFn(_selectedAns[_index]);
+  // }
+  //
+  // void insertAtIndexInSelectedAns(int _index, int _value) {
+  //   _selectedAns.insert(_index, _value);
+  // }
+  //
+  // bool _isExplain = false;
+  // bool get isExplain => _isExplain;
+  // set isExplain(bool _value) {
+  //   _isExplain = _value;
+  // }
+  //
+  // bool _showAnswer = false;
+  // bool get showAnswer => _showAnswer;
+  // set showAnswer(bool _value) {
+  //   _showAnswer = _value;
+  // }
+  //
+  // int _correctAns = 0;
+  // int get correctAns => _correctAns;
+  // set correctAns(int _value) {
+  //   _correctAns = _value;
+  // }
 
   DateTime? _startingTime = DateTime.fromMillisecondsSinceEpoch(1699277280000);
   DateTime? get startingTime => _startingTime;
-  set startingTime(DateTime? value) {
-    _startingTime = value;
+  set startingTime(DateTime? _value) {
+    _startingTime = _value;
   }
 
   DateTime? _quizInitTimer = DateTime.fromMillisecondsSinceEpoch(1699280580000);
   DateTime? get quizInitTimer => _quizInitTimer;
-  set quizInitTimer(DateTime? value) {
-    _quizInitTimer = value;
+  set quizInitTimer(DateTime? _value) {
+    _quizInitTimer = _value;
   }
 
   dynamic _currchapter;
   dynamic get currchapter => _currchapter;
-  set currchapter(dynamic value) {
-    _currchapter = value;
+
+  set currchapter(dynamic _value) {
+    _currchapter = _value;
   }
 
   dynamic _contentType = jsonDecode(
-      '{"text":"TEXT","audio":"AUDIO","video":"VIDEO","image":"IMAGE"}');
+      '{\"text\":\"TEXT\",\"audio\":\"AUDIO\",\"video\":\"VIDEO\",\"image\":\"IMAGE\"}');
   dynamic get contentType => _contentType;
-  set contentType(dynamic value) {
-    _contentType = value;
+  set contentType(dynamic _value) {
+    _contentType = _value;
   }
 
   dynamic _mediaType =
-      jsonDecode('{"text":"text","audio":"audio","image":"image"}');
+      jsonDecode('{\"text\":\"text\",\"audio\":\"audio\",\"image\":\"image\"}');
   dynamic get mediaType => _mediaType;
-  set mediaType(dynamic value) {
-    _mediaType = value;
+  set mediaType(dynamic _value) {
+    _mediaType = _value;
   }
 
-  bool _isTimerEnd = false;
-  bool get isTimerEnd => _isTimerEnd;
-  set isTimerEnd(bool value) {
-    _isTimerEnd = value;
-  }
+  // bool _isTimerEnd = false;
+  // bool get isTimerEnd => _isTimerEnd;
+  // set isTimerEnd(bool _value) {
+  //   _isTimerEnd = _value;
+  // }
 
   dynamic _trainingAfterQuiz;
   dynamic get trainingAfterQuiz => _trainingAfterQuiz;
-  set trainingAfterQuiz(dynamic value) {
-    _trainingAfterQuiz = value;
+  set trainingAfterQuiz(dynamic _value) {
+    _trainingAfterQuiz = _value;
   }
 
   int _minAnsToPass = 0;
   int get minAnsToPass => _minAnsToPass;
-  set minAnsToPass(int value) {
-    _minAnsToPass = value;
+  set minAnsToPass(int _value) {
+    _minAnsToPass = _value;
   }
 
   String _quizID = '';
   String get quizID => _quizID;
-  set quizID(String value) {
-    _quizID = value;
+
+  set quizID(String _value) {
+    _quizID = _value;
   }
 
   dynamic _quizResult;

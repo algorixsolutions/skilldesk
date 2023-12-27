@@ -54,8 +54,12 @@
 	<true/>
 
 
+<<<<<<< HEAD
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>Allow access to your photo library to upload images from your device.</string>
+=======
+
+>>>>>>> origin/develop
 
 
 	<key>UILaunchStoryboardName</key>

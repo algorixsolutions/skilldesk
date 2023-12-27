@@ -1,14 +1,17 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'sign_in_duplicate_model.dart';
+
 export 'sign_in_duplicate_model.dart';
 
 class SignInDuplicateWidget extends StatefulWidget {
   const SignInDuplicateWidget({super.key});
+
 
   @override
   _SignInDuplicateWidgetState createState() => _SignInDuplicateWidgetState();
@@ -64,6 +67,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
               Padding(
                 padding:
                     const EdgeInsetsDirectional.fromSTEB(118.0, 14.82, 117.0, 0.0),
+
                 child: Container(
                   width: 155.0,
                   height: 44.0,
@@ -82,6 +86,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
                 ),
               ),
               const Padding(
+
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 43.0, 0.0, 0.0),
                 child: Text(
                   'Sign In',
@@ -96,6 +101,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
                 alignment: const AlignmentDirectional(-1.0, 0.0),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(34.0, 43.0, 0.0, 0.0),
+
                   child: Text(
                     'Email',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -109,6 +115,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(31.0, 5.0, 31.0, 0.0),
+
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
@@ -119,6 +126,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
                     hintStyle: FlutterFlowTheme.of(context).labelMedium,
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
+
                         color: Color(0xFFBEBEBE),
                         width: 1.0,
                       ),
@@ -156,6 +164,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed('home_old');
+
                   },
                   text: 'Sign In',
                   options: FFButtonOptions(
@@ -229,6 +238,7 @@ class _SignInDuplicateWidgetState extends State<SignInDuplicateWidget> {
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 146.0, 0.0, 0.0),
+
                 child: Container(
                   width: 236.22,
                   height: 228.12,

@@ -187,6 +187,7 @@ class ThemeTypography extends Typography {
         fontSize: 64.0,
       );
   String get displayMediumFamily => 'SF Pro Display Bold';
+
   TextStyle get displayMedium => const TextStyle(
         fontFamily: 'SF Pro Display Bold',
         color: Colors.white,
@@ -250,6 +251,7 @@ class ThemeTypography extends Typography {
         fontSize: 16.0,
       );
   String get labelMediumFamily => 'SF Pro Display Bold';
+
   TextStyle get labelMedium => const TextStyle(
         fontFamily: 'SF Pro Display Bold',
         color: Colors.white,

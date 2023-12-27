@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'reset_password1_model.dart';
+
 export 'reset_password1_model.dart';
 
 class ResetPassword1Widget extends StatefulWidget {
@@ -63,8 +65,8 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding:
-                    const EdgeInsetsDirectional.fromSTEB(118.0, 14.82, 117.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(
+                    118.0, 14.82, 117.0, 0.0),
                 child: Container(
                   width: 155.0,
                   height: 44.0,
@@ -96,7 +98,8 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
               Align(
                 alignment: const AlignmentDirectional(-1.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(34.0, 43.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      34.0, 43.0, 0.0, 0.0),
                   child: Text(
                     'Email',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -109,7 +112,8 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(31.0, 5.0, 31.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(31.0, 5.0, 31.0, 0.0),
                 child: TextFormField(
                   controller: _model.emailController,
                   focusNode: _model.emailFocusNode,
@@ -153,7 +157,8 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     if (_model.emailController.text.isEmpty) {
@@ -177,10 +182,10 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
                   options: FFButtonOptions(
                     width: 327.0,
                     height: 50.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        24.0, 0.0, 24.0, 0.0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 0.0),
                     color: const Color(0xFF725DFF),
                     textStyle: const TextStyle(
                       fontFamily: 'SF Pro Display Bold',
@@ -200,8 +205,8 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 32.0, 0.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -230,7 +235,8 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 147.0, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 147.0, 0.0, 0.0),
                 child: Container(
                   width: 236.22,
                   height: 228.12,

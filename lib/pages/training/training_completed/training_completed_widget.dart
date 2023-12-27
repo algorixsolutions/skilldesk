@@ -1,11 +1,13 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'training_completed_model.dart';
+
 export 'training_completed_model.dart';
 
 class TrainingCompletedWidget extends StatefulWidget {
@@ -67,8 +69,8 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 122.82, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 122.82, 0.0, 0.0),
                   child: Container(
                     width: 318.0,
                     height: 291.0,
@@ -150,8 +152,9 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          13.73, 0.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              13.73, 0.0, 0.0, 0.0),
                                       child: Text(
                                         widget.durations!,
                                         style: const TextStyle(
@@ -170,7 +173,8 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 189.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 189.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       if (Navigator.of(context).canPop()) {
@@ -182,10 +186,10 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                     options: FFButtonOptions(
                       width: 342.0,
                       height: 50.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          24.0, 0.0, 24.0, 0.0),
+                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 0.0, 0.0, 0.0),
                       color: const Color(0xFF39B6FF),
                       textStyle: const TextStyle(
                         fontFamily: 'SF Pro Display Bold',

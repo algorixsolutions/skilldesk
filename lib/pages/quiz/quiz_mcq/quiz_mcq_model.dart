@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
+
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'quiz_mcq_widget.dart' show QuizMcqWidget;
-import 'package:flutter/material.dart';
+
 
 class QuizMcqModel extends FlutterFlowModel<QuizMcqWidget> {
   ///  State fields for stateful widgets in this page.
@@ -24,6 +26,7 @@ class QuizMcqModel extends FlutterFlowModel<QuizMcqWidget> {
   void initState(BuildContext context) {}
 
   @override
+
   void dispose() {
     unfocusNode.dispose();
     timerController.dispose();

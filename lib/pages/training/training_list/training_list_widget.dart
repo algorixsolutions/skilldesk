@@ -1,9 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +6,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'training_list_model.dart';
+
 export 'training_list_model.dart';
 
 class TrainingListWidget extends StatefulWidget {
@@ -50,6 +52,8 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
     super.dispose();
   }
 
+  String selectedTrainingLabel = "";
+
   @override
   Widget build(BuildContext context) {
     if (isiOS) {
@@ -70,142 +74,98 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Training',
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'SF Pro Display Bold',
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w500,
+                  useGoogleFonts: false,
+                ),
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            143.0, 0.0, 0.0, 0.0),
-                        child: Container(
-                          width: 104.0,
-                          height: 21.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Text(
-                              'Training',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'SF Pro Display Bold',
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w500,
-                                    useGoogleFonts: false,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(1.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              83.11, 0.0, 32.0, 0.0),
-                          child: Container(
-                            width: 27.79,
-                            height: 27.79,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                Container(
+                  width: 350.0,
+                  height: 44.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF4F4F4),
+                    borderRadius: BorderRadius.circular(40.0),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-                  child: Container(
-                    width: 350.0,
-                    height: 44.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF4F4F4),
-                      borderRadius: BorderRadius.circular(40.0),
+                  child: TextFormField(
+                    controller: _model.searchFieldController,
+                    focusNode: _model.searchFieldFocusNode,
+                    onChanged: (_) => EasyDebounce.debounce(
+                      '_model.searchFieldController',
+                      const Duration(milliseconds: 500),
+                      () async {
+                        setState(() {
+                          selectedTrainingLabel = "";
+                          // FFAppState().selectedQuizLabel = '';
+                        });
+                      },
                     ),
-                    child: SizedBox(
-                      width: 350.0,
-                      child: TextFormField(
-                        controller: _model.searchFieldController,
-                        focusNode: _model.searchFieldFocusNode,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          '_model.searchFieldController',
-                          const Duration(milliseconds: 500),
-                          () async {
-                            setState(() {
-                              FFAppState().selectedQuizLabel = '';
-                            });
-                          },
-                        ),
-                        autofocus: true,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Search',
-                          labelStyle: FlutterFlowTheme.of(context)
-                              .labelMedium
-                              .override(
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Search',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
                                 fontFamily: 'SF Pro Display Bold',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 useGoogleFonts: false,
                               ),
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 20.0, 0.0),
-                          suffixIcon: Icon(
-                            Icons.search_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 18.0,
-                          ),
+                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2.0,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium,
-                        validator: _model.searchFieldControllerValidator
-                            .asValidator(context),
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          24.0, 0.0, 20.0, 0.0),
+                      suffixIcon: Icon(
+                        Icons.search_rounded,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 18.0,
                       ),
                     ),
+                    style: FlutterFlowTheme.of(context).bodyMedium,
+                    validator: _model.searchFieldControllerValidator
+                        .asValidator(context),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(31.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      31.0, 31.0, 31.0, 31.0),
                   child: Container(
                     width: 350.0,
                     height: 31.0,
@@ -213,26 +173,24 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     child: FutureBuilder<ApiCallResponse>(
-                      future: FFAppState().getThemes(
-                        uniqueQueryKey: currentUserUid,
-                        requestFn: () => BaseUrlGroup.getThemesCall.call(
-                          userID: currentUserUid,
-                        ),
+                      future: BaseUrlGroup.getThemesCall.call(
+                        userID: currentUserUid,
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
-                          );
+                          return const SizedBox();
+                          // return Center(
+                          //   child: SizedBox(
+                          //     width: 50.0,
+                          //     height: 50.0,
+                          //     child: CircularProgressIndicator(
+                          //       valueColor: AlwaysStoppedAnimation<Color>(
+                          //         FlutterFlowTheme.of(context).primary,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // );
                         }
                         final listViewGetThemesResponse = snapshot.data!;
                         return Builder(
@@ -255,11 +213,15 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     setState(() {
-                                      FFAppState().selectedQuizLabel =
-                                          getJsonField(
+                                      selectedTrainingLabel = getJsonField(
                                         themeItem,
                                         r'''$.label''',
                                       ).toString();
+                                      // FFAppState().selectedQuizLabel =
+                                      //     getJsonField(
+                                      //   themeItem,
+                                      //   r'''$.label''',
+                                      // ).toString();
                                     });
                                   },
                                   child: Column(
@@ -279,7 +241,7 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                               useGoogleFonts: false,
                                             ),
                                       ),
-                                      if (FFAppState().selectedQuizLabel ==
+                                      if (selectedTrainingLabel ==
                                           getJsonField(
                                             themeItem,
                                             r'''$.label''',
@@ -326,81 +288,80 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  child: FutureBuilder<ApiCallResponse>(
-                    future: BaseUrlGroup.getTrainingsCall.call(
-                      userID: currentUserUid,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height - 300,
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        24.0, 0.0, 24.0, 0.0),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: BaseUrlGroup.getTrainingsCall.call(
+                        userID: currentUserUid,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }
-                      final gridViewGetTrainingsResponse = snapshot.data!;
-                      return Builder(
-                        builder: (context) {
-                          final trainingItem = BaseUrlGroup.getTrainingsCall
-                                  .trainingData(
-                                    gridViewGetTrainingsResponse.jsonBody,
-                                  )
-                                  ?.toList() ??
-                              [];
-                          return GridView.builder(
-                            padding: EdgeInsets.zero,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 20.0,
-                              mainAxisSpacing: 10.0,
-                              childAspectRatio: 0.65,
-                            ),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: trainingItem.length,
-                            itemBuilder: (context, trainingItemIndex) {
-                              final trainingItemItem =
-                                  trainingItem[trainingItemIndex];
-                              return Visibility(
-                                visible: () {
-                                  if (!functions.isValueSelected(
-                                          FFAppState().selectedQuizLabel) &&
-                                      functions.isTextFieldEmpty(
-                                          _model.searchFieldController.text)) {
-                                    return true;
-                                  } else if (functions.isValueSelected(
-                                          FFAppState().selectedQuizLabel) &&
-                                      functions.matchValue(
-                                          getJsonField(
-                                            trainingItemItem,
-                                            r'''$.label_theme''',
-                                          ).toString(),
-                                          FFAppState().selectedQuizLabel)) {
-                                    return true;
-                                  } else if (!functions.isTextFieldEmpty(
-                                          _model.searchFieldController.text) &&
-                                      functions.isContainsLabelTxtField(
-                                          _model.searchFieldController.text,
-                                          getJsonField(
-                                            trainingItemItem,
-                                            r'''$.label_theme''',
-                                          ).toString())) {
-                                    return true;
-                                  } else {
-                                    return false;
-                                  }
-                                }(),
-                                child: InkWell(
+                          );
+                        }
+                        final gridViewGetTrainingsResponse = snapshot.data!;
+                        return Builder(
+                          builder: (context) {
+                            final trainingItem = BaseUrlGroup.getTrainingsCall
+                                    .trainingData(
+                                      gridViewGetTrainingsResponse.jsonBody,
+                                    )
+                                    ?.toList() ??
+                                [];
+                            final filterlist = [];
+                            for (dynamic item in trainingItem) {
+                              if (selectedTrainingLabel.isNotEmpty &&
+                                  selectedTrainingLabel ==
+                                      getJsonField(
+                                        item,
+                                        r'''$.label_theme''',
+                                      )) {
+                                filterlist.add(item);
+                              } else if (_model
+                                      .searchFieldController.text.isNotEmpty &&
+                                  getJsonField(
+                                    item,
+                                    r'''$.title''',
+                                  ).toString().toLowerCase().contains(_model
+                                      .searchFieldController.text
+                                      .toLowerCase())) {
+                                filterlist.add(item);
+                              } else if (selectedTrainingLabel.isEmpty &&
+                                  _model.searchFieldController.text.isEmpty) {
+                                filterlist.add(item);
+                              }
+                            }
+
+                            return GridView.builder(
+                              padding: EdgeInsets.zero,
+                              physics: const ScrollPhysics(),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 20.0,
+                                mainAxisSpacing: 10.0,
+                                childAspectRatio: 0.6,
+                              ),
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: filterlist.length,
+                              itemBuilder: (context, trainingItemIndex) {
+                                final trainingItemItem =
+                                    filterlist[trainingItemIndex];
+                                return InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
@@ -462,7 +423,8 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                       ],
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment:
+                                        const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Column(
@@ -488,8 +450,8 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                     width: double.infinity,
                                                     height: 100.0,
                                                     fit: BoxFit.contain,
-                                                    alignment:
-                                                        const Alignment(0.0, 0.0),
+                                                    alignment: const Alignment(
+                                                        0.0, 0.0),
                                                   ),
                                                 ),
                                               if (getJsonField(
@@ -509,8 +471,8 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                     width: double.infinity,
                                                     height: 100.0,
                                                     fit: BoxFit.contain,
-                                                    alignment:
-                                                        const Alignment(0.0, 0.0),
+                                                    alignment: const Alignment(
+                                                        0.0, 0.0),
                                                   ),
                                                 ),
                                             ],
@@ -546,16 +508,16 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                     maxChars: 45,
                                                     replacement: '…',
                                                   ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'SF Pro Display Bold',
-                                                        color:
-                                                            const Color(0xFFACACAC),
-                                                        useGoogleFonts: false,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    color:
+                                                        const Color(0xFFACACAC),
+                                                    useGoogleFonts: false,
+                                                  ),
                                             ),
                                           ),
                                           Stack(
@@ -662,9 +624,8 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                                 fontSize: 0.0,
                                                               ),
                                                         ),
-                                                        barRadius:
-                                                            const Radius.circular(
-                                                                16.0),
+                                                        barRadius: const Radius
+                                                            .circular(16.0),
                                                         padding:
                                                             EdgeInsets.zero,
                                                       ),
@@ -703,8 +664,8 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                                   context)
                                                               .bodyMedium,
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(width: 10.0)),
+                                                  ].divide(const SizedBox(
+                                                      width: 10.0)),
                                                 ),
                                               if ((getJsonField(
                                                         trainingItemItem,
@@ -723,8 +684,9 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                         r'''$.notStarted''',
                                                       )))
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           0.0, 9.0, 0.0, 0.0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
@@ -756,19 +718,14 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                       height: 31.0,
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
-                                                                  0.0),
+                                                              .fromSTEB(24.0,
+                                                              0.0, 24.0, 0.0),
                                                       iconPadding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color: const Color(0xFFEBEBEB),
+                                                              .fromSTEB(0.0,
+                                                              0.0, 0.0, 0.0),
+                                                      color: const Color(
+                                                          0xFFEBEBEB),
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -780,7 +737,8 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                                                     0xFF39B6FF),
                                                                 fontSize: 14.0,
                                                               ),
-                                                      borderSide: const BorderSide(
+                                                      borderSide:
+                                                          const BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                       ),
@@ -796,13 +754,13 @@ class _TrainingListWidgetState extends State<TrainingListWidget> {
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      );
-                    },
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],

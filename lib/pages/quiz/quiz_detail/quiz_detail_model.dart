@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'quiz_detail_widget.dart' show QuizDetailWidget;
-import 'package:flutter/material.dart';
 
 class QuizDetailModel extends FlutterFlowModel<QuizDetailWidget> {
   ///  State fields for stateful widgets in this page.

@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'p_a_g_e25_widget.dart' show PAGE25Widget;
-import 'package:flutter/material.dart';
+
 
 class PAGE25Model extends FlutterFlowModel<PAGE25Widget> {
   /// Initialization and disposal methods.
@@ -9,6 +11,7 @@ class PAGE25Model extends FlutterFlowModel<PAGE25Widget> {
   void initState(BuildContext context) {}
 
   @override
+
   void dispose() {}
 
   /// Action blocks are added here.

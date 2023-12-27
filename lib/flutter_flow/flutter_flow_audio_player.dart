@@ -17,6 +17,7 @@
  */
 
 import 'dart:math' as math;
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,9 @@ class FlutterFlowAudioPlayer extends StatefulWidget {
   final Color fillColor;
   final Color playbackButtonColor;
   final Color activeTrackColor;
+
   final Color? inactiveTrackColor;
+
   final double elevation;
   final bool pauseOnNavigate;
   final PlayInBackground playInBackground;
@@ -204,7 +207,8 @@ class _FlutterFlowAudioPlayerState extends State<FlutterFlowAudioPlayer>
 }
 
 class PositionSeekWidget extends StatefulWidget {
-  const PositionSeekWidget({super.key, 
+  const PositionSeekWidget({
+    super.key,
     required this.currentPosition,
     required this.duration,
     required this.seekTo,
@@ -216,6 +220,7 @@ class PositionSeekWidget extends StatefulWidget {
   final Duration duration;
   final Function(Duration) seekTo;
   final Color activeTrackColor;
+
   final Color? inactiveTrackColor;
 
   @override
@@ -306,6 +311,7 @@ class FlutterFlowRoundedRectSliderTrackShape extends SliderTrackShape
     assert(sliderTheme.activeTrackColor != null);
     assert(sliderTheme.inactiveTrackColor != null);
     assert(sliderTheme.thumbShape != null);
+
     // If the slider [SliderThemeData.trackHeight] is less than or equal to 0,
     // then it makes no difference whether the track is painted or not,
     // therefore the painting  can be a no-op.

@@ -45,6 +45,7 @@ class BaseUrlGroup {
       StoreDiscussionResponseCall();
   static GetUsersRankingCall getUsersRankingCall = GetUsersRankingCall();
   static GetDiscussionsCall getDiscussionsCall = GetDiscussionsCall();
+
 }
 
 class HomeInfosCall {
@@ -61,6 +62,7 @@ class HomeInfosCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
     );
   }
@@ -101,6 +103,7 @@ class HomeInfosCall {
         response,
         r'''$.trainingsCompleted''',
       );
+
   List? inProgress(dynamic response) => getJsonField(
         response,
         r'''$.inprogress''',
@@ -119,7 +122,9 @@ class GetQuizzesCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Quizzes',
+
       apiUrl: '${BaseUrlGroup.baseUrl}/quizzes/$userID',
+
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -129,6 +134,7 @@ class GetQuizzesCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
     );
   }
@@ -155,6 +161,7 @@ class GetThemesCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Themes',
+
       apiUrl: '${BaseUrlGroup.baseUrl}/themes/$userID',
       callType: ApiCallType.GET,
       headers: {},
@@ -216,6 +223,7 @@ class GetUserStatsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get User Stats',
+
       apiUrl: '${BaseUrlGroup.baseUrl}/stats/$userID/$period/$themeID',
       callType: ApiCallType.GET,
       headers: {},
@@ -224,7 +232,9 @@ class GetUserStatsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
+
     );
   }
 
@@ -313,7 +323,9 @@ class StoreAnsweredQuestionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Store Answered Question',
       apiUrl:
+
           '${BaseUrlGroup.baseUrl}/quizzes/answer-question/store?duration=$duration&is_correct=$isCorrect&question_id=$questionId&quiz_id=$quizId&user_id=$userId',
+
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -322,6 +334,7 @@ class StoreAnsweredQuestionCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
     );
   }
@@ -348,7 +361,9 @@ class StoreChapterProgressionCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
+
     );
   }
 }
@@ -359,7 +374,9 @@ class GetNotificationCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Notification',
+
       apiUrl: '${BaseUrlGroup.baseUrl}/notifications/$userID',
+
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -367,7 +384,9 @@ class GetNotificationCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
+
     );
   }
 }
@@ -379,6 +398,7 @@ class IncrementNotificationViewCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Increment Notification View',
       apiUrl:
+
           '${BaseUrlGroup.baseUrl}/notifications/increment-view/$notificationID',
       callType: ApiCallType.POST,
       headers: {},
@@ -388,7 +408,9 @@ class IncrementNotificationViewCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
+
     );
   }
 }
@@ -400,7 +422,9 @@ class GetQuizByIdCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Quiz By Id',
+
       apiUrl: '${BaseUrlGroup.baseUrl}/quizzes/$quizzId/$userId',
+
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -408,7 +432,9 @@ class GetQuizByIdCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
+
     );
   }
 
@@ -425,7 +451,9 @@ class GetTrainingByIdCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Training By Id',
+
       apiUrl: '${BaseUrlGroup.baseUrl}/trainings/$trainingId/$userId',
+
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -433,7 +461,9 @@ class GetTrainingByIdCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
+
     );
   }
 
@@ -985,7 +1015,9 @@ class GetTrainingListCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'GET TRAINING LIST',
+
       apiUrl: 'https://quizback.algorixdev.com/api/trainings/$userID',
+
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -993,6 +1025,7 @@ class GetTrainingListCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+
       alwaysAllowBody: false,
     );
   }
@@ -1002,6 +1035,7 @@ class GetTrainingListCall {
         r'''$.data''',
         true,
       ) as List?;
+
 }
 
 class ApiPagingParams {

@@ -1,8 +1,11 @@
+
+import 'package:flutter/material.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
+
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'quiz_image_answer_widget.dart' show QuizImageAnswerWidget;
-import 'package:flutter/material.dart';
+
 
 class QuizImageAnswerModel extends FlutterFlowModel<QuizImageAnswerWidget> {
   ///  State fields for stateful widgets in this page.
@@ -20,10 +23,12 @@ class QuizImageAnswerModel extends FlutterFlowModel<QuizImageAnswerWidget> {
 
   /// Initialization and disposal methods.
 
+
   @override
   void initState(BuildContext context) {}
 
   @override
+
   void dispose() {
     unfocusNode.dispose();
     timerController.dispose();

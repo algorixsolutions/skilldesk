@@ -1,17 +1,21 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'notifications_page_model.dart';
+
 export 'notifications_page_model.dart';
 
 class NotificationsPageWidget extends StatefulWidget {
+
   const NotificationsPageWidget({super.key});
+
 
   @override
   _NotificationsPageWidgetState createState() =>
@@ -84,6 +88,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                 ),
           ),
           actions: const [],
+
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -120,13 +125,16 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                     itemBuilder: (context, notificationIndex) {
                       final notificationItem = notification[notificationIndex];
                       return Padding(
+
                         padding: const EdgeInsetsDirectional.fromSTEB(
+
                             20.0, 29.0, 20.0, 0.0),
                         child: Container(
                           width: 350.0,
                           height: 76.0,
                           decoration: BoxDecoration(
                             color: const Color(0x16725DFF),
+
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: InkWell(
@@ -150,6 +158,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
+
                                       6.0, 0.0, 0.0, 0.0),
                                   child: Container(
                                     width: 42.0,
@@ -159,6 +168,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                       shape: BoxShape.circle,
                                     ),
                                     child: const Icon(
+
                                       Icons.notifications,
                                       color: Colors.white,
                                       size: 24.0,
@@ -170,7 +180,9 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
+
                                       padding: const EdgeInsetsDirectional.fromSTEB(
+
                                           14.0, 20.0, 0.0, 7.0),
                                       child: Text(
                                         getJsonField(
@@ -188,7 +200,9 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                       ),
                                     ),
                                     Padding(
+
                                       padding: const EdgeInsetsDirectional.fromSTEB(
+
                                           14.0, 7.0, 0.0, 0.0),
                                       child: Text(
                                         functions.calculateNotifDuration(
@@ -200,6 +214,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'SF Pro Display Bold',
+
                                               color: const Color(0xFF725DFF),
                                               fontSize: 10.0,
                                               fontWeight: FontWeight.bold,

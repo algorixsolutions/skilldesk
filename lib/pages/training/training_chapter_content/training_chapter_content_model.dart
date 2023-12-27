@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
+
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'training_chapter_content_widget.dart' show TrainingChapterContentWidget;
-import 'package:flutter/material.dart';
 
 class TrainingChapterContentModel
     extends FlutterFlowModel<TrainingChapterContentWidget> {

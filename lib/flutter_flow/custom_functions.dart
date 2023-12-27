@@ -1,15 +1,4 @@
-import 'dart:convert';
-import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:timeago/timeago.dart' as timeago;
-import 'lat_lng.dart';
-import 'place.dart';
-import 'uploaded_file.dart';
-import '/backend/schema/structs/index.dart';
-import '/auth/firebase_auth/auth_util.dart';
+import 'dart:math' as math_util.dart';
 
 bool compareString(
   String inputString1,
@@ -207,7 +196,6 @@ int calculateWrongAnswers(
 int getCountdownTimer(String duration) {
   final min = duration.split(':')[0];
   final sec = duration.split(':')[1];
-
   return ((int.parse(min) * 60 * 1000) + (int.parse(sec) * 1000)).toInt();
 }
 
@@ -287,6 +275,7 @@ int calculateSuccessAnswers(List<dynamic> questions) {
 
 bool isMediaExist(List<dynamic> media) {
   if (media.isNotEmpty) {
+
     return true;
   } else {
     return false;

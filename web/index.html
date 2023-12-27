@@ -54,12 +54,17 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+<<<<<<< HEAD
   
   
   
   
   
   <script>
+=======
+  <script>
+    
+>>>>>>> origin/develop
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -70,12 +75,23 @@
         },
         onEntrypointLoaded: async function(engineInitializer) {
           // Initialize the Flutter engine
+<<<<<<< HEAD
           let appRunner = await engineInitializer.initializeEngine({});
+=======
+          let appRunner = await engineInitializer.initializeEngine();
+>>>>>>> origin/develop
           // Run the app
           await appRunner.runApp();
         }
       });
     });
   </script>
+<<<<<<< HEAD
+=======
+  
+  
+  
+  
+>>>>>>> origin/develop
 </body>
 </html>

@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'quiz_finderror_fail_duplicate_widget.dart'
     show QuizFinderrorFailDuplicateWidget;
-import 'package:flutter/material.dart';
 
 class QuizFinderrorFailDuplicateModel
     extends FlutterFlowModel<QuizFinderrorFailDuplicateWidget> {
