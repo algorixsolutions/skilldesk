@@ -114,11 +114,11 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
-                      child: Expanded(
-                        child: AutoSizeText(
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 84.0, 0.0),
+                        child: Text(
                           getJsonField(
                             widget.training,
                             r'''$.title''',
@@ -215,9 +215,10 @@ class _TrainingChaptersWidgetState extends State<TrainingChaptersWidget> {
                             onTap: () async {
                               if (chapterIndex == 0 ||
                                   getJsonField(
-                                    chapter[chapterIndex - 1],
-                                    r'''$.is_completed''',
-                                  )) {
+                                        chapter[chapterIndex - 1],
+                                        r'''$.is_completed''',
+                                      ) ==
+                                      true) {
                                 context.pushNamed(
                                   'training_chapter_content',
                                   queryParameters: {

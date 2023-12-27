@@ -76,7 +76,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
           child: FutureBuilder<ApiCallResponse>(
             future: BaseUrlGroup.getUserStatsCall.call(
               userID: currentUserUid,
-              period: widget.period,
+              period: _model.choiceChipsValue,
               themeID: widget.theme,
             ),
             builder: (context, snapshot) {
@@ -535,23 +535,23 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       setState(() => _model
                                                               .themeQDropDownValue =
                                                           val);
-                                                      context.goNamed(
-                                                        'statistics',
-                                                        queryParameters: {
-                                                          'period':
-                                                              serializeParam(
-                                                            _model
-                                                                .choiceChipsValue,
-                                                            ParamType.String,
-                                                          ),
-                                                          'theme':
-                                                              serializeParam(
-                                                            _model
-                                                                .themeQDropDownValue,
-                                                            ParamType.String,
-                                                          ),
-                                                        }.withoutNulls,
-                                                      );
+                                                      // context.goNamed(
+                                                      //   'statistics',
+                                                      //   queryParameters: {
+                                                      //     'period':
+                                                      //         serializeParam(
+                                                      //       _model
+                                                      //           .choiceChipsValue,
+                                                      //       ParamType.String,
+                                                      //     ),
+                                                      //     'theme':
+                                                      //         serializeParam(
+                                                      //       _model
+                                                      //           .themeQDropDownValue,
+                                                      //       ParamType.String,
+                                                      //     ),
+                                                      //   }.withoutNulls,
+                                                      // );
                                                     },
                                                     width: 115.0,
                                                     height: 34.0,
@@ -790,8 +790,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     ],
                                                   ),
                                                   LinearPercentIndicator(
-                                                    percent: 1.0,
-                                                    width: 231.0,
+                                                    percent: 0.5,
                                                     lineHeight: 8.0,
                                                     animation: true,
                                                     animateFromLastPercent:
@@ -1254,22 +1253,22 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     setState(() => _model
                                                             .themeTDropDownValue =
                                                         val);
-                                                    context.goNamed(
-                                                      'statistics',
-                                                      queryParameters: {
-                                                        'period':
-                                                            serializeParam(
-                                                          _model
-                                                              .choiceChipsValue,
-                                                          ParamType.String,
-                                                        ),
-                                                        'theme': serializeParam(
-                                                          _model
-                                                              .themeTDropDownValue,
-                                                          ParamType.String,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
+                                                    // context.goNamed(
+                                                    //   'statistics',
+                                                    //   queryParameters: {
+                                                    //     'period':
+                                                    //         serializeParam(
+                                                    //       _model
+                                                    //           .choiceChipsValue,
+                                                    //       ParamType.String,
+                                                    //     ),
+                                                    //     'theme': serializeParam(
+                                                    //       _model
+                                                    //           .themeTDropDownValue,
+                                                    //       ParamType.String,
+                                                    //     ),
+                                                    //   }.withoutNulls,
+                                                    // );
                                                   },
                                                   width: 115.0,
                                                   height: 34.0,
@@ -1520,8 +1519,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                       ),
                     ),
                   ),
-                  if (true)
-                    Column(
+                  Container(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Align(
@@ -1874,6 +1874,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                         ),
                       ],
                     ),
+                  ),
                   InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
