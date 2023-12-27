@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,15 +6,13 @@ import 'package:provider/provider.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';r.dart';
-
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'training_quiz_model.dart';
 
 export 'training_quiz_model.dart';
 
 class TrainingQuizWidget extends StatefulWidget {
   const TrainingQuizWidget({
-
     super.key,
     required this.chapters,
     required this.index,
@@ -35,7 +32,6 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   late String title;
 
   @override
@@ -47,7 +43,6 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
       widget.chapters![widget.index!],
       r'''$.title''',
     );
-
   }
 
   @override
@@ -76,7 +71,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor:const  Color(0xFFFFF80D),
+        backgroundColor: const Color(0xFFFFF80D),
         body: SafeArea(
           top: true,
           child: Column(
@@ -95,7 +90,7 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                     ),
                   ),
                   Expanded(
-                    child:  Text(
+                    child: Text(
                       title,
                       style: const TextStyle(
                         fontFamily: 'SF Pro Display Bold',
@@ -177,10 +172,10 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                     options: FFButtonOptions(
                       width: 164.0,
                       height: 50.0,
-                      padding:
-                      const  EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          24.0, 0.0, 24.0, 0.0),
+                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 0.0, 0.0, 0.0),
                       color: const Color(0xFFFFF80D),
                       textStyle: const TextStyle(
                         fontFamily: 'SF Pro Display Bold',
@@ -196,8 +191,8 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(14.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        14.0, 0.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         context.pushNamed(
@@ -222,12 +217,12 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                       options: FFButtonOptions(
                         width: 164.0,
                         height: 50.0,
-                        padding:const  EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                        const   EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color:const  Color(0xFF39B6FF),
-                        textStyle:const  TextStyle(
+                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF39B6FF),
+                        textStyle: const TextStyle(
                           fontFamily: 'SF Pro Display Bold',
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
