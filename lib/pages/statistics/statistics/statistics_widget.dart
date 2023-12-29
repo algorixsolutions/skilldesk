@@ -72,7 +72,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
             future: BaseUrlGroup.getUserStatsCall.call(
               userID: currentUserUid,
               period: _model.choiceChipsValue,
-              themeID: null,
+              themeID: themeId,
             ),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
@@ -90,6 +90,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                 );
               }
               final stackGetUserStatsResponse = snapshot.data!;
+              print(stackGetUserStatsResponse.response?.body);
               return Stack(
                 children: [
                   //* Bottom
