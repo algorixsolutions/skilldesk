@@ -6,7 +6,6 @@ import 'package:skilldesk/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-
 import 'grid_card_model.dart';
 
 export 'grid_card_model.dart';
@@ -88,7 +87,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
         },
         child: Container(
           width: 152.0,
-          height: 230.0,
+          height: 250.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: BorderRadius.circular(16.0),
@@ -97,7 +96,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
             ),
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
@@ -150,7 +149,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
               ),
               Container(
                 width: double.infinity,
-                height: 40.0,
+                height: 20.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),

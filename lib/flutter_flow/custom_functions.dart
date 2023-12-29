@@ -1,4 +1,4 @@
-import 'dart:math' as math_util.dart';
+import 'dart:math' as math;
 
 bool compareString(
   String inputString1,
@@ -275,7 +275,6 @@ int calculateSuccessAnswers(List<dynamic> questions) {
 
 bool isMediaExist(List<dynamic> media) {
   if (media.isNotEmpty) {
-
     return true;
   } else {
     return false;

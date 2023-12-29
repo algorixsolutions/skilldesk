@@ -8,7 +8,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -18,15 +17,7 @@ import 'statistics_model.dart';
 export 'statistics_model.dart';
 
 class StatisticsWidget extends StatefulWidget {
-  const StatisticsWidget({
-    Key? key,
-    String? period,
-    this.theme,
-  })  : this.period = period ?? 'day',
-        super(key: key);
-
-  final String period;
-  final String? theme;
+  const StatisticsWidget({super.key});
 
   @override
   _StatisticsWidgetState createState() => _StatisticsWidgetState();
@@ -36,6 +27,8 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
   late StatisticsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String themeId = '';
+  String themeName = '';
 
   @override
   void initState() {
@@ -62,8 +55,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
     }
 
     context.watch<FFAppState>();
-    final chartPieChartColorsList2 = [Color(0xFF725DFF), Color(0xFF00D1FF)];
-
+    final chartPieChartColorsList2 = [
+      const Color(0xFF725DFF),
+      const Color(0xFF00D1FF)
+    ];
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -77,7 +72,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
             future: BaseUrlGroup.getUserStatsCall.call(
               userID: currentUserUid,
               period: _model.choiceChipsValue,
-              themeID: widget.theme,
+              themeID: null,
             ),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
@@ -97,6 +92,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
               final stackGetUserStatsResponse = snapshot.data!;
               return Stack(
                 children: [
+                  //* Bottom
                   Center(
                     child: SingleChildScrollView(
                       child: Column(
@@ -107,7 +103,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 220.0, 0.0, 0.0),
                                   child: Container(
                                     width: 341.74,
@@ -116,16 +112,16 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           .secondaryBackground,
                                       borderRadius: BorderRadius.circular(12.0),
                                       border: Border.all(
-                                        color: Color(0xFFE6E6E6),
+                                        color: const Color(0xFFE6E6E6),
                                         width: 2.0,
                                       ),
                                     ),
                                     child: Stack(
                                       children: [
                                         Align(
-                                          alignment:
-                                              AlignmentDirectional(0.00, 0.69),
-                                          child: Container(
+                                          alignment: const AlignmentDirectional(
+                                              0.00, 0.69),
+                                          child: SizedBox(
                                             width: 341.0,
                                             height: 135.62,
                                             child: FlutterFlowLineChart(
@@ -149,14 +145,16 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                             false,
                                                           )),
                                                   settings: LineChartBarData(
-                                                    color: Color(0xFF1363DF),
+                                                    color:
+                                                        const Color(0xFF1363DF),
                                                     barWidth: 2.0,
                                                     isCurved: true,
                                                     dotData:
                                                         FlDotData(show: false),
                                                     belowBarData: BarAreaData(
                                                       show: true,
-                                                      color: Color(0xFFEEF4FC),
+                                                      color: const Color(
+                                                          0xFFEEF4FC),
                                                     ),
                                                   ),
                                                 )
@@ -168,24 +166,26 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         .secondaryBackground,
                                                 showBorder: false,
                                               ),
-                                              axisBounds: AxisBounds(),
-                                              xAxisLabelInfo: AxisLabelInfo(),
-                                              yAxisLabelInfo: AxisLabelInfo(),
+                                              axisBounds: const AxisBounds(),
+                                              xAxisLabelInfo:
+                                                  const AxisLabelInfo(),
+                                              yAxisLabelInfo:
+                                                  const AxisLabelInfo(),
                                             ),
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15.69, 15.0, 0.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(15.69, 15.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         0.0, 0.0, 0.0, 21.72),
                                                 child: Container(
                                                   width: 107.0,
@@ -212,9 +212,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 12.0),
+                                                            0.0, 12.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -223,14 +223,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                           width: 12.0,
                                                           height: 12.0,
                                                           decoration:
-                                                              BoxDecoration(
+                                                              const BoxDecoration(
                                                             color: Color(
                                                                 0xFFD9D9D9),
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
                                                         ),
-                                                        Padding(
+                                                        const Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
@@ -252,12 +252,12 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      14.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                                  14.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                           child: Text(
                                                             BaseUrlGroup
                                                                 .getUserStatsCall
@@ -266,7 +266,8 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                       .jsonBody,
                                                                 )
                                                                 .toString(),
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               fontFamily:
                                                                   'SF Pro Display Bold',
                                                               fontWeight:
@@ -281,9 +282,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 12.0),
+                                                            0.0, 12.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -292,14 +293,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                           width: 12.0,
                                                           height: 12.0,
                                                           decoration:
-                                                              BoxDecoration(
+                                                              const BoxDecoration(
                                                             color: Color(
                                                                 0xFF725DFF),
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
                                                         ),
-                                                        Padding(
+                                                        const Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
@@ -321,12 +322,12 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      14.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                                  14.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                           child: Text(
                                                             BaseUrlGroup
                                                                 .getUserStatsCall
@@ -335,7 +336,8 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                       .jsonBody,
                                                                 )
                                                                 .toString(),
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               fontFamily:
                                                                   'SF Pro Display Bold',
                                                               fontWeight:
@@ -356,14 +358,14 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         width: 12.0,
                                                         height: 12.0,
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                           color:
                                                               Color(0xFF00D1FF),
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
                                                       ),
-                                                      Padding(
+                                                      const Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
@@ -384,12 +386,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    14.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(14.0,
+                                                                0.0, 0.0, 0.0),
                                                         child: Text(
                                                           BaseUrlGroup
                                                               .getUserStatsCall
@@ -398,7 +397,8 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                                     .jsonBody,
                                                               )
                                                               .toString(),
-                                                          style: TextStyle(
+                                                          style:
+                                                              const TextStyle(
                                                             fontFamily:
                                                                 'SF Pro Display Bold',
                                                             fontWeight:
@@ -421,23 +421,24 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                               ],
                             ),
                           ),
+
+                          //* QUiz Box
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 6.49, 0.0, 0.0),
                             child: Container(
                               width: 342.0,
-                              height: 390.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 borderRadius: BorderRadius.circular(12.0),
                                 border: Border.all(
-                                  color: Color(0xFFE6E6E6),
+                                  color: const Color(0xFFE6E6E6),
                                   width: 2.0,
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.49, 0.0, 0.0),
                                 child: FutureBuilder<ApiCallResponse>(
                                   future: BaseUrlGroup.getThemesCall.call(
@@ -462,21 +463,34 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                     }
                                     final columnGetThemesResponse =
                                         snapshot.data!;
+                                    final labelList =
+                                        (BaseUrlGroup.getThemesCall.labelList(
+                                      columnGetThemesResponse.jsonBody,
+                                    ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList();
+                                    final labelIdList = List<String>.from(
+                                        (BaseUrlGroup.getThemesCall.idList(
+                                      columnGetThemesResponse.jsonBody,
+                                    ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList()
+                                            .map((e) => e.toString())
+                                            .toList());
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 9.04, 0.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 9.04, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 flex: 2,
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
@@ -497,97 +511,79 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               Expanded(
                                                 flex: 3,
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           0.0, 0.0, 16.0, 0.0),
-                                                  child: FlutterFlowDropDown<
-                                                      String>(
-                                                    controller: _model
-                                                            .themeQDropDownValueController ??=
-                                                        FormFieldController<
-                                                            String>(
-                                                      _model.themeQDropDownValue ??=
-                                                          widget.theme,
-                                                    ),
-                                                    options: List<String>.from(
-                                                        (BaseUrlGroup
-                                                                .getThemesCall
-                                                                .idList(
-                                                      columnGetThemesResponse
-                                                          .jsonBody,
-                                                    ) as List)
-                                                            .map<String>((s) =>
-                                                                s.toString())
-                                                            .toList()!
-                                                            .map((e) =>
-                                                                e.toString())
-                                                            .toList()),
-                                                    optionLabels: (BaseUrlGroup
-                                                            .getThemesCall
-                                                            .labelList(
-                                                      columnGetThemesResponse
-                                                          .jsonBody,
-                                                    ) as List)
-                                                        .map<String>(
-                                                            (s) => s.toString())
-                                                        .toList()!,
-                                                    onChanged: (val) async {
-                                                      setState(() => _model
-                                                              .themeQDropDownValue =
-                                                          val);
-                                                      // context.goNamed(
-                                                      //   'statistics',
-                                                      //   queryParameters: {
-                                                      //     'period':
-                                                      //         serializeParam(
-                                                      //       _model
-                                                      //           .choiceChipsValue,
-                                                      //       ParamType.String,
-                                                      //     ),
-                                                      //     'theme':
-                                                      //         serializeParam(
-                                                      //       _model
-                                                      //           .themeQDropDownValue,
-                                                      //       ParamType.String,
-                                                      //     ),
-                                                      //   }.withoutNulls,
-                                                      // );
-                                                    },
+                                                  child: Container(
                                                     width: 115.0,
                                                     height: 34.0,
-                                                    textStyle:
-                                                        GoogleFonts.getFont(
-                                                      'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 14.0,
-                                                    ),
-                                                    hintText: 'Select theme',
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      size: 24.0,
-                                                    ),
-                                                    fillColor:
-                                                        Color(0xFFE6E6E6),
-                                                    elevation: 2.0,
-                                                    borderColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .alternate,
-                                                    borderWidth: 2.0,
-                                                    borderRadius: 17.0,
                                                     margin:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(18.0, 0.0,
-                                                                14.01, 0.0),
-                                                    hidesUnderline: true,
-                                                    isSearchable: false,
-                                                    isMultiSelect: false,
+                                                            14.01, 0.0),
+                                                    decoration: BoxDecoration(
+                                                      color: const Color(
+                                                          0xFFE6E6E6),
+                                                      border: Border.all(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
+                                                          width: 2.0),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              17.0),
+                                                    ),
+                                                    child: FittedBox(
+                                                      child: DropdownButton(
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_arrow_down_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        underline:
+                                                            const SizedBox(),
+                                                        items: List.generate(
+                                                          labelList.length,
+                                                          (index) =>
+                                                              DropdownMenuItem(
+                                                            value: labelIdList[
+                                                                index],
+                                                            child: Text(
+                                                                labelList[
+                                                                    index]),
+                                                          ),
+                                                        ),
+                                                        hint: Text(
+                                                          themeName.isEmpty
+                                                              ? "Select Theme"
+                                                              : themeName,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: GoogleFonts
+                                                              .getFont(
+                                                            'Inter',
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            // fontSize: 14.0,
+                                                          ),
+                                                        ),
+                                                        onChanged: (value) {
+                                                          if (value != null) {
+                                                            setState(() {
+                                                              themeId = value;
+                                                              themeName = labelList[
+                                                                  labelIdList
+                                                                      .indexOf(
+                                                                          value)];
+                                                            });
+                                                          }
+                                                        },
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -595,14 +591,13 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 9.96, 16.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(16.0, 9.96, 16.0, 0.0),
                                           child: Container(
                                             width: 322.0,
                                             height: 45.0,
                                             decoration: BoxDecoration(
-                                              color: Color(0xFFE6F1F8),
+                                              color: const Color(0xFFE6F1F8),
                                               borderRadius:
                                                   BorderRadius.circular(60.0),
                                             ),
@@ -620,12 +615,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(16.0,
+                                                              0.0, 0.0, 0.0),
                                                       child: Text(
                                                         'Ranked',
                                                         style:
@@ -639,19 +631,16 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  5.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(5.0,
+                                                              0.0, 0.0, 0.0),
                                                       child: Container(
                                                         width: 75.0,
                                                         height: 20.0,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFF39B6FF),
+                                                          color: const Color(
+                                                              0xFF39B6FF),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
@@ -659,7 +648,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                         ),
                                                         child: Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.00, 0.00),
                                                           child: Text(
                                                             '${BaseUrlGroup.getUserStatsCall.myQuizPosition(
@@ -683,8 +672,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(65.0, 13.0,
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(65.0, 13.0,
                                                           19.0, 12.0),
                                                   child: Row(
                                                     mainAxisSize:
@@ -726,414 +716,175 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             ),
                                           ),
                                         ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 22.31, 0.0, 0.0),
-                                              child: Column(
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Row(
                                                 mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    2.69),
-                                                        child: Text(
-                                                          'Time on quiz',
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'SF Pro Display Bold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    100.5,
-                                                                    0.0),
-                                                        child: Text(
-                                                          BaseUrlGroup
-                                                              .getUserStatsCall
-                                                              .myQuizTime(
-                                                                stackGetUserStatsResponse
-                                                                    .jsonBody,
-                                                              )
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'SF Pro Display Bold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                  const Text(
+                                                    'Time on quiz',
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          'SF Pro Display Bold',
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
                                                   ),
-                                                  LinearPercentIndicator(
-                                                    percent: 0.5,
-                                                    lineHeight: 8.0,
-                                                    animation: true,
-                                                    animateFromLastPercent:
-                                                        true,
-                                                    progressColor:
-                                                        Color(0xFF725DFF),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .accent4,
-                                                    barRadius:
-                                                        Radius.circular(8.0),
-                                                    padding: EdgeInsets.zero,
+                                                  Text(
+                                                    BaseUrlGroup
+                                                        .getUserStatsCall
+                                                        .myQuizTime(
+                                                          stackGetUserStatsResponse
+                                                              .jsonBody,
+                                                        )
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                      fontFamily:
+                                                          'SF Pro Display Bold',
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 22.31, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    2.69),
-                                                        child: Text(
-                                                          'Score',
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'SF Pro Display Bold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    187.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          BaseUrlGroup
-                                                              .getUserStatsCall
-                                                              .myQuizScore(
-                                                                stackGetUserStatsResponse
-                                                                    .jsonBody,
-                                                              )
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'SF Pro Display Bold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  LinearPercentIndicator(
-                                                    percent: 1.0,
-                                                    width: 142.0,
-                                                    lineHeight: 8.0,
-                                                    animation: true,
-                                                    animateFromLastPercent:
-                                                        true,
-                                                    progressColor:
-                                                        Color(0xFFFFCB00),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .accent4,
-                                                    barRadius:
-                                                        Radius.circular(8.0),
-                                                    padding: EdgeInsets.zero,
-                                                  ),
-                                                ],
+                                              LinearPercentIndicator(
+                                                percent: 0.5,
+                                                lineHeight: 8.0,
+                                                animation: true,
+                                                animateFromLastPercent: true,
+                                                progressColor:
+                                                    const Color(0xFF725DFF),
+                                                backgroundColor: Colors.black12,
+                                                barRadius:
+                                                    const Radius.circular(8.0),
+                                                padding: EdgeInsets.zero,
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 22.31, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    2.69),
-                                                        child: Text(
-                                                          'Quiz done',
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'SF Pro Display Bold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    131.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          BaseUrlGroup
-                                                              .getUserStatsCall
-                                                              .myQuizDone(
-                                                                stackGetUserStatsResponse
-                                                                    .jsonBody,
-                                                              )
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                'SF Pro Display Bold',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  LinearPercentIndicator(
-                                                    percent: 1.0,
-                                                    width: 201.0,
-                                                    lineHeight: 8.0,
-                                                    animation: true,
-                                                    animateFromLastPercent:
-                                                        true,
-                                                    progressColor:
-                                                        Color(0xFF00D1FF),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .accent4,
-                                                    barRadius:
-                                                        Radius.circular(8.0),
-                                                    padding: EdgeInsets.zero,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 35.0),
-                                          child: Container(
-                                            width: 342.0,
-                                            height: 115.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          25.0, 32.0, 0.0, 0.0),
-                                                  child: Container(
-                                                    width: 115.0,
-                                                    height: 115.0,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                    ),
-                                                    child: Container(
-                                                      width: 382.0,
-                                                      height: 230.0,
-                                                      child:
-                                                          FlutterFlowPieChart(
-                                                        data: FFPieChartData(
-                                                          values: List.generate(
-                                                              random_data
-                                                                  .randomInteger(
-                                                                      0, 0),
-                                                              (index) =>
-                                                                  random_data
-                                                                      .randomName(
-                                                                          false,
-                                                                          true)),
-                                                          colors:
-                                                              chartPieChartColorsList2,
-                                                          radius: [55.0],
-                                                        ),
-                                                        donutHoleRadius: 0.0,
-                                                        donutHoleColor:
-                                                            Colors.transparent,
-                                                        sectionLabelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineSmall,
-                                                      ),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                    'Score',
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          'SF Pro Display Bold',
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          1.00, 0.00),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(55.0,
-                                                                55.0, 0.0, 0.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Container(
-                                                              width: 15.0,
-                                                              height: 15.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Color(
-                                                                    0xFF725DFF),
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5.74,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'Bad Answers',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  height: 18.0,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      30.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Container(
-                                                                width: 15.0,
-                                                                height: 15.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: Color(
-                                                                      0xFF39B6FF),
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5.74,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  'Questions Done',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    height:
-                                                                        18.0,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
+                                                  Text(
+                                                    BaseUrlGroup
+                                                        .getUserStatsCall
+                                                        .myQuizScore(
+                                                          stackGetUserStatsResponse
+                                                              .jsonBody,
+                                                        )
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                      fontFamily:
+                                                          'SF Pro Display Bold',
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
+                                                ],
+                                              ),
+                                              LinearPercentIndicator(
+                                                percent: BaseUrlGroup
+                                                        .getUserStatsCall
+                                                        .myQuizScore(
+                                                      stackGetUserStatsResponse
+                                                          .jsonBody,
+                                                    ) /
+                                                    100,
+                                                lineHeight: 8.0,
+                                                animation: true,
+                                                animateFromLastPercent: true,
+                                                progressColor:
+                                                    const Color(0xFFFFCB00),
+                                                backgroundColor: Colors.black12,
+                                                barRadius:
+                                                    const Radius.circular(8.0),
+                                                padding: EdgeInsets.zero,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                    'Quiz done',
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          'SF Pro Display Bold',
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    BaseUrlGroup
+                                                        .getUserStatsCall
+                                                        .myQuizDone(
+                                                          stackGetUserStatsResponse
+                                                              .jsonBody,
+                                                        )
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                      fontFamily:
+                                                          'SF Pro Display Bold',
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              LinearPercentIndicator(
+                                                percent: BaseUrlGroup
+                                                        .getUserStatsCall
+                                                        .myQuizDone(
+                                                      stackGetUserStatsResponse
+                                                          .jsonBody,
+                                                    ) /
+                                                    100,
+                                                lineHeight: 8.0,
+                                                animation: true,
+                                                animateFromLastPercent: true,
+                                                progressColor:
+                                                    const Color(0xFF00D1FF),
+                                                backgroundColor: Colors.black12,
+                                                barRadius:
+                                                    const Radius.circular(8.0),
+                                                padding: EdgeInsets.zero,
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
@@ -1143,19 +894,19 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                               ),
                             ),
                           ),
+
+                          //* Training Box
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Container(
                               width: 342.0,
-                              height: 220.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 borderRadius: BorderRadius.circular(12.0),
                                 border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: const Color(0xFFE6E6E6),
                                   width: 2.0,
                                 ),
                               ),
@@ -1182,12 +933,26 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                   }
                                   final columnGetThemesResponse =
                                       snapshot.data!;
+                                  final labelList =
+                                      (BaseUrlGroup.getThemesCall.labelList(
+                                    columnGetThemesResponse.jsonBody,
+                                  ) as List)
+                                          .map<String>((s) => s.toString())
+                                          .toList();
+                                  final labelIdList = List<String>.from(
+                                      (BaseUrlGroup.getThemesCall.idList(
+                                    columnGetThemesResponse.jsonBody,
+                                  ) as List)
+                                          .map<String>((s) => s.toString())
+                                          .toList()
+                                          .map((e) => e.toString())
+                                          .toList());
                                   return Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 9.04, 0.0, 0.0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0.0, 9.04, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -1195,7 +960,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Expanded(
+                                            const Expanded(
                                               flex: 2,
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
@@ -1215,94 +980,80 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                             Expanded(
                                               flex: 3,
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         0.0, 0.0, 16.0, 0.0),
-                                                child:
-                                                    FlutterFlowDropDown<String>(
-                                                  controller: _model
-                                                          .themeTDropDownValueController ??=
-                                                      FormFieldController<
-                                                          String>(
-                                                    _model.themeTDropDownValue ??=
-                                                        widget.theme,
-                                                  ),
-                                                  options: List<String>.from(
-                                                      (BaseUrlGroup
-                                                              .getThemesCall
-                                                              .idList(
-                                                    columnGetThemesResponse
-                                                        .jsonBody,
-                                                  ) as List)
-                                                          .map<String>((s) =>
-                                                              s.toString())
-                                                          .toList()!
-                                                          .map((e) =>
-                                                              e.toString())
-                                                          .toList()),
-                                                  optionLabels: (BaseUrlGroup
-                                                          .getThemesCall
-                                                          .labelList(
-                                                    columnGetThemesResponse
-                                                        .jsonBody,
-                                                  ) as List)
-                                                      .map<String>(
-                                                          (s) => s.toString())
-                                                      .toList()!,
-                                                  onChanged: (val) async {
-                                                    setState(() => _model
-                                                            .themeTDropDownValue =
-                                                        val);
-                                                    // context.goNamed(
-                                                    //   'statistics',
-                                                    //   queryParameters: {
-                                                    //     'period':
-                                                    //         serializeParam(
-                                                    //       _model
-                                                    //           .choiceChipsValue,
-                                                    //       ParamType.String,
-                                                    //     ),
-                                                    //     'theme': serializeParam(
-                                                    //       _model
-                                                    //           .themeTDropDownValue,
-                                                    //       ParamType.String,
-                                                    //     ),
-                                                    //   }.withoutNulls,
-                                                    // );
-                                                  },
+                                                child: Container(
                                                   width: 115.0,
                                                   height: 34.0,
-                                                  textStyle:
-                                                      GoogleFonts.getFont(
-                                                    'Inter',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 14.0,
-                                                  ),
-                                                  hintText: 'Select theme',
-                                                  icon: Icon(
-                                                    Icons.keyboard_arrow_down,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                  fillColor: Color(0xFFE6E6E6),
-                                                  elevation: 2.0,
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate,
-                                                  borderWidth: 2.0,
-                                                  borderRadius: 17.0,
-                                                  margin: EdgeInsetsDirectional
-                                                      .fromSTEB(18.0, 0.0,
+                                                  margin:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(18.0, 0.0,
                                                           14.01, 0.0),
-                                                  hidesUnderline: true,
-                                                  isSearchable: false,
-                                                  isMultiSelect: false,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        const Color(0xFFE6E6E6),
+                                                    border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            17.0),
+                                                  ),
+                                                  child: FittedBox(
+                                                    child: DropdownButton(
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      hint: Text(
+                                                        themeName.isEmpty
+                                                            ? "Select Theme"
+                                                            : themeName,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            GoogleFonts.getFont(
+                                                          'Inter',
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          // fontSize: 14.0,
+                                                        ),
+                                                      ),
+                                                      underline:
+                                                          const SizedBox(),
+                                                      items: List.generate(
+                                                        labelList.length,
+                                                        (index) =>
+                                                            DropdownMenuItem(
+                                                          value: labelIdList[
+                                                              index],
+                                                          child: Text(
+                                                              labelList[index]),
+                                                        ),
+                                                      ),
+                                                      onChanged: (value) {
+                                                        if (value != null) {
+                                                          setState(() {
+                                                            themeId = value;
+                                                            themeName = labelList[
+                                                                labelIdList
+                                                                    .indexOf(
+                                                                        value)];
+                                                          });
+                                                        }
+                                                      },
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1310,10 +1061,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 22.31, 0.0, 0.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
                                         child: Column(
-                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1321,61 +1072,47 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 2.69),
-                                                  child: Text(
-                                                    'Time on training',
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'SF Pro Display Bold',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                                const Text(
+                                                  'Time on training',
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 100.5, 0.0),
-                                                  child: Text(
-                                                    BaseUrlGroup
-                                                        .getUserStatsCall
-                                                        .myTrainingTime(
-                                                          stackGetUserStatsResponse
-                                                              .jsonBody,
-                                                        )
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'SF Pro Display Bold',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                                Text(
+                                                  BaseUrlGroup.getUserStatsCall
+                                                      .myTrainingTime(
+                                                        stackGetUserStatsResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             LinearPercentIndicator(
-                                              percent: 1.0,
-                                              width: 231.0,
+                                              percent: 0.5,
                                               lineHeight: 8.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFF725DFF),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent4,
-                                              barRadius: Radius.circular(8.0),
+                                              progressColor:
+                                                  const Color(0xFF725DFF),
+                                              backgroundColor: Colors.black12,
+                                              barRadius:
+                                                  const Radius.circular(8.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ],
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 22.31, 0.0, 0.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1385,61 +1122,53 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 2.69),
-                                                  child: Text(
-                                                    'Score',
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'SF Pro Display Bold',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                                const Text(
+                                                  'Score',
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 187.0, 0.0),
-                                                  child: Text(
-                                                    BaseUrlGroup
-                                                        .getUserStatsCall
-                                                        .myTrainingScore(
-                                                          stackGetUserStatsResponse
-                                                              .jsonBody,
-                                                        )
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'SF Pro Display Bold',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                                Text(
+                                                  BaseUrlGroup.getUserStatsCall
+                                                      .myTrainingScore(
+                                                        stackGetUserStatsResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             LinearPercentIndicator(
-                                              percent: 1.0,
-                                              width: 142.0,
+                                              percent: BaseUrlGroup
+                                                      .getUserStatsCall
+                                                      .myTrainingScore(
+                                                    stackGetUserStatsResponse
+                                                        .jsonBody,
+                                                  ) /
+                                                  100,
                                               lineHeight: 8.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFFFFCB00),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent4,
-                                              barRadius: Radius.circular(8.0),
+                                              progressColor:
+                                                  const Color(0xFFFFCB00),
+                                              backgroundColor: Colors.black12,
+                                              barRadius:
+                                                  const Radius.circular(8.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ],
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 22.31, 0.0, 0.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1449,53 +1178,45 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 2.69),
-                                                  child: Text(
-                                                    'Trainings done',
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'SF Pro Display Bold',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                                const Text(
+                                                  'Trainings done',
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 131.0, 0.0),
-                                                  child: Text(
-                                                    BaseUrlGroup
-                                                        .getUserStatsCall
-                                                        .myTrainingDone(
-                                                          stackGetUserStatsResponse
-                                                              .jsonBody,
-                                                        )
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'SF Pro Display Bold',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                                Text(
+                                                  BaseUrlGroup.getUserStatsCall
+                                                      .myTrainingDone(
+                                                        stackGetUserStatsResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             LinearPercentIndicator(
-                                              percent: 1.0,
-                                              width: 201.0,
+                                              percent: BaseUrlGroup
+                                                      .getUserStatsCall
+                                                      .myTrainingDone(
+                                                    stackGetUserStatsResponse
+                                                        .jsonBody,
+                                                  ) /
+                                                  100,
                                               lineHeight: 8.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFF00D1FF),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent4,
-                                              barRadius: Radius.circular(8.0),
+                                              progressColor:
+                                                  const Color(0xFF00D1FF),
+                                              backgroundColor: Colors.black12,
+                                              barRadius:
+                                                  const Radius.circular(8.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ],
@@ -1507,25 +1228,20 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                               ),
                             ),
                           ),
-                          Container(
-                            width: 342.0,
-                            height: 10.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                          ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
                   ),
+
+                  //* Top
                   Container(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.00, 0.00),
                           child: Text(
                             'Statistics',
                             style: FlutterFlowTheme.of(context)
@@ -1539,10 +1255,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                           ),
                         ),
                         Column(
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 18.73, 0.0, 0.0),
                               child: Container(
                                 width: 342.0,
@@ -1552,7 +1268,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(60.0),
                                   border: Border.all(
-                                    color: Color(0xFFE6E6E6),
+                                    color: const Color(0xFFE6E6E6),
                                     width: 2.0,
                                   ),
                                 ),
@@ -1562,10 +1278,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 0.0, 0.0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(8.0, 0.0, 0.0, 0.0),
                                         child: FlutterFlowChoiceChips(
-                                          options: [
+                                          options: const [
                                             ChipData('day'),
                                             ChipData('week'),
                                             ChipData('month')
@@ -1573,22 +1289,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           onChanged: (val) async {
                                             setState(() => _model
                                                 .choiceChipsValue = val?.first);
-                                            // context.goNamed(
-                                            //   'statistics',
-                                            //   queryParameters: {
-                                            //     'period': serializeParam(
-                                            //       _model.choiceChipsValue,
-                                            //       ParamType.String,
-                                            //     ),
-                                            //     'theme': serializeParam(
-                                            //       widget.theme,
-                                            //       ParamType.String,
-                                            //     ),
-                                            //   }.withoutNulls,
-                                            // );
                                           },
                                           selectedChipStyle: ChipStyle(
-                                            backgroundColor: Color(0xFF39B6FF),
+                                            backgroundColor:
+                                                const Color(0xFF39B6FF),
                                             textStyle: GoogleFonts.getFont(
                                               'Inter',
                                               color:
@@ -1601,7 +1305,8 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     .primaryText,
                                             iconSize: 0.0,
                                             labelPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional
+                                                    .fromSTEB(
                                                     31.0, 5.0, 31.0, 6.0),
                                             elevation: 0.0,
                                             borderRadius:
@@ -1620,7 +1325,8 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                     .secondaryText,
                                             iconSize: 18.0,
                                             labelPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional
+                                                    .fromSTEB(
                                                     28.0, 8.0, 28.0, 7.0),
                                             elevation: 0.0,
                                             borderRadius:
@@ -1646,9 +1352,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.00, -1.00),
+                              alignment:
+                                  const AlignmentDirectional(0.00, -1.00),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Container(
                                   width: 342.0,
@@ -1663,11 +1370,11 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                         width: 342.0,
                                         height: 100.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFF9F9F9),
+                                          color: const Color(0xFFF9F9F9),
                                           borderRadius:
                                               BorderRadius.circular(16.0),
                                           border: Border.all(
-                                            color: Color(0xFFE6E6E6),
+                                            color: const Color(0xFFE6E6E6),
                                             width: 2.0,
                                           ),
                                         ),
@@ -1682,8 +1389,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           16.0, 0.0, 0.0, 15.0),
                                                   child: Text(
                                                     'Points Accumulated',
@@ -1696,21 +1404,23 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           10.0, 0.0, 0.0, 14.0),
                                                   child: Container(
                                                     width: 51.0,
                                                     height: 20.0,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFF39B6FF),
+                                                      color: const Color(
+                                                          0xFF39B6FF),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               46.0),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.00, 0.00),
                                                       child: Text(
                                                         '${BaseUrlGroup.getUserStatsCall.myPointsProgress(
@@ -1732,9 +1442,10 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      52.0, 0.0, 16.0, 14.0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                      16.0, 0.0, 16.0, 14.0),
                                               child: Text(
                                                 '${BaseUrlGroup.getUserStatsCall.myPoints(
                                                       stackGetUserStatsResponse
@@ -1759,7 +1470,7 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                           border: Border.all(
-                                            color: Color(0xFFE6E6E6),
+                                            color: const Color(0xFFE6E6E6),
                                             width: 2.0,
                                           ),
                                         ),
@@ -1777,8 +1488,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           16.0, 0.0, 0.0, 0.0),
                                                   child: Text(
                                                     'Ranked',
@@ -1791,21 +1503,23 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Container(
                                                     width: 75.0,
                                                     height: 20.0,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFF39B6FF),
+                                                      color: const Color(
+                                                          0xFF39B6FF),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               46.0),
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.00, 0.00),
                                                       child: Text(
                                                         '+ 2 Position',
@@ -1824,8 +1538,9 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(
                                                       116.0, 15.0, 19.0, 14.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1873,28 +1588,6 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                           ],
                         ),
                       ],
-                    ),
-                  ),
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.safePop();
-                    },
-                    child: Container(
-                      width: 40.0,
-                      height: 40.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      alignment: AlignmentDirectional(0.00, 0.00),
-                      child: Icon(
-                        Icons.chevron_left_sharp,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
                     ),
                   ),
                 ],
