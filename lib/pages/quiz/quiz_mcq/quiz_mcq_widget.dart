@@ -1,6 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_audio_player.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,7 +12,9 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'quiz_mcq_model.dart';
 export 'quiz_mcq_model.dart';
@@ -30,13 +34,53 @@ class QuizMcqWidget extends StatefulWidget {
   final bool? isCompleted;
 
   @override
-  _QuizMcqWidgetState createState() => _QuizMcqWidgetState();
+  State<QuizMcqWidget> createState() => _QuizMcqWidgetState();
 }
 
-class _QuizMcqWidgetState extends State<QuizMcqWidget> {
+class _QuizMcqWidgetState extends State<QuizMcqWidget>
+    with TickerProviderStateMixin {
   late QuizMcqModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'listViewOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.bounceOut,
+          delay: 720.ms,
+          duration: 600.ms,
+          begin: const Offset(-200.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'iconButtonOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ScaleEffect(
+          curve: Curves.easeIn,
+          delay: 610.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 1.0),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'iconButtonOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ScaleEffect(
+          curve: Curves.bounceOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 1.0),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -53,21 +97,38 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
         FFAppState().startingTime = getCurrentTimestamp;
         FFAppState().isTimerEnd = false;
       });
+      setState(() {
+        _model.currQuiz = widget.questions?[widget.index!];
+      });
       if (widget.isCompleted!) {
+        _model.timerController.timer.setPresetTime(
+          mSec: functions.getCountdownTimer(getJsonField(
+            widget.questions![widget.index!],
+            r'''$.duration''',
+          ).toString().toString()),
+          add: false,
+        );
         _model.timerController.onResetTimer();
 
         _model.timerController.onStartTimer();
         return;
       } else {
         if (functions.isCurrQuestionCompleted(FFAppState().currQuestion)) {
-          if (getJsonField(
-                widget.questions?[functions.getIndex(widget.index!)],
-                r'''$.type''',
-              ) ==
-              getJsonField(
-                FFAppState().quiztype,
-                r'''$.mcq''',
-              )) {
+          setState(() {
+            FFAppState().NbOfQuestionsToAns =
+                FFAppState().NbOfQuestionsToAns + -1;
+          });
+          if (FFAppState().NbOfQuestionsToAns == 0) {
+            context.goNamed(
+              'quiz_result',
+              queryParameters: {
+                'quizId': serializeParam(
+                  widget.quizId,
+                  ParamType.String,
+                ),
+              }.withoutNulls,
+            );
+          } else {
             if (Navigator.of(context).canPop()) {
               context.pop();
             }
@@ -93,117 +154,17 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                 ),
               }.withoutNulls,
             );
-
-            return;
-          } else {
-            if (getJsonField(
-                  widget.questions?[functions.getIndex(widget.index!)],
-                  r'''$.type''',
-                ) ==
-                getJsonField(
-                  FFAppState().quiztype,
-                  r'''$.tf''',
-                )) {
-              context.pushNamed(
-                'quiz_truefalse',
-                queryParameters: {
-                  'questions': serializeParam(
-                    widget.questions,
-                    ParamType.JSON,
-                    true,
-                  ),
-                  'index': serializeParam(
-                    functions.getIndex(widget.index!),
-                    ParamType.int,
-                  ),
-                  'quizId': serializeParam(
-                    widget.quizId,
-                    ParamType.String,
-                  ),
-                  'isCompleted': serializeParam(
-                    widget.isCompleted,
-                    ParamType.bool,
-                  ),
-                }.withoutNulls,
-              );
-
-              return;
-            } else {
-              if (getJsonField(
-                    widget.questions?[functions.getIndex(widget.index!)],
-                    r'''$.type''',
-                  ) ==
-                  getJsonField(
-                    FFAppState().quiztype,
-                    r'''$.error''',
-                  )) {
-                if (Navigator.of(context).canPop()) {
-                  context.pop();
-                }
-                context.pushNamed(
-                  'quiz_finderror',
-                  queryParameters: {
-                    'questions': serializeParam(
-                      widget.questions,
-                      ParamType.JSON,
-                      true,
-                    ),
-                    'index': serializeParam(
-                      functions.getIndex(widget.index!),
-                      ParamType.int,
-                    ),
-                    'quizId': serializeParam(
-                      widget.quizId,
-                      ParamType.String,
-                    ),
-                    'isCompleted': serializeParam(
-                      widget.isCompleted,
-                      ParamType.bool,
-                    ),
-                  }.withoutNulls,
-                );
-
-                return;
-              } else {
-                if (getJsonField(
-                      widget.questions?[functions.getIndex(widget.index!)],
-                      r'''$.type''',
-                    ) ==
-                    getJsonField(
-                      FFAppState().quiztype,
-                      r'''$.image''',
-                    )) {
-                  context.pushNamed(
-                    'quiz_image_answer',
-                    queryParameters: {
-                      'questions': serializeParam(
-                        widget.questions,
-                        ParamType.JSON,
-                        true,
-                      ),
-                      'index': serializeParam(
-                        functions.getIndex(widget.index!),
-                        ParamType.int,
-                      ),
-                      'quizId': serializeParam(
-                        widget.quizId,
-                        ParamType.String,
-                      ),
-                      'isCompleted': serializeParam(
-                        widget.isCompleted,
-                        ParamType.bool,
-                      ),
-                    }.withoutNulls,
-                  );
-
-                  return;
-                } else {
-                  return;
-                }
-              }
-            }
           }
+
+          return;
         } else {
+          _model.timerController.timer.setPresetTime(
+            mSec: functions.getCountdownTimer(getJsonField(
+              widget.questions![widget.index!],
+              r'''$.duration''',
+            ).toString().toString()),
+            add: false,
+          );
           _model.timerController.onResetTimer();
 
           _model.timerController.onStartTimer();
@@ -224,15 +185,6 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -244,827 +196,688 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Align(
-                  alignment: const AlignmentDirectional(-1.0, -1.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.82, 0.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed('quiz_list');
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            _model.timerController.onResetTimer();
 
-                        _model.timerController.onResetTimer();
-                      },
-                      child: Container(
-                        width: 135.0,
-                        height: 50.0,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFDBEEF6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              11.0, 15.0, 0.0, 15.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(0.0),
-                                child: Image.asset(
-                                  'assets/images/Groupe_134.png',
-                                  width: 19.0,
-                                  height: 20.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 16.0, 0.0),
-                                child: Text(
-                                  'Save and exit',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'SF Pro Display Bold',
-                                        color: const Color(0xFF39B6FF),
-                                        fontWeight: FontWeight.w500,
-                                        useGoogleFonts: false,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                if (functions.isMediaExist(getJsonField(
-                  FFAppState().currQuestion,
-                  r'''$.media''',
-                  true,
-                )!))
-                  Builder(
-                    builder: (context) {
-                      final media = getJsonField(
-                        FFAppState().currQuestion,
-                        r'''$.media''',
-                      ).toList();
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: media.length,
-                        itemBuilder: (context, mediaIndex) {
-                          final mediaItem = media[mediaIndex];
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              if (getJsonField(
-                                    mediaItem,
-                                    r'''$.type''',
-                                  ) ==
-                                  getJsonField(
-                                    FFAppState().mediaType,
-                                    r'''$.image''',
-                                  ))
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 16.0, 20.0, 0.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    child: Image.network(
-                                      '${FFAppState().IMAGEURL}${getJsonField(
-                                        mediaItem,
-                                        r'''$.url''',
-                                      ).toString()}',
-                                      width: 350.0,
-                                      height: 195.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              if (getJsonField(
-                                    mediaItem,
-                                    r'''$.type''',
-                                  ) ==
-                                  getJsonField(
-                                    FFAppState().mediaType,
-                                    r'''$.audio''',
-                                  ))
-                                Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: FlutterFlowAudioPlayer(
-                                    audio: Audio.network(
-                                      getJsonField(
-                                        mediaItem,
-                                        r'''$.url''',
-                                      ).toString(),
-                                      metas: Metas(
-                                        id: 'sample3.mp3-507c84b9',
-                                        title: getJsonField(
-                                          mediaItem,
-                                          r'''$.file_name''',
-                                        ).toString(),
-                                      ),
-                                    ),
-                                    titleTextStyle:
-                                        FlutterFlowTheme.of(context).titleLarge,
-                                    playbackDurationTextStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    playbackButtonColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    activeTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    elevation: 4.0,
-                                    playInBackground: PlayInBackground
-                                        .disabledRestoreOnForeground,
-                                  ),
-                                ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                  ),
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 23.0, 20.0, 0.0),
-                  child: Container(
-                    width: 350.0,
-                    height: 105.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF00D1FF),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 7.0, 0.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 6.0, 0.0),
-                                child: Icon(
-                                  Icons.format_list_numbered,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 15.0,
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(-1.0, -1.0),
-                                child: Text(
-                                  'Multiple Choice Question',
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, -1.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 9.0, 0.0, 0.0),
-                              child: AutoSizeText(
-                                getJsonField(
-                                  FFAppState().currQuestion,
-                                  r'''$.label''',
-                                ).toString(),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'SF Pro Display Bold',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w500,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 9.0, 20.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          if (Navigator.of(context).canPop()) {
-                            context.pop();
-                          }
-                          context.pushNamed('quiz_list');
-                        },
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
-                        ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                122.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Questions',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'SF Pro Display Bold',
-                                    fontWeight: FontWeight.bold,
-                                    useGoogleFonts: false,
-                                  ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                6.0, 0.0, 0.0, 0.0),
-                            child: Container(
-                              width: 39.0,
-                              height: 21.0,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF39B6FF),
-                                borderRadius: BorderRadius.circular(19.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  functions.getIndex(widget.index!).toString(),
-                                  style: const TextStyle(
-                                    fontFamily: 'SF Pro Display Bold',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              '/${widget.questions?.length.toString()}',
-                              style: const TextStyle(
-                                fontFamily: 'SF Pro Display Bold',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14.0,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 4.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFDCDCDC),
-                        ),
-                      ),
-                      Container(
-                        width: 106.0,
-                        height: 4.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF00D1FF),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Number of correct answers:${getJsonField(
-                          FFAppState().currQuestion,
-                          r'''$.number_correct_answer''',
-                        ).toString()}',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
-                      ),
-                      Flexible(
-                        child: Align(
-                          alignment: const AlignmentDirectional(1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 6.0, 0.0),
-                            child: Icon(
-                              Icons.timer_sharp,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 20.0,
-                            ),
-                          ),
-                        ),
-                      ),
-                      FlutterFlowTimer(
-                        initialTime: functions.getCountdownTimer(getJsonField(
-                          FFAppState().currQuestion,
-                          r'''$.duration''',
-                        ).toString()),
-                        getDisplayTime: (value) =>
-                            StopWatchTimer.getDisplayTime(
-                          value,
-                          hours: false,
-                          milliSecond: false,
-                        ),
-                        controller: _model.timerController,
-                        onChanged: (value, displayTime, shouldUpdate) {
-                          _model.timerMilliseconds = value;
-                          _model.timerValue = displayTime;
-                          if (shouldUpdate) setState(() {});
-                        },
-                        onEnded: () async {
-                          if (FFAppState().isExplain) {
-                            if (widget.questions?.length ==
-                                functions.getIndex(widget.index!)) {
-                              context.pushNamed(
-                                'quiz_result',
-                                queryParameters: {
-                                  'quizId': serializeParam(
-                                    '',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                              );
+                            if (FFAppState().trainingAfterQuiz == null) {
+                              FFAppState()
+                                  .clearGetQuizListCacheKey(currentUserUid);
+
+                              context.goNamed('quiz_list');
                             } else {
                               if (getJsonField(
-                                    widget.questions?[
-                                        functions.getIndex(widget.index!)],
-                                    r'''$.type''',
+                                    FFAppState().trainingAfterQuiz,
+                                    r'''$.status_by_user''',
                                   ) ==
                                   getJsonField(
-                                    FFAppState().quiztype,
-                                    r'''$.mcq''',
+                                    FFAppState().quizStatus,
+                                    r'''$.completed''',
                                   )) {
                                 context.goNamed(
-                                  'quiz_mcq',
+                                  'training_completed2',
                                   queryParameters: {
-                                    'questions': serializeParam(
-                                      widget.questions,
-                                      ParamType.JSON,
-                                      true,
-                                    ),
-                                    'index': serializeParam(
-                                      functions.getIndex(widget.index!),
-                                      ParamType.int,
-                                    ),
-                                    'quizId': serializeParam(
-                                      widget.quizId,
+                                    'trainingId': serializeParam(
+                                      FFAppState().trainingAfterQuiz.toString(),
                                       ParamType.String,
-                                    ),
-                                    'isCompleted': serializeParam(
-                                      widget.isCompleted,
-                                      ParamType.bool,
                                     ),
                                   }.withoutNulls,
                                 );
-
-                                return;
                               } else {
-                                if (getJsonField(
-                                      widget.questions?[
-                                          functions.getIndex(widget.index!)],
-                                      r'''$.type''',
-                                    ) ==
-                                    getJsonField(
-                                      FFAppState().quiztype,
-                                      r'''$.tf''',
-                                    )) {
-                                  context.goNamed(
-                                    'quiz_truefalse',
-                                    queryParameters: {
-                                      'questions': serializeParam(
-                                        widget.questions,
-                                        ParamType.JSON,
-                                        true,
-                                      ),
-                                      'index': serializeParam(
-                                        functions.getIndex(widget.index!),
-                                        ParamType.int,
-                                      ),
-                                      'quizId': serializeParam(
-                                        widget.quizId,
-                                        ParamType.String,
-                                      ),
-                                      'isCompleted': serializeParam(
-                                        widget.isCompleted,
-                                        ParamType.bool,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-
-                                  return;
-                                } else {
-                                  if (getJsonField(
-                                        widget.questions?[
-                                            functions.getIndex(widget.index!)],
-                                        r'''$.type''',
-                                      ) ==
-                                      getJsonField(
-                                        FFAppState().quiztype,
-                                        r'''$.error''',
-                                      )) {
-                                    context.goNamed(
-                                      'quiz_finderror',
-                                      queryParameters: {
-                                        'questions': serializeParam(
-                                          widget.questions,
-                                          ParamType.JSON,
-                                          true,
-                                        ),
-                                        'index': serializeParam(
-                                          functions.getIndex(widget.index!),
-                                          ParamType.int,
-                                        ),
-                                        'quizId': serializeParam(
-                                          widget.quizId,
-                                          ParamType.String,
-                                        ),
-                                        'isCompleted': serializeParam(
-                                          widget.isCompleted,
-                                          ParamType.bool,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-
-                                    return;
-                                  } else {
-                                    if (getJsonField(
-                                          widget.questions?[functions
-                                              .getIndex(widget.index!)],
-                                          r'''$.type''',
-                                        ) ==
-                                        getJsonField(
-                                          FFAppState().quiztype,
-                                          r'''$.image''',
-                                        )) {
-                                      context.goNamed(
-                                        'quiz_image_answer',
-                                        queryParameters: {
-                                          'questions': serializeParam(
-                                            widget.questions,
-                                            ParamType.JSON,
-                                            true,
-                                          ),
-                                          'index': serializeParam(
-                                            functions.getIndex(widget.index!),
-                                            ParamType.int,
-                                          ),
-                                          'quizId': serializeParam(
-                                            widget.quizId,
-                                            ParamType.String,
-                                          ),
-                                          'isCompleted': serializeParam(
-                                            widget.isCompleted,
-                                            ParamType.bool,
-                                          ),
-                                        }.withoutNulls,
-                                      );
-
-                                      return;
-                                    } else {
-                                      return;
-                                    }
-                                  }
-                                }
+                                context.pushNamed(
+                                  'training_chapters',
+                                  queryParameters: {
+                                    'training': serializeParam(
+                                      FFAppState().trainingAfterQuiz,
+                                      ParamType.JSON,
+                                    ),
+                                  }.withoutNulls,
+                                );
                               }
                             }
-                          } else {
-                            if (functions.isAnswersValidate(
-                                getJsonField(
-                                  FFAppState().currQuestion,
-                                  r'''$.number_correct_answer''',
+                          },
+                          text: 'Save and exit',
+                          icon: const Icon(
+                            FFIcons.kback01,
+                            size: 15.0,
+                          ),
+                          options: FFButtonOptions(
+                            height: 50.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context)
+                                .quizSelectedBackground,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'SF Pro Display',
+                                  color: FlutterFlowTheme.of(context).quizColor,
+                                  useGoogleFonts: false,
                                 ),
-                                FFAppState().selectedAns.length)) {
-                              if (functions.isAnswerCorrect(
+                            elevation: 1.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        if (functions.isMediaExist(getJsonField(
+                          FFAppState().currQuestion,
+                          r'''$.media''',
+                          true,
+                        )!))
+                          Builder(
+                            builder: (context) {
+                              final media = getJsonField(
+                                FFAppState().currQuestion,
+                                r'''$.media''',
+                              ).toList();
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                primary: false,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: media.length,
+                                itemBuilder: (context, mediaIndex) {
+                                  final mediaItem = media[mediaIndex];
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (getJsonField(
+                                            mediaItem,
+                                            r'''$.type''',
+                                          ) ==
+                                          getJsonField(
+                                            FFAppState().mediaType,
+                                            r'''$.image''',
+                                          ))
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(14.0),
+                                          child: Image.network(
+                                            '${FFAppState().IMAGEURL}${getJsonField(
+                                              mediaItem,
+                                              r'''$.url''',
+                                            ).toString()}',
+                                            width: double.infinity,
+                                            height: 195.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      if (getJsonField(
+                                            mediaItem,
+                                            r'''$.type''',
+                                          ) ==
+                                          getJsonField(
+                                            FFAppState().mediaType,
+                                            r'''$.audio''',
+                                          ))
+                                        FlutterFlowAudioPlayer(
+                                          audio: Audio.network(
+                                            getJsonField(
+                                              mediaItem,
+                                              r'''$.url''',
+                                            ).toString(),
+                                            metas: Metas(
+                                              id: 'sample3.mp3-507c84b9',
+                                              title: getJsonField(
+                                                mediaItem,
+                                                r'''$.file_name''',
+                                              ).toString(),
+                                            ),
+                                          ),
+                                          titleTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge,
+                                          playbackDurationTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          playbackButtonColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          activeTrackColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          elevation: 4.0,
+                                          playInBackground: PlayInBackground
+                                              .disabledRestoreOnForeground,
+                                        ),
+                                    ].divide(const SizedBox(height: 10.0)),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF00D1FF),
+                            borderRadius: BorderRadius.circular(14.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 15.0, 10.0, 15.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 6.0, 0.0),
+                                      child: Icon(
+                                        Icons.format_list_numbered,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 15.0,
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, -1.0),
+                                      child: Text(
+                                        'Multiple Choice Question',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
                                   getJsonField(
                                     FFAppState().currQuestion,
-                                    r'''$.answers''',
-                                    true,
-                                  )!,
-                                  FFAppState().selectedAns.toList())) {
-                                await BaseUrlGroup.storeAnsweredQuestionCall
-                                    .call(
-                                  duration: functions.getDuration(
-                                      FFAppState().startingTime!,
-                                      getCurrentTimestamp),
-                                  isCorrect: 1,
-                                  questionId: getJsonField(
-                                    FFAppState().currQuestion,
-                                    r'''$.id''',
+                                    r'''$.label''',
                                   ).toString(),
-                                  quizId: widget.quizId,
-                                  userId: currentUserUid,
-                                );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Hurrah! Your answer is correct.',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'SF Pro Display',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: false,
+                                      ),
+                                ),
+                              ].divide(const SizedBox(height: 10.0)),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            if (false)
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  if (Navigator.of(context).canPop()) {
+                                    context.pop();
+                                  }
+                                  context.pushNamed('quiz_list_old');
+                                },
+                                child: Icon(
+                                  Icons.arrow_back_ios,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Questions',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'SF Pro Display',
+                                        fontWeight: FontWeight.bold,
+                                        useGoogleFonts: false,
+                                      ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF39B6FF),
+                                    borderRadius: BorderRadius.circular(19.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        14.0, 2.0, 14.0, 2.0),
+                                    child: Text(
+                                      functions
+                                          .getIndex(widget.index!)
+                                          .toString(),
                                       style: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleMedium
                                           .override(
                                             fontFamily: 'SF Pro Display Bold',
-                                            color: const Color(0xFFE0E2E4),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
                                             useGoogleFonts: false,
                                           ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
                                   ),
-                                );
-                                setState(() {
-                                  FFAppState().correctAns =
-                                      FFAppState().correctAns + 1;
-                                });
-                              } else {
-                                await BaseUrlGroup.storeAnsweredQuestionCall
-                                    .call(
-                                  duration: functions.getDuration(
-                                      FFAppState().startingTime!,
-                                      getCurrentTimestamp),
-                                  isCorrect: 0,
-                                  questionId: getJsonField(
-                                    FFAppState().currQuestion,
-                                    r'''$.id''',
-                                  ).toString(),
-                                  quizId: widget.quizId,
-                                  userId: currentUserUid,
-                                );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text(
-                                      'Oops! Betterr luck next time',
-                                      style: TextStyle(
-                                        color: Color(0xFFDAE4ED),
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
-                              }
-
-                              setState(() {
-                                FFAppState().isExplain = true;
-                                FFAppState().isTimerEnd = true;
-                              });
-                              return;
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'You didn\'t choose correct answer in time.',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).error,
                                 ),
-                              );
-                              setState(() {
-                                FFAppState().isExplain = true;
-                                FFAppState().isTimerEnd = true;
-                              });
-                              return;
-                            }
-                          }
-                        },
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).bodyLarge,
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Builder(
-                    builder: (context) {
-                      final answer = getJsonField(
-                        FFAppState().currQuestion,
-                        r'''$.answers''',
-                      ).toList();
-                      return ListView.separated(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: answer.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 10.0),
-                        itemBuilder: (context, answerIndex) {
-                          final answerItem = answer[answerIndex];
-                          return Container(
-                            width: 352.0,
-                            decoration: BoxDecoration(
-                              color: () {
-                                if (functions.isSelectedIdexCorrect(
-                                        getJsonField(
-                                          FFAppState().currQuestion,
-                                          r'''$.answers''',
-                                          true,
-                                        )!,
-                                        answerIndex) &&
-                                    FFAppState().isExplain &&
-                                    !FFAppState().isTimerEnd &&
-                                    functions.isAnswerCorrect(
-                                        getJsonField(
-                                          FFAppState().currQuestion,
-                                          r'''$.answers''',
-                                          true,
-                                        )!,
-                                        FFAppState().selectedAns.toList())) {
-                                  return FlutterFlowTheme.of(context)
-                                      .quizSuccessBackground;
-                                } else if (FFAppState().isExplain &&
-                                    !functions.isSelectedIdexCorrect(
-                                        getJsonField(
-                                          FFAppState().currQuestion,
-                                          r'''$.answers''',
-                                          true,
-                                        )!,
-                                        answerIndex) &&
-                                    !functions.isAnswerCorrect(
-                                        getJsonField(
-                                          FFAppState().currQuestion,
-                                          r'''$.answers''',
-                                          true,
-                                        )!,
-                                        FFAppState().selectedAns.toList()) &&
-                                    !FFAppState().isTimerEnd &&
-                                    functions.isValuePresent(
-                                        FFAppState().selectedAns.toList(),
-                                        answerIndex)) {
-                                  return FlutterFlowTheme.of(context)
-                                      .quizFailedBackground;
-                                } else if (!FFAppState().isExplain &&
-                                    functions.isValuePresent(
-                                        FFAppState().selectedAns.toList(),
-                                        answerIndex) &&
-                                    !FFAppState().isTimerEnd) {
-                                  return FlutterFlowTheme.of(context)
-                                      .quizSelectedBackground;
-                                } else {
-                                  return const Color(0xFFDAE4ED);
-                                }
-                              }(),
-                              borderRadius: BorderRadius.circular(16.0),
-                              border: Border.all(
-                                color: () {
-                                  if (functions.isSelectedIdexCorrect(
-                                          getJsonField(
-                                            FFAppState().currQuestion,
-                                            r'''$.answers''',
-                                            true,
-                                          )!,
-                                          answerIndex) &&
-                                      FFAppState().isExplain &&
-                                      !FFAppState().isTimerEnd &&
-                                      functions.isAnswerCorrect(
-                                          getJsonField(
-                                            FFAppState().currQuestion,
-                                            r'''$.answers''',
-                                            true,
-                                          )!,
-                                          FFAppState().selectedAns.toList())) {
-                                    return FlutterFlowTheme.of(context)
-                                        .quizSuccessBorder;
-                                  } else if (FFAppState().isExplain &&
-                                      !functions.isSelectedIdexCorrect(
-                                          getJsonField(
-                                            FFAppState().currQuestion,
-                                            r'''$.answers''',
-                                            true,
-                                          )!,
-                                          answerIndex) &&
-                                      !functions.isAnswerCorrect(
-                                          getJsonField(
-                                            FFAppState().currQuestion,
-                                            r'''$.answers''',
-                                            true,
-                                          )!,
-                                          FFAppState().selectedAns.toList()) &&
-                                      !FFAppState().isTimerEnd &&
-                                      functions.isValuePresent(
-                                          FFAppState().selectedAns.toList(),
-                                          answerIndex)) {
-                                    return FlutterFlowTheme.of(context)
-                                        .quizFailedBorder;
-                                  } else if (!FFAppState().isExplain &&
-                                      functions.isValuePresent(
-                                          FFAppState().selectedAns.toList(),
-                                          answerIndex) &&
-                                      !FFAppState().isTimerEnd) {
-                                    return FlutterFlowTheme.of(context)
-                                        .quizSelectedBorder;
-                                  } else {
-                                    return FlutterFlowTheme.of(context)
-                                        .quizDefaultBorder;
-                                  }
-                                }(),
-                                width: 3.0,
+                                Text(
+                                  '/${widget.questions?.length.toString()}',
+                                  style: const TextStyle(
+                                    fontFamily: 'SF Pro Display Bold',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              ].divide(const SizedBox(width: 5.0)),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(),
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: LinearPercentIndicator(
+                              percent: 1.0,
+                              lineHeight: 4.0,
+                              animation: true,
+                              animateFromLastPercent: true,
+                              progressColor:
+                                  FlutterFlowTheme.of(context).quizColor,
+                              backgroundColor: const Color(0xFFF5F5F5),
+                              barRadius: const Radius.circular(20.0),
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Number of correct answers :${getJsonField(
+                                FFAppState().currQuestion,
+                                r'''$.number_correct_answer''',
+                              ).toString()}',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 12.0,
                               ),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
+                            Flexible(
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (FFAppState().isExplain) {
-                                    return;
-                                  }
-
-                                  if (functions.isValuePresent(
-                                      FFAppState().selectedAns.toList(),
-                                      answerIndex)) {
-                                    setState(() {
-                                      FFAppState()
-                                          .removeFromSelectedAns(answerIndex);
-                                    });
-                                    return;
-                                  } else {
-                                    setState(() {
-                                      FFAppState()
-                                          .addToSelectedAns(answerIndex);
-                                    });
-                                    return;
-                                  }
+                                  _model.timerController.onStartTimer();
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Container(
-                                      width: 300.0,
-                                      decoration: const BoxDecoration(),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: AutoSizeText(
-                                          getJsonField(
-                                            answerItem,
-                                            r'''$.content''',
-                                          ).toString(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    'SF Pro Display Bold',
-                                                fontSize: 18.0,
-                                                fontWeight: FontWeight.w500,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
+                                    Icon(
+                                      Icons.timer_sharp,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 20.0,
                                     ),
-                                    Flexible(
-                                      child: Stack(
-                                        children: [
-                                          if (FFAppState().isExplain &&
+                                    FlutterFlowTimer(
+                                      initialTime: functions
+                                          .getCountdownTimer(getJsonField(
+                                        _model.currQuiz,
+                                        r'''$.duration''',
+                                      ).toString()),
+                                      getDisplayTime: (value) =>
+                                          StopWatchTimer.getDisplayTime(
+                                        value,
+                                        hours: false,
+                                        milliSecond: false,
+                                      ),
+                                      controller: _model.timerController,
+                                      onChanged:
+                                          (value, displayTime, shouldUpdate) {
+                                        _model.timerMilliseconds = value;
+                                        _model.timerValue = displayTime;
+                                        if (shouldUpdate) setState(() {});
+                                      },
+                                      onEnded: () async {
+                                        if (FFAppState().isExplain) {
+                                          FFAppState().NbOfQuestionsToAns =
+                                              FFAppState().NbOfQuestionsToAns +
+                                                  -1;
+                                          if (FFAppState().NbOfQuestionsToAns ==
+                                              0) {
+                                            context.pushNamed(
+                                              'quiz_result',
+                                              queryParameters: {
+                                                'quizId': serializeParam(
+                                                  widget.quizId,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+
+                                            return;
+                                          } else {
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamed(
+                                              'quiz_mcq',
+                                              queryParameters: {
+                                                'questions': serializeParam(
+                                                  widget.questions,
+                                                  ParamType.JSON,
+                                                  true,
+                                                ),
+                                                'index': serializeParam(
+                                                  functions
+                                                      .getIndex(widget.index!),
+                                                  ParamType.int,
+                                                ),
+                                                'quizId': serializeParam(
+                                                  widget.quizId,
+                                                  ParamType.String,
+                                                ),
+                                                'isCompleted': serializeParam(
+                                                  widget.isCompleted,
+                                                  ParamType.bool,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          }
+                                        } else {
+                                          if (functions.isAnswersValidate(
+                                              getJsonField(
+                                                FFAppState().currQuestion,
+                                                r'''$.number_correct_answer''',
+                                              ),
+                                              FFAppState()
+                                                  .selectedAns
+                                                  .length)) {
+                                            if (functions.isAnswerCorrect(
+                                                getJsonField(
+                                                  FFAppState().currQuestion,
+                                                  r'''$.answers''',
+                                                  true,
+                                                )!,
+                                                FFAppState()
+                                                    .selectedAns
+                                                    .toList())) {
+                                              await BaseUrlGroup
+                                                  .storeAnsweredQuestionCall
+                                                  .call(
+                                                duration: functions.getDuration(
+                                                    FFAppState().startingTime!,
+                                                    getCurrentTimestamp),
+                                                isCorrect: 1,
+                                                questionId: getJsonField(
+                                                  FFAppState().currQuestion,
+                                                  r'''$.id''',
+                                                ).toString(),
+                                                quizId: widget.quizId,
+                                                userId: currentUserUid,
+                                              );
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Hurrah! Your answer is correct.',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'SF Pro Display',
+                                                          color:
+                                                              const Color(0xFFE0E2E4),
+                                                          useGoogleFonts: false,
+                                                        ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
+                                                ),
+                                              );
+                                              setState(() {
+                                                FFAppState().correctAns =
+                                                    FFAppState().correctAns + 1;
+                                              });
+                                            } else {
+                                              await BaseUrlGroup
+                                                  .storeAnsweredQuestionCall
+                                                  .call(
+                                                duration: functions.getDuration(
+                                                    FFAppState().startingTime!,
+                                                    getCurrentTimestamp),
+                                                isCorrect: 0,
+                                                questionId: getJsonField(
+                                                  FFAppState().currQuestion,
+                                                  r'''$.id''',
+                                                ).toString(),
+                                                quizId: widget.quizId,
+                                                userId: currentUserUid,
+                                              );
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: const Text(
+                                                    'Oops! Better luck next time',
+                                                    style: TextStyle(
+                                                      color: Color(0xFFDAE4ED),
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .error,
+                                                ),
+                                              );
+                                            }
+
+                                            setState(() {
+                                              FFAppState().isExplain = true;
+                                              FFAppState().isTimerEnd = true;
+                                            });
+                                            return;
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'You didn\'t choose correct answer in time.',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                              ),
+                                            );
+                                            await BaseUrlGroup
+                                                .storeAnsweredQuestionCall
+                                                .call(
+                                              duration: functions.getDuration(
+                                                  FFAppState().startingTime!,
+                                                  getCurrentTimestamp),
+                                              isCorrect: 0,
+                                              questionId: getJsonField(
+                                                FFAppState().currQuestion,
+                                                r'''$.id''',
+                                              ).toString(),
+                                              quizId: widget.quizId,
+                                              userId: currentUserUid,
+                                            );
+                                            setState(() {
+                                              FFAppState().isExplain = true;
+                                              FFAppState().isTimerEnd = true;
+                                            });
+                                            return;
+                                          }
+                                        }
+                                      },
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily: 'SF Pro Display Bold',
+                                            fontSize: 14.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ].divide(const SizedBox(width: 5.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Builder(
+                          builder: (context) {
+                            final answer = getJsonField(
+                              FFAppState().currQuestion,
+                              r'''$.answers''',
+                            ).toList();
+                            return ListView.separated(
+                              padding: EdgeInsets.zero,
+                              primary: false,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: answer.length,
+                              separatorBuilder: (_, __) =>
+                                  const SizedBox(height: 13.0),
+                              itemBuilder: (context, answerIndex) {
+                                final answerItem = answer[answerIndex];
+                                return Container(
+                                  width: 352.0,
+                                  decoration: BoxDecoration(
+                                    color: valueOrDefault<Color>(
+                                      () {
+                                        if (functions.isSelectedIdexCorrect(
+                                                getJsonField(
+                                                  FFAppState().currQuestion,
+                                                  r'''$.answers''',
+                                                  true,
+                                                )!,
+                                                answerIndex) &&
+                                            FFAppState().isExplain &&
+                                            !FFAppState().isTimerEnd &&
+                                            functions.isAnswerCorrect(
+                                                getJsonField(
+                                                  FFAppState().currQuestion,
+                                                  r'''$.answers''',
+                                                  true,
+                                                )!,
+                                                FFAppState()
+                                                    .selectedAns
+                                                    .toList())) {
+                                          return FlutterFlowTheme.of(context)
+                                              .quizSuccessBackground;
+                                        } else if (FFAppState().isExplain &&
+                                            !functions.isSelectedIdexCorrect(
+                                                getJsonField(
+                                                  FFAppState().currQuestion,
+                                                  r'''$.answers''',
+                                                  true,
+                                                )!,
+                                                answerIndex) &&
+                                            !functions.isAnswerCorrect(
+                                                getJsonField(
+                                                  FFAppState().currQuestion,
+                                                  r'''$.answers''',
+                                                  true,
+                                                )!,
+                                                FFAppState()
+                                                    .selectedAns
+                                                    .toList()) &&
+                                            !FFAppState().isTimerEnd &&
+                                            functions.isValuePresent(
+                                                FFAppState()
+                                                    .selectedAns
+                                                    .toList(),
+                                                answerIndex)) {
+                                          return FlutterFlowTheme.of(context)
+                                              .quizFailedBackground;
+                                        } else if (!FFAppState().isExplain &&
+                                            functions.isValuePresent(
+                                                FFAppState()
+                                                    .selectedAns
+                                                    .toList(),
+                                                answerIndex) &&
+                                            !FFAppState().isTimerEnd) {
+                                          return FlutterFlowTheme.of(context)
+                                              .quizSelectedBackground;
+                                        } else {
+                                          return FlutterFlowTheme.of(context)
+                                              .primaryBackground;
+                                        }
+                                      }(),
+                                      FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    border: Border.all(
+                                      color: valueOrDefault<Color>(
+                                        () {
+                                          if (functions.isSelectedIdexCorrect(
+                                                  getJsonField(
+                                                    FFAppState().currQuestion,
+                                                    r'''$.answers''',
+                                                    true,
+                                                  )!,
+                                                  answerIndex) &&
+                                              FFAppState().isExplain &&
+                                              !FFAppState().isTimerEnd &&
+                                              functions.isAnswerCorrect(
+                                                  getJsonField(
+                                                    FFAppState().currQuestion,
+                                                    r'''$.answers''',
+                                                    true,
+                                                  )!,
+                                                  FFAppState()
+                                                      .selectedAns
+                                                      .toList())) {
+                                            return FlutterFlowTheme.of(context)
+                                                .quizSuccessBorder;
+                                          } else if (FFAppState().isExplain &&
                                               !functions.isSelectedIdexCorrect(
                                                   getJsonField(
                                                     FFAppState().currQuestion,
@@ -1086,197 +899,272 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                                   FFAppState()
                                                       .selectedAns
                                                       .toList(),
-                                                  answerIndex))
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  1.0, 0.0),
-                                              child: FFButtonWidget(
-                                                onPressed: () {
-                                                  print('Button pressed ...');
-                                                },
-                                                text: '',
-                                                icon: const Icon(
-                                                  Icons.close_rounded,
-                                                  color: Color(0xFFFF3636),
-                                                  size: 26.0,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  width: 35.0,
-                                                  height: 35.0,
-                                                  padding: const EdgeInsets.all(0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(5.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: const Color(0xFFF9A1A1),
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.white,
-                                                          ),
-                                                  elevation: 3.0,
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100.0),
-                                                ),
-                                              ),
-                                            ),
-                                          if (FFAppState().isExplain &&
-                                              functions.isSelectedIdexCorrect(
-                                                  getJsonField(
-                                                    FFAppState().currQuestion,
-                                                    r'''$.answers''',
-                                                    true,
-                                                  )!,
-                                                  answerIndex) &&
-                                              !FFAppState().isTimerEnd &&
-                                              functions.isAnswerCorrect(
-                                                  getJsonField(
-                                                    FFAppState().currQuestion,
-                                                    r'''$.answers''',
-                                                    true,
-                                                  )!,
+                                                  answerIndex)) {
+                                            return FlutterFlowTheme.of(context)
+                                                .quizFailedBorder;
+                                          } else if (!FFAppState().isExplain &&
+                                              functions.isValuePresent(
                                                   FFAppState()
                                                       .selectedAns
-                                                      .toList()))
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  1.0, 0.0),
-                                              child: FFButtonWidget(
-                                                onPressed: () {
-                                                  print('Button pressed ...');
-                                                },
-                                                text: '',
-                                                icon: const Icon(
-                                                  Icons.done_outline_rounded,
-                                                  color: Color(0xFF32DC2C),
-                                                  size: 26.0,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  width: 35.0,
-                                                  height: 35.0,
-                                                  padding: const EdgeInsets.all(0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(5.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: const Color(0xFFDBEEF6),
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.white,
-                                                          ),
-                                                  elevation: 3.0,
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100.0),
-                                                ),
+                                                      .toList(),
+                                                  answerIndex) &&
+                                              !FFAppState().isTimerEnd) {
+                                            return FlutterFlowTheme.of(context)
+                                                .quizSelectedBorder;
+                                          } else {
+                                            return FlutterFlowTheme.of(context)
+                                                .quizDefaultBorder;
+                                          }
+                                        }(),
+                                        FlutterFlowTheme.of(context)
+                                            .quizDefaultBorder,
+                                      ),
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (FFAppState().isExplain) {
+                                          return;
+                                        }
+
+                                        if (functions.isValuePresent(
+                                            FFAppState().selectedAns.toList(),
+                                            answerIndex)) {
+                                          setState(() {
+                                            FFAppState().removeFromSelectedAns(
+                                                answerIndex);
+                                          });
+                                          return;
+                                        } else {
+                                          setState(() {
+                                            FFAppState()
+                                                .addToSelectedAns(answerIndex);
+                                          });
+                                          return;
+                                        }
+                                      },
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            flex: 4,
+                                            child: Container(
+                                              decoration: const BoxDecoration(),
+                                              child: AutoSizeText(
+                                                getJsonField(
+                                                  answerItem,
+                                                  r'''$.content''',
+                                                ).toString(),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'SF Pro Display',
+                                                          fontSize: 18.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          useGoogleFonts: false,
+                                                        ),
                                               ),
                                             ),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            child: Stack(
+                                              children: [
+                                                if (FFAppState().isExplain &&
+                                                    functions
+                                                        .isSelectedIdexCorrect(
+                                                            getJsonField(
+                                                              FFAppState()
+                                                                  .currQuestion,
+                                                              r'''$.answers''',
+                                                              true,
+                                                            )!,
+                                                            answerIndex) &&
+                                                    !FFAppState().isTimerEnd &&
+                                                    functions.isAnswerCorrect(
+                                                        getJsonField(
+                                                          FFAppState()
+                                                              .currQuestion,
+                                                          r'''$.answers''',
+                                                          true,
+                                                        )!,
+                                                        FFAppState()
+                                                            .selectedAns
+                                                            .toList()))
+                                                  FlutterFlowIconButton(
+                                                    borderColor:
+                                                        const Color(0xFF65BF73),
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    fillColor:
+                                                        const Color(0xFFCDF2D5),
+                                                    icon: const FaIcon(
+                                                      FontAwesomeIcons.check,
+                                                      color: Color(0xFF65BF73),
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () {
+                                                      print(
+                                                          'IconButton pressed ...');
+                                                    },
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'iconButtonOnPageLoadAnimation1']!),
+                                                if (FFAppState().isExplain &&
+                                                    !functions
+                                                        .isSelectedIdexCorrect(
+                                                            getJsonField(
+                                                              FFAppState()
+                                                                  .currQuestion,
+                                                              r'''$.answers''',
+                                                              true,
+                                                            )!,
+                                                            answerIndex) &&
+                                                    !functions.isAnswerCorrect(
+                                                        getJsonField(
+                                                          FFAppState()
+                                                              .currQuestion,
+                                                          r'''$.answers''',
+                                                          true,
+                                                        )!,
+                                                        FFAppState()
+                                                            .selectedAns
+                                                            .toList()) &&
+                                                    !FFAppState().isTimerEnd &&
+                                                    functions.isValuePresent(
+                                                        FFAppState()
+                                                            .selectedAns
+                                                            .toList(),
+                                                        answerIndex))
+                                                  FlutterFlowIconButton(
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .quizFailedBorder,
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    fillColor:
+                                                        const Color(0xFFF3A4A4),
+                                                    icon: Icon(
+                                                      Icons.close,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .quizFailedBorder,
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () {
+                                                      print(
+                                                          'IconButton pressed ...');
+                                                    },
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'iconButtonOnPageLoadAnimation2']!),
+                                              ],
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-                if (FFAppState().showAnswer)
-                  AutoSizeText(
-                    getJsonField(
-                      FFAppState().currQuestion,
-                      r'''$.explain_correct_anwser''',
-                    ).toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
-                if (FFAppState().isExplain &&
-                    functions.isExplanationNotEmpty(getJsonField(
-                      FFAppState().currQuestion,
-                      r'''$.explain_correct_anwser''',
-                    ).toString()))
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        setState(() {
-                          FFAppState().showAnswer = true;
-                        });
-                      },
-                      text: 'Click here for explanation',
-                      options: FFButtonOptions(
-                        width: 244.0,
-                        height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: const Color(0xFFFFCB00),
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 14.0,
-                            ),
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                                  ),
+                                );
+                              },
+                            ).animateOnPageLoad(
+                                animationsMap['listViewOnPageLoadAnimation']!);
+                          },
                         ),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
+                      ].divide(const SizedBox(height: 20.0)),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 39.0, 0.0, 27.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      if (FFAppState().isExplain) {
-                        if (widget.questions?.length ==
-                            functions.getIndex(widget.index!)) {
-                          context.pushNamed(
-                            'quiz_result',
-                            queryParameters: {
-                              'quizId': serializeParam(
-                                widget.quizId,
-                                ParamType.String,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    if (FFAppState().showAnswer)
+                      Text(
+                        getJsonField(
+                          FFAppState().currQuestion,
+                          r'''$.explain_correct_anwser''',
+                        ).toString(),
+                        style: TextStyle(
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    if (FFAppState().isExplain &&
+                        functions.isExplanationNotEmpty(getJsonField(
+                          FFAppState().currQuestion,
+                          r'''$.explain_correct_anwser''',
+                        ).toString()))
+                      FFButtonWidget(
+                        onPressed: () async {
+                          setState(() {
+                            FFAppState().showAnswer = true;
+                          });
+                        },
+                        text: 'Click here for explanation',
+                        options: FFButtonOptions(
+                          width: 244.0,
+                          height: 50.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFFFFCB00),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'SF Pro Display',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 14.0,
+                                useGoogleFonts: false,
                               ),
-                            }.withoutNulls,
-                          );
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        if (FFAppState().isExplain) {
+                          FFAppState().NbOfQuestionsToAns =
+                              FFAppState().NbOfQuestionsToAns + -1;
+                          if (FFAppState().NbOfQuestionsToAns == 0) {
+                            context.pushNamed(
+                              'quiz_result',
+                              queryParameters: {
+                                'quizId': serializeParam(
+                                  widget.quizId,
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
+                            );
 
-                          return;
-                        } else {
-                          if (getJsonField(
-                                widget.questions?[
-                                    functions.getIndex(widget.index!)],
-                                r'''$.type''',
-                              ) ==
-                              getJsonField(
-                                FFAppState().quiztype,
-                                r'''$.mcq''',
-                              )) {
-                            context.goNamed(
+                            return;
+                          } else {
+                            if (Navigator.of(context).canPop()) {
+                              context.pop();
+                            }
+                            context.pushNamed(
                               'quiz_mcq',
                               queryParameters: {
                                 'questions': serializeParam(
@@ -1298,245 +1186,149 @@ class _QuizMcqWidgetState extends State<QuizMcqWidget> {
                                 ),
                               }.withoutNulls,
                             );
-
-                            return;
-                          } else {
-                            if (getJsonField(
-                                  widget.questions?[
-                                      functions.getIndex(widget.index!)],
-                                  r'''$.type''',
-                                ) ==
-                                getJsonField(
-                                  FFAppState().quiztype,
-                                  r'''$.tf''',
-                                )) {
-                              context.goNamed(
-                                'quiz_truefalse',
-                                queryParameters: {
-                                  'questions': serializeParam(
-                                    widget.questions,
-                                    ParamType.JSON,
-                                    true,
-                                  ),
-                                  'index': serializeParam(
-                                    functions.getIndex(widget.index!),
-                                    ParamType.int,
-                                  ),
-                                  'quizId': serializeParam(
-                                    widget.quizId,
-                                    ParamType.String,
-                                  ),
-                                  'isCompleted': serializeParam(
-                                    widget.isCompleted,
-                                    ParamType.bool,
-                                  ),
-                                }.withoutNulls,
-                              );
-
-                              return;
-                            } else {
-                              if (getJsonField(
-                                    widget.questions?[
-                                        functions.getIndex(widget.index!)],
-                                    r'''$.type''',
-                                  ) ==
-                                  getJsonField(
-                                    FFAppState().quiztype,
-                                    r'''$.error''',
-                                  )) {
-                                context.goNamed(
-                                  'quiz_finderror',
-                                  queryParameters: {
-                                    'questions': serializeParam(
-                                      widget.questions,
-                                      ParamType.JSON,
-                                      true,
-                                    ),
-                                    'index': serializeParam(
-                                      functions.getIndex(widget.index!),
-                                      ParamType.int,
-                                    ),
-                                    'quizId': serializeParam(
-                                      widget.quizId,
-                                      ParamType.String,
-                                    ),
-                                    'isCompleted': serializeParam(
-                                      widget.isCompleted,
-                                      ParamType.bool,
-                                    ),
-                                  }.withoutNulls,
-                                );
-
-                                return;
-                              } else {
-                                if (getJsonField(
-                                      widget.questions?[
-                                          functions.getIndex(widget.index!)],
-                                      r'''$.type''',
-                                    ) ==
-                                    getJsonField(
-                                      FFAppState().quiztype,
-                                      r'''$.image''',
-                                    )) {
-                                  context.goNamed(
-                                    'quiz_image_answer',
-                                    queryParameters: {
-                                      'questions': serializeParam(
-                                        widget.questions,
-                                        ParamType.JSON,
-                                        true,
-                                      ),
-                                      'index': serializeParam(
-                                        functions.getIndex(widget.index!),
-                                        ParamType.int,
-                                      ),
-                                      'quizId': serializeParam(
-                                        widget.quizId,
-                                        ParamType.String,
-                                      ),
-                                      'isCompleted': serializeParam(
-                                        widget.isCompleted,
-                                        ParamType.bool,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-
-                                  return;
-                                } else {
-                                  return;
-                                }
-                              }
-                            }
                           }
-                        }
-                      } else {
-                        if (functions.isAnswersValidate(
-                            getJsonField(
-                              FFAppState().currQuestion,
-                              r'''$.number_correct_answer''',
-                            ),
-                            FFAppState().selectedAns.length)) {
-                          if (functions.isAnswerCorrect(
+                        } else {
+                          if (functions.isAnswersValidate(
                               getJsonField(
                                 FFAppState().currQuestion,
-                                r'''$.answers''',
-                                true,
-                              )!,
-                              FFAppState().selectedAns.toList())) {
+                                r'''$.number_correct_answer''',
+                              ),
+                              FFAppState().selectedAns.length)) {
+                            if (functions.isAnswerCorrect(
+                                getJsonField(
+                                  FFAppState().currQuestion,
+                                  r'''$.answers''',
+                                  true,
+                                )!,
+                                FFAppState().selectedAns.toList())) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Hurrah! Your answer is correct.',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'SF Pro Display',
+                                          color: const Color(0xFFE0E2E4),
+                                          useGoogleFonts: false,
+                                        ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                              await BaseUrlGroup.storeAnsweredQuestionCall.call(
+                                duration: functions.getDuration(
+                                    FFAppState().startingTime!,
+                                    getCurrentTimestamp),
+                                isCorrect: 1,
+                                questionId: getJsonField(
+                                  FFAppState().currQuestion,
+                                  r'''$.id''',
+                                ).toString(),
+                                quizId: widget.quizId,
+                                userId: currentUserUid,
+                              );
+                              setState(() {
+                                FFAppState().correctAns =
+                                    FFAppState().correctAns + 1;
+                              });
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Oops! Betterr luck next time.',
+                                    style: TextStyle(
+                                      color: Color(0xFFDAE4ED),
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                              await BaseUrlGroup.storeAnsweredQuestionCall.call(
+                                duration: functions.getDuration(
+                                    FFAppState().startingTime!,
+                                    getCurrentTimestamp),
+                                isCorrect: 0,
+                                questionId: getJsonField(
+                                  FFAppState().currQuestion,
+                                  r'''$.id''',
+                                ).toString(),
+                                quizId: widget.quizId,
+                                userId: currentUserUid,
+                              );
+                            }
+
+                            setState(() {
+                              FFAppState().isExplain = true;
+                            });
+                            _model.timerController.onStopTimer();
+                            return;
+                          } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
-                                  'Hurrah! Your answer is correct.',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'SF Pro Display Bold',
-                                        color: const Color(0xFFE0E2E4),
-                                        useGoogleFonts: false,
-                                      ),
+                                  'Please Select ${getJsonField(
+                                    FFAppState().currQuestion,
+                                    r'''$.number_correct_answer''',
+                                  ).toString()} answer.',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
                                 ),
                                 duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
                             );
-                            await BaseUrlGroup.storeAnsweredQuestionCall.call(
-                              duration: functions.getDuration(
-                                  FFAppState().startingTime!,
-                                  getCurrentTimestamp),
-                              isCorrect: 1,
-                              questionId: getJsonField(
-                                FFAppState().currQuestion,
-                                r'''$.id''',
-                              ).toString(),
-                              quizId: widget.quizId,
-                              userId: currentUserUid,
-                            );
-                            setState(() {
-                              FFAppState().correctAns =
-                                  FFAppState().correctAns + 1;
-                            });
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: const Text(
-                                  'Oops! Betterr luck next time',
-                                  style: TextStyle(
-                                    color: Color(0xFFDAE4ED),
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).error,
-                              ),
-                            );
-                            await BaseUrlGroup.storeAnsweredQuestionCall.call(
-                              duration: functions.getDuration(
-                                  FFAppState().startingTime!,
-                                  getCurrentTimestamp),
-                              isCorrect: 0,
-                              questionId: getJsonField(
-                                FFAppState().currQuestion,
-                                r'''$.id''',
-                              ).toString(),
-                              quizId: widget.quizId,
-                              userId: currentUserUid,
-                            );
+                            return;
                           }
-
-                          setState(() {
-                            FFAppState().isExplain = true;
-                          });
-                          _model.timerController.onStopTimer();
-                          return;
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Please Select ${getJsonField(
-                                  FFAppState().currQuestion,
-                                  r'''$.number_correct_answer''',
-                                ).toString()} answer.',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
-                          return;
                         }
-                      }
-                    },
-                    text: FFAppState().isExplain ? 'Next' : 'Answer',
-                    options: FFButtonOptions(
-                      width: 350.0,
-                      height: 50.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF00D1FF),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                                fontSize: 14.0,
+                      },
+                      text: FFAppState().isExplain ? 'Next' : 'Answer',
+                      options: FFButtonOptions(
+                        width: 350.0,
+                        height: 50.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: valueOrDefault<Color>(
+                          FFAppState().isExplain
+                              ? FlutterFlowTheme.of(context).primaryBackground
+                              : FlutterFlowTheme.of(context).quizColor,
+                          FlutterFlowTheme.of(context).quizColor,
+                        ),
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              fontFamily: 'SF Pro Display',
+                              color: valueOrDefault<Color>(
+                                FFAppState().isExplain
+                                    ? FlutterFlowTheme.of(context).quizColor
+                                    : FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                FlutterFlowTheme.of(context).primaryBackground,
                               ),
-                      elevation: 3.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                              fontSize: 14.0,
+                              useGoogleFonts: false,
+                            ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).quizColor,
+                          width: 3.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
-                      borderRadius: BorderRadius.circular(12.0),
                     ),
-                  ),
+                  ].divide(const SizedBox(height: 5.0)),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'quiz_failed_model.dart';
@@ -21,7 +20,7 @@ class QuizFailedWidget extends StatefulWidget {
   final int? wrongAnswers;
 
   @override
-  _QuizFailedWidgetState createState() => _QuizFailedWidgetState();
+  State<QuizFailedWidget> createState() => _QuizFailedWidgetState();
 }
 
 class _QuizFailedWidgetState extends State<QuizFailedWidget> {
@@ -44,15 +43,6 @@ class _QuizFailedWidgetState extends State<QuizFailedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -241,7 +231,7 @@ class _QuizFailedWidgetState extends State<QuizFailedWidget> {
                       if (Navigator.of(context).canPop()) {
                         context.pop();
                       }
-                      context.pushNamed('quiz_list');
+                      context.pushNamed('quiz_list_old');
                     },
                     text: 'Try again',
                     options: FFButtonOptions(
@@ -274,7 +264,7 @@ class _QuizFailedWidgetState extends State<QuizFailedWidget> {
                       if (FFAppState().trainingAfterQuiz != null
                           ? false
                           : true) {
-                        context.pushNamed('quiz_list');
+                        context.pushNamed('quiz_list_old');
                       } else {
                         context.pushNamed(
                           'training_chapters',

@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'quiz_finderror_fail_model.dart';
@@ -12,7 +11,7 @@ class QuizFinderrorFailWidget extends StatefulWidget {
   const QuizFinderrorFailWidget({super.key});
 
   @override
-  _QuizFinderrorFailWidgetState createState() =>
+  State<QuizFinderrorFailWidget> createState() =>
       _QuizFinderrorFailWidgetState();
 }
 
@@ -36,15 +35,6 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -103,7 +93,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: const Color(0xFF39B6FF),
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -179,7 +169,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'SF Pro Display Bold',
+                                      fontFamily: 'SF Pro Display',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                       fontSize: 21.0,
@@ -216,7 +206,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                       Text(
                         'Question 5',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Display Bold',
+                              fontFamily: 'SF Pro Display',
                               fontWeight: FontWeight.bold,
                               useGoogleFonts: false,
                             ),
@@ -228,7 +218,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                           'Questions',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'SF Pro Display Bold',
+                                    fontFamily: 'SF Pro Display',
                                     fontWeight: FontWeight.bold,
                                     useGoogleFonts: false,
                                   ),
@@ -328,7 +318,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                       Text(
                         '2:34',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Display Bold',
+                              fontFamily: 'SF Pro Display',
                               fontWeight: FontWeight.bold,
                               useGoogleFonts: false,
                             ),
@@ -376,7 +366,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -407,8 +397,9 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'SF Pro Display',
                                             color: Colors.white,
+                                            useGoogleFonts: false,
                                           ),
                                       elevation: 3.0,
                                       borderSide: const BorderSide(
@@ -459,7 +450,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -490,8 +481,9 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'SF Pro Display',
                                             color: Colors.white,
+                                            useGoogleFonts: false,
                                           ),
                                       elevation: 3.0,
                                       borderSide: const BorderSide(
@@ -542,7 +534,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -573,8 +565,9 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'SF Pro Display',
                                             color: Colors.white,
+                                            useGoogleFonts: false,
                                           ),
                                       elevation: 3.0,
                                       borderSide: const BorderSide(
@@ -625,7 +618,7 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -656,8 +649,9 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'SF Pro Display',
                                             color: Colors.white,
+                                            useGoogleFonts: false,
                                           ),
                                       elevation: 3.0,
                                       borderSide: const BorderSide(
@@ -694,9 +688,10 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                       color: const Color(0xFFFFCB00),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'SF Pro Display',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 14.0,
+                                useGoogleFonts: false,
                               ),
                       borderSide: const BorderSide(
                         color: Colors.transparent,
@@ -723,9 +718,10 @@ class _QuizFinderrorFailWidgetState extends State<QuizFinderrorFailWidget> {
                       color: const Color(0xFF00D1FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'SF Pro Display',
                                 color: Colors.white,
                                 fontSize: 14.0,
+                                useGoogleFonts: false,
                               ),
                       elevation: 3.0,
                       borderSide: const BorderSide(

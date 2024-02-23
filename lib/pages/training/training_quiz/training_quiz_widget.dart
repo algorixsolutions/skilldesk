@@ -1,10 +1,12 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'training_quiz_model.dart';
 export 'training_quiz_model.dart';
@@ -22,7 +24,7 @@ class TrainingQuizWidget extends StatefulWidget {
   final String? trainingId;
 
   @override
-  _TrainingQuizWidgetState createState() => _TrainingQuizWidgetState();
+  State<TrainingQuizWidget> createState() => _TrainingQuizWidgetState();
 }
 
 class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
@@ -45,118 +47,110 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: const Color(0xFFFFF80D),
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 9.93, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 0.0, 0.0),
-                            child: Icon(
-                              Icons.chevron_left,
-                              color: Color(0xFF130F26),
-                              size: 24.0,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                48.5, 0.0, 0.0, 0.0),
-                            child: Container(
-                              width: 222.0,
-                              height: 21.0,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFFFF80D),
-                              ),
-                              child: const Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Install Photoshop',
-                                  style: TextStyle(
-                                    fontFamily: 'SF Pro Display Bold',
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18.0,
-                                  ),
+    return FutureBuilder<ApiCallResponse>(
+      future: FFAppState().getQuizList(
+        uniqueQueryKey: currentUserUid,
+        requestFn: () => BaseUrlGroup.getQuizzesCall.call(
+          userID: currentUserUid,
+        ),
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: const Color(0xFFFFF80D),
+            body: Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+        final trainingQuizGetQuizzesResponse = snapshot.data!;
+        return GestureDetector(
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: const Color(0xFFFFF80D),
+            body: SafeArea(
+              top: true,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      wrapWithModel(
+                        model: _model.customAppbarModel,
+                        updateCallback: () => setState(() {}),
+                        child: CustomAppbarWidget(
+                          parameter1: getJsonField(
+                            widget.chapters?[widget.index!],
+                            r'''$.title''',
+                          ).toString(),
+                          backgroundColor: const Color(0xFFFFF80D),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 20.0, 0.0, 20.0),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(),
+                          child: Text(
+                            'Now! It Is Time To Take A Quiz',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'SF Pro Display Bold',
+                                  fontSize: 27.0,
+                                  fontWeight: FontWeight.bold,
+                                  useGoogleFonts: false,
                                 ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          106.0, 30.89, 105.0, 0.0),
-                      child: Text(
-                        'Now! It Is Time To Take A Quiz',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontFamily: 'SF Pro Display Bold',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 27.0,
-                          height: 32.0,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 289.0, 0.0),
-                      child: Container(
-                        width: 101.0,
-                        height: 144.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFFFDA0D),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0.0),
-                            bottomRight: Radius.circular(72.0),
-                            topLeft: Radius.circular(0.0),
-                            topRight: Radius.circular(72.0),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 430.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 100.0, 0.0, 0.0),
+                        child: Container(
+                          decoration: const BoxDecoration(),
+                          child: Lottie.network(
+                            'https://lottie.host/dbb50da6-01a6-436c-b231-a0fc40bb498a/zdYaoETZ0l.json',
+                            width: 400.0,
+                            height: 200.0,
+                            fit: BoxFit.cover,
+                            repeat: false,
+                            animate: true,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (false)
                           FFButtonWidget(
                             onPressed: () async {
                               if (widget.chapters?.length ==
                                   functions.getIndex(widget.index!)) {
-                                if (Navigator.of(context).canPop()) {
-                                  context.pop();
-                                }
-                                context.pushNamed('training_list');
+                                context.goNamed('training_list');
 
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -218,23 +212,49 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                               borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                14.0, 0.0, 0.0, 0.0),
-                            child: FFButtonWidget(
+                        FutureBuilder<ApiCallResponse>(
+                          future: BaseUrlGroup.getTrainingByIdCall.call(
+                            trainingId: widget.trainingId,
+                            userId: currentUserUid,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            final buttonGetTrainingByIdResponse =
+                                snapshot.data!;
+                            return FFButtonWidget(
                               onPressed: () async {
+                                FFAppState().trainingAfterQuiz =
+                                    BaseUrlGroup.getTrainingByIdCall.data(
+                                  buttonGetTrainingByIdResponse.jsonBody,
+                                );
+
                                 context.pushNamed(
-                                  'quiz_detail',
+                                  'quiz_details',
                                   queryParameters: {
                                     'quiz': serializeParam(
                                       getJsonField(
-                                        FFAppState().currchapter,
+                                        widget.chapters?[widget.index!],
                                         r'''$.quiz''',
                                       ),
                                       ParamType.JSON,
                                     ),
                                     'allQuiz': serializeParam(
-                                      widget.chapters,
+                                      BaseUrlGroup.getQuizzesCall.quizData(
+                                        trainingQuizGetQuizzesResponse.jsonBody,
+                                      ),
                                       ParamType.JSON,
                                       true,
                                     ),
@@ -258,81 +278,18 @@ class _TrainingQuizWidgetState extends State<TrainingQuizWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(44.0, 549.8, 0.0, 0.0),
-                      child: Container(
-                        width: 74.83,
-                        height: 74.83,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFFFDA0D),
-                          shape: BoxShape.circle,
+                            );
+                          },
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          294.96, 530.93, 0.0, 0.0),
-                      child: Container(
-                        width: 95.04,
-                        height: 162.3,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFFFDA0D),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(25.0),
-                            bottomRight: Radius.circular(0.0),
-                            topLeft: Radius.circular(25.0),
-                            topRight: Radius.circular(0.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsetsDirectional.fromSTEB(28.88, 279.65, 28.88, 0.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: SvgPicture.asset(
-                          'assets/images/Build_a_website.svg',
-                          width: 332.24,
-                          height: 171.37,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

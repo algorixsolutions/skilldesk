@@ -12,10 +12,18 @@ class SupportDetailsModel extends FlutterFlowModel<SupportDetailsWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for Column widget.
+  ScrollController? columnController;
+  // State field(s) for ListViewResponses widget.
+  ScrollController? listViewResponses;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   // Stores action output result for [Backend Call - API (Store Ticket Response)] action in IconButton widget.
   ApiCallResponse? apiResultags;
   Completer<ApiCallResponse>? apiRequestCompleter;
@@ -23,11 +31,16 @@ class SupportDetailsModel extends FlutterFlowModel<SupportDetailsWidget> {
   /// Initialization and disposal methods.
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    columnController = ScrollController();
+    listViewResponses = ScrollController();
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    columnController?.dispose();
+    listViewResponses?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }

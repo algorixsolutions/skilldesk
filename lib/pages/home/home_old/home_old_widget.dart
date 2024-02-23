@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -18,7 +17,7 @@ class HomeOldWidget extends StatefulWidget {
   const HomeOldWidget({super.key});
 
   @override
-  _HomeOldWidgetState createState() => _HomeOldWidgetState();
+  State<HomeOldWidget> createState() => _HomeOldWidgetState();
 }
 
 class _HomeOldWidgetState extends State<HomeOldWidget> {
@@ -41,15 +40,6 @@ class _HomeOldWidgetState extends State<HomeOldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
@@ -260,10 +250,12 @@ class _HomeOldWidgetState extends State<HomeOldWidget> {
                                                           .bodySmall
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'SF Pro Display',
                                                             fontSize: 11.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
+                                                            useGoogleFonts:
+                                                                false,
                                                           ),
                                                     ),
                                                   ],
@@ -604,7 +596,7 @@ class _HomeOldWidgetState extends State<HomeOldWidget> {
                           alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              context.pushNamed('quiz_list');
+                              context.pushNamed('quiz_list_old');
                             },
                             text: 'Quizes list',
                             options: FFButtonOptions(
@@ -684,7 +676,7 @@ class _HomeOldWidgetState extends State<HomeOldWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'SF Pro Display Bold',
+                                          fontFamily: 'SF Pro Display',
                                           fontSize: 18.0,
                                           fontWeight: FontWeight.w600,
                                           useGoogleFonts: false,
@@ -771,7 +763,7 @@ class _HomeOldWidgetState extends State<HomeOldWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'SF Pro Display Bold',
+                                          fontFamily: 'SF Pro Display',
                                           fontSize: 18.0,
                                           fontWeight: FontWeight.w600,
                                           useGoogleFonts: false,

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'quiz_detail_widget.dart' show QuizDetailWidget;
+import 'details04_event_widget.dart' show Details04EventWidget;
 import 'package:flutter/material.dart';
 
-class QuizDetailModel extends FlutterFlowModel<QuizDetailWidget> {
+class Details04EventModel extends FlutterFlowModel<Details04EventWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

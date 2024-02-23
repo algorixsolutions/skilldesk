@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'message_list_model.dart';
 export 'message_list_model.dart';
@@ -15,7 +14,7 @@ class MessageListWidget extends StatefulWidget {
   const MessageListWidget({super.key});
 
   @override
-  _MessageListWidgetState createState() => _MessageListWidgetState();
+  State<MessageListWidget> createState() => _MessageListWidgetState();
 }
 
 class _MessageListWidgetState extends State<MessageListWidget> {
@@ -41,15 +40,6 @@ class _MessageListWidgetState extends State<MessageListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -91,8 +81,9 @@ class _MessageListWidgetState extends State<MessageListWidget> {
           title: Text(
             'My Messages',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'SF Pro Display',
                   fontSize: 19.0,
+                  useGoogleFonts: false,
                 ),
           ),
           actions: const [],
@@ -125,30 +116,31 @@ class _MessageListWidgetState extends State<MessageListWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                         width: 2.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).primary,
                         width: 2.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                     errorBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 2.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                     focusedErrorBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 2.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                     filled: true,
+                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
                     prefixIcon: const Icon(
                       Icons.search_sharp,
                     ),
@@ -288,12 +280,13 @@ class _MessageListWidgetState extends State<MessageListWidget> {
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   color: functions
-                                                          .compareString(
-                                                              getJsonField(
-                                                                messagesItem,
-                                                                r'''$.status''',
-                                                              ).toString(),
-                                                              'UNREAD')
+                                                              .compareString(
+                                                                  getJsonField(
+                                                                    messagesItem,
+                                                                    r'''$.status''',
+                                                                  ).toString(),
+                                                                  'UNREAD') &&
+                                                          false
                                                       ? const Color(0x1B725DFF)
                                                       : FlutterFlowTheme.of(
                                                               context)
@@ -339,7 +332,11 @@ class _MessageListWidgetState extends State<MessageListWidget> {
                                                                         40.0),
                                                             child:
                                                                 Image.network(
-                                                              'https://source.unsplash.com/random/1280x720?user&2',
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                currentUserPhoto,
+                                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/skilldesk-gh5vkj/assets/7e9qziz573w6/Screen_Shot_2023-11-15_at_1.40.52_PM.jpg',
+                                                              ),
                                                               width: 44.0,
                                                               height: 44.0,
                                                               fit: BoxFit.cover,
@@ -377,9 +374,11 @@ class _MessageListWidgetState extends State<MessageListWidget> {
                                                                     .bodyLarge
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'SF Pro Display',
                                                                       fontSize:
                                                                           12.0,
+                                                                      useGoogleFonts:
+                                                                          false,
                                                                     ),
                                                               ),
                                                               Padding(
@@ -403,9 +402,11 @@ class _MessageListWidgetState extends State<MessageListWidget> {
                                                                       .bodyLarge
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'SF Pro Display',
                                                                         fontSize:
                                                                             12.0,
+                                                                        useGoogleFonts:
+                                                                            false,
                                                                       ),
                                                                 ),
                                                               ),
@@ -451,13 +452,14 @@ class _MessageListWidgetState extends State<MessageListWidget> {
                                                                     .of(context)
                                                                 .labelSmall,
                                                           ),
-                                                          if (functions.compareString(
-                                                                  getJsonField(
-                                                                    messagesItem,
-                                                                    r'''$.status''',
-                                                                  ).toString(),
-                                                                  'UNREAD') ==
-                                                              true)
+                                                          if ((functions.compareString(
+                                                                      getJsonField(
+                                                                        messagesItem,
+                                                                        r'''$.status''',
+                                                                      ).toString(),
+                                                                      'UNREAD') ==
+                                                                  true) &&
+                                                              false)
                                                             Align(
                                                               alignment:
                                                                   const AlignmentDirectional(

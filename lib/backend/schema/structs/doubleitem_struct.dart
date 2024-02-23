@@ -8,7 +8,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class DoubleitemStruct extends BaseStruct {
   DoubleitemStruct({
     double? doubleitem,
-  }) : _doubleitem = doubleitem;
+    String? stringItem,
+  })  : _doubleitem = doubleitem,
+        _stringItem = stringItem;
 
   // "doubleitem" field.
   double? _doubleitem;
@@ -17,9 +19,16 @@ class DoubleitemStruct extends BaseStruct {
   void incrementDoubleitem(double amount) => _doubleitem = doubleitem + amount;
   bool hasDoubleitem() => _doubleitem != null;
 
+  // "StringItem" field.
+  String? _stringItem;
+  String get stringItem => _stringItem ?? '';
+  set stringItem(String? val) => _stringItem = val;
+  bool hasStringItem() => _stringItem != null;
+
   static DoubleitemStruct fromMap(Map<String, dynamic> data) =>
       DoubleitemStruct(
         doubleitem: castToType<double>(data['doubleitem']),
+        stringItem: data['StringItem'] as String?,
       );
 
   static DoubleitemStruct? maybeFromMap(dynamic data) => data is Map
@@ -28,6 +37,7 @@ class DoubleitemStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'doubleitem': _doubleitem,
+        'StringItem': _stringItem,
       }.withoutNulls;
 
   @override
@@ -35,6 +45,10 @@ class DoubleitemStruct extends BaseStruct {
         'doubleitem': serializeParam(
           _doubleitem,
           ParamType.double,
+        ),
+        'StringItem': serializeParam(
+          _stringItem,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -45,6 +59,11 @@ class DoubleitemStruct extends BaseStruct {
           ParamType.double,
           false,
         ),
+        stringItem: deserializeParam(
+          data['StringItem'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -52,16 +71,20 @@ class DoubleitemStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is DoubleitemStruct && doubleitem == other.doubleitem;
+    return other is DoubleitemStruct &&
+        doubleitem == other.doubleitem &&
+        stringItem == other.stringItem;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([doubleitem]);
+  int get hashCode => const ListEquality().hash([doubleitem, stringItem]);
 }
 
 DoubleitemStruct createDoubleitemStruct({
   double? doubleitem,
+  String? stringItem,
 }) =>
     DoubleitemStruct(
       doubleitem: doubleitem,
+      stringItem: stringItem,
     );

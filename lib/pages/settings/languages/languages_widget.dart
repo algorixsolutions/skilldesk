@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'languages_model.dart';
 export 'languages_model.dart';
@@ -10,7 +9,7 @@ class LanguagesWidget extends StatefulWidget {
   const LanguagesWidget({super.key});
 
   @override
-  _LanguagesWidgetState createState() => _LanguagesWidgetState();
+  State<LanguagesWidget> createState() => _LanguagesWidgetState();
 }
 
 class _LanguagesWidgetState extends State<LanguagesWidget> {
@@ -33,15 +32,6 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(

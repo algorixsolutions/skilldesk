@@ -1,8 +1,8 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'training_completed_model.dart';
@@ -17,7 +17,7 @@ class TrainingCompletedWidget extends StatefulWidget {
   final String? durations;
 
   @override
-  _TrainingCompletedWidgetState createState() =>
+  State<TrainingCompletedWidget> createState() =>
       _TrainingCompletedWidgetState();
 }
 
@@ -41,15 +41,6 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -173,10 +164,9 @@ class _TrainingCompletedWidgetState extends State<TrainingCompletedWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 189.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      if (Navigator.of(context).canPop()) {
-                        context.pop();
-                      }
-                      context.pushNamed('training_list');
+                      FFAppState().clearGetTrainingListCacheKey(currentUserUid);
+
+                      context.goNamed('training_list');
                     },
                     text: 'Back to Trainings',
                     options: FFButtonOptions(

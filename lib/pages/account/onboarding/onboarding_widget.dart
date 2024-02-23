@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'onboarding_model.dart';
@@ -12,7 +11,7 @@ class OnboardingWidget extends StatefulWidget {
   const OnboardingWidget({super.key});
 
   @override
-  _OnboardingWidgetState createState() => _OnboardingWidgetState();
+  State<OnboardingWidget> createState() => _OnboardingWidgetState();
 }
 
 class _OnboardingWidgetState extends State<OnboardingWidget> {
@@ -35,15 +34,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -195,7 +185,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .displayMedium
                               .override(
-                                fontFamily: 'SF Pro Display Bold',
+                                fontFamily: 'SF Pro Display',
                                 fontWeight: FontWeight.normal,
                                 useGoogleFonts: false,
                               ),

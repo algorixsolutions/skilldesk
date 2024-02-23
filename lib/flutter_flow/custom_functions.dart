@@ -15,7 +15,10 @@ bool compareString(
   String inputString1,
   String inputString2,
 ) {
-  return inputString1 == inputString2;
+  if (inputString1 == inputString2)
+    return true;
+  else
+    return false;
 }
 
 bool isListNull(List<dynamic> listVar) {
@@ -96,6 +99,26 @@ int getIndex(int currIndex) {
   return currIndex + 1;
 }
 
+String getDurationComplete(
+  DateTime startTime,
+  DateTime endTime,
+) {
+  final difference = endTime.difference(startTime);
+
+  final seconds = difference.inSeconds % 60;
+  final minute = difference.inMinutes % 60;
+  final hours = difference.inHours;
+
+  String hrs =
+      hours.toInt() < 10 ? "0${hours.toInt()}" : hours.toInt().toString();
+  String min =
+      minute.toInt() < 10 ? "0${minute.toInt()}" : minute.toInt().toString();
+  String sec =
+      seconds.toInt() < 10 ? "0${seconds.toInt()}" : seconds.toInt().toString();
+
+  return "$hrs:$min:$sec";
+}
+
 bool isValuePresent(
   List<int> ans,
   int item,
@@ -154,7 +177,7 @@ bool isContainsLabelTxtField(
   String txt,
   String label,
 ) {
-  if (label.contains(txt)) {
+  if (label.toLowerCase().contains(txt.toLowerCase())) {
     return true;
   } else {
     return false;
@@ -191,6 +214,15 @@ bool isQuizSuccess(
 
 bool isQuizHaveQuestions(List<dynamic> questions) {
   if (questions.isNotEmpty) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool isQuizCompleted(dynamic quiz) {
+  if (quiz == null) return true;
+  if (quiz['status_by_user'] == 'completed') {
     return true;
   } else {
     return false;
@@ -330,4 +362,30 @@ bool? isTextContainsString(
     return null;
   }
   return text.toLowerCase().contains(searchString.toLowerCase());
+}
+
+double stringToDouble(String stringNumber) {
+  // cast string argument to double
+  return double.parse(stringNumber);
+}
+
+dynamic updateProfilePhoto(
+  dynamic user,
+  String url,
+) {
+  // update auth user's photoURL on firebase
+  user.updateProfile(photoURL: url);
+  return user;
+}
+
+dynamic getItemInSpecificIndex(
+  List<dynamic> listArg,
+  int index,
+) {
+  // get list item in specific index
+  if (index >= 0 && index < listArg.length) {
+    return listArg[index];
+  } else {
+    return null;
+  }
 }

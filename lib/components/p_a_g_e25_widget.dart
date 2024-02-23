@@ -10,7 +10,7 @@ class PAGE25Widget extends StatefulWidget {
   const PAGE25Widget({super.key});
 
   @override
-  _PAGE25WidgetState createState() => _PAGE25WidgetState();
+  State<PAGE25Widget> createState() => _PAGE25WidgetState();
 }
 
 class _PAGE25WidgetState extends State<PAGE25Widget> {
@@ -69,7 +69,7 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
               child: Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'SF Pro Display Bold',
+                      fontFamily: 'SF Pro Display',
                       fontSize: 21.0,
                       fontWeight: FontWeight.w500,
                       useGoogleFonts: false,
@@ -92,9 +92,10 @@ class _PAGE25WidgetState extends State<PAGE25Widget> {
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: const Color(0xFF00D1FF),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'SF Pro Display',
                         color: Colors.white,
                         fontSize: 14.0,
+                        useGoogleFonts: false,
                       ),
                   elevation: 3.0,
                   borderSide: const BorderSide(

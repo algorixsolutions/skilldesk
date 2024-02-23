@@ -19,7 +19,7 @@ class GridCardWidget extends StatefulWidget {
   final dynamic jsonItem;
 
   @override
-  _GridCardWidgetState createState() => _GridCardWidgetState();
+  State<GridCardWidget> createState() => _GridCardWidgetState();
 }
 
 class _GridCardWidgetState extends State<GridCardWidget> {
@@ -63,7 +63,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
               ).toString(),
               'quiz')) {
             context.pushNamed(
-              'quiz_detail',
+              'quiz_detail_old',
               queryParameters: {
                 'quiz': serializeParam(
                   widget.jsonItem,
@@ -133,7 +133,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                         replacement: '…',
                       ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'SF Pro Display Bold',
+                        fontFamily: 'SF Pro Display',
                         fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                         useGoogleFonts: false,
@@ -196,7 +196,7 @@ class _GridCardWidgetState extends State<GridCardWidget> {
                                 0.0, 7.6, 0.0, 0.0),
                             child: LinearPercentIndicator(
                               percent: valueOrDefault<double>(
-                                widget.progression! / 100,
+                                (widget.progression!) / 100,
                                 0.0,
                               ),
                               width: 98.47,

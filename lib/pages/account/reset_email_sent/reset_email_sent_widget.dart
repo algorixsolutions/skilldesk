@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'reset_email_sent_model.dart';
 export 'reset_email_sent_model.dart';
@@ -11,7 +10,7 @@ class ResetEmailSentWidget extends StatefulWidget {
   const ResetEmailSentWidget({super.key});
 
   @override
-  _ResetEmailSentWidgetState createState() => _ResetEmailSentWidgetState();
+  State<ResetEmailSentWidget> createState() => _ResetEmailSentWidgetState();
 }
 
 class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
@@ -37,15 +36,6 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -103,7 +93,7 @@ class _ResetEmailSentWidgetState extends State<ResetEmailSentWidget> {
                       child: Text(
                         'Email',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Display Bold',
+                              fontFamily: 'SF Pro Display',
                               fontSize: 16.0,
                               fontWeight: FontWeight.bold,
                               useGoogleFonts: false,

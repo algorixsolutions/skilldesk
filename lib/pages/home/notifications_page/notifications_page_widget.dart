@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'notifications_page_model.dart';
 export 'notifications_page_model.dart';
@@ -14,7 +13,7 @@ class NotificationsPageWidget extends StatefulWidget {
   const NotificationsPageWidget({super.key});
 
   @override
-  _NotificationsPageWidgetState createState() =>
+  State<NotificationsPageWidget> createState() =>
       _NotificationsPageWidgetState();
 }
 
@@ -38,15 +37,6 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -180,7 +170,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'SF Pro Display Bold',
+                                              fontFamily: 'SF Pro Display',
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w600,
                                               useGoogleFonts: false,
@@ -199,7 +189,7 @@ class _NotificationsPageWidgetState extends State<NotificationsPageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'SF Pro Display Bold',
+                                              fontFamily: 'SF Pro Display',
                                               color: const Color(0xFF725DFF),
                                               fontSize: 10.0,
                                               fontWeight: FontWeight.bold,

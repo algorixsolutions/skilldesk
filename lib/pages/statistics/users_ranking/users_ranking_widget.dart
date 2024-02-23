@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'users_ranking_model.dart';
 export 'users_ranking_model.dart';
@@ -14,7 +13,7 @@ class UsersRankingWidget extends StatefulWidget {
   const UsersRankingWidget({super.key});
 
   @override
-  _UsersRankingWidgetState createState() => _UsersRankingWidgetState();
+  State<UsersRankingWidget> createState() => _UsersRankingWidgetState();
 }
 
 class _UsersRankingWidgetState extends State<UsersRankingWidget> {
@@ -37,15 +36,6 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -82,7 +72,34 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                   useGoogleFonts: false,
                 ),
           ),
-          actions: const [],
+          actions: [
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                FFAppState().clearGetUsersRankingCacheKey(currentUserUid);
+                setState(() {
+                  FFAppState().clearGetUsersRankingCacheKey(
+                      _model.apiRequestLastUniqueKey);
+                  _model.apiRequestCompleted = false;
+                });
+                await _model.waitForApiRequestCompleted();
+              },
+              child: Container(
+                decoration: const BoxDecoration(),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Icon(
+                    Icons.refresh_sharp,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 30.0,
+                  ),
+                ),
+              ),
+            ),
+          ],
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -91,12 +108,16 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
           child: FutureBuilder<ApiCallResponse>(
             future: FFAppState()
                 .getUsersRanking(
+              uniqueQueryKey: currentUserUid,
               requestFn: () => BaseUrlGroup.getUsersRankingCall.call(
                 userID: currentUserUid,
               ),
             )
                 .then((result) {
-              _model.apiRequestCompleted = true;
+              try {
+                _model.apiRequestCompleted = true;
+                _model.apiRequestLastUniqueKey = currentUserUid;
+              } finally {}
               return result;
             }),
             builder: (context, snapshot) {
@@ -126,7 +147,8 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                   return RefreshIndicator(
                     onRefresh: () async {
                       setState(() {
-                        FFAppState().clearGetUsersRankingCache();
+                        FFAppState().clearGetUsersRankingCacheKey(
+                            _model.apiRequestLastUniqueKey);
                         _model.apiRequestCompleted = false;
                       });
                       await _model.waitForApiRequestCompleted();
@@ -193,8 +215,9 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .titleLarge
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'SF Pro Display',
                                                   fontWeight: FontWeight.w800,
+                                                  useGoogleFonts: false,
                                                 ),
                                           ),
                                         ),
@@ -243,7 +266,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'SF Pro Display Bold',
+                                                              'SF Pro Display',
                                                           fontSize: 14.0,
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -265,7 +288,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'SF Pro Display Bold',
+                                                              'SF Pro Display',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
@@ -290,7 +313,7 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'SF Pro Display Bold',
+                                                              'SF Pro Display',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .trainingColor,
@@ -324,11 +347,12 @@ class _UsersRankingWidgetState extends State<UsersRankingWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .titleLarge
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'SF Pro Display',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .trainingColor,
                                                   fontWeight: FontWeight.w500,
+                                                  useGoogleFonts: false,
                                                 ),
                                           ),
                                         ),

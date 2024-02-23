@@ -10,9 +10,9 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'new_ticket_model.dart';
 export 'new_ticket_model.dart';
 
@@ -20,7 +20,7 @@ class NewTicketWidget extends StatefulWidget {
   const NewTicketWidget({super.key});
 
   @override
-  _NewTicketWidgetState createState() => _NewTicketWidgetState();
+  State<NewTicketWidget> createState() => _NewTicketWidgetState();
 }
 
 class _NewTicketWidgetState extends State<NewTicketWidget>
@@ -79,15 +79,6 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -214,22 +205,21 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                   _model.dropDownCategoryValue ??= '',
                                 ),
                                 options: List<String>.from(
-                                    (BaseUrlGroup.getTicketsCategoriesCall.id(
-                                  dropDownCategoryGetTicketsCategoriesResponse
-                                      .jsonBody,
-                                ) as List)
-                                        .map<String>((s) => s.toString())
-                                        .toList().map((e) => e.toString())
+                                    BaseUrlGroup.getTicketsCategoriesCall
+                                        .id(
+                                          dropDownCategoryGetTicketsCategoriesResponse
+                                              .jsonBody,
+                                        )!
+                                        .map((e) => e.toString())
                                         .toList()),
-                                optionLabels: (BaseUrlGroup
-                                        .getTicketsCategoriesCall
+                                optionLabels:
+                                    BaseUrlGroup.getTicketsCategoriesCall
                                         .title(
-                                  dropDownCategoryGetTicketsCategoriesResponse
-                                      .jsonBody,
-                                ) as List)
-                                    .map<String>((s) => s.toString())
-                                    .toList().map((e) => e.toString())
-                                    .toList(),
+                                          dropDownCategoryGetTicketsCategoriesResponse
+                                              .jsonBody,
+                                        )!
+                                        .map((e) => e.toString())
+                                        .toList(),
                                 onChanged: (val) => setState(
                                     () => _model.dropDownCategoryValue = val),
                                 height: 50.0,
@@ -408,12 +398,12 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                       child: FFButtonWidget(
-                        onPressed: functions.isTextFieldEmpty(
+                        onPressed: (functions.isTextFieldEmpty(
                                     _model.textFieldObjectController.text) ||
                                 functions.isTextFieldEmpty(
                                     _model.dropDownCategoryValue) ||
                                 functions.isTextFieldEmpty(
-                                    _model.ticketMessageController.text)
+                                    _model.ticketMessageController.text))
                             ? null
                             : () async {
                                 if (_model.formKey.currentState == null ||
@@ -423,34 +413,32 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                 if (_model.dropDownCategoryValue == null) {
                                   return;
                                 }
-                                var confirmDialogResponse =
-                                    await showDialog<bool>(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Submit New Ticket'),
-                                              content: const Text(
-                                                  'Ready to submit the ticket ?'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: const Text('No'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: const Text('Yes'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        ) ??
-                                        false;
+                                var confirmDialogResponse = await showDialog<
+                                        bool>(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: const Text('Submit New Ticket'),
+                                            content: const Text(
+                                                'Ready to submit the ticket ?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('No'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Yes'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ) ??
+                                    false;
                                 _model.apiResultja4 =
                                     await BaseUrlGroup.storeNewTicketCall.call(
                                   object: _model.textFieldObjectController.text,
@@ -461,24 +449,29 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                                 );
                                 if ((_model.apiResultja4?.succeeded ?? true)) {
                                   context.goNamed('support_list');
+
+                                  FFAppState()
+                                      .clearGetTicketsCacheKey(currentUserUid);
                                 } else {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text(
-                                            'Error while creating the ticket'),
-                                        content: Text(
-                                            (_model.apiResultja4?.jsonBody ??
-                                                    '')
-                                                .toString()),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: const Text(
+                                              'Error while creating the ticket'),
+                                          content: Text(
+                                              (_model.apiResultja4?.jsonBody ??
+                                                      '')
+                                                  .toString()),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   );
@@ -493,11 +486,12 @@ class _NewTicketWidgetState extends State<NewTicketWidget>
                           padding: const EdgeInsets.all(0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: FlutterFlowTheme.of(context).trainingColor,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'SF Pro Display',
                                     color: Colors.white,
+                                    useGoogleFonts: false,
                                   ),
                           elevation: 4.0,
                           borderSide: const BorderSide(

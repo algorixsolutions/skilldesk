@@ -9,14 +9,16 @@ import 'auth/firebase_auth/auth_util.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
-import 'flutter_flow/internationalization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
   await initFirebase();
+
+  await FlutterFlowTheme.initialize();
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
@@ -39,8 +41,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale? _locale;
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
   late Stream<BaseAuthUser> userStream;
 
@@ -62,12 +63,9 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void setLocale(String language) {
-    setState(() => _locale = createLocale(language));
-  }
-
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
+        FlutterFlowTheme.saveThemeMode(mode);
       });
 
   @override
@@ -75,16 +73,16 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       title: 'skilldesk',
       localizationsDelegates: const [
-        FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: _locale,
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(
         brightness: Brightness.light,
-        scrollbarTheme: const ScrollbarThemeData(),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
       ),
       themeMode: _themeMode,
       routerConfig: _router,
@@ -127,60 +125,56 @@ class _NavBarPageState extends State<NavBarPage> {
 
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() {
-          _currentPage = null;
-          _currentPageName = tabs.keys.toList()[i];
-        }),
-        backgroundColor: Colors.white,
-        selectedItemColor: FlutterFlowTheme.of(context).primary,
-        unselectedItemColor: const Color(0x8A000000),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
-              size: 24.0,
+      bottomNavigationBar: Visibility(
+        visible: responsiveVisibility(
+          context: context,
+          desktop: false,
+        ),
+        child: GNav(
+          selectedIndex: currentIndex,
+          onTabChange: (i) => setState(() {
+            _currentPage = null;
+            _currentPageName = tabs.keys.toList()[i];
+          }),
+          backgroundColor: Colors.white,
+          color: const Color(0xFFCBC9C9),
+          activeColor: FlutterFlowTheme.of(context).trainingColor,
+          tabBackgroundColor: const Color(0x00000000),
+          tabBorderRadius: 100.0,
+          tabMargin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+          padding: const EdgeInsets.all(10.0),
+          gap: 10.0,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          duration: const Duration(milliseconds: 1000),
+          haptic: true,
+          tabs: const [
+            GButton(
+              icon: FFIcons.khomeArtboard301Colors01,
+              text: ' Home',
+              iconSize: 20.0,
             ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.solidFileAlt,
-              size: 20.0,
+            GButton(
+              icon: FontAwesomeIcons.solidFileAlt,
+              text: ' Trainings',
+              iconSize: 20.0,
             ),
-            label: 'Trainings',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.dashboard_customize_sharp,
-              size: 24.0,
+            GButton(
+              icon: FFIcons.kjeuxIconeArtboard301Colors01,
+              text: 'Quiz',
+              iconSize: 20.0,
             ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.chartLine,
-              size: 20.0,
+            GButton(
+              icon: FFIcons.kstatistiqueArtboard30101,
+              text: ' Statistics',
+              iconSize: 20.0,
             ),
-            label: 'Statistics',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.settings,
-              size: 24.0,
-            ),
-            label: 'Settings',
-            tooltip: '',
-          )
-        ],
+            GButton(
+              icon: Icons.settings,
+              text: ' Settings',
+              iconSize: 20.0,
+            )
+          ],
+        ),
       ),
     );
   }

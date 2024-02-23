@@ -7,9 +7,9 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'message_details_model.dart';
 export 'message_details_model.dart';
 
@@ -22,7 +22,7 @@ class MessageDetailsWidget extends StatefulWidget {
   final dynamic message;
 
   @override
-  _MessageDetailsWidgetState createState() => _MessageDetailsWidgetState();
+  State<MessageDetailsWidget> createState() => _MessageDetailsWidgetState();
 }
 
 class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
@@ -48,15 +48,6 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
@@ -121,8 +112,9 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                   r'''$.object''',
                 ).toString(),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'SF Pro Display',
                       fontSize: 19.0,
+                      useGoogleFonts: false,
                     ),
               ),
               actions: const [],
@@ -185,7 +177,10 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(40.0),
                                                 child: Image.network(
-                                                  'https://source.unsplash.com/random/1280x720?user&2',
+                                                  valueOrDefault<String>(
+                                                    currentUserPhoto,
+                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/skilldesk-gh5vkj/assets/7e9qziz573w6/Screen_Shot_2023-11-15_at_1.40.52_PM.jpg',
+                                                  ),
                                                   width: 44.0,
                                                   height: 44.0,
                                                   fit: BoxFit.cover,
@@ -218,7 +213,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'SF Pro Display Bold',
+                                                                'SF Pro Display',
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                             useGoogleFonts:
@@ -316,6 +311,8 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                     widget.message,
                                     r'''$.message''',
                                   ).toString(),
+                                  onLinkTap: (url, _, __, ___) =>
+                                      launchURL(url!),
                                 ),
                               ),
                             ],
@@ -452,6 +449,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                       width: double.infinity,
                                                       color: Colors.white,
                                                       child: ExpandableNotifier(
+                                                        initialExpanded: false,
                                                         child: ExpandablePanel(
                                                           header: Column(
                                                             mainAxisSize:
@@ -492,7 +490,11 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                             BorderRadius.circular(40.0),
                                                                         child: Image
                                                                             .network(
-                                                                          'https://source.unsplash.com/random/1280x720?user&2',
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            currentUserPhoto,
+                                                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/skilldesk-gh5vkj/assets/7e9qziz573w6/Screen_Shot_2023-11-15_at_1.40.52_PM.jpg',
+                                                                          ),
                                                                           width:
                                                                               44.0,
                                                                           height:
@@ -520,7 +522,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                           .bodyMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'SF Pro Display Bold',
+                                                                                'SF Pro Display',
                                                                             fontSize:
                                                                                 12.0,
                                                                             fontWeight:
@@ -547,7 +549,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                           .bodyMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'SF Pro Display Bold',
+                                                                                'SF Pro Display',
                                                                             fontSize:
                                                                                 12.0,
                                                                             fontWeight:
@@ -575,13 +577,17 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                   .secondaryBackground,
                                                             ),
                                                             child: Html(
-                                                              data: BaseUrlGroup
-                                                                  .getDiscussionResponsesCall
-                                                                  .message(
-                                                                    listViewGetDiscussionResponsesResponse
-                                                                        .jsonBody,
-                                                                  )
-                                                                  .toString(),
+                                                              data:
+                                                                  getJsonField(
+                                                                responseItem,
+                                                                r'''$.message''',
+                                                              ).toString(),
+                                                              onLinkTap: (url,
+                                                                      _,
+                                                                      __,
+                                                                      ___) =>
+                                                                  launchURL(
+                                                                      url!),
                                                             ),
                                                           ),
                                                           expanded: Column(
@@ -595,6 +601,12 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                                                   responseItem,
                                                                   r'''$.message''',
                                                                 ).toString(),
+                                                                onLinkTap: (url,
+                                                                        _,
+                                                                        __,
+                                                                        ___) =>
+                                                                    launchURL(
+                                                                        url!),
                                                               ),
                                                             ],
                                                           ),
@@ -695,7 +707,7 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                           .alternate,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -703,21 +715,21 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   errorBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   focusedErrorBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   filled: true,
                                 ),
@@ -748,27 +760,30 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                           await showDialog<bool>(
                                                 context: context,
                                                 builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        'Reply to message'),
-                                                    content: const Text(
-                                                        'Are you ready to send your message ?'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                false),
-                                                        child: const Text('Cancel'),
-                                                      ),
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                true),
-                                                        child: const Text('Confirm'),
-                                                      ),
-                                                    ],
+                                                  return WebViewAware(
+                                                    child: AlertDialog(
+                                                      title: const Text(
+                                                          'Reply to message'),
+                                                      content: const Text(
+                                                          'Are you ready to send your message ?'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: const Text('Cancel'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  true),
+                                                          child:
+                                                              const Text('Confirm'),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   );
                                                 },
                                               ) ??
@@ -782,58 +797,37 @@ class _MessageDetailsWidgetState extends State<MessageDetailsWidget> {
                                             r'''$.id''',
                                           ).toString(),
                                           userId: currentUserUid,
-                                          message: (_model
-                                                      .textFieldReplyFocusNode
-                                                      ?.hasFocus ??
-                                                  false)
-                                              .toString(),
+                                          message: _model
+                                              .textFieldReplyController.text,
                                         );
-                                        if ((_model.apiResultags?.succeeded ??
+                                        if (!(_model.apiResultags?.succeeded ??
                                             true)) {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: const Text('Message sent'),
-                                                content: const Text(
-                                                    'Your message has been registered successfully.'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: const Text(
-                                                    'Error while sending message'),
-                                                content: Text(getJsonField(
-                                                  (_model.apiResultags
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.message''',
-                                                ).toString()),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  title: const Text(
+                                                      'Error while sending message'),
+                                                  content: Text(getJsonField(
+                                                    (_model.apiResultags
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.message''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
                                               );
                                             },
                                           );
                                         }
-
                                         setState(() {
                                           _model
                                               .clearGetDiscussionResponsesCacheKey(

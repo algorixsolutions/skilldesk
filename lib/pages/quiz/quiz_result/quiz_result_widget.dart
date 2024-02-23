@@ -5,8 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'quiz_result_model.dart';
 export 'quiz_result_model.dart';
@@ -20,7 +20,7 @@ class QuizResultWidget extends StatefulWidget {
   final String? quizId;
 
   @override
-  _QuizResultWidgetState createState() => _QuizResultWidgetState();
+  State<QuizResultWidget> createState() => _QuizResultWidgetState();
 }
 
 class _QuizResultWidgetState extends State<QuizResultWidget> {
@@ -43,316 +43,383 @@ class _QuizResultWidgetState extends State<QuizResultWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 36.0, 0.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 122.82, 0.0, 0.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 291.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(23.0),
-                      border: Border.all(
-                        color: const Color(0xFFE6E6E6),
-                        width: 1.0,
+    return FutureBuilder<ApiCallResponse>(
+      future: FFAppState().getQuizList(
+        uniqueQueryKey: currentUserUid,
+        requestFn: () => BaseUrlGroup.getQuizzesCall.call(
+          userID: currentUserUid,
+        ),
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+        final quizResultGetQuizzesResponse = snapshot.data!;
+        return GestureDetector(
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              top: true,
+              child: FutureBuilder<ApiCallResponse>(
+                future: BaseUrlGroup.getQuizByIdCall.call(
+                  quizzId: widget.quizId,
+                  userId: currentUserUid,
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
-                    ),
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: FutureBuilder<ApiCallResponse>(
-                      future: BaseUrlGroup.getQuizByIdCall.call(
-                        quizzId: widget.quizId,
-                        userId: currentUserUid,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                    );
+                  }
+                  final columnGetQuizByIdResponse = snapshot.data!;
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            36.0, 0.0, 36.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 291.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 27.0,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    offset: const Offset(0.0, 19.0),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(23.0),
+                                border: Border.all(
+                                  color: const Color(0xFFE6E6E6),
+                                  width: 1.0,
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                        final columnGetQuizByIdResponse = snapshot.data!;
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Stack(
-                              children: [
-                                if (functions.isQuizSuccess(
-                                    getJsonField(
-                                      columnGetQuizByIdResponse.jsonBody,
-                                      r'''$.data.validated_questions_by_user''',
-                                    ),
-                                    getJsonField(
-                                      columnGetQuizByIdResponse.jsonBody,
-                                      r'''$.data.nbr_correct_answer_to_pass''',
-                                    )))
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        30.0, 0.0, 0.0, 0.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 32.0, 0.0, 0.0),
-                                          child: Container(
-                                            width: 64.0,
-                                            height: 64.0,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: SvgPicture.asset(
-                                                'assets/images/Frame_90.svg',
-                                                width: 300.0,
-                                                height: 200.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 34.77, 0.0, 0.0),
-                                          child: Container(
-                                            width: 218.0,
-                                            height: 50.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: const Text(
-                                              'The Quiz was successfully completed',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    'SF Pro Display Bold',
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                if (!functions.isQuizSuccess(
-                                    getJsonField(
-                                      columnGetQuizByIdResponse.jsonBody,
-                                      r'''$.data.validated_questions_by_user''',
-                                    ),
-                                    getJsonField(
-                                      columnGetQuizByIdResponse.jsonBody,
-                                      r'''$.data.nbr_correct_answer_to_pass''',
-                                    )))
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Stack(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 32.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 64.0,
-                                          height: 64.0,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
+                                      if (functions.isQuizSuccess(
+                                          getJsonField(
+                                            columnGetQuizByIdResponse.jsonBody,
+                                            r'''$.data.validated_questions_by_user''',
                                           ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: SvgPicture.asset(
-                                              'assets/images/Groupe_149.svg',
-                                              width: 300.0,
-                                              height: 200.0,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 35.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Quiz Failed',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'SF Pro Display Bold',
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18.0,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 0.0),
-                                        child: Text(
-                                          '${getJsonField(
+                                          getJsonField(
                                             columnGetQuizByIdResponse.jsonBody,
                                             r'''$.data.nbr_correct_answer_to_pass''',
-                                          ).toString()} correct responses required to succeed !',
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            fontFamily: 'SF Pro Display Bold',
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15.0,
+                                          )))
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  30.0, 0.0, 0.0, 0.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Lottie.network(
+                                                'https://lottie.host/c58cb032-e68f-4d11-972e-dc63fc58a3e9/AiCDcDPvfq.json',
+                                                width: 150.0,
+                                                height: 130.0,
+                                                fit: BoxFit.cover,
+                                                repeat: false,
+                                                animate: true,
+                                              ),
+                                              if (false)
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 32.0, 0.0, 0.0),
+                                                  child: Container(
+                                                    width: 64.0,
+                                                    height: 64.0,
+                                                    decoration: const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: SvgPicture.asset(
+                                                        'assets/images/Frame_90.svg',
+                                                        width: 300.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 34.77, 0.0, 0.0),
+                                                child: Container(
+                                                  width: 218.0,
+                                                  height: 50.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                  child: const Text(
+                                                    'The Quiz was successfully completed',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                          'SF Pro Display Bold',
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 18.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ),
+                                      if (!functions.isQuizSuccess(
+                                          getJsonField(
+                                            columnGetQuizByIdResponse.jsonBody,
+                                            r'''$.data.validated_questions_by_user''',
+                                          ),
+                                          getJsonField(
+                                            columnGetQuizByIdResponse.jsonBody,
+                                            r'''$.data.nbr_correct_answer_to_pass''',
+                                          )))
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Lottie.network(
+                                              'https://lottie.host/c056a864-da7d-48a5-9d94-197be4876794/tUFvwuVdZT.json',
+                                              width: 150.0,
+                                              height: 130.0,
+                                              fit: BoxFit.cover,
+                                              repeat: false,
+                                              animate: true,
+                                            ),
+                                            if (false)
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 32.0, 0.0, 0.0),
+                                                child: Container(
+                                                  width: 64.0,
+                                                  height: 64.0,
+                                                  decoration: const BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: SvgPicture.asset(
+                                                      'assets/images/Groupe_149.svg',
+                                                      width: 300.0,
+                                                      height: 200.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            const Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 35.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Quiz Failed',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                      'SF Pro Display Bold',
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18.0,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              child: Text(
+                                                '${getJsonField(
+                                                  columnGetQuizByIdResponse
+                                                      .jsonBody,
+                                                  r'''$.data.nbr_correct_answer_to_pass''',
+                                                ).toString()} correct responses required to succeed !',
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                  fontFamily:
+                                                      'SF Pro Display Bold',
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 15.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                     ],
                                   ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 41.88, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        35.33, 0.0, 0.0, 0.0),
+                                        0.0, 41.88, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                          child: SvgPicture.asset(
-                                            'assets/images/Groupe_141.svg',
-                                            width: 21.91,
-                                            height: 21.91,
-                                            fit: BoxFit.cover,
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  35.33, 0.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        100.0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/Groupe_141.svg',
+                                                  width: 21.91,
+                                                  height: 21.91,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        13.73, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  functions.getDuration(
+                                                      FFAppState()
+                                                          .quizInitTimer!,
+                                                      getCurrentTimestamp),
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  13.73, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            functions.getDuration(
-                                                FFAppState().quizInitTimer!,
-                                                getCurrentTimestamp),
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        35.33, 0.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                          child: SvgPicture.asset(
-                                            'assets/images/Frame_92.svg',
-                                            width: 21.91,
-                                            height: 21.91,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  13.73, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            getJsonField(
-                                              columnGetQuizByIdResponse
-                                                  .jsonBody,
-                                              r'''$.data.validated_questions_by_user''',
-                                            ).toString(),
-                                            style: const TextStyle(
-                                              fontFamily: 'SF Pro Display Bold',
-                                              color: Color(0xFF32DC2C),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 12.0,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        35.33, 0.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(100.0),
-                                          child: SvgPicture.asset(
-                                            'assets/images/Groupe_142.svg',
-                                            width: 21.91,
-                                            height: 21.91,
-                                            fit: BoxFit.cover,
+                                                  35.33, 0.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        100.0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/Frame_92.svg',
+                                                  width: 21.91,
+                                                  height: 21.91,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        13.73, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  getJsonField(
+                                                    columnGetQuizByIdResponse
+                                                        .jsonBody,
+                                                    r'''$.data.validated_questions_by_user''',
+                                                  ).toString(),
+                                                  style: const TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    color: Color(0xFF32DC2C),
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 12.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  13.73, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            getJsonField(
-                                              columnGetQuizByIdResponse
-                                                  .jsonBody,
-                                              r'''$.data.bad_answer_by_user''',
-                                            ).toString(),
-                                            style: const TextStyle(
-                                              fontFamily: 'SF Pro Display Bold',
-                                              color: Color(0xFFFF3636),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 12.0,
-                                            ),
+                                                  35.33, 0.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        100.0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/Groupe_142.svg',
+                                                  width: 21.91,
+                                                  height: 21.91,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        13.73, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  getJsonField(
+                                                    columnGetQuizByIdResponse
+                                                        .jsonBody,
+                                                    r'''$.data.bad_answer_by_user''',
+                                                  ).toString(),
+                                                  style: const TextStyle(
+                                                    fontFamily:
+                                                        'SF Pro Display Bold',
+                                                    color: Color(0xFFFF3636),
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 12.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
@@ -362,60 +429,158 @@ class _QuizResultWidgetState extends State<QuizResultWidget> {
                               ),
                             ),
                           ],
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 254.0, 0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      if (FFAppState().trainingAfterQuiz != null
-                          ? false
-                          : true) {
-                        context.pushNamed('quiz_list');
-                      } else {
-                        context.pushNamed(
-                          'training_chapters',
-                          queryParameters: {
-                            'training': serializeParam(
-                              FFAppState().trainingAfterQuiz,
-                              ParamType.JSON,
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            if (!functions.isQuizSuccess(
+                                getJsonField(
+                                  columnGetQuizByIdResponse.jsonBody,
+                                  r'''$.data.validated_questions_by_user''',
+                                ),
+                                getJsonField(
+                                  columnGetQuizByIdResponse.jsonBody,
+                                  r'''$.data.nbr_correct_answer_to_pass''',
+                                )))
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'quiz_details',
+                                    queryParameters: {
+                                      'quiz': serializeParam(
+                                        BaseUrlGroup.getQuizByIdCall.data(
+                                          columnGetQuizByIdResponse.jsonBody,
+                                        ),
+                                        ParamType.JSON,
+                                      ),
+                                      'allQuiz': serializeParam(
+                                        BaseUrlGroup.getQuizzesCall.quizData(
+                                          quizResultGetQuizzesResponse.jsonBody,
+                                        ),
+                                        ParamType.JSON,
+                                        true,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                text: 'Try again',
+                                options: FFButtonOptions(
+                                  width: 342.0,
+                                  height: 50.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: const Color(0xFF39B6FF),
+                                  textStyle: const TextStyle(
+                                    fontFamily: 'SF Pro Display Bold',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.0,
+                                  ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                if (FFAppState().trainingAfterQuiz == null) {
+                                  FFAppState()
+                                      .clearGetQuizListCacheKey(currentUserUid);
+
+                                  context.goNamed('quiz_list');
+                                } else {
+                                  if ((getJsonField(
+                                            FFAppState().trainingAfterQuiz,
+                                            r'''$.status_by_user''',
+                                          ) ==
+                                          getJsonField(
+                                            FFAppState().quizStatus,
+                                            r'''$.completed''',
+                                          )) &&
+                                      functions.isQuizSuccess(
+                                          getJsonField(
+                                            columnGetQuizByIdResponse.jsonBody,
+                                            r'''$.data.validated_questions_by_user''',
+                                          ),
+                                          getJsonField(
+                                            columnGetQuizByIdResponse.jsonBody,
+                                            r'''$.data.nbr_correct_answer_to_pass''',
+                                          ))) {
+                                    context.goNamed(
+                                      'training_completed2',
+                                      queryParameters: {
+                                        'trainingId': serializeParam(
+                                          FFAppState()
+                                              .trainingAfterQuiz
+                                              .toString(),
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  } else {
+                                    context.pushNamed(
+                                      'training_chapters',
+                                      queryParameters: {
+                                        'training': serializeParam(
+                                          FFAppState().trainingAfterQuiz,
+                                          ParamType.JSON,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  }
+                                }
+                              },
+                              text: FFAppState().trainingAfterQuiz == null
+                                  ? 'Back to Quiz List'
+                                  : 'Back to Training',
+                              options: FFButtonOptions(
+                                width: 342.0,
+                                height: 50.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: valueOrDefault<Color>(
+                                  FFAppState().trainingAfterQuiz == null
+                                      ? FlutterFlowTheme.of(context).quizColor
+                                      : FlutterFlowTheme.of(context)
+                                          .trainingColor,
+                                  FlutterFlowTheme.of(context).quizColor,
+                                ),
+                                textStyle: const TextStyle(
+                                  fontFamily: 'SF Pro Display Bold',
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14.0,
+                                ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
                             ),
-                          }.withoutNulls,
-                        );
-                      }
-                    },
-                    text: 'Back To Quiz',
-                    options: FFButtonOptions(
-                      width: 342.0,
-                      height: 50.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF39B6FF),
-                      textStyle: const TextStyle(
-                        fontFamily: 'SF Pro Display Bold',
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14.0,
+                          ].divide(const SizedBox(height: 20.0)),
+                        ),
                       ),
-                      elevation: 3.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                  ),
-                ),
-              ],
+                    ],
+                  );
+                },
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

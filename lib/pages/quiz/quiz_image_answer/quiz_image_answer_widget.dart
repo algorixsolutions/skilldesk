@@ -10,7 +10,6 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'quiz_image_answer_model.dart';
 export 'quiz_image_answer_model.dart';
@@ -30,7 +29,7 @@ class QuizImageAnswerWidget extends StatefulWidget {
   final bool? isCompleted;
 
   @override
-  _QuizImageAnswerWidgetState createState() => _QuizImageAnswerWidgetState();
+  State<QuizImageAnswerWidget> createState() => _QuizImageAnswerWidgetState();
 }
 
 class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
@@ -224,15 +223,6 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -259,7 +249,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('quiz_list');
+                        context.pushNamed('quiz_list_old');
 
                         _model.timerController.onResetTimer();
                       },
@@ -293,7 +283,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: const Color(0xFF39B6FF),
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -450,7 +440,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'SF Pro Display Bold',
+                                      fontFamily: 'SF Pro Display',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                       fontSize: 21.0,
@@ -496,7 +486,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'SF Pro Display Bold',
+                                    fontFamily: 'SF Pro Display',
                                     fontWeight: FontWeight.bold,
                                     useGoogleFonts: false,
                                   ),
@@ -802,7 +792,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'SF Pro Display Bold',
+                                            fontFamily: 'SF Pro Display',
                                             color: const Color(0xFFE0E2E4),
                                             useGoogleFonts: false,
                                           ),
@@ -1062,9 +1052,10 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'SF Pro Display',
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 14.0,
+                              useGoogleFonts: false,
                             ),
                         borderSide: const BorderSide(
                           color: Colors.transparent,
@@ -1256,7 +1247,7 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: const Color(0xFFE0E2E4),
                                         useGoogleFonts: false,
                                       ),
@@ -1348,9 +1339,10 @@ class _QuizImageAnswerWidgetState extends State<QuizImageAnswerWidget> {
                       color: const Color(0xFF00D1FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'SF Pro Display',
                                 color: Colors.white,
                                 fontSize: 14.0,
+                                useGoogleFonts: false,
                               ),
                       elevation: 3.0,
                       borderSide: const BorderSide(

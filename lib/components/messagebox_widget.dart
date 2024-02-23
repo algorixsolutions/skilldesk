@@ -11,7 +11,7 @@ class MessageboxWidget extends StatefulWidget {
   const MessageboxWidget({super.key});
 
   @override
-  _MessageboxWidgetState createState() => _MessageboxWidgetState();
+  State<MessageboxWidget> createState() => _MessageboxWidgetState();
 }
 
 class _MessageboxWidgetState extends State<MessageboxWidget> {

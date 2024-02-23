@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'reset_password1_model.dart';
 export 'reset_password1_model.dart';
@@ -12,7 +11,7 @@ class ResetPassword1Widget extends StatefulWidget {
   const ResetPassword1Widget({super.key});
 
   @override
-  _ResetPassword1WidgetState createState() => _ResetPassword1WidgetState();
+  State<ResetPassword1Widget> createState() => _ResetPassword1WidgetState();
 }
 
 class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
@@ -38,15 +37,6 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -100,7 +90,7 @@ class _ResetPassword1WidgetState extends State<ResetPassword1Widget> {
                   child: Text(
                     'Email',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'SF Pro Display Bold',
+                          fontFamily: 'SF Pro Display',
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
                           useGoogleFonts: false,

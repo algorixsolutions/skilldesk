@@ -1,9 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'settings_menu_model.dart';
@@ -13,7 +14,7 @@ class SettingsMenuWidget extends StatefulWidget {
   const SettingsMenuWidget({super.key});
 
   @override
-  _SettingsMenuWidgetState createState() => _SettingsMenuWidgetState();
+  State<SettingsMenuWidget> createState() => _SettingsMenuWidgetState();
 }
 
 class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
@@ -36,15 +37,6 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -61,7 +53,6 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
             children: [
               Container(
                 width: 390.0,
-                height: 84.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -93,23 +84,150 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(103.0, 0.0, 0.0, 0.0),
                       child: Container(
-                        width: 84.0,
-                        height: 84.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          shape: BoxShape.circle,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.rectangle,
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
+                        child: Container(
+                          width: 84.0,
+                          height: 84.0,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
                           child: SvgPicture.asset(
                             'assets/images/Groupe_145.svg',
-                            width: 300.0,
-                            height: 200.0,
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                     ),
+                    if (false)
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            103.0, 0.0, 0.0, 0.0),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
+                                maxWidth: 500.00,
+                                allowPhoto: true,
+                              );
+                              if (selectedMedia != null &&
+                                  selectedMedia.every((m) => validateFileFormat(
+                                      m.storagePath, context))) {
+                                setState(() => _model.isDataUploading = true);
+                                var selectedUploadedFiles = <FFUploadedFile>[];
+
+                                try {
+                                  selectedUploadedFiles = selectedMedia
+                                      .map((m) => FFUploadedFile(
+                                            name: m.storagePath.split('/').last,
+                                            bytes: m.bytes,
+                                            height: m.dimensions?.height,
+                                            width: m.dimensions?.width,
+                                            blurHash: m.blurHash,
+                                          ))
+                                      .toList();
+                                } finally {
+                                  _model.isDataUploading = false;
+                                }
+                                if (selectedUploadedFiles.length ==
+                                    selectedMedia.length) {
+                                  setState(() {
+                                    _model.uploadedLocalFile =
+                                        selectedUploadedFiles.first;
+                                  });
+                                } else {
+                                  setState(() {});
+                                  return;
+                                }
+                              }
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 84.0,
+                                  height: 84.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.memory(
+                                    _model.uploadedLocalFile.bytes ??
+                                        Uint8List.fromList([]),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(1.0, -1.0),
+                                  child: FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 30.0,
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 15.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (false)
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 40.0,
+                            fillColor:
+                                FlutterFlowTheme.of(context).quizSuccessBorder,
+                            icon: Icon(
+                              Icons.check,
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              size: 24.0,
+                            ),
+                            onPressed: () {
+                              print('IconButton pressed ...');
+                            },
+                          ),
+                          FlutterFlowIconButton(
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 40.0,
+                            fillColor:
+                                FlutterFlowTheme.of(context).quizFailedBorder,
+                            icon: Icon(
+                              Icons.clear_sharp,
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              size: 24.0,
+                            ),
+                            onPressed: () {
+                              print('IconButton pressed ...');
+                            },
+                          ),
+                        ].divide(const SizedBox(height: 10.0)),
+                      ),
                   ],
                 ),
               ),
@@ -161,7 +279,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'SF Pro Display Bold',
+                                      fontFamily: 'SF Pro Display',
                                       color: Colors.black,
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w600,
@@ -209,7 +327,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: Colors.black,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.w600,
@@ -255,7 +373,7 @@ class _SettingsMenuWidgetState extends State<SettingsMenuWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'SF Pro Display Bold',
+                                      fontFamily: 'SF Pro Display',
                                       color: Colors.black,
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w600,

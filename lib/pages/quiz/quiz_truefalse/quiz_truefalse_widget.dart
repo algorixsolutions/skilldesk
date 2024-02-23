@@ -10,7 +10,6 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'quiz_truefalse_model.dart';
 export 'quiz_truefalse_model.dart';
@@ -30,7 +29,7 @@ class QuizTruefalseWidget extends StatefulWidget {
   final bool? isCompleted;
 
   @override
-  _QuizTruefalseWidgetState createState() => _QuizTruefalseWidgetState();
+  State<QuizTruefalseWidget> createState() => _QuizTruefalseWidgetState();
 }
 
 class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
@@ -224,15 +223,6 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -259,7 +249,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('quiz_list');
+                        context.pushNamed('quiz_list_old');
 
                         _model.timerController.onResetTimer();
                       },
@@ -293,7 +283,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: const Color(0xFF39B6FF),
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -370,7 +360,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                         r'''$.url''',
                                       ).toString(),
                                       metas: Metas(
-                                        id: 'sample3.mp3-50a2f6b3',
+                                        id: 'sample3.mp3-b8eb1f0f',
                                         title: getJsonField(
                                           mediaItem,
                                           r'''$.file_name''',
@@ -451,7 +441,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'SF Pro Display Bold',
+                                      fontFamily: 'SF Pro Display',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                       fontSize: 21.0,
@@ -481,7 +471,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                           if (Navigator.of(context).canPop()) {
                             context.pop();
                           }
-                          context.pushNamed('quiz_list');
+                          context.pushNamed('quiz_list_old');
                         },
                         child: Icon(
                           Icons.arrow_back_ios,
@@ -500,7 +490,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'SF Pro Display Bold',
+                                    fontFamily: 'SF Pro Display',
                                     fontWeight: FontWeight.bold,
                                     useGoogleFonts: false,
                                   ),
@@ -674,7 +664,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                       r'''$.tf''',
                                     )) {
                                   context.goNamed(
-                                    'quiz_truefalse',
+                                    'quiz_truefalseCopy',
                                     queryParameters: {
                                       'questions': serializeParam(
                                         widget.questions,
@@ -806,7 +796,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'SF Pro Display Bold',
+                                            fontFamily: 'SF Pro Display',
                                             color: const Color(0xFFE0E2E4),
                                             useGoogleFonts: false,
                                           ),
@@ -1059,8 +1049,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily:
-                                                    'SF Pro Display Bold',
+                                                fontFamily: 'SF Pro Display',
                                                 fontSize: 18.0,
                                                 fontWeight: FontWeight.w500,
                                                 useGoogleFonts: false,
@@ -1116,15 +1105,15 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                                           .fromSTEB(5.0, 0.0,
                                                               0.0, 0.0),
                                                   color: const Color(0xFFF9A1A1),
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.white,
-                                                          ),
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'SF Pro Display',
+                                                        color: Colors.white,
+                                                        useGoogleFonts: false,
+                                                      ),
                                                   elevation: 3.0,
                                                   borderSide: const BorderSide(
                                                     color: Colors.transparent,
@@ -1176,15 +1165,15 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                                           .fromSTEB(5.0, 0.0,
                                                               0.0, 0.0),
                                                   color: const Color(0xFFDBEEF6),
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.white,
-                                                          ),
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'SF Pro Display',
+                                                        color: Colors.white,
+                                                        useGoogleFonts: false,
+                                                      ),
                                                   elevation: 3.0,
                                                   borderSide: const BorderSide(
                                                     color: Colors.transparent,
@@ -1243,9 +1232,10 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'SF Pro Display',
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 14.0,
+                              useGoogleFonts: false,
                             ),
                         borderSide: const BorderSide(
                           color: Colors.transparent,
@@ -1318,7 +1308,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                   r'''$.tf''',
                                 )) {
                               context.goNamed(
-                                'quiz_truefalse',
+                                'quiz_truefalseCopy',
                                 queryParameters: {
                                   'questions': serializeParam(
                                     widget.questions,
@@ -1437,7 +1427,7 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: const Color(0xFFE0E2E4),
                                         useGoogleFonts: false,
                                       ),
@@ -1529,9 +1519,10 @@ class _QuizTruefalseWidgetState extends State<QuizTruefalseWidget> {
                       color: const Color(0xFF00D1FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'SF Pro Display',
                                 color: Colors.white,
                                 fontSize: 14.0,
+                                useGoogleFonts: false,
                               ),
                       elevation: 3.0,
                       borderSide: const BorderSide(

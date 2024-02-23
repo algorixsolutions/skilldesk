@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'sign_in_model.dart';
 export 'sign_in_model.dart';
@@ -12,7 +11,7 @@ class SignInWidget extends StatefulWidget {
   const SignInWidget({super.key});
 
   @override
-  _SignInWidgetState createState() => _SignInWidgetState();
+  State<SignInWidget> createState() => _SignInWidgetState();
 }
 
 class _SignInWidgetState extends State<SignInWidget> {
@@ -41,15 +40,6 @@ class _SignInWidgetState extends State<SignInWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -103,7 +93,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                   child: Text(
                     'Email',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'SF Pro Display Bold',
+                          fontFamily: 'SF Pro Display',
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
                           useGoogleFonts: false,
@@ -162,7 +152,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                   child: Text(
                     'Password',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'SF Pro Display Bold',
+                          fontFamily: 'SF Pro Display',
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
                           useGoogleFonts: false,

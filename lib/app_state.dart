@@ -3,6 +3,7 @@ import 'flutter_flow/request_manager.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -24,6 +25,9 @@ class FFAppState extends ChangeNotifier {
     });
     _safeInit(() {
       _IMAGEURL = prefs.getString('ff_IMAGEURL') ?? _IMAGEURL;
+    });
+    _safeInit(() {
+      _DOCUMENTURL = prefs.getString('ff_DOCUMENTURL') ?? _DOCUMENTURL;
     });
   }
 
@@ -49,7 +53,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   dynamic _quizStatus = jsonDecode(
-      '{"pending":"PENDING","notStarted":"not_started","publish":"PUBLISHED","null":null}');
+      '{"pending":"PENDING","notStarted":"not_started","publish":"PUBLISHED","null":null,"inProgress":"in_progress","completed":"completed"}');
   dynamic get quizStatus => _quizStatus;
   set quizStatus(dynamic value) {
     _quizStatus = value;
@@ -133,14 +137,8 @@ class FFAppState extends ChangeNotifier {
     _quizInitTimer = value;
   }
 
-  dynamic _currchapter;
-  dynamic get currchapter => _currchapter;
-  set currchapter(dynamic value) {
-    _currchapter = value;
-  }
-
   dynamic _contentType = jsonDecode(
-      '{"text":"TEXT","audio":"AUDIO","video":"VIDEO","image":"IMAGE"}');
+      '{"text":"TEXT","audio":"AUDIO","video":"VIDEO","image":"IMAGE","youtube":"Youtube","vimeo":"Vimeo"}');
   dynamic get contentType => _contentType;
   set contentType(dynamic value) {
     _contentType = value;
@@ -222,6 +220,32 @@ class FFAppState extends ChangeNotifier {
     _ThemeColors.insert(index, value);
   }
 
+  String _DOCUMENTURL =
+      'https://quizback.staging.algorixdev.com/storage/uploads/';
+  String get DOCUMENTURL => _DOCUMENTURL;
+  set DOCUMENTURL(String value) {
+    _DOCUMENTURL = value;
+    prefs.setString('ff_DOCUMENTURL', value);
+  }
+
+  String _StatsPeriod = '';
+  String get StatsPeriod => _StatsPeriod;
+  set StatsPeriod(String value) {
+    _StatsPeriod = value;
+  }
+
+  String _StatsTheme = '';
+  String get StatsTheme => _StatsTheme;
+  set StatsTheme(String value) {
+    _StatsTheme = value;
+  }
+
+  int _NbOfQuestionsToAns = 0;
+  int get NbOfQuestionsToAns => _NbOfQuestionsToAns;
+  set NbOfQuestionsToAns(int value) {
+    _NbOfQuestionsToAns = value;
+  }
+
   final _getUsersRankingManager = FutureRequestManager<ApiCallResponse>();
   Future<ApiCallResponse> getUsersRanking({
     String? uniqueQueryKey,
@@ -266,16 +290,66 @@ class FFAppState extends ChangeNotifier {
   void clearGetThemesCache() => _getThemesManager.clear();
   void clearGetThemesCacheKey(String? uniqueKey) =>
       _getThemesManager.clearRequest(uniqueKey);
-}
 
-LatLng? _latLngFromString(String? val) {
-  if (val == null) {
-    return null;
-  }
-  final split = val.split(',');
-  final lat = double.parse(split.first);
-  final lng = double.parse(split.last);
-  return LatLng(lat, lng);
+  final _getQuizListManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getQuizList({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getQuizListManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetQuizListCache() => _getQuizListManager.clear();
+  void clearGetQuizListCacheKey(String? uniqueKey) =>
+      _getQuizListManager.clearRequest(uniqueKey);
+
+  final _getTrainingListManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getTrainingList({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getTrainingListManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetTrainingListCache() => _getTrainingListManager.clear();
+  void clearGetTrainingListCacheKey(String? uniqueKey) =>
+      _getTrainingListManager.clearRequest(uniqueKey);
+
+  final _getUserStatsManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getUserStats({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getUserStatsManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetUserStatsCache() => _getUserStatsManager.clear();
+  void clearGetUserStatsCacheKey(String? uniqueKey) =>
+      _getUserStatsManager.clearRequest(uniqueKey);
+
+  final _getTicketsManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getTickets({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getTicketsManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetTicketsCache() => _getTicketsManager.clear();
+  void clearGetTicketsCacheKey(String? uniqueKey) =>
+      _getTicketsManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

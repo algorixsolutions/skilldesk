@@ -15,12 +15,14 @@ export '/pages/training/training_chapters/training_chapters_widget.dart'
     show TrainingChaptersWidget;
 export '/pages/training/training_chapter_content/training_chapter_content_widget.dart'
     show TrainingChapterContentWidget;
-export '/pages/training/training_quiz/training_quiz_widget.dart'
-    show TrainingQuizWidget;
+export '/pages/training/training_quiz_old/training_quiz_old_widget.dart'
+    show TrainingQuizOldWidget;
 export '/pages/quiz/quiz_result/quiz_result_widget.dart' show QuizResultWidget;
 export '/pages/quiz/quiz_failed/quiz_failed_widget.dart' show QuizFailedWidget;
-export '/pages/quiz/quiz_list/quiz_list_widget.dart' show QuizListWidget;
-export '/pages/quiz/quiz_detail/quiz_detail_widget.dart' show QuizDetailWidget;
+export '/pages/quiz/quiz_list_old/quiz_list_old_widget.dart'
+    show QuizListOldWidget;
+export '/pages/quiz/quiz_detail_old/quiz_detail_old_widget.dart'
+    show QuizDetailOldWidget;
 export '/pages/quiz/quiz_mcq/quiz_mcq_widget.dart' show QuizMcqWidget;
 export '/pages/quiz/quiz_finderror/quiz_finderror_widget.dart'
     show QuizFinderrorWidget;
@@ -38,8 +40,8 @@ export '/pages/home/notifications_detail/notifications_detail_widget.dart'
     show NotificationsDetailWidget;
 export '/pages/account/onboarding/onboarding_widget.dart' show OnboardingWidget;
 export '/pages/home/home_old/home_old_widget.dart' show HomeOldWidget;
-export '/pages/statistics/statistics/statistics_widget.dart'
-    show StatisticsWidget;
+export '/pages/statistics/statistics_o_l_d/statistics_o_l_d_widget.dart'
+    show StatisticsOLDWidget;
 export '/pages/account/sign_in_duplicate/sign_in_duplicate_widget.dart'
     show SignInDuplicateWidget;
 export '/pages/training/training_list/training_list_widget.dart'
@@ -61,3 +63,38 @@ export '/pages/home/message_list/message_list_widget.dart'
 export '/pages/home/message_details/message_details_widget.dart'
     show MessageDetailsWidget;
 export '/pages/home/new_message/new_message_widget.dart' show NewMessageWidget;
+export '/details07_class_list/details07_class_list_widget.dart'
+    show Details07ClassListWidget;
+export '/details04_event/details04_event_widget.dart' show Details04EventWidget;
+export '/pages/training/training_quiz_copy2/training_quiz_copy2_widget.dart'
+    show TrainingQuizCopy2Widget;
+export '/pages/training/training_quiz/training_quiz_widget.dart'
+    show TrainingQuizWidget;
+export '/pages/quiz/quiz_list/quiz_list_widget.dart' show QuizListWidget;
+export '/pages/quiz/quiz_details/quiz_details_widget.dart'
+    show QuizDetailsWidget;
+export '/pages/quiz/quiz_mcq_copy/quiz_mcq_copy_widget.dart'
+    show QuizMcqCopyWidget;
+export '/pages/quiz/quiz_truefalse_copy/quiz_truefalse_copy_widget.dart'
+    show QuizTruefalseCopyWidget;
+export '/pages/quiz/quiz_image_answer_copy/quiz_image_answer_copy_widget.dart'
+    show QuizImageAnswerCopyWidget;
+export '/pages/quiz/quiz_finderror_copy/quiz_finderror_copy_widget.dart'
+    show QuizFinderrorCopyWidget;
+export '/pages/quiz/quiz_mcq_copy2/quiz_mcq_copy2_widget.dart'
+    show QuizMcqCopy2Widget;
+export '/pages/quiz/quiz_result_copy/quiz_result_copy_widget.dart'
+    show QuizResultCopyWidget;
+export '/pages/training/training_completed2/training_completed2_widget.dart'
+    show TrainingCompleted2Widget;
+export '/pages/statistics/statistics/statistics_widget.dart'
+    show StatisticsWidget;
+export '/pages/statistics/stats/stats_widget.dart' show StatsWidget;
+export '/pages/statistics/statistics_copy_copy/statistics_copy_copy_widget.dart'
+    show StatisticsCopyCopyWidget;
+export '/pages/statistics/statistics_copy/statistics_copy_widget.dart'
+    show StatisticsCopyWidget;
+export '/pages/training/training_chapter_content_copy/training_chapter_content_copy_widget.dart'
+    show TrainingChapterContentCopyWidget;
+export '/pages/training/training_chapter_content_copy_copy/training_chapter_content_copy_copy_widget.dart'
+    show TrainingChapterContentCopyCopyWidget;

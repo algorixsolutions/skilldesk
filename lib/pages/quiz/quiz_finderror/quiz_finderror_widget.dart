@@ -9,7 +9,6 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'quiz_finderror_model.dart';
 export 'quiz_finderror_model.dart';
@@ -29,7 +28,7 @@ class QuizFinderrorWidget extends StatefulWidget {
   final bool? isCompleted;
 
   @override
-  _QuizFinderrorWidgetState createState() => _QuizFinderrorWidgetState();
+  State<QuizFinderrorWidget> createState() => _QuizFinderrorWidgetState();
 }
 
 class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
@@ -223,15 +222,6 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -258,7 +248,7 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('quiz_list');
+                        context.pushNamed('quiz_list_old');
 
                         _model.timerController.onResetTimer();
                       },
@@ -292,7 +282,7 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: const Color(0xFF39B6FF),
                                         fontWeight: FontWeight.w500,
                                         useGoogleFonts: false,
@@ -371,7 +361,7 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'SF Pro Display Bold',
+                                      fontFamily: 'SF Pro Display',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                       fontSize: 21.0,
@@ -408,7 +398,7 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'SF Pro Display Bold',
+                                    fontFamily: 'SF Pro Display',
                                     fontWeight: FontWeight.bold,
                                     useGoogleFonts: false,
                                   ),
@@ -714,7 +704,7 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: 'SF Pro Display Bold',
+                                            fontFamily: 'SF Pro Display',
                                             color: const Color(0xFFE0E2E4),
                                             useGoogleFonts: false,
                                           ),
@@ -964,8 +954,7 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily:
-                                                    'SF Pro Display Bold',
+                                                fontFamily: 'SF Pro Display',
                                                 fontSize: 18.0,
                                                 fontWeight: FontWeight.w500,
                                                 useGoogleFonts: false,
@@ -1021,15 +1010,15 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                                                           .fromSTEB(5.0, 0.0,
                                                               0.0, 0.0),
                                                   color: const Color(0xFFF9A1A1),
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.white,
-                                                          ),
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'SF Pro Display',
+                                                        color: Colors.white,
+                                                        useGoogleFonts: false,
+                                                      ),
                                                   elevation: 3.0,
                                                   borderSide: const BorderSide(
                                                     color: Colors.transparent,
@@ -1081,15 +1070,15 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                                                           .fromSTEB(5.0, 0.0,
                                                               0.0, 0.0),
                                                   color: const Color(0xFFDBEEF6),
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.white,
-                                                          ),
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'SF Pro Display',
+                                                        color: Colors.white,
+                                                        useGoogleFonts: false,
+                                                      ),
                                                   elevation: 3.0,
                                                   borderSide: const BorderSide(
                                                     color: Colors.transparent,
@@ -1152,9 +1141,10 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'SF Pro Display',
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 14.0,
+                              useGoogleFonts: false,
                             ),
                         borderSide: const BorderSide(
                           color: Colors.transparent,
@@ -1346,7 +1336,7 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: 'SF Pro Display Bold',
+                                        fontFamily: 'SF Pro Display',
                                         color: const Color(0xFFE0E2E4),
                                         useGoogleFonts: false,
                                       ),
@@ -1438,9 +1428,10 @@ class _QuizFinderrorWidgetState extends State<QuizFinderrorWidget> {
                       color: const Color(0xFF00D1FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'SF Pro Display',
                                 color: Colors.white,
                                 fontSize: 14.0,
+                                useGoogleFonts: false,
                               ),
                       elevation: 3.0,
                       borderSide: const BorderSide(

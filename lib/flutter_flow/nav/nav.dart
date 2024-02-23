@@ -84,14 +84,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'notifications_page',
           path: '/notificationsPage',
-          builder: (context, params) => const NotificationsPageWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: NotificationsPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'settings_menu',
           path: '/settingsMenu',
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'settings_menu')
-              : const SettingsMenuWidget(),
+              : const NavBarPage(
+                  initialPage: 'settings_menu',
+                  page: SettingsMenuWidget(),
+                ),
         ),
         FFRoute(
           name: 'languages',
@@ -116,17 +122,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'training_details',
           path: '/trainingDetails',
-          builder: (context, params) => TrainingDetailsWidget(
-            training: params.getParam('training', ParamType.JSON),
-            allTrainings:
-                params.getParam<dynamic>('allTrainings', ParamType.JSON, true),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: TrainingDetailsWidget(
+              training: params.getParam('training', ParamType.JSON),
+              allTrainings: params.getParam<dynamic>(
+                  'allTrainings', ParamType.JSON, true),
+            ),
           ),
         ),
         FFRoute(
           name: 'training_chapters',
           path: '/trainingChapters',
-          builder: (context, params) => TrainingChaptersWidget(
-            training: params.getParam('training', ParamType.JSON),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: TrainingChaptersWidget(
+              training: params.getParam('training', ParamType.JSON),
+            ),
           ),
         ),
         FFRoute(
@@ -140,9 +152,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'training_quiz',
-          path: '/trainingQuiz',
-          builder: (context, params) => TrainingQuizWidget(
+          name: 'training_quiz-old',
+          path: '/trainingQuizOld',
+          builder: (context, params) => TrainingQuizOldWidget(
             chapters:
                 params.getParam<dynamic>('chapters', ParamType.JSON, true),
             index: params.getParam('index', ParamType.int),
@@ -166,18 +178,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'quiz_list',
-          path: '/quizList',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'quiz_list')
-              : const QuizListWidget(),
+          name: 'quiz_list_old',
+          path: '/quizListOld',
+          builder: (context, params) => const QuizListOldWidget(),
         ),
         FFRoute(
-          name: 'quiz_detail',
-          path: '/quizDetail',
-          builder: (context, params) => QuizDetailWidget(
-            quiz: params.getParam('quiz', ParamType.JSON),
-            allQuiz: params.getParam<dynamic>('allQuiz', ParamType.JSON, true),
+          name: 'quiz_detail_old',
+          path: '/quizDetailOld',
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: QuizDetailOldWidget(
+              quiz: params.getParam('quiz', ParamType.JSON),
+              allQuiz:
+                  params.getParam<dynamic>('allQuiz', ParamType.JSON, true),
+            ),
           ),
         ),
         FFRoute(
@@ -257,14 +271,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const HomeOldWidget(),
         ),
         FFRoute(
-          name: 'statistics',
-          path: '/statistics',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'statistics')
-              : StatisticsWidget(
-                  period: params.getParam('period', ParamType.String),
-                  theme: params.getParam('theme', ParamType.String),
-                ),
+          name: 'statisticsOLD',
+          path: '/statisticsOLD',
+          builder: (context, params) => StatisticsOLDWidget(
+            period: params.getParam('period', ParamType.String),
+            theme: params.getParam('theme', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'sign_in-duplicate',
@@ -276,7 +288,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/trainingList',
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'training_list')
-              : const TrainingListWidget(),
+              : NavBarPage(
+                  initialPage: 'training_list',
+                  page: TrainingListWidget(
+                    selectedTheme:
+                        params.getParam('selectedTheme', ParamType.String),
+                  ),
+                ),
         ),
         FFRoute(
           name: 'training_completed',
@@ -298,18 +316,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'home',
           path: '/home',
-          builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'home') : const HomeWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'home')
+              : const NavBarPage(
+                  initialPage: 'home',
+                  page: HomeWidget(),
+                ),
         ),
         FFRoute(
           name: 'users_ranking',
           path: '/usersRanking',
-          builder: (context, params) => const UsersRankingWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: UsersRankingWidget(),
+          ),
         ),
         FFRoute(
           name: 'support_list',
           path: '/supportList',
-          builder: (context, params) => const SupportListWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: SupportListWidget(),
+          ),
         ),
         FFRoute(
           name: 'support_details',
@@ -326,7 +354,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'message_list',
           path: '/messageList',
-          builder: (context, params) => const MessageListWidget(),
+          builder: (context, params) => const NavBarPage(
+            initialPage: '',
+            page: MessageListWidget(),
+          ),
         ),
         FFRoute(
           name: 'message_details',
@@ -339,6 +370,184 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'new_message',
           path: '/newMessage',
           builder: (context, params) => const NewMessageWidget(),
+        ),
+        FFRoute(
+          name: 'Details07ClassList',
+          path: '/details07ClassList',
+          builder: (context, params) => const Details07ClassListWidget(),
+        ),
+        FFRoute(
+          name: 'Details04Event',
+          path: '/details04Event',
+          builder: (context, params) => const Details04EventWidget(),
+        ),
+        FFRoute(
+          name: 'training_quizCopy2',
+          path: '/trainingQuizCopy2',
+          builder: (context, params) => TrainingQuizCopy2Widget(
+            chapters:
+                params.getParam<dynamic>('chapters', ParamType.JSON, true),
+            index: params.getParam('index', ParamType.int),
+            trainingId: params.getParam('trainingId', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'training_quiz',
+          path: '/trainingQuiz',
+          builder: (context, params) => TrainingQuizWidget(
+            chapters:
+                params.getParam<dynamic>('chapters', ParamType.JSON, true),
+            index: params.getParam('index', ParamType.int),
+            trainingId: params.getParam('trainingId', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_list',
+          path: '/quizList',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'quiz_list')
+              : NavBarPage(
+                  initialPage: 'quiz_list',
+                  page: QuizListWidget(
+                    themeID: params.getParam('themeID', ParamType.String),
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'quiz_details',
+          path: '/quizDetails',
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: QuizDetailsWidget(
+              quiz: params.getParam('quiz', ParamType.JSON),
+              allQuiz:
+                  params.getParam<dynamic>('allQuiz', ParamType.JSON, true),
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_mcqCopy',
+          path: '/quizMcqCopy',
+          builder: (context, params) => QuizMcqCopyWidget(
+            questions:
+                params.getParam<dynamic>('questions', ParamType.JSON, true),
+            index: params.getParam('index', ParamType.int),
+            quizId: params.getParam('quizId', ParamType.String),
+            isCompleted: params.getParam('isCompleted', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_truefalseCopy',
+          path: '/quizTruefalseCopy',
+          builder: (context, params) => QuizTruefalseCopyWidget(
+            questions:
+                params.getParam<dynamic>('questions', ParamType.JSON, true),
+            index: params.getParam('index', ParamType.int),
+            quizId: params.getParam('quizId', ParamType.String),
+            isCompleted: params.getParam('isCompleted', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_image_answerCopy',
+          path: '/quizImageAnswerCopy',
+          builder: (context, params) => QuizImageAnswerCopyWidget(
+            questions:
+                params.getParam<dynamic>('questions', ParamType.JSON, true),
+            index: params.getParam('index', ParamType.int),
+            quizId: params.getParam('quizId', ParamType.String),
+            isCompleted: params.getParam('isCompleted', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_finderrorCopy',
+          path: '/quizFinderrorCopy',
+          builder: (context, params) => QuizFinderrorCopyWidget(
+            questions:
+                params.getParam<dynamic>('questions', ParamType.JSON, true),
+            index: params.getParam('index', ParamType.int),
+            quizId: params.getParam('quizId', ParamType.String),
+            isCompleted: params.getParam('isCompleted', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_mcqCopy2',
+          path: '/quizMcqCopy2',
+          builder: (context, params) => QuizMcqCopy2Widget(
+            questions:
+                params.getParam<dynamic>('questions', ParamType.JSON, true),
+            index: params.getParam('index', ParamType.int),
+            quizId: params.getParam('quizId', ParamType.String),
+            isCompleted: params.getParam('isCompleted', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_resultCopy',
+          path: '/quizResultCopy',
+          builder: (context, params) => QuizResultCopyWidget(
+            quizId: params.getParam('quizId', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'training_completed2',
+          path: '/trainingCompleted2',
+          builder: (context, params) => TrainingCompleted2Widget(
+            durations: params.getParam('durations', ParamType.String),
+            trainingId: params.getParam('trainingId', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'statistics',
+          path: '/statistics',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'statistics')
+              : NavBarPage(
+                  initialPage: 'statistics',
+                  page: StatisticsWidget(
+                    period: params.getParam('period', ParamType.String),
+                    theme: params.getParam('theme', ParamType.String),
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'STATS',
+          path: '/stats',
+          builder: (context, params) => const StatsWidget(),
+        ),
+        FFRoute(
+          name: 'statisticsCopyCopy',
+          path: '/statisticsCopyCopy',
+          builder: (context, params) => StatisticsCopyCopyWidget(
+            period: params.getParam('period', ParamType.String),
+            theme: params.getParam('theme', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'statisticsCopy',
+          path: '/statisticsCopy',
+          builder: (context, params) => StatisticsCopyWidget(
+            period: params.getParam('period', ParamType.String),
+            theme: params.getParam('theme', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'training_chapter_contentCopy',
+          path: '/trainingChapterContentCopy',
+          builder: (context, params) => TrainingChapterContentCopyWidget(
+            chapters:
+                params.getParam<dynamic>('chapters', ParamType.JSON, true),
+            trainingId: params.getParam('trainingId', ParamType.String),
+            index: params.getParam('index', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'training_chapter_contentCopyCopy',
+          path: '/trainingChapterContentCopyCopy',
+          builder: (context, params) => TrainingChapterContentCopyCopyWidget(
+            chapters:
+                params.getParam<dynamic>('chapters', ParamType.JSON, true),
+            trainingId: params.getParam('trainingId', ParamType.String),
+            index: params.getParam('index', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -513,6 +722,7 @@ class FFRoute {
           return null;
         },
         pageBuilder: (context, state) {
+          fixStatusBarOniOS16AndBelow(context);
           final ffParams = FFParameters(state, asyncParams);
           final page = ffParams.hasFutures
               ? FutureBuilder(

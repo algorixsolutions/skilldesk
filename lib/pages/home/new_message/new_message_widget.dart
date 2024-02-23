@@ -10,9 +10,9 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'new_message_model.dart';
 export 'new_message_model.dart';
 
@@ -20,7 +20,7 @@ class NewMessageWidget extends StatefulWidget {
   const NewMessageWidget({super.key});
 
   @override
-  _NewMessageWidgetState createState() => _NewMessageWidgetState();
+  State<NewMessageWidget> createState() => _NewMessageWidgetState();
 }
 
 class _NewMessageWidgetState extends State<NewMessageWidget>
@@ -79,15 +79,6 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -171,24 +162,27 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                   _model.dropDownToValue ??= '',
                                 ),
                                 options: List<String>.from(
-                                    (BaseUrlGroup.getUsersRankingCall.id(
-                                  dropDownToGetUsersRankingResponse.jsonBody,
-                                ) as List)
-                                        .map<String>((s) => s.toString())
-                                        .toList().map((e) => e.toString())
+                                    BaseUrlGroup.getUsersRankingCall
+                                        .id(
+                                          dropDownToGetUsersRankingResponse
+                                              .jsonBody,
+                                        )!
+                                        .map((e) => e.toString())
                                         .toList()),
-                                optionLabels:
-                                    (BaseUrlGroup.getUsersRankingCall.fullname(
-                                  dropDownToGetUsersRankingResponse.jsonBody,
-                                ) as List)
-                                        .map<String>((s) => s.toString())
-                                        .toList().map((e) => e.toString())
-                                        .toList(),
+                                optionLabels: BaseUrlGroup.getUsersRankingCall
+                                    .fullname(
+                                      dropDownToGetUsersRankingResponse
+                                          .jsonBody,
+                                    )!
+                                    .map((e) => e.toString())
+                                    .toList(),
                                 onChanged: (val) => setState(
                                     () => _model.dropDownToValue = val),
                                 height: 50.0,
                                 searchHintTextStyle:
                                     FlutterFlowTheme.of(context).labelMedium,
+                                searchTextStyle:
+                                    FlutterFlowTheme.of(context).bodyMedium,
                                 textStyle:
                                     FlutterFlowTheme.of(context).bodyMedium,
                                 hintText: 'To ',
@@ -410,10 +404,10 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                       child: FFButtonWidget(
-                        onPressed: functions.isTextFieldEmpty(
+                        onPressed: (functions.isTextFieldEmpty(
                                     _model.textFieldObjectController.text) ||
                                 functions.isTextFieldEmpty(
-                                    _model.textMessageController.text)
+                                    _model.textMessageController.text))
                             ? null
                             : () async {
                                 if (_model.formKey.currentState == null ||
@@ -427,26 +421,28 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Send New Message'),
-                                              content: const Text(
-                                                  'Ready to send your message ?'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: const Text('No'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: const Text('Yes'),
-                                                ),
-                                              ],
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: const Text('Send New Message'),
+                                                content: const Text(
+                                                    'Ready to send your message ?'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            false),
+                                                    child: const Text('No'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            true),
+                                                    child: const Text('Yes'),
+                                                  ),
+                                                ],
+                                              ),
                                             );
                                           },
                                         ) ??
@@ -465,20 +461,22 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text(
-                                            'Error while sending the message'),
-                                        content: Text(
-                                            (_model.apiResultja4?.jsonBody ??
-                                                    '')
-                                                .toString()),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: const Text(
+                                              'Error while sending the message'),
+                                          content: Text(
+                                              (_model.apiResultja4?.jsonBody ??
+                                                      '')
+                                                  .toString()),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   );
@@ -496,8 +494,9 @@ class _NewMessageWidgetState extends State<NewMessageWidget>
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'SF Pro Display',
                                     color: Colors.white,
+                                    useGoogleFonts: false,
                                   ),
                           elevation: 4.0,
                           borderSide: const BorderSide(

@@ -5,6 +5,10 @@ import 'quiz_mcq_widget.dart' show QuizMcqWidget;
 import 'package:flutter/material.dart';
 
 class QuizMcqModel extends FlutterFlowModel<QuizMcqWidget> {
+  ///  Local state fields for this page.
+
+  dynamic currQuiz;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

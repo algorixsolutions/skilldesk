@@ -26,6 +26,8 @@ class BaseUrlGroup {
       IncrementNotificationViewCall();
   static GetQuizByIdCall getQuizByIdCall = GetQuizByIdCall();
   static GetTrainingByIdCall getTrainingByIdCall = GetTrainingByIdCall();
+  static GetTrainingDurationCall getTrainingDurationCall =
+      GetTrainingDurationCall();
   static GetTicketsCall getTicketsCall = GetTicketsCall();
   static StoreNewTicketCall storeNewTicketCall = StoreNewTicketCall();
   static StoreNewDiscussionCall storeNewDiscussionCall =
@@ -45,6 +47,8 @@ class BaseUrlGroup {
       StoreDiscussionResponseCall();
   static GetUsersRankingCall getUsersRankingCall = GetUsersRankingCall();
   static GetDiscussionsCall getDiscussionsCall = GetDiscussionsCall();
+  static StartQuizCall startQuizCall = StartQuizCall();
+  static StartTrainingCall startTrainingCall = StartTrainingCall();
 }
 
 class HomeInfosCall {
@@ -116,6 +120,7 @@ class HomeInfosCall {
 class GetQuizzesCall {
   Future<ApiCallResponse> call({
     String? userID = '',
+    int? quizonly = 0,
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Quizzes',
@@ -124,6 +129,7 @@ class GetQuizzesCall {
       headers: {},
       params: {
         'UserID': userID,
+        'quizonly': quizonly,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -162,7 +168,7 @@ class GetThemesCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
       alwaysAllowBody: false,
     );
   }
@@ -332,6 +338,7 @@ class StoreChapterProgressionCall {
     String? trainingId = '',
     String? chapterId = '',
     String? userId = '',
+    String? duration = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Store Chapter Progression',
@@ -342,6 +349,7 @@ class StoreChapterProgressionCall {
         'training_id': trainingId,
         'chapter_id': chapterId,
         'user_id': userId,
+        'duration': duration,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -443,6 +451,36 @@ class GetTrainingByIdCall {
       );
 }
 
+class GetTrainingDurationCall {
+  Future<ApiCallResponse> call({
+    String? trainingId = '',
+    String? userId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Training Duration',
+      apiUrl:
+          '${BaseUrlGroup.baseUrl}/trainings/duration/$trainingId/$userId',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic data(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+      );
+  String? learningtime(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.learning_time''',
+      ));
+}
+
 class GetTicketsCall {
   Future<ApiCallResponse> call({
     String? userID = '',
@@ -538,9 +576,45 @@ class GetTicketsCall {
         r'''$.tickets''',
         true,
       ) as List?;
-  List? filename(dynamic response) => getJsonField(
+  List<String>? filename(dynamic response) => (getJsonField(
         response,
-        r'''$.tickets[:].file_name''',
+        r'''$.tickets[:].file.file_name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? fileurl(dynamic response) => (getJsonField(
+        response,
+        r'''$.tickets[:].file.url''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? filetype(dynamic response) => (getJsonField(
+        response,
+        r'''$.tickets[:].file.type''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? fileid(dynamic response) => (getJsonField(
+        response,
+        r'''$.tickets[:].file.id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? file(dynamic response) => getJsonField(
+        response,
+        r'''$.tickets[:].file''',
         true,
       ) as List?;
 }
@@ -784,7 +858,7 @@ class GetTicketsCategoriesCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
       alwaysAllowBody: false,
     );
   }
@@ -806,6 +880,7 @@ class StoreTicketResponseCall {
     String? ticketId = '',
     String? createdBy = '',
     String? message = '',
+    FFUploadedFile? file,
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Store Ticket Response',
@@ -816,6 +891,7 @@ class StoreTicketResponseCall {
         'ticket_id': ticketId,
         'created_by': createdBy,
         'message': message,
+        'file': file,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -835,7 +911,7 @@ class StoreDiscussionResponseCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Store Discussion Response ',
-      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/$chatId/response/store',
+      apiUrl: '${BaseUrlGroup.baseUrl}/discussions/response/store',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -975,6 +1051,54 @@ class GetDiscussionsCall {
         response,
         r'''$.chats[:].to.email''',
       ));
+}
+
+class StartQuizCall {
+  Future<ApiCallResponse> call({
+    String? quizId = '',
+    String? userId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Start Quiz',
+      apiUrl: '${BaseUrlGroup.baseUrl}/quizzes/start',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'quiz_id': quizId,
+        'user_id': userId,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class StartTrainingCall {
+  Future<ApiCallResponse> call({
+    String? userId = '',
+    String? trainingId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Start Training',
+      apiUrl: '${BaseUrlGroup.baseUrl}/trainings/start',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'training_id': trainingId,
+        'user_id': userId,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End BASE URL Group Code
